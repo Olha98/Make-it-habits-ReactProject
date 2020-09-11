@@ -152,6 +152,7 @@ img {
 .avatar {
   width: 108px;
   height: 108px;
+  cursor: pointer;
 }
 
 .editAvatar {
@@ -162,6 +163,7 @@ img {
   line-height: 17px;
   color: #bdbdbd;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .subscription {
@@ -192,6 +194,7 @@ img {
   color: #ffffff;
   line-height: 44px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .button,
@@ -207,8 +210,10 @@ img {
   color: #43d190;
   line-height: 42px;
   width: 220px;
+  cursor: pointer;
 }
 .buttonChangePassword {
   display: block;
   margin: 0 auto;
+  cursor: pointer;
 }

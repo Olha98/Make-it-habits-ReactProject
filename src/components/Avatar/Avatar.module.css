@@ -64,9 +64,12 @@ img {
   width: 157px;
   height: 157px;
   border-radius: 50%;
+  cursor: pointer;
+}
+.item:hover,
+.item:focus {
   box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1);
 }
-
 .item:not(:nth-child(4n)) {
   margin-right: 30px;
 }
