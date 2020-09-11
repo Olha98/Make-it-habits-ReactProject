@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import style from "./Profile.module.css";
+import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
+import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
 
 import avatar1 from "../../assests/images/avatars/Avatar-7.png";
 
@@ -12,7 +15,38 @@ const user = {
 };
 
 class Profile extends Component {
+  state = {
+    inputPassword: {
+      eyeOldPassword: false,
+      eyeNewPassword: false,
+      typePassword: "password",
+      typeText: "text",
+    },
+  };
+
+  onEyeIconOldPassword = () => {
+    this.setState(
+      (prevState) =>
+        (this.state.inputPassword.eyeOldPassword = !prevState.inputPassword
+          .eyeOldPassword)
+    );
+  };
+  onEyeIconNewPassword = () => {
+    this.setState(
+      (prevState) =>
+        (this.state.inputPassword.eyeNewPassword = !prevState.inputPassword
+          .eyeNewPassword)
+    );
+  };
+
   render() {
+    const {
+      eyeOldPassword,
+      eyeNewPassword,
+      typePassword,
+      typeText,
+    } = this.state.inputPassword;
+
     return (
       <>
         <div className={style.container}>
@@ -46,13 +80,20 @@ class Profile extends Component {
                     Сохранить изменения
                   </button>
                 </form>
-                <button className={style.buttonChangePassword}>
+                <button
+                  onClick={this.onEyeIconNewPassword}
+                  className={style.buttonChangePassword}
+                >
                   Изменить пароль
                 </button>
               </div>
 
               <div className={style.wrapperSecondColumn}>
-                <div className={style.avatarWrapper}>
+                <NavLink
+                  exact
+                  className={style.avatarWrapper}
+                  to="/profile/avatar"
+                >
                   <img
                     src={user.avatar}
                     alt="avatar"
@@ -60,9 +101,17 @@ class Profile extends Component {
                     higth="108"
                     className={style.avatar}
                   />
+                </NavLink>
+                <NavLink
+                  exact
+                  className={style.editAvatar}
+                  to="/profile/avatar"
+                >
+                  Выбрать другой аватар
+                </NavLink>
+                <div className={style.subscription}>
+                  <span className={style.subscriptionName}>Basic</span>
                 </div>
-                <span className={style.editAvatar}>Выбрать другой аватар</span>
-                <span className={style.subscription}>Basic</span>
                 <button className={style.button}>Изменить подписку</button>
               </div>
             </div>
@@ -70,12 +119,36 @@ class Profile extends Component {
             <form className={style.form}>
               <label className={style.label}>
                 <span className={style.titleInput}>Текущий пароль</span>
-                <input name="password" className={style.input} />
+                <div
+                  className={style.eyeImage}
+                  onClick={this.onEyeIconOldPassword}
+                >
+                  {!eyeOldPassword ? <ClosedEye /> : <OpenedEye />}
+                </div>
+                <input
+                  type={!eyeOldPassword ? typePassword : typeText}
+                  name="password"
+                  className={style.input}
+                />
               </label>
+
               <label className={style.label}>
                 <span className={style.titleInput}>Новый пароль</span>
-                <input name="password" className={style.input} />
+
+                <div
+                  className={style.eyeImage}
+                  onClick={this.onEyeIconNewPassword}
+                >
+                  {!eyeNewPassword ? <ClosedEye /> : <OpenedEye />}
+                </div>
+
+                <input
+                  type={!eyeNewPassword ? typePassword : typeText}
+                  name="password"
+                  className={style.input}
+                />
               </label>
+
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
