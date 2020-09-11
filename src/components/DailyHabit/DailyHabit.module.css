@@ -1,0 +1,74 @@
+.dailyHabitWrapper {
+  width: 784px;
+  height: 368px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #4f4f4f;
+  text-align: center;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dailyHabitTitle {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 31px;
+}
+
+.dailyHabitDescription {
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.dailyHabitBtns {
+  display: flex;
+  justify-content: space-between;
+  width: 455px;
+}
+.dailyHabitInputWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  align-items: center;
+}
+
+.btnTransparentWhiteBorder {
+  width: 220px;
+  height: 44px;
+  background-color: transparent;
+  border: 2px solid #43d190;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #43d190;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+.btnTransparentWhiteBorder:hover,
+.btnTransparentWhiteBorder:focus {
+  background-color: #43d190;
+  color: #ffffff;
+  outline: 0;
+}
+
+.inputTitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.dailyResultInput {
+  height: 44px;
+  width: 220px;
+  padding-left: 20px;
+}
+
+::placeholder {
+  /* padding-left: 20px; */
+  font-weight: 300;
+}
