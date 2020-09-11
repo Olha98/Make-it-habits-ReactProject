@@ -1,11 +1,15 @@
 .containerRightSideBar {
   position: absolute;
-  width: 378px;
-  height: 100vh;
   left: 1222px;
-  top: 230px;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  width: 378px;
+  background-color: blue;
+  border: 1px solid #d5e1dc;
+  border-radius: 0px;
 }
-
+/* 
 .headerRightSideBar {
   position: absolute;
   width: 378px;
@@ -37,4 +41,4 @@
   background-color: blue;
   border: 1px solid #d5e1dc;
   border-radius: 0px;
-}
+} */
