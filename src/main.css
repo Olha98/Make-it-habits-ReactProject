@@ -1,0 +1,71 @@
+@import "./css/fonts.css";
+@import "./css/normalize.css";
+@import "./css/vars.css";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden:not(:focus):not(:active),
+input[type="“checkbox”"].visually-hidden,
+input[type="“radio”"].visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+​ ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+​ a {
+  text-decoration: none;
+}
+​ button:hover {
+  cursor: pointer;
+}
+​ button:focus {
+  outline: none;
+}
+
+​input:focus,
+input:active,
+button:active,
+button:focus {
+  outline: none;
+}

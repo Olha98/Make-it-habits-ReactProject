@@ -1,0 +1,32 @@
+/* rubik-300 - latin_cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300; /* IE9 Compat Modes */
+  src: url("../assests/fonts/rubik-v10-latin_cyrillic-300.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../assests/fonts/rubik-v10-latin_cyrillic-300.woff") format("woff");
+}
+/* rubik-regular - latin_cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400; /* IE9 Compat Modes */
+  src:/* IE6-IE8 */ url("../assests/fonts/rubik-v10-latin_cyrillic-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../assests/fonts/rubik-v10-latin_cyrillic-regular.woff")
+      format("woff");
+  /* Modern Browsers */
+}
+/* rubik-500 - latin_cyrillic */
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500; /* IE9 Compat Modes */
+  src: /* IE6-IE8 */ url("../assests/fonts/rubik-v10-latin_cyrillic-500.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("../assests/fonts/rubik-v10-latin_cyrillic-500.woff") format("woff");
+}

@@ -1,0 +1,65 @@
+/* !Стили на прозрачную кнопку с белым бордером которая при ховере на белую переходит */
+
+:global(.button){
+  background: #43d190;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
+}
+
+:global(.buttonTransparent){
+  width: 220px;
+  height: 44px;
+  left: 792px;
+  top: 616px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  color: #ffffff;
+}
+:global(.buttonTransparent):hover {
+  background-color: #ffffff;
+outline: 0;
+}
+
+/* !Cтиль к скролу */
+
+:global(.habitTemplateList) {
+  height: 340px;
+  overflow-y: scroll;
+}
+:global(.habitTemplateList)::-webkit-scrollbar {
+  width: 6px;
+}
+:global(.habitTemplateList)::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f6f6f6;
+  border-radius: 3px;
+}
+:global(.habitTemplateList)::-webkit-scrollbar-thumb {
+  background: #43d190;
+  border-radius: 3px;
+}
+
+
+
+/* !Прозрачная кнопка с зеленым бордером */
+
+:global(.btnTransparentWhiteBorder) {
+  width: 220px;
+  height: 44px;
+  background-color: transparent;
+  border: 2px solid #43d190;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #43d190;
+  cursor: pointer;
+}
+:global(.btnTransparentWhiteBorder):hover,
+:global(.btnTransparentWhiteBorder):focus {
+  background-color: #43d190;
+  color: #ffffff;
+outline: 0;
+}
