@@ -1,0 +1,126 @@
+.checkListItem {
+  width: 720px;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-right: 45px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* border-left: 8px solid #655de6; */
+}
+
+/* .checkListItem:before {
+  content: "";
+  display: block;
+  height: 117px;
+  background-color: #655de6;
+} */
+
+.checkListItemContent {
+  display: flex;
+  align-items: flex-end;
+}
+
+.checkListItemProgressLabel {
+  display: flex;
+  flex-direction: column;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #4f4f4f;
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.checkListItemProgressLabel span {
+  margin-bottom: 16px;
+}
+
+.checkListItemProgress {
+  width: 440px;
+  /* height: 6px; */
+  background: #43d190;
+  /* border-radius: 3px; */
+  /* box-shadow: 0px 2px 8px rgba(67, 209, 144, 0.4); */
+  /* margin-top: 16px; */
+}
+
+.checkListItemProgressValue {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: right;
+  color: #43d190;
+}
+
+.checkListItemProgressComment {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bdbdbd;
+}
+
+.checkListButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkListButtonSubmit {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  margin-right: 15px;
+}
+.checkListButtonSubmit svg {
+  display: block;
+  stroke: #4f4f4f;
+  margin: 0 auto;
+}
+
+.checkListButtonSubmit:hover {
+  background: #43d190;
+  border: 1px solid #43d190;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.checkListButtonSubmit:hover svg {
+  stroke: #fff;
+}
+
+.checkListButtonDelete {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+.checkListButtonDelete svg {
+  display: block;
+  stroke: #d5e1dc;
+  margin: 0 auto;
+}
+
+.checkListButtonDelete:hover {
+  border: 1px solid #fe6083;
+}
+.checkListButtonDelete:hover svg {
+  stroke: #fe6083;
+}
+
+.checkListButtonEdit {
+  border: none;
+  background-color: #fff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
