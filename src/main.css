@@ -1,6 +1,6 @@
 @import "./css/fonts.css";
 @import "./css/normalize.css";
-@import "./css/vars.css";
+/* @import "./css/vars.css"; */
 
 html {
   box-sizing: border-box;

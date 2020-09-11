@@ -2,12 +2,14 @@ import React, { Suspense } from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
-import routes from "../../routes"
-import "../../css/vars.css";
+import routes from "../../routes";
+// import "../../css/vars.css";
+import ModalInterview from "../ModalInterview/ModalInterview";
 
 const App = () => {
   return (
     <Suspense fallback={null}>
+      <ModalInterview />
       <Switch>
         {routes.map((route) =>
           route.private ? (

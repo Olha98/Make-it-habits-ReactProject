@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { quizInfoOperations } from '../../redux/operations';
-import styles from './ModalInterview.module.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { quizInfoOperations } from "../../redux/operations";
+import styles from "./ModalInterview.module.css";
 
 class ModalInterview extends Component {
   state = {
@@ -10,12 +10,12 @@ class ModalInterview extends Component {
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   };
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onAddInfo(this.state);
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -31,13 +31,14 @@ class ModalInterview extends Component {
     return (
       <section className={styles.modalInterview}>
         <header className={styles.sectionHeader}>
-          <h2 className={styles.title}>Ответьте на 4 коротких вопроса</h2>
+          <h2 className={styles.title}>Ответьте на 4 коротких вопроса.</h2>
           <p className={styles.description}>
             Так мы сможем более точно дать вам рекомендации:
           </p>
         </header>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
+            Сколько лет Вы курите?
             <input
               className={styles.input}
               type="number"
@@ -47,6 +48,7 @@ class ModalInterview extends Component {
             />
           </label>
           <label className={styles.label}>
+            Сколько сигарет скуриваете в день?
             <input
               className={styles.input}
               type="number"
@@ -56,6 +58,7 @@ class ModalInterview extends Component {
             />
           </label>
           <label className={styles.label}>
+            Сколько вемени у Вас уходит на 1 сигарету?
             <input
               className={styles.input}
               type="number"
@@ -65,6 +68,7 @@ class ModalInterview extends Component {
             />
           </label>
           <label className={styles.label}>
+            Сколько стоит одна пачка сигарет?
             <input
               className={styles.input}
               type="number"
@@ -82,8 +86,8 @@ class ModalInterview extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
+const mapDispatchToProps = (dispatch) => ({
+  onAddInfo: (info) => dispatch(quizInfoOperations.addInfo(info)),
 });
 
 export default connect(null, mapDispatchToProps)(ModalInterview);
