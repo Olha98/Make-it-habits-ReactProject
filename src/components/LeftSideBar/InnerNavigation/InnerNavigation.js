@@ -1,8 +1,8 @@
 import React from "react";
 import { style } from "./InnerNavigation.module.css";
-import { ReactComponent as Bell } from "../../../assests/images/LeftSideBar";
-import { ReactComponent as Win } from "../../../assests/images/LeftSideBar";
-import { ReactComponent as Calendar } from "../../../assests/images/LeftSideBar";
+import { ReactComponent as Bell } from "../../../assests/images/LeftSideBar/bell.svg";
+import { ReactComponent as Win } from "../../../assests/images/LeftSideBar/win.svg";
+import { ReactComponent as Calendar } from "../../../assests/images/LeftSideBar/calendar.svg";
 import { NavLink } from "react-router-dom";
 
 export default function InnerNavigation() {
@@ -12,7 +12,7 @@ export default function InnerNavigation() {
         <ul className={style.leftSideBar_innerNavigation__list}>
           <li className={style.leftSideBar_innerNavigation__list_item}>
             <NavLink
-              to="/"
+              //   to="/"
               className={style.leftSideBar_innerNavigation__list_item_link}
             >
               <div>
@@ -22,7 +22,7 @@ export default function InnerNavigation() {
           </li>
           <li className={style.leftSideBar_innerNavigation__list_item}>
             <NavLink
-              to="/"
+              //   to="/"
               className={style.leftSideBar_innerNavigation__list_item_link}
             >
               <div>
@@ -32,7 +32,7 @@ export default function InnerNavigation() {
           </li>
           <li className={style.leftSideBar_innerNavigation__list_item}>
             <NavLink
-              to="/"
+              //   to="/"
               className={style.leftSideBar_innerNavigation__list_item_link}
             >
               <div>

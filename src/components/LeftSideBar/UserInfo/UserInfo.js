@@ -1,6 +1,6 @@
 import React from "react";
-import { avatar } from "../../../assests/images/LeftSideBar";
-import { style } from "./UserInfo.module.css";
+import { avatar } from "../../../assests/images/LeftSideBar/avatar.png";
+import { style } from "../UserInfo/UserInfo.module.css";
 export default function UserInfo() {
   return (
     <>

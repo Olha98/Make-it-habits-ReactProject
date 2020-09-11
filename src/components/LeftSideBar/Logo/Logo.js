@@ -1,13 +1,14 @@
 import React from "react";
-import { logo } from "../../../assests/images/LeftSideBar";
+import { logoimage } from "../../../assests/images/LeftSideBar/logoimage.png";
 import { style } from "./Logo.module.css";
+
 export default function Logo() {
   return (
     <>
       <section className={style.logo}>
         <div>
           <div>
-            <img src={logo} alt="logo" width="146" />
+            <img src={logoimage} alt="logo" width="146" />
           </div>
         </div>
       </section>
