@@ -1,0 +1,33 @@
+.leftSideBar_userInfo {
+  border-bottom: 1px solid grey;
+  padding: 25px 0 25px;
+}
+.leftSideBar_userInfo__avatar {
+  border-radius: 50%;
+  margin-bottom: 18px;
+  width: 94px;
+  height: 94px;
+  background-color: rgb(139, 36, 36);
+}
+.leftSideBar_userInfo__name {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 7px;
+}
+.leftSideBar_userInfo__button {
+  width: 52px;
+  height: 20px;
+
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}

@@ -1,0 +1,41 @@
+.leftSideBar_innerNavigation {
+  border-bottom: 1px solid grey;
+  padding: 25px 0 25px;
+}
+
+.leftSideBar_innerNavigation__list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+.leftSideBar_innerNavigation__list_item_link {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-color: #e9faf7;
+}
+.leftSideBar_innerNavigation__list_item_link:hover {
+  background-color: #cbf7e3;
+}
+/* .leftSideBar-innerNavigation__svg {
+  width: 60px;
+  height: 60px;
+  fill: #43d190;
+}
+.leftSideBar-innerNavigation__svg:hover {
+  fill: #333333;
+} */
+.leftSideBar_innerNavigation__list_item_link_notify {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fc675e;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 16px;
+  position: absolute;
+  top: 9px;
+  right: 14px;
+}

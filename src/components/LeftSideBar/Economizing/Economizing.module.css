@@ -1,0 +1,25 @@
+.leftSideBar_economizing__list_item_title {
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #bdbdbd;
+  margin-bottom: 10px;
+}
+
+.leftSideBar_economizing__list {
+  list-style: none;
+  display: flex;
+}
+.leftSideBar_economizing__list_item_value {
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+}
+.hourglass {
+  background-image: url("./image/hourglass.svg");
+}
+.wallet {
+  background-image: url("./image/wallet.svg");
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import withRouterHOC from "./withRouterHOC";
-import style from './PrivateRoute.module.css'
+import style from "./PrivateRoute.module.css";
 
 /**
  * - Если маршрут приватный и пользователь залогинен, рендерит компонент
@@ -13,20 +13,17 @@ const PrivateRoute = ({
   isAuthenticated,
   ...routeProps
 }) => (
-
   <Route
     {...routeProps}
     render={(props) =>
       isAuthenticated ? (
-
         <div className={style.mainContainer}>
-        {/* <LeftSiteBar/> */}
-        <Component {...props} />
-        {/* <RightSiteBar/> */}
+          {/* <LeftSideBar/> */}
+          <Component {...props} />
+          {/* <RightSideBar/> */}
         </div>
-
       ) : (
-        <Redirect to="/login" /> 
+        <Redirect to="/login" />
       )
     }
   />
