@@ -18,7 +18,7 @@ export default [
     restricted: true,
   },
   {
-    path: "/profile/avatat",
+    path: "/profile/avatar",
     label: "Avatar",
     exact: true,
     component: lazy(() => import("./views/AvatarPage")),

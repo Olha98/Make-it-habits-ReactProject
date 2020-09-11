@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import style from "./Profile.module.css";
 
-import avatar1 from "../../assests/images/avatars/Avatar-11.png";
+import avatar1 from "../../assests/images/avatars/Avatar-7.png";
 
 const user = {
   avatar: `${avatar1}`,
