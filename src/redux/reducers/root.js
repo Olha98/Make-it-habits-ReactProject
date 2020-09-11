@@ -25,13 +25,15 @@ const root = combineReducers({
         phone:"+3809438643",
         email:"admin@gmail.com",
 		registerData: Date.now(),
-	}),
+        }),
+        
 	quizInfo:()=>({
 		smokeYears: 0,
 		cigarettePerDay: 0,
 		cigarettePerTime: 0,
 		cigarettePackPrice: 0,
-	 }),
+         }),
+         
 	 dayInfo:()=>({
 		cigaretteQuantity:0,
          }),

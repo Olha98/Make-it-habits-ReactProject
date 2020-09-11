@@ -1,0 +1,40 @@
+.containerRightSideBar {
+  position: absolute;
+  width: 378px;
+  height: 100vh;
+  left: 1222px;
+  top: 230px;
+}
+
+.headerRightSideBar {
+  position: absolute;
+  width: 378px;
+  height: 110px;
+  left: 1222px;
+  top: 0px;
+  background-color: red;
+  border: 1px solid #d5e1dc;
+  border-radius: 0px;
+}
+
+.bodyRightSideBar {
+  position: absolute;
+  width: 378px;
+  height: 392px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background-color: green;
+}
+
+.footerRightSideBar {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background-color: blue;
+  border: 1px solid #d5e1dc;
+  border-radius: 0px;
+}

@@ -5,6 +5,7 @@ import PublicRoute from "../CustomRoutes/PublicRoute";
 import routes from "../../routes"
 import "../../css/vars.css";
 
+
 const App = () => {
   return (
     <Suspense fallback={null}>
