@@ -29,7 +29,7 @@ export const avatars = [
   { image: avatar11, id: 11 },
   { image: avatar12, id: 12 },
   { image: avatar13, id: 13 },
-  { image: avatar14, id: 11 },
-  { image: avatar15, id: 12 },
-  { image: avatar16, id: 13 },
+  { image: avatar14, id: 14 },
+  { image: avatar15, id: 15 },
+  { image: avatar16, id: 16 },
 ];
