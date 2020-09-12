@@ -4,12 +4,10 @@ import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
 import routes from "../../routes";
 import "../../css/vars.css";
-import LeftSideBar from "../LeftSideBar/LeftSideBar";
 
 const App = () => {
   return (
     <Suspense fallback={null}>
-      <LeftSideBar />
       <Switch>
         {routes.map((route) =>
           route.private ? (
