@@ -6,7 +6,8 @@ import routes from "../../routes";
 import "../../css/vars.css";
 import Spinner from "../Spinner/Spinner";
 
-const App = () => {
+const App = (props) => {
+  // console.log(props, "app");
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
