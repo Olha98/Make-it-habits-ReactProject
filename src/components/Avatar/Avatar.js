@@ -7,15 +7,14 @@ import avatar3 from "../../assests/images/avatars/Avatar-12.png";
 import avatar4 from "../../assests/images/avatars/Avatar-11.png";
 import avatar5 from "../../assests/images/avatars/Avatar-7.png";
 import avatar6 from "../../assests/images/avatars/Avatar-9.png";
-// ------------ 4b -------------
-// import avatar7 from "../../assests/images/avatars/Avatar-3.png";
-// import avatar8 from "../../assests/images/avatars/Avatar-4.png";
-// import avatar9 from "../../assests/images/avatars/Avatar-5.png";
-// import avatar10 from "../../assests/images/avatars/Avatar-10.png";
-// import avatar11 from "../../assests/images/avatars/Avatar-8.png";
-// import avatar12 from "../../assests/images/avatars/Avatar-13.png";
-// import avatar13 from "../../assests/images/avatars/Avatar-1.png";
-// import avatar7 from "../../assests/images/avatars/Avatar.png";
+import avatar7 from "../../assests/images/avatars/Avatar-3.png";
+import avatar8 from "../../assests/images/avatars/Avatar-4.png";
+import avatar9 from "../../assests/images/avatars/Avatar-5.png";
+import avatar10 from "../../assests/images/avatars/Avatar-10.png";
+import avatar11 from "../../assests/images/avatars/Avatar-8.png";
+import avatar12 from "../../assests/images/avatars/Avatar-13.png";
+import avatar13 from "../../assests/images/avatars/Avatar-1.png";
+import avatar7 from "../../assests/images/avatars/Avatar.png";
 
 const avatars = [
   { image: avatar1, id: 1 },
