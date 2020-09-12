@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import constantsTypes from "./constantsTypes";
 
 const loadingReducer = (state = false, { type }) => {
