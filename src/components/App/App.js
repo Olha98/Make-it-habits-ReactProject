@@ -4,10 +4,11 @@ import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
 import routes from "../../routes";
 import "../../css/vars.css";
+import Spinner from "../Spinner/Spinner";
 
 const App = () => {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Spinner />}>
       <Switch>
         {routes.map((route) =>
           route.private ? (
