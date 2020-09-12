@@ -4,25 +4,71 @@ import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckList
 import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
 import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
 
+import {
+  main_violet,
+  main_pink,
+  main_yellow,
+  main_blue,
+} from "../../../../css/vars.module.css";
+
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
+    colors: [
+      main_violet,
+      main_pink,
+      main_yellow,
+      main_blue,
+      "deepskyblue",
+      "lightcoral",
+      "green",
+      "darkorange",
+      "lightseagreen",
+      "olive",
+    ],
   };
 
-  showFullInfo() {
-    this.setState((prevState) => ({
-      showFullInfo: !prevState.showFullInfo,
-    }));
+  showFullInfo(e) {
+    // console.log("e.target.nodeName", e.target.nodeName);
+    console.log("e.target.closest(data)", e.target.closest("[data-element]"));
+
+    // if (e.target.nodeName === "BUTTON" || e.target.nodeName === "svg" || e.target.nodeName === "path") return;
+    if (!e.target.closest("[data-element]")) {
+      console.log("WRONG");
+      return;
+    }
+
+    if (
+      e.target.closest("[data-element]")
+      // e.target.dataset.element === "habit"
+    ) {
+      console.log("OK");
+      this.setState((prevState) => ({
+        showFullInfo: !prevState.showFullInfo,
+      }));
+    }
+  }
+
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   render() {
     const { name, efficiency } = this.props;
+    const colors = this.state.colors;
 
     return (
       <div
-        style={{ borderLeft: "8px solid #655de6" }}
+        data-element="habit"
+        style={{
+          borderLeft: `8px solid ${
+            colors[this.getRandomIntInclusive(0, colors.length - 1)]
+          }`,
+        }}
         className={style.checkListItem}
-        onClick={() => this.showFullInfo()}
+        onClick={(e) => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
@@ -46,6 +92,7 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
+              data-button="button"
               className={[
                 style.checkListButton,
                 style.checkListButtonSubmit,
@@ -55,6 +102,7 @@ class CheckListItem extends Component {
               <ButtonOk />
             </button>
             <button
+              data-button="button"
               className={[
                 style.checkListButton,
                 style.checkListButtonDelete,
@@ -63,7 +111,11 @@ class CheckListItem extends Component {
             >
               <ButtonDelete />
             </button>
-            <button className={style.checkListButtonEdit} type="button">
+            <button
+              data-button="button"
+              className={style.checkListButtonEdit}
+              type="button"
+            >
               <ButtonEdit />
             </button>
           </div>

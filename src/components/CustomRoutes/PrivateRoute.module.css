@@ -1,3 +1,4 @@
-.mainContainer{
-display: flex;
+.mainContainer {
+  display: flex;
+  justify-content: center;
 }
