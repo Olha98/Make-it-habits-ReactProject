@@ -1,3 +1,8 @@
+.leftSideBar_economizing {
+  border-bottom: 1px solid #d5e1dc;
+  padding: 25px 0 25px;
+}
+
 .leftSideBar_economizing__list_item_title {
   font-size: 14px;
   line-height: 17px;
@@ -11,15 +16,13 @@
   display: flex;
 }
 .leftSideBar_economizing__list_item_value {
-  padding-left: 30px;
+  font-family: Rubik;
   background-repeat: no-repeat;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
 }
-/* .hourglass {
-  background-image: url("./hourglass.svg");
+.svg {
+  margin-right: 5px;
+  margin-bottom: -3px;
 }
-.wallet {
-  background-image: url("./wallet.svg");
-} */

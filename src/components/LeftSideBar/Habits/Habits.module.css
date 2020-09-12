@@ -1,4 +1,6 @@
 .leftSideBar_habits {
+  border-bottom: 1px solid #d5e1dc;
+  padding: 25px 0 25px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,24 +10,32 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
+  margin-bottom: 20px;
 
   color: #4f4f4f;
 }
-.leftSideBar-habits__list {
+.leftSideBar_habits__list {
   margin-bottom: 20px;
 }
-.leftSideBar-habits__list_item {
+.leftSideBar_habits__list_item {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
+  color: #bdbdbd;
+  vertical-align: middle;
 }
-.leftSideBar-habits__button {
+.leftSideBar_habits__button {
   width: 220px;
   height: 44px;
   background: #43d190;
   border-radius: 5px;
   color: white;
   border: none;
+}
+.leftSideBar_habits__button:hover {
+  background: #cbf7e3;
+  color: #4f4f4f;
 }
 /* ======================= */
 .leftSideBar-habits__list {
@@ -45,32 +55,15 @@
 }
 
 /* ============================== */
-.leftSideBar-habits__list-item_circle {
+.leftSideBar_habits__list_item_circle {
   width: 18px;
   height: 18px;
   background-color: #2eebda;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 10px;
 }
-.leftSideBar-habits__list-item_habit {
+.leftSideBar_habits__list_item_habit {
   font-size: 14px;
   line-height: 17px;
   width: 222px;
-}
-.leftSideBar-innerNavigation__list-item:nth-child(3) {
-  position: relative;
-}
-.leftSideBar-innerNavigation__list-item-link_notify {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #fc675e;
-  color: white;
-  text-align: center;
-  font-size: 10px;
-  font-weight: bold;
-  line-height: 16px;
-  position: absolute;
-  top: 9px;
-  right: 14px;
 }

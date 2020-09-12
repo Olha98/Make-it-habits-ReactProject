@@ -1,5 +1,5 @@
 import React from "react";
-import { style } from "./Economizing.module.css";
+import style from "./Economizing.module.css";
 import { ReactComponent as Wallet } from "../../../assests/images/LeftSideBar/wallet.svg";
 import { ReactComponent as Hourglass } from "../../../assests/images/LeftSideBar/hourglass.svg";
 
@@ -13,7 +13,7 @@ export default function Economizing() {
               Сэкономленные деньги
             </p>
             <p className={style.leftSideBar_economizing__list_item_value}>
-              <Wallet /> 2500 &#8372;
+              <Wallet className={style.svg} /> 2500 &#8372;
             </p>
           </li>
           <li className={style.leftSideBar_economizing__list_item}>
@@ -21,7 +21,7 @@ export default function Economizing() {
               Сэкономленное время
             </p>
             <p className={style.leftSideBar_economizing__list_item_value}>
-              <Hourglass />2 ч 35 мин
+              <Hourglass className={style.svg} />2 ч 35 мин
             </p>
           </li>
         </ul>

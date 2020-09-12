@@ -1,5 +1,5 @@
 import React from "react";
-import { style } from "./Habits.module.css";
+import style from "./Habits.module.css";
 export default function Habits() {
   return (
     <>
@@ -14,7 +14,7 @@ export default function Habits() {
           </li>
         </ul>
         <button className={style.leftSideBar_habits__button}>
-          Добавить привычку
+          Добавить привычку +
         </button>
       </section>
     </>
