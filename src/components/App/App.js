@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+import React, { useState, Suspense } from "react";
+import Congratulations from "../Congratulations/Congratulations";
+import Modal from "../ModalBackDrop/ModalBackDrop";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
@@ -7,19 +9,35 @@ import "../../css/vars.css";
 import Spinner from "../Spinner/Spinner";
 
 const App = (props) => {
-  // console.log(props, "app");
+  const [isShowModal, setIsShowModal] = useState(false);
+  const showModal = () => {
+    setIsShowModal(true);
+  };
+  const closeModal = () => {
+    setIsShowModal(false);
+  };
   return (
-    <Suspense fallback={<Spinner />}>
-      <Switch>
-        {routes.map((route) =>
-          route.private ? (
-            <PrivateRoute key={route.label} {...route} />
-          ) : (
-            <PublicRoute key={route.label} {...route} />
-          )
+    <>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          {routes.map((route) =>
+            route.private ? (
+              <PrivateRoute key={route.label} {...route} />
+            ) : (
+              <PublicRoute key={route.label} {...route} />
+            )
+          )}
+        </Switch>
+      </Suspense>
+      <div>
+        <button onClick={showModal}>Show Modal</button>
+        {isShowModal && (
+          <Modal closeModal={closeModal}>
+            <Congratulations closeModal={closeModal} />
+          </Modal>
         )}
-      </Switch>
-    </Suspense>
+      </div>
+    </>
   );
 };
 
