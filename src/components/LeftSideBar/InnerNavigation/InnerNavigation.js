@@ -4,8 +4,9 @@ import { ReactComponent as Bell } from "../../../assests/images/LeftSideBar/bell
 import { ReactComponent as Win } from "../../../assests/images/LeftSideBar/win.svg";
 import { ReactComponent as Calendar } from "../../../assests/images/LeftSideBar/calendar.svg";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function InnerNavigation() {
+const InnerNavigation = ({ number }) => {
   return (
     <div>
       <section className={style.leftSideBar_innerNavigation}>
@@ -60,4 +61,8 @@ export default function InnerNavigation() {
       </section>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps)(InnerNavigation);

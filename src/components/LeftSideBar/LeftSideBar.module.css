@@ -1,12 +1,8 @@
 .leftSideBar {
-  /* background-color: rgb(136, 157, 165); */
   width: 378px;
   height: 900px;
   border-right: 1px solid #d5e1dc;
-  /* padding: 30px 0 35px; */
 }
 .leftSideBar_container {
-  /* background-color: rgb(99, 76, 76); */
   margin: 0 auto;
-  /* padding: 0 63px 0; */
 }

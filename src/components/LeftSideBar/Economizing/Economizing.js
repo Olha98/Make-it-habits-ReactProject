@@ -51,7 +51,6 @@ const mapStateToProps = (state) => {
     userSelectors.getTimeForOneCigarette(state);
   return {
     money: savedMoney,
-
     time: savedTime,
   };
 };
