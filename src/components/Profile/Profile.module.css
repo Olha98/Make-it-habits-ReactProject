@@ -1,0 +1,232 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  font-size: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* ------------ */
+
+.container {
+  width: 842px;
+  margin: 0 auto;
+}
+
+.wrapperHeader {
+  border: 1px solid #f6f6f6;
+  padding: 40px 62px;
+}
+
+.title {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  color: #4f4f4f;
+}
+
+/* -------- Main -------- */
+.wrapperMain {
+  background-color: #f6f6f6;
+  padding: 60px 62px;
+}
+.wrapperForm {
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #f6f6f6;
+  padding: 60px 62px; */
+}
+
+.titleInfo {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 31px;
+  color: #4f4f4f;
+  margin-bottom: 30px;
+}
+
+.wrapperFirstColumn {
+  justify-content: space-between;
+  width: 470px;
+  margin-bottom: 20px;
+}
+
+.wrapperFirstColumn:last-child {
+  margin-bottom: 0;
+}
+
+.wrapperSecondColumn {
+  width: 220px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.label {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 470px;
+  height: 44px;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.titleInput {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #4f4f4f;
+  width: 125px;
+}
+
+.input {
+  width: 345px;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 44px;
+  color: #4f4f4f;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 0 20px;
+}
+
+.eyeImage {
+  position: absolute;
+  /* width: 20px;
+  height: 16px; */
+  right: 20px;
+}
+
+.wrapperSecondColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 220px;
+  height: 238px;
+  margin-bottom: 20px;
+}
+
+.avatarWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 108px;
+  height: 108px;
+  cursor: pointer;
+}
+
+.editAvatar {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bdbdbd;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.subscription {
+  width: 52px;
+  height: 20px;
+
+  color: #ffffff;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
+  border-radius: 5px;
+
+  margin-bottom: 15px;
+}
+.subscriptionName {
+  display: flex;
+  justify-content: center;
+}
+.btnSaveChange {
+  width: 220px;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+
+  background: #43d190;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #ffffff;
+  line-height: 44px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.button,
+.buttonChangePassword {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+
+  background: #ffffff;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #43d190;
+  line-height: 42px;
+  width: 220px;
+  cursor: pointer;
+}
+.buttonChangePassword {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
