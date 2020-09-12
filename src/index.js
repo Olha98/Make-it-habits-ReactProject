@@ -7,14 +7,15 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import App from "./components/App/App";
 import "./main.css";
+import "./index.module.css";
 
 ReactDOM.render(
   <Provider store={store}>
-  <PersistGate loading={null} persistor={persistor}> 
+    <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-  </PersistGate>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
