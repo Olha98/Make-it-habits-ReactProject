@@ -1,0 +1,9 @@
+.logo {
+  border-bottom: 1px solid #d5e1dc;
+  padding: 25px 0 25px;
+}
+.logo_image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
