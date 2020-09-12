@@ -109,16 +109,32 @@ const birthdayStyle = `
 
   }
 
+
+
+  .react-datepicker__navigation--next{
+	
+  }
+
+  .react-datepicker__navigation--next::after{
+   contant:"";
+   position: absolute;
+   transform: rotate(-135deg);
+   width: 30px;
+    height: 30px;
+    color: red;
+ 
+
+  }
+
   `;
 
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-//   const isWeekday = date => {
-//     const day = getDay(date);
-//     return day !== 0 && day !== 6;
-//   };
-  
+  //   const isWeekday = date => {
+  //     const day = getDay(date);
+  //     return day !== 0 && day !== 6;
+  //   };
 
   const months = [
     "January",
@@ -132,9 +148,8 @@ const Calendar = () => {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
-
 
   return (
     <>
@@ -143,8 +158,8 @@ const Calendar = () => {
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         locale="ru"
-		inline
-		// filterDate={isWeekday}
+        inline
+        // filterDate={isWeekday}
       />
     </>
   );

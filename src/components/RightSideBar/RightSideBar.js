@@ -4,9 +4,7 @@ import style from "./RightSideBar.module.css";
 import Calendar from "./Calendar";
 import TimeDoIt from "./TimeDoIt";
 import moment from "moment";
-
-// const x = moment.locale('ru');
-// console.log(x);
+import "moment/locale/ru";
 
 const task = [
   {
@@ -64,20 +62,23 @@ console.log(task);
 
 class RightSideBar extends Component {
   state = {
-    dayWeek: moment().format("dddd", "ru"),
-  
+    dayWeek: moment().format("dddd"),
+    getData: moment().format('LL').split(' ').slice(0,2),
+
   };
 
+
   render() {
+    const { dayWeek, getData } = this.state;
     console.log(this.state);
     return (
       <div className={style.boxRightSideBar}>
         <div className={style.containerRightSideBar}>
           <div className={style.headerRightSideBar}>
             <div className={style.headerRightSideBarBox}>
-              <span>Вторник</span>
+              <span>{dayWeek}</span>
               <span>&#183;</span>
-              <span>2 сентября</span>
+           <span>{getData.join()}</span>
             </div>
           </div>
           <div className={style.bodyRightSideBar}>
