@@ -5,108 +5,87 @@ import { ReactComponent as ButtonDelete } from "../../../../assests/images/Check
 import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
 
 class CheckListItem extends Component {
+  state = {
+    showFullInfo: false,
+  };
+
+  showFullInfo(e) {
+    // console.log("e.target", e.target);
+    this.setState((prevState) => ({
+      showFullInfo: !prevState.showFullInfo,
+    }));
+  }
+
   render() {
-    console.log("this.props", this.props);
+    const { name, efficiency } = this.props;
+
     return (
       <div
         style={{ borderLeft: "8px solid #655de6" }}
         className={style.checkListItem}
+        onClick={() => this.showFullInfo()}
       >
-        <div>
-          <div className={style.checkListItemContent}>
-            <label className={style.checkListItemProgressLabel}>
-              <span>Утренняя зарядка 10-15 мин</span>
-              <progress
-                className={style.checkListItemProgress}
-                id="file"
-                max="100"
-                value="70"
-              >
-                70%
-              </progress>
-            </label>
-            <p className={style.checkListItemProgressValue}>70%</p>
+        <div className={style.checkListItemContentMainWrapper}>
+          <div className={style.checkListItemContentWrapper}>
+            <div className={style.checkListItemContent}>
+              <label className={style.checkListItemProgressLabel}>
+                <span>{name}</span>
+                <progress
+                  className={style.checkListItemProgress}
+                  id="file"
+                  max="100"
+                  value={efficiency}
+                >
+                  70%
+                </progress>
+              </label>
+              <p className={style.checkListItemProgressValue}>{efficiency}%</p>
+            </div>
+            <p className={style.checkListItemProgressComment}>
+              Прогресс привития привычки
+            </p>
           </div>
-          <p className={style.checkListItemProgressComment}>
-            Прогресс привития привычки
-          </p>
+          <div className={style.checkListButtons}>
+            <button
+              className={[
+                style.checkListButton,
+                style.checkListButtonSubmit,
+              ].join(" ")}
+              type="button"
+            >
+              <ButtonOk />
+            </button>
+            <button
+              className={[
+                style.checkListButton,
+                style.checkListButtonDelete,
+              ].join(" ")}
+              type="button"
+            >
+              <ButtonDelete />
+            </button>
+            <button className={style.checkListButtonEdit} type="button">
+              <ButtonEdit />
+            </button>
+          </div>
         </div>
-        <div>
-          <button
-            className={[
-              style.checkListButton,
-              style.checkListButtonSubmit,
-            ].join(" ")}
-            type="button"
-          >
-            <ButtonOk />
-          </button>
-          <button
-            className={[
-              style.checkListButton,
-              style.checkListButtonDelete,
-            ].join(" ")}
-            type="button"
-          >
-            <ButtonDelete />
-          </button>
-          <button className={style.checkListButtonEdit} type="button">
-            <ButtonEdit />
-          </button>
-        </div>
+        {this.state.showFullInfo ? (
+          <ul className={style.progressDaysContentList}>
+            <li className={style.progressDaysContentItem}>
+              <p className={style.progressDaysTitle}>К-во выполненных дней</p>
+              <p className={style.fulfiledDays}>5</p>
+            </li>
+            <li>
+              <p className={style.progressDaysTitle}>К-во пропущенных дней</p>
+              <p className={style.missedDays}>2</p>
+            </li>
+          </ul>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
 }
-
-// function CheckListItem() {
-//   return (
-//     <div
-//       style={{ borderLeft: "8px solid #655de6" }}
-//       className={style.checkListItem}
-//     >
-//       <div>
-//         <div className={style.checkListItemContent}>
-//           <label for="file" className={style.checkListItemProgressLabel}>
-//             <span>Утренняя зарядка 10-15 мин</span>
-//             <progress
-//               className={style.checkListItemProgress}
-//               id="file"
-//               max="100"
-//               value="70"
-//             >
-//               70%
-//             </progress>
-//           </label>
-//           <p className={style.checkListItemProgressValue}>70%</p>
-//         </div>
-//         <p className={style.checkListItemProgressComment}>
-//           Прогресс привития привычки
-//         </p>
-//       </div>
-//       <div>
-//         <button
-//           className={[style.checkListButton, style.checkListButtonSubmit].join(
-//             " "
-//           )}
-//           type="button"
-//         >
-//           <ButtonOk />
-//         </button>
-//         <button
-//           className={[style.checkListButton, style.checkListButtonDelete].join(
-//             " "
-//           )}
-//           type="button"
-//         >
-//           <ButtonDelete />
-//         </button>
-//         <button className={style.checkListButtonEdit} type="button">
-//           <ButtonEdit />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
 
 export default CheckListItem;
