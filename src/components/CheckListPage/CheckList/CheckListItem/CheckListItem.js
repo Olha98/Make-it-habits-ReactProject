@@ -9,8 +9,7 @@ class CheckListItem extends Component {
     showFullInfo: false,
   };
 
-  showFullInfo(e) {
-    // console.log("e.target", e.target);
+  showFullInfo() {
     this.setState((prevState) => ({
       showFullInfo: !prevState.showFullInfo,
     }));
