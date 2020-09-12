@@ -27,7 +27,7 @@ const root = combineReducers({
         email:"admin@gmail.com",
 		registerData: Date.now(),
         
-        
+        }),
 	quizInfo:()=>({
 		smokeYears: 0,
 		cigarettePerDay: 0,
@@ -48,7 +48,7 @@ const root = combineReducers({
         name: "",
         iteration:"", 
 	  }]),
-        }),
+       
 });
 
 export default root

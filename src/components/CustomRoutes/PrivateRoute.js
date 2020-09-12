@@ -21,7 +21,6 @@ const PrivateRoute = ({
         <div className={style.mainContainer}>
           {/* <LeftSiteBar/> */}
           <Component {...props} />
-          <p>GHbdtn</p>
           <RightSideBar/>
         </div>
       ) : (
