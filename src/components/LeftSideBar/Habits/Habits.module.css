@@ -1,6 +1,6 @@
 .leftSideBar_habits {
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 0 25px;
+  padding: 25px 65px 25px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -16,6 +16,7 @@
 }
 .leftSideBar_habits__list {
   margin-bottom: 20px;
+  height: 200px;
 }
 .leftSideBar_habits__list_item {
   display: flex;

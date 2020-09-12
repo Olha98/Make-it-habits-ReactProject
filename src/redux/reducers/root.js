@@ -30,13 +30,13 @@ const root = combineReducers({
 
   quizInfo: () => ({
     smokeYears: 0,
-    cigarettePerDay: 0,
-    cigarettePerTime: 0,
-    cigarettePackPrice: 0,
+    cigarettePerDay: 2,
+    cigarettePerTime: 2,
+    cigarettePackPrice: 20,
   }),
 
   dayInfo: () => ({
-    cigaretteQuantity: 0,
+    cigaretteQuantity: 2,
   }),
 
   habits: () => [

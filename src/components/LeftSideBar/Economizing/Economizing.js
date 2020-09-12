@@ -2,8 +2,10 @@ import React from "react";
 import style from "./Economizing.module.css";
 import { ReactComponent as Wallet } from "../../../assests/images/LeftSideBar/wallet.svg";
 import { ReactComponent as Hourglass } from "../../../assests/images/LeftSideBar/hourglass.svg";
-
-export default function Economizing() {
+import { connect } from "react-redux";
+import userSelectors from "../../../redux/selectors/leftSideBarSelectors";
+const Economizing = ({ money, time }) => {
+  // console.log(typeof money);
   return (
     <>
       <section className={style.leftSideBar_economizing}>
@@ -13,7 +15,8 @@ export default function Economizing() {
               Сэкономленные деньги
             </p>
             <p className={style.leftSideBar_economizing__list_item_value}>
-              <Wallet className={style.svg} /> 2500 &#8372;
+              <Wallet className={style.svg} />
+              {money} &#8372;
             </p>
           </li>
           <li className={style.leftSideBar_economizing__list_item}>
@@ -21,11 +24,35 @@ export default function Economizing() {
               Сэкономленное время
             </p>
             <p className={style.leftSideBar_economizing__list_item_value}>
-              <Hourglass className={style.svg} />2 ч 35 мин
+              <Hourglass className={style.svg} />
+              {time}
             </p>
           </li>
         </ul>
       </section>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  const numberOfCigarettsInPack = 20;
+  const priceForOneCigarettes =
+    userSelectors.getCigarettePackPrice(state) / numberOfCigarettsInPack;
+
+  console.log("priceForOneCigarettes", priceForOneCigarettes);
+  const savedMoney =
+    (userSelectors.getConstAmountOfCigarettesPerDay(state) -
+      userSelectors.getCurrentAmountOfCigarettes(state)) *
+    priceForOneCigarettes;
+
+  const savedTime =
+    (userSelectors.getConstAmountOfCigarettesPerDay(state) -
+      userSelectors.getCurrentAmountOfCigarettes(state)) *
+    userSelectors.getTimeForOneCigarette(state);
+  return {
+    money: savedMoney,
+
+    time: savedTime,
+  };
+};
+export default connect(mapStateToProps)(Economizing);
