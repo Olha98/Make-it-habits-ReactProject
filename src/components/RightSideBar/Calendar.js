@@ -1,25 +1,35 @@
-import React from "react";
-import DatePicker from "react-datepicker";
+import React, { useState } from "react";
+import DatePicker, { registerLocale } from "react-datepicker";
+import ru from "date-fns/locale/ru";
+registerLocale("ru", ru);
+// the locale you want
 
-class Example extends React.Component {
-	state = {
-	  startDate: new Date()
-	};
-   
-	handleChange = date => {
-	  this.setState({
-		startDate: date
-	  });
-	};
-   
-	render() {
-	  return (
-		<DatePicker
-		  selected={this.state.startDate}
-		  onChange={this.handleChange}
-		/>
-	  );
-	}
+const birthdayStyle = `
+.react-datepicker__day--selected{
+	background-color: orange;
+	color: white;
   }
+  
+ 
+ 
+  .react-datepicker {
 
-  export default Example
+  }` ;
+
+const Calendar = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
+  return (
+    <>
+      <style>{birthdayStyle}</style>
+      <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+		locale="ru"
+        inline
+      />
+    </>
+  );
+};
+
+export default Calendar;

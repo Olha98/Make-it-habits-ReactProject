@@ -11,7 +11,8 @@ export const persistConfig = {
 
 
 
-const root = combineReducers({
+const root = combineReducers({ 
+    
 	auth: persistReducer(persistConfig,()=>({
         token: "1234",
         login: "",

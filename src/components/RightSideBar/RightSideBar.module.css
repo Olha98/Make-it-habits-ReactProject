@@ -8,37 +8,59 @@
   background-color: blue;
   border: 1px solid #d5e1dc;
   border-radius: 0px;
+  font-family: "Rubik";
 }
-/* 
+
 .headerRightSideBar {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 378px;
   height: 110px;
-  left: 1222px;
   top: 0px;
-  background-color: red;
+  background-color: #fff;
   border: 1px solid #d5e1dc;
   border-radius: 0px;
+} 
+
+.headerRightSideBarBox{
+  width: 100%;
+  height: 30px;
+  top: 40px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #4F4F4F;
 }
+.headerRightSideBarBox span{
+  margin-left: 10px;
+}
+
+.headerRightSideBarBox span:first-child{
+  font-weight: 600;
+}
+
 
 .bodyRightSideBar {
   position: absolute;
   width: 378px;
   height: 392px;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  background-color: green;
-}
+  top: 110px;
+  background-color: #fff;
+} 
 
 .footerRightSideBar {
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  background-color: blue;
+  width: 378px;
+  height: 342px;
+  top: 500px;
+  background-color: #fff;
   border: 1px solid #d5e1dc;
   border-radius: 0px;
-} */
+} 
+
