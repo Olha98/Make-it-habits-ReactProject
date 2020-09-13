@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import style from "./CheckListItem.module.css";
 import Modal from "../../../ModalBackDrop/ModalBackDrop";
+import CastomHabit from "../../../CustomHabit/CastomHabit";
 import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckListPage/button_ok.svg";
 import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
 import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
@@ -11,8 +12,6 @@ import {
   main_yellow,
   main_blue,
 } from "../../../../css/vars.module.css";
-import Congratulations from "../../../Congratulations/Congratulations";
-import CastomHabit from "../../../CustomHabit/CastomHabit";
 
 class CheckListItem extends Component {
   state = {
@@ -65,10 +64,10 @@ class CheckListItem extends Component {
   }
 
   render() {
-    const { name, efficiency } = this.props;
+    console.log("this.props", this.props);
+    const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
-    console.log("this.props", this.props);
 
     return (
       <div
@@ -130,7 +129,10 @@ class CheckListItem extends Component {
             </button>
             {isShowModal && (
               <Modal closeModal={this.closeModal}>
-                <CastomHabit closeModal={this.closeModal}/>
+                <CastomHabit
+                  closeModal={this.closeModal}
+                  habit={this.props.habit}
+                />
               </Modal>
             )}
           </div>
