@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import style from "./CheckListItem.module.css";
+import Modal from "../../../ModalBackDrop/ModalBackDrop";
 import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckListPage/button_ok.svg";
 import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
 import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
@@ -10,10 +11,12 @@ import {
   main_yellow,
   main_blue,
 } from "../../../../css/vars.module.css";
+import Congratulations from "../../../Congratulations/Congratulations";
 
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
+    isShowModal: false,
     colors: [
       main_violet,
       main_pink,
@@ -24,48 +27,53 @@ class CheckListItem extends Component {
       "green",
       "darkorange",
       "lightseagreen",
-      "olive",
+      "violet",
     ],
   };
 
   showFullInfo(e) {
-    // console.log("e.target.nodeName", e.target.nodeName);
-    console.log("e.target.closest(data)", e.target.closest("[data-element]"));
-
-    // if (e.target.nodeName === "BUTTON" || e.target.nodeName === "svg" || e.target.nodeName === "path") return;
-    if (!e.target.closest("[data-element]")) {
-      console.log("WRONG");
-      return;
-    }
-
-    if (
-      e.target.closest("[data-element]")
-      // e.target.dataset.element === "habit"
-    ) {
-      console.log("OK");
+    if (e.target.closest('[data-element="button"]')) {
       this.setState((prevState) => ({
         showFullInfo: !prevState.showFullInfo,
       }));
     }
   }
 
-  getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
+  openModal = () => {
+    this.setState({
+      isShowModal: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isShowModal: false,
+    });
+  };
+
+  // getRandomIntInclusive(min, max) {
+  //   min = Math.ceil(min);
+  //   max = Math.floor(max);
+
+  //   return Math.floor(Math.random() * (max - min + 1)) + min;
+  // }
+  getRandomIntInclusive(max) {
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return Math.floor(Math.random() * max);
   }
 
   render() {
     const { name, efficiency } = this.props;
-    const colors = this.state.colors;
+    const { colors, isShowModal } = this.state;
+    const color = colors[this.getRandomIntInclusive(colors.length)];
+    console.log("color", color);
 
     return (
       <div
         data-element="habit"
         style={{
-          borderLeft: `8px solid ${
-            colors[this.getRandomIntInclusive(0, colors.length - 1)]
-          }`,
+          borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
         onClick={(e) => this.showFullInfo(e)}
@@ -92,32 +100,38 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
-              data-button="button"
+              data-element="button"
               className={[
                 style.checkListButton,
                 style.checkListButtonSubmit,
               ].join(" ")}
               type="button"
             >
-              <ButtonOk />
+              <ButtonOk data-element="svg" />
             </button>
             <button
-              data-button="button"
+              data-element="button"
               className={[
                 style.checkListButton,
                 style.checkListButtonDelete,
               ].join(" ")}
               type="button"
             >
-              <ButtonDelete />
+              <ButtonDelete data-element="svg" />
             </button>
             <button
-              data-button="button"
+              data-element="button_edit"
               className={style.checkListButtonEdit}
               type="button"
+              onClick={this.openModal}
             >
               <ButtonEdit />
             </button>
+            {isShowModal && (
+              <Modal closeModal={this.closeModal}>
+                <h2>Hello, Kostya!</h2>
+              </Modal>
+            )}
           </div>
         </div>
         {this.state.showFullInfo ? (

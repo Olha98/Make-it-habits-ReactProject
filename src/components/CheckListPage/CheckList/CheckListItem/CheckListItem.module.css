@@ -9,6 +9,7 @@
   padding-left: 30px;
   padding-bottom: 20px;
   background-color: #fff;
+  box-shadow: 0px 10px 16px rgba(68, 68, 68, 0.04);
 
   position: relative;
 }
@@ -111,13 +112,15 @@ progress[value]::-webkit-progress-value {
   margin: 0 auto;
 }
 
-.checkListButtonSubmit:hover {
+.checkListButtonSubmit:hover,
+.checkListButtonSubmit:focus {
   background: main_green;
   border: 1px solid main_green;
   background-repeat: no-repeat;
   background-position: center;
 }
-.checkListButtonSubmit:hover svg {
+.checkListButtonSubmit:hover svg,
+.checkListButtonSubmit:focus svg {
   stroke: #fff;
 }
 
@@ -131,10 +134,12 @@ progress[value]::-webkit-progress-value {
   margin: 0 auto;
 }
 
-.checkListButtonDelete:hover {
+.checkListButtonDelete:hover,
+.checkListButtonDelete:focus {
   border: 1px solid main_pink;
 }
-.checkListButtonDelete:hover svg {
+.checkListButtonDelete:hover svg,
+.checkListButtonDelete:focus svg {
   stroke: main_pink;
 }
 
@@ -151,7 +156,8 @@ progress[value]::-webkit-progress-value {
   fill: grey_font;
 }
 
-.checkListButtonEdit:hover svg {
+.checkListButtonEdit:hover svg,
+.checkListButtonEdit:focus svg {
   fill: black_font;
 }
 
