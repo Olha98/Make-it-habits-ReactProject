@@ -5,7 +5,7 @@ import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
 import routes from "../../routes";
-import "../../css/vars.css";
+import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
 

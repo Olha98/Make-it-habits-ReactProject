@@ -1,7 +1,7 @@
 /* @import "./index.module.css"; */
 @import "./css/fonts.css";
 @import "./css/normalize.css";
-@import "./css/vars.css";
+@import "./css/vars.module.css";
 /* @import "./index.module.css"; */
 
 html {
@@ -77,4 +77,13 @@ input:active,
 button:active,
 button:focus {
   outline: none;
+}
+
+.thumb-vertical {
+  background-color: #43d190;
+  border-radius: 6px;
+}
+
+.track-vertical {
+  border-radius: 6px;
 }

@@ -1,3 +1,6 @@
+@value colors: '../../../../css/vars.module.css';
+@value main_gradient, main_green,background,green_1,green_2,main_violet, main_pink,main_yellow,main_blue,black_font,grey_font from colors;
+
 .checkListItem {
   width: 720px;
   border-radius: 10px;
@@ -6,6 +9,7 @@
   padding-left: 30px;
   padding-bottom: 20px;
   background-color: #fff;
+  box-shadow: 0px 10px 16px rgba(68, 68, 68, 0.04);
 
   position: relative;
 }
@@ -13,12 +17,6 @@
 .checkListItem:not(:last-child) {
   margin-bottom: 30px;
 }
-/* .checkListItem:before {
-  content: "";
-  display: block;
-  height: 117px;
-  background-color: #655de6;
-} */
 
 .checkListItemContentMainWrapper {
   display: flex;
@@ -27,7 +25,6 @@
 }
 
 .checkListItemContentWrapper {
-  /* display: flex; */
   flex-direction: column;
 }
 
@@ -42,7 +39,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #4f4f4f;
+  color: black_font;
   margin-right: 8px;
   margin-bottom: 5px;
 }
@@ -67,15 +64,13 @@ progress[value]::-webkit-progress-bar {
 }
 
 progress[value]::-webkit-progress-value {
-  background-color: #43d190;
+  background-color: main_green;
   box-shadow: 0px 2px 8px rgba(67, 209, 144, 0.4);
   border-radius: 3px;
 }
 
 .checkListItemProgress {
   background: transparent;
-  /* border-radius: 3px; */
-  /* margin-top: 16px; */
 }
 
 .checkListItemProgressValue {
@@ -83,13 +78,13 @@ progress[value]::-webkit-progress-value {
   font-size: 18px;
   line-height: 21px;
   text-align: right;
-  color: #43d190;
+  color: main_green;
 }
 
 .checkListItemProgressComment {
   font-size: 14px;
   line-height: 17px;
-  color: #bdbdbd;
+  color: grey_font;
 }
 
 .checkListButtons {
@@ -103,6 +98,7 @@ progress[value]::-webkit-progress-value {
   outline: none;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .checkListButtonSubmit {
@@ -112,17 +108,19 @@ progress[value]::-webkit-progress-value {
 }
 .checkListButtonSubmit svg {
   display: block;
-  stroke: #4f4f4f;
+  stroke: black_font;
   margin: 0 auto;
 }
 
-.checkListButtonSubmit:hover {
-  background: #43d190;
-  border: 1px solid #43d190;
+.checkListButtonSubmit:hover,
+.checkListButtonSubmit:focus {
+  background: main_green;
+  border: 1px solid main_green;
   background-repeat: no-repeat;
   background-position: center;
 }
-.checkListButtonSubmit:hover svg {
+.checkListButtonSubmit:hover svg,
+.checkListButtonSubmit:focus svg {
   stroke: #fff;
 }
 
@@ -136,11 +134,13 @@ progress[value]::-webkit-progress-value {
   margin: 0 auto;
 }
 
-.checkListButtonDelete:hover {
-  border: 1px solid #fe6083;
+.checkListButtonDelete:hover,
+.checkListButtonDelete:focus {
+  border: 1px solid main_pink;
 }
-.checkListButtonDelete:hover svg {
-  stroke: #fe6083;
+.checkListButtonDelete:hover svg,
+.checkListButtonDelete:focus svg {
+  stroke: main_pink;
 }
 
 .checkListButtonEdit {
@@ -149,6 +149,16 @@ progress[value]::-webkit-progress-value {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
+}
+
+.checkListButtonEdit svg {
+  fill: grey_font;
+}
+
+.checkListButtonEdit:hover svg,
+.checkListButtonEdit:focus svg {
+  fill: black_font;
 }
 
 .progressDaysContentList {
@@ -165,7 +175,7 @@ progress[value]::-webkit-progress-value {
 .progressDaysTitle {
   font-size: 14px;
   line-height: 17px;
-  color: #bdbdbd;
+  color: grey_font;
 }
 
 .fulfiledDays {
@@ -174,7 +184,7 @@ progress[value]::-webkit-progress-value {
   line-height: 21px;
   text-transform: capitalize;
 
-  color: #43d190;
+  color: main_green;
 }
 
 .missedDays {
@@ -183,5 +193,5 @@ progress[value]::-webkit-progress-value {
   line-height: 21px;
   text-transform: capitalize;
 
-  color: #fe6083;
+  color: main_pink;
 }
