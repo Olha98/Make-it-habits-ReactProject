@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import leftSideBarSelectors from "../../../redux/selectors/leftSideBarSelectors";
 import style from "./HabitItem.module.css";
+
 const colors = [
   "#f8c102",
   "#f79533",
