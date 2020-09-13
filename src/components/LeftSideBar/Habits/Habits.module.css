@@ -1,6 +1,8 @@
 .leftSideBar_habits {
   border-bottom: 1px solid #d5e1dc;
   padding: 25px 65px 25px;
+  height: calc(100vh - 557px);
+  min-height: 390px;
   display: flex;
   justify-content: center;
   flex-direction: column;

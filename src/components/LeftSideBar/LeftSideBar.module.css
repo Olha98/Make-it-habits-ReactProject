@@ -1,8 +1,8 @@
 .leftSideBar {
   width: 378px;
   height: 900px;
-  border-right: 1px solid #d5e1dc;
 }
 .leftSideBar_container {
   margin: 0 auto;
+  border-right: 1px solid #d5e1dc;
 }
