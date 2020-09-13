@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./Subscriptions.module.css";
 import Card from "../../Card/Card";
+// import { ReactComponent as SupportPic } from "../../../assests/images/Subscriptions/support-pic.svg";
+import { ReactComponent as TelegramIcon } from "../../../assests/images/Subscriptions/telegram.svg";
 
 function Subscriptions() {
   return (
@@ -72,6 +74,32 @@ function Subscriptions() {
       <section className={style.subscriptionsSectionCards}>
         <p className={style.subscriptionsSectionTitle}>Мои карты</p>
         <Card />
+
+        <div className={style.subscriptionsSectionCardsButtons}>
+          <button
+            className={["btnTransparentWhiteBorder", style.buttonAdd].join(" ")}
+          >
+            + Добавить карту
+          </button>
+          <button
+            className={["btnTransparentWhiteBorder", style.buttonPay].join(" ")}
+          >
+            Оплатить
+          </button>
+        </div>
+      </section>
+
+      <section className={style.subscriptionsSectionSupport}>
+        <div className={style.supportPic}>{/* <SupportPic /> */}</div>
+        <div className={style.supportInfo}>
+          <p className={style.supportInfoTitle}>
+            Напишите нам, если у Вас возникли вопросы:
+          </p>
+          <p className={style.supportInfoEmail}>info@dishi.com</p>
+          <div className={style.supportInfoTelegram}>
+            <TelegramIcon />
+          </div>
+        </div>
       </section>
     </div>
   );

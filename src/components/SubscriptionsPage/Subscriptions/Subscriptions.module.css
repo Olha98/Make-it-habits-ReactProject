@@ -59,3 +59,77 @@
 .subscriptionsItemTitleUltra {
   background: violet_gradient;
 }
+
+.subscriptionsSectionCards {
+  margin-bottom: 60px;
+}
+
+.subscriptionsSectionCardsButtons {
+  display: flex;
+}
+
+.buttonAdd {
+  margin-right: 15px;
+}
+
+.buttonPay {
+  background: main_green;
+  color: #ffffff;
+}
+
+.buttonPay:hover,
+.buttonPay:focus {
+  background: #ffffff;
+  color: main_green;
+}
+
+.subscriptionsSectionSupport {
+  display: flex;
+}
+
+.supportPic {
+  width: 238px;
+  height: 150px;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 10px 16px rgba(254, 96, 131, 0.04);
+  background: main_green;
+  background-image: url(../../../assests/images/Subscriptions/support-pic.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.supportInfo {
+  width: 356px;
+  height: 150px;
+  background: #ffffff;
+  box-shadow: 0px 10px 16px rgba(254, 96, 131, 0.04);
+  border-radius: 0px 10px 10px 0px;
+  padding: 20px 30px;
+}
+
+.supportInfoTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: black_font;
+  margin-bottom: 10px;
+}
+
+.supportInfoEmail {
+  font-size: 14px;
+  line-height: 17px;
+
+  color: black_font;
+  margin-bottom: 12px;
+}
+
+.supportInfoTelegram {
+  width: 30px;
+  height: 30px;
+  background: main_green;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
