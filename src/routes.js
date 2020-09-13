@@ -6,8 +6,8 @@ export default [
     label: "Home",
     exact: true,
     component: lazy(() => import("./views/HomePage")),
-    private: true,
-    restricted: true
+    private: false,
+    restricted: true,
   },
   {
     path: "/profile",
@@ -15,7 +15,15 @@ export default [
     exact: true,
     component: lazy(() => import("./views/ProfilePage")),
     private: true,
-    restricted: true
+    restricted: true,
+  },
+  {
+    path: "/profile/avatar",
+    label: "Avatar",
+    exact: true,
+    component: lazy(() => import("./views/AvatarPage")),
+    private: true,
+    restricted: true,
   },
   {
     path: "/checklist",
@@ -23,7 +31,7 @@ export default [
     exact: true,
     component: lazy(() => import("./views/CheckListPage")),
     private: true,
-    restricted: true
+    restricted: true,
   },
   {
     path: "/notifications",
@@ -31,7 +39,7 @@ export default [
     exact: true,
     component: lazy(() => import("./views/NotificationsPage")),
     private: true,
-    restricted: true
+    restricted: true,
   },
   {
     path: "/achievements",
@@ -39,7 +47,7 @@ export default [
     exact: true,
     component: lazy(() => import("./views/AchievementsPage")),
     private: false,
-    restricted: true
+    restricted: true,
   },
   {
     path: "/subscriptions",
@@ -47,6 +55,6 @@ export default [
     exact: true,
     component: lazy(() => import("./views/SubscriptionsPage")),
     private: true,
-    restricted: true
-  }
+    restricted: true,
+  },
 ];

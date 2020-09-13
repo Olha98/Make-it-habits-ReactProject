@@ -15,7 +15,8 @@ class CastomHabit extends Component {
 handleSubmit = e => {
   e.preventDefault();
   const { name, startDate, time, repeat } = this.state;
-this.props.onAddCustomHabit({name, startDate, time, repeat})
+  this.props.onAddCustomHabit({name, startDate, time, repeat})
+  this.props.closeModal()
 // this.props.onAddCustomStartDate({startDate})
 
 }
