@@ -2,6 +2,7 @@ import { combineReducers} from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import imgAva from '../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png'
+import castomHabitRedusers from "./castomHabitRedusers";
 
 export const persistConfig = {
     key: "token",
@@ -36,15 +37,19 @@ const root = combineReducers({
 		cigaretteQuantity:0,
          }),
          
-	 habits:()=>([{
-        createAt: "",
-        data: [],
-        planningTime: 0,
-        efficiency : 0,
-        id: "",
-        name: "",
-        iteration:"", 
-	  }]),
+	//  habits:()=>([{
+        // createAt: "",
+        // data: [],
+        // planningTime: 0,
+        // efficiency : 0,
+        // id: "",
+        // name: "",
+        // iteration:"", 
+        //   }]),
+        
+         habits: castomHabitRedusers
+
+
 
 });
 
