@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import leftSideBarSelectors from "../../../redux/selectors/leftSideBarSelectors";
 import HabitItem from "../HabitItem/HabitItem";
 import style from "./Habits.module.css";
+import { NavLink } from "react-router-dom";
 
 const Habits = ({ habits }) => {
   return (
@@ -11,13 +12,16 @@ const Habits = ({ habits }) => {
         <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
 
         <ul className={style.leftSideBar_habits__list}>
-          {habits.map(({ id }) => (
-            <HabitItem id={id} />
+          {habits.map(({ id }, idx) => (
+            <HabitItem key={id} id={id} idx={idx} />
           ))}
         </ul>
-        <button className={style.leftSideBar_habits__button}>
+        <NavLink
+          to="/CustomHabitModal"
+          className={style.leftSideBar_habits__button}
+        >
           Добавить привычку +
-        </button>
+        </NavLink>
       </section>
     </>
   );

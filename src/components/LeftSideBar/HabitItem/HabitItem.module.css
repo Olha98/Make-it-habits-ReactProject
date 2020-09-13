@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: #bdbdbd;
   vertical-align: middle;
 }
 .leftSideBar_habits__list_item_circle {
   width: 18px;
   height: 18px;
-  background-color: #2eebda;
+  /* background-color: #2eebda; */
   border-radius: 50%;
   margin-right: 10px;
 }

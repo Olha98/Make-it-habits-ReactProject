@@ -29,6 +29,9 @@
 .leftSideBar_habits__button {
   width: 220px;
   height: 44px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
   background: #43d190;
   border-radius: 5px;
   color: white;
@@ -56,14 +59,21 @@
 }
 
 /* ============================== */
-/* .leftSideBar_habits__list_item_circle {
-  width: 18px;
-  height: 18px;
+/* .leftSideBar_habits__list_item_circle { */
+/* width: 18px;
+  height: 18px; */
+/* background-color: #f8c102;
+  background-color: #fe6083;
+  background-color: #b469fa;
+  background-color: #655de6;
+
   background-color: #2eebda;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.leftSideBar_habits__list_item_habit {
+  background-color: #2eebda;
+  background-color: #2eebda; */
+/* border-radius: 50%;
+  margin-right: 10px; */
+/* } */
+/* .leftSideBar_habits__list_item_habit {
   font-size: 14px;
   line-height: 17px;
   width: 222px;
