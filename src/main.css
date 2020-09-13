@@ -78,3 +78,12 @@ button:active,
 button:focus {
   outline: none;
 }
+
+.thumb-vertical {
+  background-color: #43d190;
+  border-radius: 6px;
+}
+
+.track-vertical {
+  border-radius: 6px;
+}
