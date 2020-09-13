@@ -1,8 +1,8 @@
 .leftSideBar_habits {
   border-bottom: 1px solid #d5e1dc;
   padding: 25px 65px 25px;
-  height: calc(100vh - 557px);
-  min-height: 390px;
+  height: calc(100vh - 554px);
+  /* min-height: 390px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -13,13 +13,12 @@
   font-size: 18px;
   line-height: 21px;
   margin-bottom: 20px;
-
   color: #4f4f4f;
 }
 .leftSideBar_habits__list {
   margin-bottom: 20px;
-  height: 200px;
-  overflow: hidden;
+  height: 250px;
+  /* overflow: hidden; */
 }
 /* .leftSideBar_habits__list_item {
   display: flex;
@@ -39,13 +38,14 @@
   border-radius: 5px;
   color: white;
   border: none;
+  margin-top: 20px;
 }
 .leftSideBar_habits__button:hover {
   background: #cbf7e3;
   color: #4f4f4f;
 }
 /* ======================= */
-.leftSideBar-habits__list {
+/* .leftSideBar-habits__list {
   height: 213px;
   overflow-y: scroll;
 }
@@ -59,7 +59,7 @@
 .leftSideBar-habits__list::-webkit-scrollbar-thumb {
   background: #43d190;
   border-radius: 3px;
-}
+} */
 
 /* ============================== */
 /* .leftSideBar_habits__list_item_circle { */
