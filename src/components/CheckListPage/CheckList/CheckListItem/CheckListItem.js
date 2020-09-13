@@ -110,6 +110,7 @@ class CheckListItem extends Component {
               <ButtonOk data-element="svg" />
             </button>
             <button
+              disabled
               data-element="button"
               className={[
                 style.checkListButton,
