@@ -1,6 +1,7 @@
 .leftSideBar_innerNavigation {
   border-bottom: 1px solid #d5e1dc;
-  padding: 20px 65px 20px;
+  padding: 20px 40px 20px;
+  width: 100%;
 }
 
 .leftSideBar_innerNavigation__list {
