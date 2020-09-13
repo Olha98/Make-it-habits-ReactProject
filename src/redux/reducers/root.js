@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import imgAva from "../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png";
+import imgAva from "../../assests/images/avatars/Avatar-default.png";
 import spinnerReducers from "../../components/Spinner/redux/spinnerReducers";
 
 export const persistConfig = {
@@ -22,9 +22,9 @@ const root = combineReducers({
   user: () => ({
     avatar: imgAva,
     firstName: "Anna",
-    lastName: "Bond",
-    phone: "+3809438643",
-    email: "admin@gmail.com",
+    lastName: "Vygovska",
+    phone: "0505450652",
+    email: "Zzz@gmail.com",
     registerData: Date.now(),
   }),
 
