@@ -10,7 +10,7 @@ const Habits = ({ habits }) => {
     <>
       <section className={style.leftSideBar_habits}>
         <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
-        <CustomScrollbars style={{ width: 250, height: 213 }}>
+        <CustomScrollbars style={{ width: 270, height: 186 }}>
           <ul className={style.leftSideBar_habits__list}>
             {habits.map(({ id }, idx) => (
               <HabitItem key={id} id={id} idx={idx} />

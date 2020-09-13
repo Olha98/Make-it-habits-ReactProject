@@ -39,45 +39,21 @@ const colors = [
   "#1098ad",
   "#07b39b",
   "#6fba82",
-  //   "#f8c102",
-  //   "#fe6083",
-  //   " #b469fa",
-  //   "#655de6",
-  //   "#f8c102",
-  //   "#fe6083",
-  //   " #b469fa",
-  //   "#655de6",
-  //   "#f8c102",
-  //   "#fe6083",
-  //   " #b469fa",
-  //   "#655de6",
-  //   "#f8c102",
-  //   "#fe6083",
-  //   " #b469fa",
-  //   "#655de6",
-  //   "#f8c102",
-  //   "#fe6083",
-  //   " #b469fa",
-  //   "#655de6",
 ];
 const HabitItem = (habit, idx) => {
   console.log("idx", idx);
   return (
-    <>
-      <li className={style.leftSideBar_habits__list_item}>
-        <div
-          style={{
-            background: `linear-gradient(60deg, ${colors[habit.idx]}, ${
-              colors[habit.idx + 1]
-            })`,
-          }}
-          className={style.leftSideBar_habits__list_item_circle}
-        ></div>
-        <p className={style.leftSideBar_habits__list_item_habit}>
-          {habit.name}
-        </p>
-      </li>
-    </>
+    <li className={style.leftSideBar_habits__list_item}>
+      <div
+        style={{
+          background: `linear-gradient(60deg, ${colors[habit.idx]}, ${
+            colors[habit.idx + 1]
+          })`,
+        }}
+        className={style.leftSideBar_habits__list_item_circle}
+      ></div>
+      <p className={style.leftSideBar_habits__list_item_habit}>{habit.name}</p>
+    </li>
   );
 };
 const mapStateToProps = (state, ownProps) => {

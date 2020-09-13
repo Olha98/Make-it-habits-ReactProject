@@ -1,11 +1,10 @@
 .leftSideBar_habits {
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 65px 25px;
-  height: calc(100vh - 554px);
-  /* min-height: 390px; */
+  padding: 25px 0 25px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .leftSideBar_habits_title {
@@ -13,21 +12,14 @@
   font-size: 18px;
   line-height: 21px;
   margin-bottom: 20px;
+  margin-left: 65px;
   color: #4f4f4f;
+  align-self: flex-start;
 }
 .leftSideBar_habits__list {
   margin-bottom: 20px;
-  height: 250px;
-  /* overflow: hidden; */
 }
-/* .leftSideBar_habits__list_item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  color: #bdbdbd;
-  vertical-align: middle;
-} */
+
 .leftSideBar_habits__button {
   width: 220px;
   height: 44px;
@@ -44,40 +36,3 @@
   background: #cbf7e3;
   color: #4f4f4f;
 }
-/* ======================= */
-/* .leftSideBar-habits__list {
-  height: 213px;
-  overflow-y: scroll;
-}
-.leftSideBar-habits__list::-webkit-scrollbar {
-  width: 6px;
-}
-.leftSideBar-habits__list::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #f6f6f6;
-  border-radius: 3px;
-}
-.leftSideBar-habits__list::-webkit-scrollbar-thumb {
-  background: #43d190;
-  border-radius: 3px;
-} */
-
-/* ============================== */
-/* .leftSideBar_habits__list_item_circle { */
-/* width: 18px;
-  height: 18px; */
-/* background-color: #f8c102;
-  background-color: #fe6083;
-  background-color: #b469fa;
-  background-color: #655de6;
-
-  background-color: #2eebda;
-  background-color: #2eebda;
-  background-color: #2eebda; */
-/* border-radius: 50%;
-  margin-right: 10px; */
-/* } */
-/* .leftSideBar_habits__list_item_habit {
-  font-size: 14px;
-  line-height: 17px;
-  width: 222px;
-} */
