@@ -6,7 +6,7 @@
   justify-content: space-between;
   padding: 32px 62px;
   background: #ffffff;
-  border: 1px solid #d5e1dc;
+  border-bottom: 1px solid #d5e1dc;
 }
 
 .checkListTitle {
