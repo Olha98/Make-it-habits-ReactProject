@@ -12,6 +12,7 @@ import {
   main_blue,
 } from "../../../../css/vars.module.css";
 import Congratulations from "../../../Congratulations/Congratulations";
+import CastomHabit from "../../../CustomHabit/CastomHabit";
 
 class CheckListItem extends Component {
   state = {
@@ -129,7 +130,7 @@ class CheckListItem extends Component {
             </button>
             {isShowModal && (
               <Modal closeModal={this.closeModal}>
-                <h2>Hello, Kostya!</h2>
+                <CastomHabit closeModal={this.closeModal}/>
               </Modal>
             )}
           </div>
