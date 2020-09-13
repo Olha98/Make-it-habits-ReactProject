@@ -1,6 +1,6 @@
 .leftSideBar_innerNavigation {
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 0 25px;
+  padding: 20px 65px 20px;
 }
 
 .leftSideBar_innerNavigation__list {
@@ -15,6 +15,14 @@
   background-color: #e9faf7;
   padding: 14px;
   border-radius: 5px;
+}
+
+.leftSideBar_innerNavigation__list_item_link_active {
+  background-color: #cbf7e3;
+}
+.leftSideBar_innerNavigation__list_item_link_active
+  .leftSideBar_innerNavigation__green {
+  background-color: #333333;
 }
 .leftSideBar_innerNavigation__list_item_link:hover {
   background-color: #cbf7e3;
