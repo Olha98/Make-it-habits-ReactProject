@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
-import addCustomHabit from '../../redux/actions/castomHabitActions';
-import addStartDate from '../../redux/actions/castomHabitActions';
+import addHabitOperation from "../../redux/operations/castomHabitOperation";
+// import removeHabitOperation from "../../redux/operations/castomHabitOperation";
 
 class CastomHabit extends Component {
   state = {
@@ -12,22 +12,31 @@ class CastomHabit extends Component {
     repeat: ""
   };
 
-handleSubmit = e => {
-  e.preventDefault();
-  const { name, startDate, time, repeat } = this.state;
-  this.props.onAddCustomHabit({name, startDate, time, repeat})
-  this.props.closeModal()
-// this.props.onAddCustomStartDate({startDate})
+  // handleSubmit = e => {
+  //   e.preventDefault();
 
-}
+  // };
 
+  onClickSubmit = e => {
+    e.preventDefault();
+    const { name, startDate, time, repeat } = this.state;
+    if (e.target.dataset.save) {
+      this.props.onAddCustomHabit({ name, startDate, time, repeat })
+      this.props.closeModal()
+    } else if (e.target.dataset.cancel) {
+      this.props.closeModal()
+    }
+    // else if (e.target.dataset.delete) {
+    //   this.props.removeCastomHabit()
+    // }
+  }
 
-handleChenge= e => {
-  const { name, value } = e.target;
-  this.setState({
-    [name]: value,
-  });
-};
+  handleChenge = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
     return (
@@ -38,32 +47,56 @@ handleChenge= e => {
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
               Название
-              <input type="text" className={style.castomHabitName} name="name" value={this.state.name} onChange={this.handleChenge}/>
+              <input
+                type="text"
+                className={style.castomHabitName}
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChenge}
+              />
             </label>
             <label className={style.castomHabitLabel}>
               Дата старта
-              <input type="date" className={style.castomHabitDate} name="startDate" value={this.state.startDate} onChange={this.handleChenge}/>
+              <input
+                type="date"
+                className={style.castomHabitDate}
+                name="startDate"
+                value={this.state.startDate}
+                onChange={this.handleChenge}
+              />
             </label>
             <label className={style.castomHabitLabel}>
               Время
-              <input type="time" className={style.castomHabitTime} name="time" value={this.state.time} onChange={this.handleChenge}/>
+              <input
+                type="time"
+                className={style.castomHabitTime}
+                name="time"
+                value={this.state.time}
+                onChange={this.handleChenge}
+              />
             </label>
             <label className={style.castomHabitLabel}>
               Повторение
               <select className={style.castomHabitSelect} name="repeat" value={this.state.repeat} onChange={this.handleChenge}>
-                <option selected disabled>выбрать</option>
-                <option>Ежедневно</option>
-                <option>Раз в 2 дня</option>
-                <option>ПН, СР, ПТ</option>
-                <option>ВТ, ЧТ, СБ</option>
-              </select>
+                <option value="none" disabled>
+                  выбрать
+                </option>
+                <option value="everyday">Ежедневно</option>
+                <option value="onceInTwoDays">Раз в 2 дня</option>
+                <option value="MonWedFri">ПН, СР, ПТ</option>
+                <option value="TueThuSat">ВТ, ЧТ, СБ</option>
+                </select>
             </label>
           </div>
 
-          <button className={style.castomHabitDelete}>удалить привычку</button>
+          <button onClick={this.onClickSubmit} data-delete="delete" className={style.castomHabitDelete}>удалить привычку</button>
           <div className={style.castomHabitBtnWrapper}>
-            <button className={style.castomHabitCancelBtn}>Отмена</button>
-            <button type="submit" className={style.castomHabitSaveBtn}>Сохранить</button>
+            <button type="submit" onClick={this.onClickSubmit} data-cancel="cancel" className={style.castomHabitCancelBtn}>
+              Отмена
+            </button>
+            <button type="submit" onClick={this.onClickSubmit} data-save="save" className={style.castomHabitSaveBtn}>
+              Сохранить
+            </button>
           </div>
         </form>
       </div>
@@ -71,6 +104,7 @@ handleChenge= e => {
   }
 }
 
-
-
-export default connect(null, {onAddCustomHabit: addCustomHabit, onAddCustomStartDate: addStartDate})(CastomHabit);
+export default connect(
+  null,
+  { onAddCustomHabit: addHabitOperation }
+)(CastomHabit);

@@ -1,5 +1,5 @@
-const ADD_CUSTOM_HABIT_NAME = "@customHabit/addCastomHabit";
+const ADD_CUSTOM_HABIT = "@customHabit/addCastomHabit";
+const REMOVE_CUSTOM_HABIT = "@customHabit/removeCastomHabit"
 
 
-
-export default {ADD_CUSTOM_HABIT_NAME};
+export default { ADD_CUSTOM_HABIT, REMOVE_CUSTOM_HABIT};
