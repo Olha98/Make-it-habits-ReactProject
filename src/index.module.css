@@ -20,7 +20,8 @@
   cursor: pointer;
   color: #ffffff;
 }
-:global(.buttonTransparent):hover {
+:global(.buttonTransparent):hover,
+:global(.buttonTransparent):focus {
   background-color: #ffffff;
   outline: 0;
 }

@@ -1,3 +1,6 @@
+@value colors: '../../../css/vars.module.css';
+@value black_font from colors;
+
 .checkListHeader {
   display: flex;
   justify-content: space-between;
@@ -7,33 +10,8 @@
 }
 
 .checkListTitle {
-  font-family: Rubik;
-  font-style: normal;
   font-weight: 500;
   font-size: 26px;
   line-height: 31px;
-  color: #4f4f4f;
-}
-
-.checkListButton {
-  padding: 12px 18px;
-  background-color: #fff;
-  border-radius: 5px;
-  border: 2px solid #43d190;
-  font-family: Rubik;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #43d190;
-}
-
-.checkListButton:hover {
-  border: 2px solid #cbf7e3;
-  background: #cbf7e3;
-  color: #333333;
+  color: black_font;
 }

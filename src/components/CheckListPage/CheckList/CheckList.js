@@ -35,6 +35,16 @@ class CheckList extends Component {
     ],
   };
 
+  // showFullInfo(e) {
+  //   console.log("e.target", e.target);
+  //   // console.log("e.target.nodeName", e.target.nodeName);
+  //   // if (e.target.nodeName !== "BTN" && e.target.closest("[data-element]")) {
+  //   // }
+  //   this.setState((prevState) => ({
+  //     showFullInfo: !prevState.showFullInfo,
+  //   }));
+  // }
+
   render() {
     return (
       <div className={style.checkList}>
@@ -44,6 +54,7 @@ class CheckList extends Component {
                 key={habit._id}
                 name={habit.name}
                 efficiency={habit.efficiency}
+                // onClick={(e) => this.showFullInfo(e)}
               />
             ))
           : "No habits added"}
