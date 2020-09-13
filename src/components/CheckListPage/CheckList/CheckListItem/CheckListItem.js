@@ -67,7 +67,7 @@ class CheckListItem extends Component {
     const { name, efficiency } = this.props;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
-    console.log("color", color);
+    console.log("this.props", this.props);
 
     return (
       <div
