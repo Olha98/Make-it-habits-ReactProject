@@ -1,11 +1,13 @@
 import React from "react";
 import style from "./SubscriptionsPage.module.css";
-import SubscriptionsPageHeader from "./SubscriptionsPageHeader/SubscriptionsPageHeader";
+import SubscriptionsHeader from "./SubscriptionsHeader/SubscriptionsHeader";
+import Subscriptions from "./Subscriptions/Subscriptions";
 
 function SubscriptionsPage() {
   return (
     <div className={style.subscriptionsContainer}>
-      <SubscriptionsPageHeader />
+      <SubscriptionsHeader />
+      <Subscriptions />
     </div>
   );
 }

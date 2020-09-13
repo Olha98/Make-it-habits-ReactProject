@@ -1,7 +1,7 @@
 import React from "react";
-import style from "./SubscriptionsPageHeader.module.css";
+import style from "./SubscriptionsHeader.module.css";
 
-function SubscriptionsPageHeader() {
+function SubscriptionsHeader() {
   return (
     <div className={style.subscriptionsHeader}>
       <p className={style.subscriptionsTitle}>Подписки</p>
@@ -9,4 +9,4 @@ function SubscriptionsPageHeader() {
   );
 }
 
-export default SubscriptionsPageHeader;
+export default SubscriptionsHeader;

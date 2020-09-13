@@ -1,0 +1,61 @@
+@value colors: '../../../css/vars.module.css';
+@value main_green, main_gradient, orange_gradient, pink_gradient, violet_gradient, black_font from colors;
+
+.subscriptionsContainer {
+  padding: 60px 62px;
+}
+
+.subscriptionsSectionTypes {
+  margin-bottom: 60px;
+}
+
+.subscriptionsSectionTitle {
+  font-size: 26px;
+  line-height: 31px;
+
+  color: black_font;
+  margin-bottom: 30px;
+}
+
+.subscriptionsList {
+  margin-bottom: 40px;
+}
+
+.subscriptionsItem {
+  display: flex;
+  align-items: center;
+}
+
+.subscriptionsItem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.subscriptionsItemTitle {
+  width: 345px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: main_green;
+  border-radius: 5px;
+  margin-right: 30px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.subscriptionsItemTitleBasic {
+  background: main_gradient;
+}
+
+.subscriptionsItemTitleStandart {
+  background: orange_gradient;
+}
+
+.subscriptionsItemTitlePremium {
+  background: pink_gradient;
+}
+
+.subscriptionsItemTitleUltra {
+  background: violet_gradient;
+}
