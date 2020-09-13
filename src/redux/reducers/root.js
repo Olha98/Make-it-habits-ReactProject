@@ -30,13 +30,13 @@ const root = combineReducers({
 
   quizInfo: () => ({
     smokeYears: 0,
-    cigarettePerDay: 2,
-    cigarettePerTime: 2,
-    cigarettePackPrice: 20,
+    cigarettePerDay: 6,
+    cigarettePerTime: 15,
+    cigarettePackPrice: 100,
   }),
 
   dayInfo: () => ({
-    cigaretteQuantity: 2,
+    cigaretteQuantity: 1,
   }),
 
   habits: () => [
@@ -46,7 +46,7 @@ const root = combineReducers({
       planningTime: 0,
       efficiency: 0,
       id: "",
-      name: "qweqqweqweqweqw",
+      name: "Замена сигарет на леденцы, орешки и т.п.",
       iteration: "",
     },
     {
@@ -55,7 +55,7 @@ const root = combineReducers({
       planningTime: 0,
       efficiency: 0,
       id: "1",
-      name: "qweqqweqweqweqw1",
+      name: "Читать минимум 30 мин в день",
       iteration: "",
     },
     {
@@ -64,7 +64,7 @@ const root = combineReducers({
       planningTime: 0,
       efficiency: 0,
       id: "2",
-      name: "qweqqweqweqweqw2",
+      name: "Замена сигарет на леденцы, орешки и т.п.",
       iteration: "",
     },
     {

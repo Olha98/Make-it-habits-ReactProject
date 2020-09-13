@@ -17,6 +17,7 @@
 .leftSideBar_habits__list {
   margin-bottom: 20px;
   height: 200px;
+  overflow: hidden;
 }
 /* .leftSideBar_habits__list_item {
   display: flex;

@@ -12,6 +12,8 @@
   /* background-color: #2eebda; */
   border-radius: 50%;
   margin-right: 10px;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 100% 100%;
 }
 .leftSideBar_habits__list_item_habit {
   font-size: 14px;

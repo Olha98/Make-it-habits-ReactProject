@@ -6,6 +6,9 @@ import { connect } from "react-redux";
 import userSelectors from "../../../redux/selectors/leftSideBarSelectors";
 const Economizing = ({ money, time }) => {
   // console.log(typeof money);
+  // let timestamp =75;
+  let hours = Math.floor(time / 60);
+  let minutes = time - hours * 60;
   return (
     <>
       <section className={style.leftSideBar_economizing}>
@@ -25,7 +28,7 @@ const Economizing = ({ money, time }) => {
             </p>
             <p className={style.leftSideBar_economizing__list_item_value}>
               <Hourglass className={style.svg} />
-              {time}
+              {hours}ч {minutes} мин
             </p>
           </li>
         </ul>

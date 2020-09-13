@@ -1,6 +1,8 @@
 .logo {
   border-bottom: 1px solid #d5e1dc;
   padding: 25px 65px 25px;
+  width: 378px;
+  height: 110px;
 }
 .logo_image {
   display: block;
