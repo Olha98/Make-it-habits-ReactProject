@@ -1,12 +1,15 @@
-import React from 'react'
+import React from "react";
+import  TaskDoItItem from './TaskDiItItem'
 
-const TimeDoIt = () => {
+const TimeDoIt = ({ task }) => {
+	
+  return (
+    <ul>
+      {task.map((task) => (
+        <TaskDoItItem task={task} key={task.createAt}/>
+      ))}
+    </ul>
+  );
+};
 
-	return (
-	<ul>
-		{}
-	</ul>
-	)
-}
-
-export default TimeDoIt
+export default TimeDoIt;
