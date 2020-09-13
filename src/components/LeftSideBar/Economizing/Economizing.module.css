@@ -14,6 +14,10 @@
 .leftSideBar_economizing__list {
   list-style: none;
   display: flex;
+  justify-content: space-around;
+}
+.leftSideBar_economizing__list_item:nth-child(1) {
+  margin-right: 10px;
 }
 .leftSideBar_economizing__list_item_value {
   font-family: Rubik;
@@ -23,6 +27,6 @@
   line-height: 21px;
 }
 .svg {
-  margin-right: 5px;
+  margin-right: 10px;
   margin-bottom: -3px;
 }
