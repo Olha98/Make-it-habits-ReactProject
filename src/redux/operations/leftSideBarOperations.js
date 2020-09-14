@@ -5,7 +5,8 @@ axios.defaults.baseURL = "https://api-habit.herokuapp.com";
 
 export const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWY1MDY5NmEyNTY4MDAxN2ZiNzc4OCIsImlhdCI6MTYwMDA4ODE3NiwiZXhwIjoxNjAwNjkyOTc2fQ.tmQWMAvlscCgq2P33o8RdZiqbnw9fI_rb0UfkXBRP6g";
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";

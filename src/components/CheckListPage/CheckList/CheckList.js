@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import chekListOperation from "../../../redux/operations/chekListOperation";
 import style from "./CheckList.module.css";
 import CheckListItem from "./CheckListItem/CheckListItem";
 
@@ -45,6 +47,11 @@ class CheckList extends Component {
   //   }));
   // }
 
+  componentDidMount() {
+    console.log("HELLOOO");
+    this.props.getCheckList();
+  }
+
   render() {
     return (
       <div className={style.checkList}>
@@ -62,4 +69,10 @@ class CheckList extends Component {
   }
 }
 
-export default CheckList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CheckList);
