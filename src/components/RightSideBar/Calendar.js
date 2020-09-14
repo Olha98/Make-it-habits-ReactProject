@@ -12,6 +12,7 @@ const birthdayStyle = `
 	 height: 392px;
    border-radius: 0px;
    border:none;
+   border-bottom: 1px solid #d5e1dc;
   }
 
   .react-datepicker__navigation--previous{
@@ -51,6 +52,7 @@ const birthdayStyle = `
 	border-radius: 0%;
   background-color: #fff;
   border:none;
+  border-top: 1px solid #d5e1dc;
   }
 
 
@@ -61,7 +63,7 @@ const birthdayStyle = `
   height: 25px;
   margin-top: 18px;
   margin-bottom: 25px;
-  border-bottom: 1px solid #d5e1dc;
+
   }
 
 
@@ -81,6 +83,7 @@ const birthdayStyle = `
   }
 
   .react-datepicker{
+    
     border-radius: 0px;
     border: 0px; 
   
@@ -119,7 +122,8 @@ const birthdayStyle = `
 	justify-content: space-between;
 	padding: 20px;
 	text-transform: uppercase;
-	border: 1px solid #D5E1DC;
+  border-top: 1px solid #D5E1DC;
+  border-bottom: 1px solid #D5E1DC;
 	
   }
 
