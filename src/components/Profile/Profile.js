@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import InputMask from "react-input-mask";
-import { Field, reduxForm } from "redux-form";
+// import { Field, reduxForm } from "redux-form";
 
 import style from "./Profile.module.css";
 // import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";

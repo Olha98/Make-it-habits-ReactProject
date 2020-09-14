@@ -16,29 +16,14 @@ class PasswordForm extends Component {
 
     passwordFields: false,
 
-    name: "",
-    value: "",
+    // name: "",
+    // value: "",
   };
 
   onEyeIconOldPassword = (name) => {
-    // const { name, value } = this.state;
-    console.log("name", name);
+    // console.log("name", name);
     this.setState({ [name]: !this.state[name] });
-
-    // this.setState((prevState) => ({
-    //   [eyeRepeatPasswor]: !prevState.eyeOldPassword,
-    // }));
   };
-  // onEyeIconNewPassword = () => {
-  //   this.setState((prevState) => ({
-  //     eyeNewPassword: !prevState.eyeNewPassword,
-  //   }));
-  // };
-  // onEyeIconRepeatPassword = () => {
-  //   this.setState((prevState) => ({
-  //     eyeRepeatPassword: !prevState.eyeRepeatPassword,
-  //   }));
-  // };
 
   render() {
     const {
