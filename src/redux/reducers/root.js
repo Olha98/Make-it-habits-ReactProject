@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import imgAva from "../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png";
+import authReducer from "./authReducer";
 import castomHabitRedusers from "./castomHabitRedusers";
 import spinnerReducers from "../../components/Spinner/redux/spinnerReducers";
 
@@ -13,11 +14,7 @@ export const persistConfig = {
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-  auth: persistReducer(persistConfig, () => ({
-    token: "1234",
-    login: "",
-    email: "",
-  })),
+  auth: persistReducer(persistConfig, authReducer),
 
   user: () => ({
     avatar: imgAva,

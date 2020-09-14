@@ -1,0 +1,154 @@
+.Home {
+  background-color: #43d190;
+  width: 1600px;
+  height: 900px;
+  position: relative;
+  display: flex;
+}
+
+.HomeLeft {
+  width: 25%;
+}
+.HomeCentre {
+  width: 45%;
+}
+.HomeRight {
+  width: 30%;
+}
+
+.HomeBlock {
+  width: 720px;
+  margin: 0 auto;
+}
+
+.HomeBackground1 {
+  background-image: url(../../assests/images/Home/1.png);
+  background-repeat: no-repeat;
+  width: 353px;
+  height: 351px;
+}
+
+.HomeBackground2 {
+  background-image: url(../../assests/images/Home/2.png);
+  background-repeat: no-repeat;
+  width: 461px;
+  height: 456px;
+}
+
+.HomeBackground3 {
+  background-image: url(../../assests/images/Home/3.png);
+  background-repeat: no-repeat;
+  width: 328px;
+  height: 297px;
+  margin-top: 121px;
+}
+
+.HomeBackground4 {
+  background-image: url(../../assests/images/Home/4.png);
+  background-repeat: no-repeat;
+  width: 442px;
+  height: 375px;
+}
+
+.HomeLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.HomeLogoSvg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
+  margin-right: 5px;
+}
+
+.HomeLogoPng svg {
+  display: block;
+}
+
+.HomeTitle {
+  margin-top: 140px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.HomeTitleName {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #ffffff;
+  margin-bottom: 100px;
+}
+
+.HomeTitleHi {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  color: #ffffff;
+  padding-bottom: 20px;
+}
+
+.HomeTitleTxt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 31px;
+  text-align: center;
+  color: #ffffff;
+  width: 405px;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.HomeButtonBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.HomeButton {
+  width: 220px;
+  height: 44px;
+  background-color: #43d190;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.HomeButton:hover {
+  background-color: #ffffff;
+}
+
+.HomeButton:hover .HomeEnterTxt {
+  color: #43d190;
+}
+
+.HomeEnterTxt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+}
