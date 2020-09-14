@@ -6,13 +6,13 @@ class CheckList extends Component {
   state = {
     habits: [
       {
-        createAt: "2020-09-01T01:07:23.330Z",
+        createAt: "2020-09-01",
         data: [null, null, null],
-        planningTime: 0,
+        planningTime: "10:00",
         efficiency: 70,
         _id: "5f4d9edf6375b430bda8ce92",
         name: "Утренняя зарядка 10-15 мин",
-        iteration: "", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
+        iteration: "everyday", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
       },
       {
         createAt: "2020-09-01T01:07:23.330Z",
@@ -52,8 +52,7 @@ class CheckList extends Component {
           ? this.state.habits.map((habit) => (
               <CheckListItem
                 key={habit._id}
-                name={habit.name}
-                efficiency={habit.efficiency}
+                habit={habit}
                 // onClick={(e) => this.showFullInfo(e)}
               />
             ))
