@@ -8,9 +8,28 @@ const birthdayStyle = `
 	font-family: "Rubik";
 	 display: flex;
 	 flex-direction: column;
-	 width: 378px;
+	 width: 374px;
 	 height: 392px;
-	 border-radius: 0px;
+   border-radius: 0px;
+   border:none;
+   border-bottom: 1px solid #d5e1dc;
+  }
+
+  .react-datepicker__navigation--previous{
+    margin-top: 20px;
+  }
+
+  .react-datepicker__current-month {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0px;
+    display: flex;
+    background-color: #43D190;
+    margin-left: 120px;
+    color: #ffff;
+    border-radius: 5px;
+    width: 120px;
+    
   }
 
 
@@ -23,14 +42,17 @@ const birthdayStyle = `
 	padding: 20px;
 	margin: 0;
 	justify-content: space-between;
-	border: none;
+  border: none;
+  border-radius: 0px;
   }
 
   
 
   .react-datepicker__header{
 	border-radius: 0%;
-	background-color: #fff;
+  background-color: #fff;
+  border:none;
+  border-top: 1px solid #d5e1dc;
   }
 
 
@@ -38,7 +60,10 @@ const birthdayStyle = `
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 50px;
+  height: 25px;
+  margin-top: 18px;
+  margin-bottom: 25px;
+
   }
 
 
@@ -47,14 +72,21 @@ const birthdayStyle = `
 	background: #43D190;
 	border-radius: 5px;
 	border: 1px solid #43D190;
-    color: white;
+  color: white;
   }
 
   .react-datepicker__day--keyboard-selected:hover{
 	background: #43D190;
 	border-radius: 5px;
 	border: 1px solid #43D190;
-    color: white;
+  color: white;
+  }
+
+  .react-datepicker{
+    
+    border-radius: 0px;
+    border: 0px; 
+  
   }
 
   .react-datepicker__day--selected:hover{
@@ -80,8 +112,11 @@ const birthdayStyle = `
 
   .react-datepicker__day{
 	border: 2px solid #fff;
-	width: 30px;
-    height: 30px;
+  width: 30px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+	align-items: center;
   }
 
   .react-datepicker__day-names{
@@ -90,7 +125,8 @@ const birthdayStyle = `
 	justify-content: space-between;
 	padding: 20px;
 	text-transform: uppercase;
-	border: 1px solid #D5E1DC;
+  border-top: 1px solid #D5E1DC;
+  border-bottom: 1px solid #D5E1DC;
 	
   }
 
@@ -106,13 +142,10 @@ const birthdayStyle = `
 	line-height: 17px;
 	align-items: center;
 	justify-content: space-between;
-
   }
 
-
-
   .react-datepicker__navigation--next{
-	
+	  margin-top: 20px;
   }
 
   .react-datepicker__navigation--next::after{
@@ -131,25 +164,6 @@ const birthdayStyle = `
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  //   const isWeekday = date => {
-  //     const day = getDay(date);
-  //     return day !== 0 && day !== 6;
-  //   };
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   return (
     <>

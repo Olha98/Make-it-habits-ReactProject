@@ -28,7 +28,7 @@ class Registration extends Component {
   };
 
   render() {
-    const { login, email, password } = this.state;
+    const {  email, password } = this.state;
 
     return (
       <div className={styles.Registration}>

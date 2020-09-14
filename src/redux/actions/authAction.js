@@ -1,4 +1,3 @@
-import React from "react";
 import constans from "../constants/authConstans";
 
 const registrationRequest = (credential) => ({
