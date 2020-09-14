@@ -1,0 +1,49 @@
+.leftSideBar_userInfo {
+  border-bottom: 1px solid #d5e1dc;
+  padding: 25px 65px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 100%; */
+}
+.leftSideBar_userInfo__avatar {
+  border-radius: 50%;
+  margin-bottom: 18px;
+  width: 94px;
+  height: 94px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  background-color: rgb(139, 36, 36);
+}
+.leftSideBar_userInfo__avatar img {
+  border-radius: 50%;
+}
+.leftSideBar_userInfo__avatar:hover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+.leftSideBar_userInfo__name {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 7px;
+}
+.leftSideBar_userInfo__button {
+  width: 52px;
+  height: 20px;
+
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.leftSideBar_userInfo__button:hover {
+  background: #cbf7e3;
+  color: #333333;
+}
