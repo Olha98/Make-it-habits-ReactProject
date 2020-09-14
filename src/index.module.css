@@ -1,6 +1,6 @@
 /* !Стили на прозрачную кнопку с белым бордером которая при ховере на белую переходит */
 
-:global(.button){
+:global(.button) {
   background: #43d190;
   border: 2px solid #43d190;
   border-radius: 5px;
@@ -9,20 +9,25 @@
   margin: 0 auto;
 }
 
-:global(.buttonTransparent){
+:global(.buttonTransparent) {
   width: 220px;
   height: 44px;
-  left: 792px;
-  top: 616px;
   background-color: transparent;
+  border: 2px solid #43d190;
+  box-sizing: border-box;
   border-radius: 5px;
-  border: 2px solid #ffffff;
+  color: #43d190;
   cursor: pointer;
-  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  transition: all 200ms linear;
 }
-:global(.buttonTransparent):hover {
-  background-color: #ffffff;
-outline: 0;
+:global(.buttonTransparent):hover,
+:global(.buttonTransparent):focus {
+  background-color: #43d190;
+  color: #ffffff;
+  outline: 0;
 }
 
 /* !Cтиль к скролу */
@@ -43,8 +48,6 @@ outline: 0;
   border-radius: 3px;
 }
 
-
-
 /* !Прозрачная кнопка с зеленым бордером */
 
 :global(.btnTransparentWhiteBorder) {
@@ -54,6 +57,7 @@ outline: 0;
   border: 2px solid #43d190;
   box-sizing: border-box;
   border-radius: 5px;
+  background-color: #fff;
   color: #43d190;
   cursor: pointer;
 }
@@ -61,5 +65,5 @@ outline: 0;
 :global(.btnTransparentWhiteBorder):focus {
   background-color: #43d190;
   color: #ffffff;
-outline: 0;
+  outline: 0;
 }
