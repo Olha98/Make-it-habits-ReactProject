@@ -112,8 +112,11 @@ const birthdayStyle = `
 
   .react-datepicker__day{
 	border: 2px solid #fff;
-	width: 30px;
-    height: 30px;
+  width: 30px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+	align-items: center;
   }
 
   .react-datepicker__day-names{
