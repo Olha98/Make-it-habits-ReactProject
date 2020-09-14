@@ -1,13 +1,6 @@
+@value black_font from '../../css/vars.module.css';
+@value grey_font from '../../css/vars.module.css';
 @value main_green from '../../css/vars.module.css';
-
-.button {
-  background: main_green;
-  border: 2px solid main_green;
-  border-radius: 5px;
-  color: #ffffff;
-  display: block;
-  margin: 0 auto;
-}
 
 .modalInterview {
   position: absolute;
@@ -29,25 +22,66 @@
 }
 
 .title {
-  color: #4f4f4f;
+  color: black_font;
   font-size: 26px;
   font-weight: 500;
   line-height: 31px;
 }
 
 .description {
-  color: #bdbdbd;
+  color: grey_font;
   font-size: 18px;
   line-height: 28px;
 }
 
 .label {
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
 }
+
+.label:last-of-type {
+  margin-bottom: 80px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   width: 567px;
+}
+
+.input {
+  width: 220px;
+  height: 44px;
+  padding: 20px;
+  color: black_font;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::placeholder {
+  font-size: 18px;
+  color: grey_font;
+}
+
+.button {
+  width: 220px;
+  height: 44px;
+  background: main_green;
+  border: 2px solid main_green;
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
 }

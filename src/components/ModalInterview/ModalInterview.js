@@ -58,12 +58,15 @@ class ModalInterview extends Component {
             />
           </label>
           <label className={styles.label}>
-            Сколько вемени у Вас уходит на 1 сигарету?
+            Сколько вемени у Вас уходит
+            <br />
+            на 1 сигарету?
             <input
               className={styles.input}
               type="number"
               name="cigarettePerTime"
-              value={cigarettePerTime}
+              value={cigarettePerTime ? cigarettePerTime : ""}
+              placeholder="__ мин"
               onChange={this.handleChange}
             />
           </label>
@@ -73,7 +76,8 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="cigarettePackPrice"
-              value={cigarettePackPrice}
+              value={cigarettePackPrice ? cigarettePackPrice : ""}
+              placeholder="__.__ грн"
               onChange={this.handleChange}
             />
           </label>
