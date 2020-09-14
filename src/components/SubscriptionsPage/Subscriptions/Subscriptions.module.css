@@ -44,20 +44,59 @@
   cursor: pointer;
 }
 
+.subscriptionsItemDescriptionPrice {
+  font-weight: 500;
+}
+
+.subscriptionsItemDescriptionDiscount {
+  font-weight: 500;
+  color: main_green;
+}
+
+.subscriptionsItemTitleNoob:hover,
+.subscriptionsItemTitleNoob:focus {
+  box-shadow: 0 8px 6px -6px main_green;
+  font-weight: 500;
+}
+
 .subscriptionsItemTitleBasic {
   background: main_gradient;
+}
+
+.subscriptionsItemTitleBasic:hover,
+.subscriptionsItemTitleBasic:focus {
+  box-shadow: 0 8px 6px -6px #2eebda;
+  font-weight: 500;
 }
 
 .subscriptionsItemTitleStandart {
   background: orange_gradient;
 }
 
+.subscriptionsItemTitleStandart:hover,
+.subscriptionsItemTitleStandart:focus {
+  box-shadow: 0 8px 6px -6px #fe6083;
+  font-weight: 500;
+}
+
 .subscriptionsItemTitlePremium {
   background: pink_gradient;
 }
 
+.subscriptionsItemTitlePremium:hover,
+.subscriptionsItemTitlePremium:focus {
+  box-shadow: 0 8px 6px -6px #b469fa;
+  font-weight: 500;
+}
+
 .subscriptionsItemTitleUltra {
   background: violet_gradient;
+}
+
+.subscriptionsItemTitleUltra:hover,
+.subscriptionsItemTitleUltra:focus {
+  box-shadow: 0 8px 6px -6px #655de6;
+  font-weight: 500;
 }
 
 .subscriptionsSectionCards {

@@ -10,9 +10,19 @@ function Subscriptions() {
         <p className={style.subscriptionsSectionTitle}>Тип подписки</p>
         <ul className={style.subscriptionsList}>
           <li className={style.subscriptionsItem}>
-            <p className={style.subscriptionsItemTitle}>Noob</p>
+            <p
+              className={[
+                style.subscriptionsItemTitle,
+                style.subscriptionsItemTitleNoob,
+              ].join(" ")}
+            >
+              Noob
+            </p>
             <p className={style.subscriptionsItemDescription}>
-              30 дней — $4.99
+              30 дней —{" "}
+              <span className={style.subscriptionsItemDescriptionPrice}>
+                $4.99
+              </span>
             </p>
           </li>
           <li className={style.subscriptionsItem}>
@@ -25,7 +35,13 @@ function Subscriptions() {
               Basic
             </p>
             <p className={style.subscriptionsItemDescription}>
-              1 месяц — $4.80 -3%
+              1 месяц —{" "}
+              <span className={style.subscriptionsItemDescriptionPrice}>
+                $4.80
+              </span>{" "}
+              <span className={style.subscriptionsItemDescriptionDiscount}>
+                - 3%
+              </span>
             </p>
           </li>
           <li className={style.subscriptionsItem}>
@@ -38,7 +54,13 @@ function Subscriptions() {
               Standart
             </p>
             <p className={style.subscriptionsItemDescription}>
-              3 месяца — $14.20 - 5%
+              3 месяца —{" "}
+              <span className={style.subscriptionsItemDescriptionPrice}>
+                $14.20{" "}
+              </span>
+              <span className={style.subscriptionsItemDescriptionDiscount}>
+                - 5%
+              </span>
             </p>
           </li>
           <li className={style.subscriptionsItem}>
@@ -51,7 +73,13 @@ function Subscriptions() {
               Premium
             </p>
             <p className={style.subscriptionsItemDescription}>
-              6 месяцев — $27.84 - 7%
+              6 месяцев —{" "}
+              <span className={style.subscriptionsItemDescriptionPrice}>
+                $27.84{" "}
+              </span>
+              <span className={style.subscriptionsItemDescriptionDiscount}>
+                - 7%
+              </span>
             </p>
           </li>
           <li className={style.subscriptionsItem}>
@@ -64,7 +92,13 @@ function Subscriptions() {
               Ultra
             </p>
             <p className={style.subscriptionsItemDescription}>
-              12 месяцев — $53.89 - 10%
+              12 месяцев —{" "}
+              <span className={style.subscriptionsItemDescriptionPrice}>
+                $53.89{" "}
+              </span>
+              <span className={style.subscriptionsItemDescriptionDiscount}>
+                - 10%
+              </span>
             </p>
           </li>
         </ul>
