@@ -61,6 +61,11 @@
   border-radius: 5px;
 }
 
+.input:focus {
+  border: 1px solid black_font;
+  outline: 0;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -88,7 +93,9 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background: main_pink;
   border: 2px solid main_pink;
+  outline: 0;
 }
