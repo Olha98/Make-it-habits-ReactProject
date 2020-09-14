@@ -1,4 +1,4 @@
-import constantsTypes from "./constantsTypes";
+import constantsTypes from "../constants/constantsTypes";
 
 const loadingReducer = (state = false, { type }) => {
   switch (type) {
