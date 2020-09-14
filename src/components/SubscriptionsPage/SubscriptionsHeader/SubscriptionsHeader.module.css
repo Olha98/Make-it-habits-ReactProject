@@ -1,0 +1,19 @@
+@value colors: '../../../css/vars.module.css';
+@value black_font from colors;
+
+.subscriptionsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 110px;
+  padding: 40px 62px;
+  background: #ffffff;
+  border-bottom: 1px solid #d5e1dc;
+}
+
+.subscriptionsTitle {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  color: black_font;
+}
