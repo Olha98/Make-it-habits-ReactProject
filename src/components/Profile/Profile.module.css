@@ -75,8 +75,9 @@ img {
 }
 
 .wrapperFirstColumn {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 470px;
+  margin-right: 30px;
   margin-bottom: 20px;
 }
 
