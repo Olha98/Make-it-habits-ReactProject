@@ -44,6 +44,7 @@ class ModalInterview extends Component {
               type="number"
               name="smokeYears"
               value={smokeYears ? smokeYears : ""}
+              required
               onChange={this.handleChange}
             />
           </label>
@@ -54,6 +55,7 @@ class ModalInterview extends Component {
               type="number"
               name="cigarettePerDay"
               value={cigarettePerDay ? cigarettePerDay : ""}
+              required
               onChange={this.handleChange}
             />
           </label>
@@ -66,6 +68,7 @@ class ModalInterview extends Component {
               type="number"
               name="cigarettePerTime"
               value={cigarettePerTime ? cigarettePerTime : ""}
+              required
               placeholder="__ мин"
               onChange={this.handleChange}
             />
@@ -77,6 +80,7 @@ class ModalInterview extends Component {
               type="number"
               name="cigarettePackPrice"
               value={cigarettePackPrice ? cigarettePackPrice : ""}
+              required
               placeholder="__.__ грн"
               onChange={this.handleChange}
             />

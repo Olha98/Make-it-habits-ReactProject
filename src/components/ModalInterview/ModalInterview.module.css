@@ -1,6 +1,7 @@
 @value black_font from '../../css/vars.module.css';
 @value grey_font from '../../css/vars.module.css';
 @value main_green from '../../css/vars.module.css';
+@value main_pink from '../../css/vars.module.css';
 
 .modalInterview {
   position: absolute;
@@ -78,10 +79,16 @@ input[type="number"] {
 .button {
   width: 220px;
   height: 44px;
+  display: block;
+  margin: 0 auto;
   background: main_green;
   border: 2px solid main_green;
   border-radius: 5px;
   color: #ffffff;
-  display: block;
-  margin: 0 auto;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: main_pink;
+  border: 2px solid main_pink;
 }
