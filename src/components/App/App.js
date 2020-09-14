@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import Congratulations from "../Congratulations/Congratulations";
+// import Congratulations from "../Congratulations/Congratulations";
 import Modal from "../ModalBackDrop/ModalBackDrop";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
