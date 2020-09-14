@@ -62,7 +62,6 @@ const task = [
 ];
 
 
-
 class RightSideBar extends Component {
   state = {
     dayWeek: moment().format("dddd"),

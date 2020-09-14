@@ -166,6 +166,8 @@ const birthdayStyle = `
 
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
+
+
   return (
     <>
       <style>{birthdayStyle}</style>
