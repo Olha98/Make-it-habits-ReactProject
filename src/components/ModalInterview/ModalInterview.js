@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { quizInfoOperations } from "../../redux/operations";
+import quizInfoOperations from "../../redux/operations/quizInfoOperations";
 import styles from "./ModalInterview.module.css";
 
 class ModalInterview extends Component {
@@ -43,7 +43,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="smokeYears"
-              value={smokeYears}
+              value={smokeYears ? smokeYears : ""}
               onChange={this.handleChange}
             />
           </label>
@@ -53,7 +53,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="cigarettePerDay"
-              value={cigarettePerDay}
+              value={cigarettePerDay ? cigarettePerDay : ""}
               onChange={this.handleChange}
             />
           </label>
@@ -81,7 +81,7 @@ class ModalInterview extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button className={styles.button} onClick={this.change} type="submit">
+          <button className={styles.button} type="submit">
             Сохранить
           </button>
         </form>
