@@ -69,7 +69,7 @@ class RightSideBar extends Component {
 
   render() {
     const { dayWeek, getData } = this.state;
-    console.log(this.state);
+    
     return (
       <div className={style.boxRightSideBar}>
         <div className={style.containerRightSideBar}>
