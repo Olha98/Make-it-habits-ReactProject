@@ -6,6 +6,8 @@ import TimeDoItList from "./TimeDoIt";
 import moment from "moment";
 import "moment/locale/ru";
 import CustomScrollbars from "../../assests/scroll/scroll";
+import { getHabitsOperation } from "../../redux/operations/calendarOperations";
+import { connect } from "react-redux";
 
 const task = [
   {
@@ -59,7 +61,7 @@ const task = [
   },
 ];
 
-console.log(task);
+
 
 class RightSideBar extends Component {
   state = {
@@ -67,9 +69,13 @@ class RightSideBar extends Component {
     getData: moment().format("LL").split(" ").slice(0, 2),
   };
 
+  componentDidMount = () => {
+    this.props.onGetHabit();
+  };
+
   render() {
     const { dayWeek, getData } = this.state;
-    
+
     return (
       <div className={style.boxRightSideBar}>
         <div className={style.containerRightSideBar}>
@@ -94,4 +100,6 @@ class RightSideBar extends Component {
   }
 }
 
-export default RightSideBar;
+export default connect(null, {
+  onGetHabit: getHabitsOperation,
+})(RightSideBar);
