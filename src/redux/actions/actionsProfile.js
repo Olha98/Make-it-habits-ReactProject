@@ -19,10 +19,13 @@ const addDataUserRequest = (user) => ({
   payload: { ...user },
 });
 
-const addDataUserSuccess = (user) => ({
-  type: constType.ADD_DATA_USER_SUCCESS,
-  paylod: { ...user },
-});
+const addDataUserSuccess = (user) => {
+  console.log("user", user);
+  return {
+    type: constType.ADD_DATA_USER_SUCCESS,
+    payload: { ...user },
+  };
+};
 
 const addDataUserError = (error) => ({
   type: constType.ADD_DATA_USER_ERROR,
