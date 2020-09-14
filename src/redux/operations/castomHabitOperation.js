@@ -1,25 +1,27 @@
 import actions from '../actions/castomHabitActions'
 import axios from 'axios'
-axios.defaults.baseURL = 'https://testprojectbc22.firebaseio.com/';
+axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com/';
+axios.defaults.headers.common.Authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
 
 
 const addHabitOperation = habit => dispatch => {
     // dispatch(actions.addCustomHabit())
-    axios.post("habits.json", habit)
-        .then(responce => {
-            console.log(responce, "responce")
-            dispatch(actions.addCustomHabit({ ...habit, id: responce.data.name }))
+    // console.log('habit', habit)
+    axios.post("habits", habit)
+        .then(response => {
+            // console.log(response, "response")
+            dispatch(actions.addCustomHabit({ ...habit, habitId: response._id }))
         })
         .catch(error => console.log("ERROR"))
 }
 
-const removeHabitOperation = id => dispatch => {
+const removeHabitOperation = habitId => dispatch => {
     // dispatch(actions.removeContactRequest());
     axios
-        .delete(`habits${id}.json`)
+        .delete(`habits/${habitId}`)
 .then(() => {
-            console.log(id, "SuccessID")
-    dispatch(actions.removeCustomHabit(id))
+    // console.log(habitId, "SuccessID")
+    dispatch(actions.removeCustomHabit(habitId))
         })
         .catch(error => {
             console.log(error, "error")

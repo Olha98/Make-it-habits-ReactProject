@@ -16,7 +16,7 @@ export const persistConfig = {
         const root = combineReducers({
                 loading: spinnerReducers.loadingReducer,
 	auth: persistReducer(persistConfig,()=>({
-        token: "1234",
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs",
         login: "",
         email: "",
         })),
