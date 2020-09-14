@@ -3,13 +3,14 @@ import checkListActions from "../actions/checkListActions";
 
 // axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
-const getHabitsOperation = () => (dispatch) => {
+const getHabitsOperation = (token) => (dispatch) => {
   console.log("hellooo from operation");
-  dispatch(checkListActions.getHabitsRequest());
+  console.log("token", token);
+  // dispatch(checkListActions.getHabitsRequest());
   axios
-    .get("https://make-it-habit-api.herokuapp.com/habits")
+    .get("https://make-it-habit-api.herokuapp.com/habits", token)
     .then((responce) => {
-      console.log(responce, "responce");
+      console.log("responce :", responce);
       dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
     })
     .catch((error) => console.log(error));
