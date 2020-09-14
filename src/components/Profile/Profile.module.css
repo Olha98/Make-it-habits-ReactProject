@@ -33,7 +33,8 @@ img {
 
 .container {
   width: 842px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  height: 100vh;
 }
 
 .wrapperHeader {
@@ -53,6 +54,7 @@ img {
 /* -------- Main -------- */
 .wrapperMain {
   background-color: #f6f6f6;
+  height: 100vh;
   padding: 60px 62px;
 }
 .wrapperForm {
