@@ -14,11 +14,7 @@ export const persistConfig = {
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-  auth: persistReducer(persistConfig, () => ({
-    token: "",
-    login: "",
-    email: "",
-  })),
+  auth: persistReducer(persistConfig, authReducer),
 
   user: () => ({
     avatar: imgAva,

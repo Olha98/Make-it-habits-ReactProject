@@ -33,9 +33,10 @@ const userLogin = (credentials) => (dispatch) => {
     .then((res) => {
       console.log(res, "loginlogin");
       token.set(res.data.token);
-      dispatch(authAction.loginSuccess(res.data));
+      dispatch(authAction.loginSucces(res.data));
     })
     .catch((err) => {
+      console.log(err, "error");
       dispatch(authAction.loginError(err));
     });
 };

@@ -21,11 +21,13 @@ const loginRequest = (credential) => ({
   payload: credential,
 });
 
-const loginSucces = (credential) => ({
-  type: constans.LOGIN_SUCCESS,
-  payload: credential,
-});
-
+const loginSucces = (credential) => {
+  console.log(credential, "loginSucces");
+  return {
+    type: constans.LOGIN_SUCCESS,
+    payload: credential,
+  };
+};
 const loginError = (error) => ({
   type: constans.LOGIN_ERROR,
   payload: error,

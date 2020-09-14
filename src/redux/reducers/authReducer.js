@@ -1,6 +1,7 @@
 import React from "react";
 import { combineReducers } from "redux";
 import authAction from "../actions/authAction";
+import authConstans from "../constants/authConstans";
 
 const initialState = {
   login: null,
@@ -9,10 +10,12 @@ const initialState = {
 
 const User = (state = initialState, { type, payload }) => {
   switch (type) {
-    case authAction.registerSucces.type:
+    case authConstans.REGISTER_SUCCESS:
       return payload;
-    case authAction.loginSucces.type:
+
+    case authConstans.LOGIN_SUCCESS:
       return payload;
+
     default:
       return state;
   }
@@ -20,10 +23,10 @@ const User = (state = initialState, { type, payload }) => {
 
 const token = (state = null, { type, payload }) => {
   switch (type) {
-    case authAction.registerSucces.type:
-      return payload.token;
-    case authAction.loginSucces.type:
-      return payload.token;
+    case authConstans.REGISTER_SUCCESS:
+      return payload.access_token;
+    case authConstans.LOGIN_SUCCESS:
+      return payload.access_token;
 
     default:
       return state;

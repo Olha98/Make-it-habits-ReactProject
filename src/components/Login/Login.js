@@ -46,7 +46,7 @@ class Login extends Component {
         <p className={styles.LoginTxt}>
           Введите свои данные, чтобы продолжить использовать наше приложение
         </p>
-        <form className={styles.LoginForm}>
+        <form onSubmit={this.hendleSubmit} className={styles.LoginForm}>
           <div className={styles.LoginInputForm}>
             <p className={styles.LoginInputTxt}>E-mail</p>
             <input
