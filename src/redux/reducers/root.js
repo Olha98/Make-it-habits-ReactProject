@@ -15,7 +15,7 @@ const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
   auth: persistReducer(persistConfig, () => ({
     token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWY1MDY5NmEyNTY4MDAxN2ZiNzc4OCIsImlhdCI6MTYwMDA4ODE3NiwiZXhwIjoxNjAwNjkyOTc2fQ.tmQWMAvlscCgq2P33o8RdZiqbnw9fI_rb0UfkXBRP6g",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4OTg4OCwiZXhwIjoxNjAwNjk0Njg4fQ.R9a8jXr0bVEDQ0-8J1_t9WZ7FxeO_lRIRW6UKKksQcI",
     login: "",
     email: "",
   })),
