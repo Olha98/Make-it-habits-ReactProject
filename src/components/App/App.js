@@ -9,7 +9,7 @@ import ModalInterview from "../ModalInterview/ModalInterview";
 const App = () => {
   return (
     <Suspense fallback={null}>
-      <ModalInterview />
+      <button onClick={() => <ModalInterview />}>modal</button>
       <Switch>
         {routes.map((route) =>
           route.private ? (
