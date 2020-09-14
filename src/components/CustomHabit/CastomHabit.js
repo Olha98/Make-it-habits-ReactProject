@@ -1,23 +1,32 @@
 import React, { Component } from "react";
 import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
-import addCustomHabit from "../../redux/actions/castomHabitActions";
-import addStartDate from "../../redux/actions/castomHabitActions";
+import castomHabitOperation from "../../redux/operations/castomHabitOperation";
 
 class CastomHabit extends Component {
-  // state = {
-  //   name: "",
-  //   startDate: "",
-  //   time: "",
-  //   repeat: ""
+  state = {
+    name: "",
+    startDate: "",
+    time: "",
+    repeat: "",
+  };
+
+  // handleSubmit = e => {
+  //   e.preventDefault();
+
   // };
 
-  handleSubmit = (e) => {
+  onClickSubmit = (e) => {
     e.preventDefault();
-    const { name, createAt, planningTime, iteration } = this.props; //! тест пропов
-    this.props.onAddCustomHabit({ name, createAt, planningTime, iteration });
-    this.props.closeModal();
-    // this.props.onAddCustomStartDate({startDate})
+    const { name, startDate, time, repeat } = this.state;
+    if (e.target.dataset.save) {
+      this.props.onAddCustomHabit({ name, startDate, time, repeat });
+      this.props.closeModal();
+    } else if (e.target.dataset.cancel) {
+      this.props.closeModal();
+    } else if (e.target.dataset.delete) {
+      this.props.removeCastomHabit();
+    }
   };
 
   handleChenge = (e) => {
@@ -44,8 +53,8 @@ class CastomHabit extends Component {
               <input
                 type="text"
                 className={style.castomHabitName}
-                name="name" //! тест пропов
-                value={name} //! тест пропов
+                name="name"
+                value={this.state.name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -54,8 +63,8 @@ class CastomHabit extends Component {
               <input
                 type="date"
                 className={style.castomHabitDate}
-                name="createAt" //! тест пропов
-                value={createAt} //! тест пропов
+                name="startDate"
+                value={this.state.startDate}
                 onChange={this.handleChenge}
               />
             </label>
@@ -64,8 +73,8 @@ class CastomHabit extends Component {
               <input
                 type="time"
                 className={style.castomHabitTime}
-                name="planningTime" //! тест пропов
-                value={planningTime} //! тест пропов
+                name="time"
+                value={this.state.time}
                 onChange={this.handleChenge}
               />
             </label>
@@ -73,11 +82,11 @@ class CastomHabit extends Component {
               Повторение
               <select
                 className={style.castomHabitSelect}
-                name="iteration" //! тест пропов
-                value={iteration} //! тест пропов
+                name="repeat"
+                value={this.state.repeat}
                 onChange={this.handleChenge}
               >
-                <option value="none" selected disabled>
+                <option value="none" disabled>
                   выбрать
                 </option>
                 <option value="everyday">Ежедневно</option>
@@ -88,10 +97,28 @@ class CastomHabit extends Component {
             </label>
           </div>
 
-          <button className={style.castomHabitDelete}>удалить привычку</button>
+          <button
+            onClick={this.onClickSubmit}
+            data-delete="delete"
+            className={style.castomHabitDelete}
+          >
+            удалить привычку
+          </button>
           <div className={style.castomHabitBtnWrapper}>
-            <button className={style.castomHabitCancelBtn}>Отмена</button>
-            <button type="submit" className={style.castomHabitSaveBtn}>
+            <button
+              type="submit"
+              onClick={this.onClickSubmit}
+              data-cancel="cancel"
+              className={style.castomHabitCancelBtn}
+            >
+              Отмена
+            </button>
+            <button
+              type="submit"
+              onClick={this.onClickSubmit}
+              data-save="save"
+              className={style.castomHabitSaveBtn}
+            >
               Сохранить
             </button>
           </div>
@@ -102,6 +129,6 @@ class CastomHabit extends Component {
 }
 
 export default connect(null, {
-  onAddCustomHabit: addCustomHabit,
-  onAddCustomStartDate: addStartDate,
+  onAddCustomHabit: castomHabitOperation.addHabitOperation,
+  removeCastomHabit: castomHabitOperation.removeHabitOperation,
 })(CastomHabit);

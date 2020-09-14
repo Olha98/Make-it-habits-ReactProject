@@ -2,7 +2,7 @@
 @import "./css/fonts.css";
 @import "./css/normalize.css";
 @import "./css/vars.module.css";
-/* @import "./index.module.css"; */
+@import "./index.module.css";
 
 html {
   box-sizing: border-box;
