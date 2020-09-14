@@ -164,25 +164,6 @@ const birthdayStyle = `
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  //   const isWeekday = date => {
-  //     const day = getDay(date);
-  //     return day !== 0 && day !== 6;
-  //   };
-
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   return (
     <>
