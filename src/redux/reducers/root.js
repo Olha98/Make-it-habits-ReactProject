@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import imgAva from "../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png";
-import castomHabitRedusers from "./castomHabitRedusers";
 import spinnerReducers from "../../components/Spinner/redux/spinnerReducers";
+import habitReducer from "./checkListReducers";
 
 export const persistConfig = {
   key: "token",
@@ -14,7 +14,8 @@ export const persistConfig = {
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
   auth: persistReducer(persistConfig, () => ({
-    token: "1234",
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWY1MDY5NmEyNTY4MDAxN2ZiNzc4OCIsImlhdCI6MTYwMDA4ODE3NiwiZXhwIjoxNjAwNjkyOTc2fQ.tmQWMAvlscCgq2P33o8RdZiqbnw9fI_rb0UfkXBRP6g",
     login: "",
     email: "",
   })),
@@ -47,7 +48,7 @@ const root = combineReducers({
   // iteration:"",
   //   }]),
 
-  habits: castomHabitRedusers,
+  habits: habitReducer,
 });
 
 export default root;
