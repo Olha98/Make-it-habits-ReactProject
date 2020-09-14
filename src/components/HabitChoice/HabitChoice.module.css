@@ -1,0 +1,92 @@
+.habitChoiceContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 784px;
+  height: 580px;
+  background: #ffffff;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+}
+
+.habitChoiceTitle {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  color: #4f4f4f;
+  padding-top: 60px;
+  margin-bottom: 40px;
+}
+
+.habitChoiceText {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  color: #bdbdbd;
+  margin-bottom: 15px;
+}
+
+.habitChoiceTemplateBtn {
+  width: 309px;
+  height: 43px;
+  background: #43d190;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.habitChoiceTemplateBtn:hover,
+.habitChoiceTemplateBtn:focus {
+    color: #43d190;
+    background-color: #ffffff;
+    outline: 0;
+  }
+
+
+
+.habitChoiceOwnBtn {
+  padding: 12px 22px;
+  width: 265px;
+  height: 43px;
+  background: #43d190;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 118px;
+}
+
+.habitChoiceOwnBtn:hover,
+.habitChoiceOwnBtn:focus {
+    color: #43d190;
+    background-color: #ffffff;
+    outline: 0;
+  }
+
+.habitChoiceCancelBtn {
+  width: 220px;
+  height: 44px;
+  background: #ffffff;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #43d190;
+  display: block;
+  margin: 0 auto;
+}
+
+.habitChoiceCancelBtn:hover,
+.habitChoiceCancelBtn:focus {
+  background-color: #43d190;
+  color: #ffffff;
+  outline: 0;
+}
