@@ -7,12 +7,12 @@ import authOperation from "../../redux/operations/authOperation";
 
 class Login extends Component {
   state = {
-    login: "",
+    email: "",
     password: "",
   };
 
-  handleName = (e) => {
-    this.setState({ login: e.target.value });
+  handleEmail = (e) => {
+    this.setState({ email: e.target.value });
   };
 
   handlePassword = (e) => {
@@ -21,14 +21,16 @@ class Login extends Component {
 
   hendleSubmit = (e) => {
     e.preventDefault();
-    const { login, password } = this.state;
-    let OneUser = { login, password };
+    console.log(this.state, "this");
+    const { email, password } = this.state;
+    let OneUser = { email, password };
+    console.log(OneUser, "login");
     this.props.onLogin(OneUser);
-    this.setState({ login: "", password: "" });
+    this.setState({ email: "", password: "" });
   };
 
   render() {
-    const { login, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div className={styles.Login}>
@@ -46,14 +48,14 @@ class Login extends Component {
         </p>
         <form className={styles.LoginForm}>
           <div className={styles.LoginInputForm}>
-            <p className={styles.LoginInputTxt}>Логин</p>
+            <p className={styles.LoginInputTxt}>E-mail</p>
             <input
               className={styles.LoginInput}
-              value={login}
-              onChange={(e) => this.handleName(e)}
-              type="name"
-              placeholder="Введите свой ник"
-              name="name"
+              value={email}
+              onChange={(e) => this.handleEmail(e)}
+              type="email"
+              placeholder="Введите свой E-mail"
+              name="email"
             />
           </div>
           <div className={styles.LoginInputForm}>

@@ -1,11 +1,11 @@
 import Axios from "axios";
 import authAction from "../actions/authAction";
 
-Axios.defaults.baseURL = "";
+Axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
 const token = {
   set(token) {
-    Axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    Axios.defaults.headers.common.Authorization = token;
   },
   unSet() {
     Axios.defaults.headers.common.Authorization = ``;
@@ -14,8 +14,10 @@ const token = {
 
 const userRegistration = (credentials) => (dispatch) => {
   dispatch(authAction.registrationRequest());
-  Axios.post("", credentials)
+  console.log(credentials);
+  Axios.post("/auth/registration", credentials)
     .then((res) => {
+      console.log(res, "registr");
       token.set(res.data.token);
       dispatch(authAction.registrationSuccess(res.data));
     })
@@ -26,8 +28,10 @@ const userRegistration = (credentials) => (dispatch) => {
 
 const userLogin = (credentials) => (dispatch) => {
   dispatch(authAction.loginRequest());
-  Axios.post("", credentials)
+  console.log(credentials);
+  Axios.post("/auth/login", credentials)
     .then((res) => {
+      console.log(res, "loginlogin");
       token.set(res.data.token);
       dispatch(authAction.loginSuccess(res.data));
     })

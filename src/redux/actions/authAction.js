@@ -1,17 +1,17 @@
 import React from "react";
 import constans from "../constants/authConstans";
 
-const registerRequest = (credential) => ({
+const registrationRequest = (credential) => ({
   type: constans.REGISTER_REQUEST,
   payload: credential,
 });
 
-const registerSucces = (credential) => ({
+const registrationSucces = (credential) => ({
   type: constans.REGISTER_SUCCESS,
   payload: credential,
 });
 
-const registerError = (error) => ({
+const registrationError = (error) => ({
   type: constans.REGISTER_ERROR,
   payload: error,
 });
@@ -32,9 +32,9 @@ const loginError = (error) => ({
 });
 
 export default {
-  registerRequest,
-  registerSucces,
-  registerError,
+  registrationRequest,
+  registrationSucces,
+  registrationError,
   loginRequest,
   loginSucces,
   loginError,

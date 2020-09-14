@@ -27,7 +27,7 @@ class HomePage extends Component {
       <>
         {openLogin && <Login />}
         <Home onLogin={this.loginFunk} onRegistration={this.registrationFunk} />
-        ;{openRegistration && <Regictration />}
+        {openRegistration && <Regictration />}
       </>
     );
   }

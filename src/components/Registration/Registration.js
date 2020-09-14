@@ -7,13 +7,8 @@ import authOperation from "../../redux/operations/authOperation";
 
 class Registration extends Component {
   state = {
-    login: "",
     email: "",
     password: "",
-  };
-
-  handleName = (e) => {
-    this.setState({ login: e.target.value });
   };
 
   handleEmail = (e) => {
@@ -26,8 +21,8 @@ class Registration extends Component {
 
   hendleSubmit = (e) => {
     e.preventDefault();
-    const { login, email, password } = this.state;
-    let NewUser = { login, email, password };
+    const { email, password } = this.state;
+    let NewUser = { email, password };
     this.props.onReegistration(NewUser);
     this.setState({ login: "", email: "", password: "" });
   };
@@ -50,17 +45,6 @@ class Registration extends Component {
           Введите свои данные, чтобы продолжить использовать наше приложение
         </p>
         <form onSubmit={this.hendleSubmit} className={styles.RegistrationForm}>
-          <div className={styles.RegistrationInputForm}>
-            <p className={styles.RegistrationInputTxt}>Логин</p>
-            <input
-              className={styles.RegistrationInput}
-              value={login}
-              onChange={(e) => this.handleName(e)}
-              type="name"
-              placeholder="Введите свой ник"
-              name="name"
-            />
-          </div>
           <div className={styles.RegistrationInputForm}>
             <p className={styles.RegistrationInputTxt}>E-mail</p>
             <input
