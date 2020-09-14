@@ -141,12 +141,15 @@ const birthdayStyle = `
 	font-size: 14px;
 	line-height: 17px;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
+
   }
 
   .react-datepicker__navigation--next{
-	  margin-top: 20px;
+    margin-top: 20px;
   }
+
+ 
 
   .react-datepicker__navigation--next::after{
    contant:"";
