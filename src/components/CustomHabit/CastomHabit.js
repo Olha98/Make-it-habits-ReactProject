@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
-import addHabitOperation from "../../redux/operations/castomHabitOperation";
-// import removeHabitOperation from "../../redux/operations/castomHabitOperation";
+import castomHabitOperation from "../../redux/operations/castomHabitOperation";
 
 class CastomHabit extends Component {
   state = {
@@ -26,9 +25,9 @@ class CastomHabit extends Component {
     } else if (e.target.dataset.cancel) {
       this.props.closeModal()
     }
-    // else if (e.target.dataset.delete) {
-    //   this.props.removeCastomHabit()
-    // }
+    else if (e.target.dataset.delete) {
+      this.props.removeCastomHabit()
+    }
   }
 
   handleChenge = e => {
@@ -106,5 +105,5 @@ class CastomHabit extends Component {
 
 export default connect(
   null,
-  { onAddCustomHabit: addHabitOperation }
+  { onAddCustomHabit: castomHabitOperation.addHabitOperation, removeCastomHabit: castomHabitOperation.removeHabitOperation }
 )(CastomHabit);

@@ -13,17 +13,17 @@ const addHabitOperation = habit => dispatch => {
         .catch(error => console.log("ERROR"))
 }
 
-// const removeHabitOperation = id => dispatch => {
-//     // dispatch(actions.removeContactRequest());
-//     axios
-//         .delete(`habits${id}.json`)
-// .then(() => {
-//             console.log(id, "SuccessID")
-//     dispatch(actions.removeCustomHabit(id))
-//         })
-//         .catch(error => {
-//             console.log(error, "error")
-//         });
-// };
+const removeHabitOperation = id => dispatch => {
+    // dispatch(actions.removeContactRequest());
+    axios
+        .delete(`habits${id}.json`)
+.then(() => {
+            console.log(id, "SuccessID")
+    dispatch(actions.removeCustomHabit(id))
+        })
+        .catch(error => {
+            console.log(error, "error")
+        });
+};
 
-export default addHabitOperation
+export default {addHabitOperation, removeHabitOperation}
