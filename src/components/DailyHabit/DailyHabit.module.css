@@ -47,6 +47,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
+  transition: all 200ms linear;
 }
 .btnTransparentWhiteBorder:hover,
 .btnTransparentWhiteBorder:focus {

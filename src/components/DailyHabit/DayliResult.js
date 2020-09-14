@@ -1,4 +1,5 @@
 import React from "react";
+
 import style from "./DailyHabit.module.css";
 
 const DailyResult = () => {
@@ -20,10 +21,10 @@ const DailyResult = () => {
           </label>
         </div>
         <div className={style.dailyHabitBtns}>
-          <button type="button" className={style.btnTransparentWhiteBorder}>
+          <button type="button" className="buttonTransparent">
             Отмена
           </button>
-          <button type="submit" className={style.btnTransparentWhiteBorder}>
+          <button type="submit" className="buttonTransparent">
             Сохранить
           </button>
         </div>

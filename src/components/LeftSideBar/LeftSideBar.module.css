@@ -1,0 +1,10 @@
+.leftSideBar {
+  min-width: 378px;
+  max-width: 25vh;
+  height: 900px;
+}
+.leftSideBar_container {
+  margin: 0 auto;
+  border-right: 1px solid #d5e1dc;
+  border-left: 1px solid #d5e1dc;
+}
