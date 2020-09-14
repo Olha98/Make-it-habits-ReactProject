@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import InputMask from "react-input-mask";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
 
 import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from "./PasswordForm";
+import ErrorValidation from "./ErrorValidation";
 
 import style from "./Profile.module.css";
+import Card from "../Card/Card";
 // import {
 //   requiredField,
 //   maxLengthCreator,
@@ -14,6 +18,20 @@ import style from "./Profile.module.css";
 // } from "./utils/validators"; //! delete
 // import Input from "./utils/FormsControls";  //! delete
 // const minLengthCreator2 = minLengthCreator(2); //! delete
+
+const validationSchema = Yup.object().shape({
+  firstname: Yup.string()
+    .min(2, "минимальное количество символов: 2")
+    .max(16, "максимальное количество символов: 16")
+    .required("обязательное поле заполнения"),
+  lastname: Yup.string()
+    .min(2, "минимальное количество символов: 2")
+    .max(16, "максимальное количество символов: 16"),
+  email: Yup.string()
+    .email("укажите правильный email")
+    .max(30, "максимальное количество символов: 30")
+    .required("обязательное поле заполнения"),
+});
 
 class Profile extends Component {
   state = {
@@ -25,6 +43,7 @@ class Profile extends Component {
     email: "",
     avatar: "",
   };
+
   componentDidMount() {
     this.setState((prevState) => ({ ...prevState, ...this.props }));
   }
@@ -36,23 +55,23 @@ class Profile extends Component {
 
   // ------------------
 
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log("e.target", e.target);
-    this.setState({ [name]: value });
-  };
+  // handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   this.setState({ [name]: value });
+  // };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // const { name, value } = e.target;
-    // this.setState({ [name]: value });
-    // const { firstname, lastname, phone, email, avatar } = this.state;
-    this.props.addDataUserOperation({ ...this.state });
-  };
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // const { name, value } = e.target;
+  //   // this.setState({ [name]: value });
+  //   // const { firstname, lastname, phone, email, avatar } = this.state;
+  //   this.props.addDataUserOperation({ ...this.state });
+  // };
 
   render() {
     const { changePassword } = this.state;
     const { firstname, lastname, phone, email, avatar } = this.state;
+    // const { firstname, lastname, phone, email, avatar } = this.props;
 
     return (
       <>
@@ -66,69 +85,127 @@ class Profile extends Component {
 
             <div className={style.wrapperForm}>
               <div className={style.wrapperFirstColumn}>
-                <form onSubmit={this.handleSubmit} className={style.form}>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Имя</span>
-                    <input
-                      type="text"
-                      name="firstname"
-                      value={firstname}
-                      // validate={[requiredField, minLengthCreator2]}
-                      // component={input}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Фамилия</span>
-                    <input
-                      type="text"
-                      name="lastname"
-                      value={lastname}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Телефон</span>
-                    {/* <input
-                      type="tel"
-                      name="phone"
-                      defaultValue={phone}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    /> */}
-                    <InputMask
-                      type="tel"
-                      name="phone"
-                      defaultValue={phone}
-                      // {...phone}
-                      mask="+3\8099 999 99 99"
-                      maskChar="_"
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                      placeholder="+380__ ___ __ __"
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>E-mail</span>
-                    <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      // defaultValue={email}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    onClick={this.handleSubmit}
-                    className={style.btnSaveChange}
-                  >
-                    Сохранить изменения
-                  </button>
-                </form>
+                <Formik
+                  initialValues={{
+                    firstname: this.props.firstname,
+                    lastname: this.props.lastname,
+                  }}
+                  validationSchema={validationSchema}
+                  onSubmit={({ values }) => {
+                    this.props.addDataUserOperation({ ...values });
+                  }}
+                >
+                  {({ values, errors, touched, handleChange, handleBlur }) => (
+                    <Form className={style.form}>
+                      {/* <form onSubmit={this.handleSubmit} className={style.form}> */}
+                      {/* {console.log("values", values)}
+                      {console.log("touched", touched)} */}
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Имя</span>
+                        <input
+                          type="text"
+                          name="firstname"
+                          id="firstname"
+                          value={values.firstname}
+                          // onChange={this.handleInputChange}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            " " +
+                            (touched.firstname && errors.firstname
+                              ? style.inputInvalid
+                              : style.inputValid)
+                          }
+                        />
+                        <ErrorValidation
+                          touched={touched.firstname}
+                          message={errors.firstname}
+                        />
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Фамилия</span>
+                        {/* <input
+                          type="text"
+                          name="lastname"
+                          value={lastname}
+                          onChange={this.handleInputChange}
+                          className={style.input}
+                        /> */}
+                        <input
+                          type="text"
+                          name="lastname"
+                          id="lastname"
+                          value={values.lastname}
+                          // onChange={this.handleInputChange}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            " " +
+                            (touched.lastname && errors.lastname
+                              ? style.inputInvalid
+                              : style.inputValid)
+                          }
+                        />
+                        <ErrorValidation
+                          touched={touched.lastname}
+                          message={errors.lastname}
+                        />
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Телефон</span>
+                        <InputMask
+                          type="tel"
+                          name="phone"
+                          defaultValue={phone}
+                          mask="+3\8099 999 99 99"
+                          maskChar="_"
+                          onChange={this.handleInputChange}
+                          className={style.input}
+                          placeholder="+380__ ___ __ __"
+                        />
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>E-mail</span>
+                        {/* <input
+                          type="email"
+                          name="email"
+                          value={email}
+                          onChange={this.handleInputChange}
+                          className={style.input}
+                        /> */}
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          value={values.email}
+                          // onChange={this.handleInputChange}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            " " +
+                            (touched.email && errors.email
+                              ? style.inputInvalid
+                              : style.inputValid)
+                          }
+                        />
+                        <ErrorValidation
+                          touched={touched.email}
+                          message={errors.email}
+                        />
+                      </label>
+                      <button
+                        type="submit"
+                        onClick={this.handleSubmit}
+                        className={style.btnSaveChange}
+                      >
+                        Сохранить изменения
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
                 <button
                   onClick={this.renderPasswordForm}
                   className={style.buttonChangePassword}
@@ -161,17 +238,25 @@ class Profile extends Component {
                 <div className={style.subscription}>
                   <span className={style.subscriptionName}>Basic</span>
                 </div>
-                <button
-                  type="submit"
-                  onSubmit={this.handleSubmit}
-                  className={style.button}
+                <NavLink
+                  exact
+                  // className={style.avatarWrapper}
+                  to="/subscriptions"
                 >
-                  Изменить подписку
-                </button>
+                  <button
+                    // type="submit"
+                    // onSubmit={this.handleSubmit}
+                    // onClick={this.onChangeSubscriptions}
+                    className={style.button}
+                  >
+                    Изменить подписку
+                  </button>
+                </NavLink>
               </div>
             </div>
 
             {changePassword && <PasswordForm />}
+            <Card />
           </div>
         </div>
       </>

@@ -132,8 +132,14 @@ img {
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   padding: 0 20px;
+  outline: none;
 }
-
+.inputInvalid {
+  border: 1px solid #fe6083;
+}
+.inputValid {
+  border: 1px solid #43d190;
+}
 .eyeImage {
   position: absolute;
   /* width: 20px;

@@ -2,8 +2,8 @@ import axios from "axios";
 import actionsUser from "../actions/actionsProfile";
 import actionsLoader from "../actions/spinnerActions";
 
-axios.defaults.headers.common.Authorization =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
+axios.defaults.headers.common.Authorization = "https://api-habit.herokuapp.com";
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
 
 const addDataUserOperation = (user) => (dispatch) => {
   dispatch(actionsLoader.loaderOn());
