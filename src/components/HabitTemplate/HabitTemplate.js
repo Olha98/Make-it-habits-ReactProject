@@ -54,23 +54,25 @@ const HabitTemplate = () => {
         <CustomScrollbars style={{ width: 440, height: 300 }}>
           <ul className={style.habitTemplateList}>
             {templateHabits.map((habit) => (
-              <>
-                <li className={style.habitTemplateItem} data-value={habit}>
-                  <button
-                    onClick={() => chooseHabit(habit)}
-                    className={style.habitTemplateItemLink}
-                  >
-                    {habit}
-                  </button>
-                </li>
-              </>
+              <li
+                key={habit}
+                className={style.habitTemplateItem}
+                data-value={habit}
+              >
+                <button
+                  onClick={() => chooseHabit(habit)}
+                  className={style.habitTemplateItemLink}
+                >
+                  {habit}
+                </button>
+              </li>
             ))}
           </ul>
         </CustomScrollbars>
         {isShowCustomModal && (
-          <CastomHabit chosenHabit={habit} closeModal={closeModal} />
+          <CastomHabit chosenHabit={habit} close={closeModal} />
         )}
-        {isShowHabitChoice && <HabitChoice closeModal={closeHabitChoice} />}
+        {isShowHabitChoice && <HabitChoice close={closeHabitChoice} />}
         <button
           onClick={showHabitChoice}
           className={style.btnTransparentWhiteBorder}
