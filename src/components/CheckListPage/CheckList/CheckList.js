@@ -48,7 +48,6 @@ class CheckList extends Component {
   // }
 
   componentDidMount() {
-    console.log("HELLOOO");
     this.props.getCheckList();
   }
 

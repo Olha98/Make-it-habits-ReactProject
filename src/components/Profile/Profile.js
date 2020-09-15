@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import InputMask from "react-input-mask";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import InputMask from 'react-input-mask';
 
-import actionsProfile from "../../redux/actions/actionsProfile";
-import PasswordForm from "./PasswordForm";
+import actionsProfile from '../../redux/actions/actionsProfile';
+import PasswordForm from './PasswordForm';
 
-import style from "./Profile.module.css";
+import style from './Profile.module.css';
 // import {
 //   requiredField,
 //   maxLengthCreator,
@@ -18,31 +18,30 @@ import style from "./Profile.module.css";
 class Profile extends Component {
   state = {
     changePassword: false,
-
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    avatar: "",
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    avatar: '',
   };
   componentDidMount() {
-    this.setState((prevState) => ({ ...prevState, ...this.props }));
+    this.setState(prevState => ({ ...prevState, ...this.props }));
   }
   renderPasswordForm = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
 
   // ------------------
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const { name, value } = e.target;
-    console.log("e.target", e.target);
+    console.log('e.target', e.target);
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     // const { name, value } = e.target;
     // this.setState({ [name]: value });
@@ -178,7 +177,7 @@ class Profile extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     firstname: state.user.firstname,
     lastname: state.user.lastname,

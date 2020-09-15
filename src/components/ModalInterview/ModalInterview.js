@@ -90,7 +90,7 @@ class ModalInterview extends Component {
           <button className={styles.button} type="submit">
             Сохранить
           </button>
-          <br />
+          <p>&nbsp;</p>
           <button
             className={styles.button}
             type="button"
