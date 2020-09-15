@@ -11,7 +11,7 @@ import leftSideBarOperations from "../../redux/operations/leftSideBarOperations"
 
 class LeftSideBar extends Component {
   componentDidMount() {
-    this.props.getUserInfo();
+    // this.props.getUserInfo();
   }
 
   render() {
@@ -30,6 +30,9 @@ class LeftSideBar extends Component {
     );
   }
 }
-export default connect(null, {
-  getUserInfo: leftSideBarOperations.getCurrentUser,
-})(LeftSideBar);
+export default connect(
+  null,
+  {
+    getUserInfo: leftSideBarOperations.getCurrentUser
+  }
+)(LeftSideBar);

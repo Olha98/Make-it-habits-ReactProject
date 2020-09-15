@@ -6,36 +6,37 @@ Axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 const token = {
   set(token) {
     Axios.defaults.headers.common.Authorization = token;
+    console.log("token", token);
   },
   unSet() {
     Axios.defaults.headers.common.Authorization = ``;
-  },
+  }
 };
 
-const userRegistration = (credentials) => (dispatch) => {
+const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
   console.log(credentials);
   Axios.post("/auth/registration", credentials)
-    .then((res) => {
+    .then(res => {
       console.log(res, "registr");
-      token.set(res.data.token);
+      token.set(res.data.access_token);
       dispatch(authAction.registrationSuccess(res.data));
     })
-    .catch((err) => {
+    .catch(err => {
       dispatch(authAction.registrationError(err));
     });
 };
 
-const userLogin = (credentials) => (dispatch) => {
+const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
   console.log(credentials);
   Axios.post("/auth/login", credentials)
-    .then((res) => {
+    .then(res => {
       console.log(res, "loginlogin");
-      token.set(res.data.token);
+      token.set(res.data.access_token);
       dispatch(authAction.loginSucces(res.data));
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err, "error");
       dispatch(authAction.loginError(err));
     });
