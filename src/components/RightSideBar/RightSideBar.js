@@ -61,16 +61,20 @@ const task = [
   },
 ];
 
-
 class RightSideBar extends Component {
   state = {
     dayWeek: moment().format("dddd"),
     getData: moment().format("LL").split(" ").slice(0, 2),
+    currentDay: "",
   };
 
   componentDidMount = () => {
-    
     this.props.onGetHabit();
+ 
+  };
+
+  addState = () => {
+
   };
 
   render() {
