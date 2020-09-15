@@ -1,61 +1,54 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import style from "./ModalBackDrop.module.css";
 
 const modalBackDrop = (WrappedComponent) => {
   return class ModalBackDrop extends Component {
-    // openModal = () => {
-    //   this.setState({ isOpen: true });
-    // };
-
-    // state = {
-    //   isOpen: true,
-    //   // showModal: this.openModal,
-    // };
-
-    overlayRef = createRef();
+    state = {
+      isOpen: false,
+    };
 
     componentDidMount() {
+      this.setState({ isOpen: true });
       window.addEventListener("keydown", this.closeModalKeydown);
-      this.overlayRef.current.addEventListener("click", this.closeModalOverlay);
+      document.addEventListener("click", this.closeModalOverlay);
     }
 
     componentWillUnmount() {
       window.removeEventListener("keydown", this.closeModalKeydown);
-      this.overlayRef.current.removeEventListener(
-        "click",
-        this.closeModalOverlay
-      );
+      document.removeEventListener("click", this.closeModalOverlay);
     }
 
-    closeModal = () => this.setState({ isOpen: false });
+    closeModal = async () => {
+      await this.setState({ isOpen: false });
+      this.props.close();
+    };
 
     closeModalKeydown = (e) => {
       if (e.code === "Escape") {
         this.closeModal();
-      }
+      } else return;
     };
 
     closeModalOverlay = (e) => {
-      if (this.overlayRef.current === e.target) {
+      if (e.target.dataset.type === "modal") {
         this.closeModal();
-      }
+      } else return;
     };
 
     render() {
-      // console.log(this.props);
       return (
-        // this.state.isOpen && (
-        <div ref={this.overlayRef} data-modal="modal" className={style.overlay}>
-          <WrappedComponent {...this.props} extraProp="This prop is from HOC" />
-          <button
-            data-modalbtn="modalbtn"
-            className={style.button}
-            onClick={this.closeModal}
-          >
-            X
-          </button>
-        </div>
-        // )
+        this.state.isOpen && (
+          <div data-type="modal" className={style.overlay}>
+            <WrappedComponent {...this.props} closeModal={this.closeModal} />
+            <button
+              data-modalbtn="modalbtn"
+              className={style.button}
+              onClick={this.closeModal}
+            >
+              X
+            </button>
+          </div>
+        )
       );
     }
   };
