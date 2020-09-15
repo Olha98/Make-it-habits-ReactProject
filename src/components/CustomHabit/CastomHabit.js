@@ -17,7 +17,7 @@ class CastomHabit extends Component {
 
   // };
 
-  onClickSubmit = e => {
+  onClickSubmit = (e) => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`
@@ -26,25 +26,28 @@ class CastomHabit extends Component {
       this.props.requestAddCustomHabit({ name, planningTime, iteration })
       this.props.closeModal()
     } else if (e.target.dataset.cancel) {
-      this.props.closeModal()
+      this.props.closeModal();
+    } else if (e.target.dataset.delete) {
+      this.props.removeCastomHabit();
     }
-    else if (e.target.dataset.delete) {
-      this.props.removeCastomHabit()
-    }
-  }
+  };
 
-  handleChenge = e => {
+  handleChenge = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   render() {
+    const { name, createAt, iteration, planningTime } = this.props.habit; //! тест пропов
+
     return (
       <div className={style.castomHabitContainer}>
         <h2 className={style.castomHabitTitle}>Настройте привычку под себя</h2>
-        <p className={style.castomHabitText}>так Вам будет удобнее достичь своей цели</p>
+        <p className={style.castomHabitText}>
+          так Вам будет удобнее достичь своей цели
+        </p>
         <form onSubmit={this.handleSubmit} className={style.castomHabitForm}>
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
@@ -87,16 +90,32 @@ class CastomHabit extends Component {
                 <option value="onceInTwoDays">Раз в 2 дня</option>
                 <option value="MonWedFri">ПН, СР, ПТ</option>
                 <option value="TueThuSat">ВТ, ЧТ, СБ</option>
-                </select>
+              </select>
             </label>
           </div>
 
-          <button onClick={this.onClickSubmit} data-delete="delete" className={style.castomHabitDelete}>удалить привычку</button>
+          <button
+            onClick={this.onClickSubmit}
+            data-delete="delete"
+            className={style.castomHabitDelete}
+          >
+            удалить привычку
+          </button>
           <div className={style.castomHabitBtnWrapper}>
-            <button type="submit" onClick={this.onClickSubmit} data-cancel="cancel" className={style.castomHabitCancelBtn}>
+            <button
+              type="submit"
+              onClick={this.onClickSubmit}
+              data-cancel="cancel"
+              className={style.castomHabitCancelBtn}
+            >
               Отмена
             </button>
-            <button type="submit" onClick={this.onClickSubmit} data-save="save" className={style.castomHabitSaveBtn}>
+            <button
+              type="submit"
+              onClick={this.onClickSubmit}
+              data-save="save"
+              className={style.castomHabitSaveBtn}
+            >
               Сохранить
             </button>
           </div>
