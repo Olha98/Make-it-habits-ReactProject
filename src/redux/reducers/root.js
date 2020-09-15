@@ -8,9 +8,9 @@ import authReducer from "./authReducer";
 import dataUser from "../actions/dataUser";
 
 export const persistConfig = {
-  key: "token",
+  key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["access_token", "email"],
 };
 
 export const persistUserConfig = {
