@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import Congratulations from "../Congratulations/Congratulations";
+// import Congratulations from "../Congratulations/Congratulations";
 import Modal from "../ModalBackDrop/ModalBackDrop";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
@@ -8,7 +8,8 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
-import DailyResult from "../DailyHabit/DayliResult";
+// import DailyResult from "../DailyHabit/DayliResult";
+import Congratulations from "../Congratulations/Congratulations";
 
 const App = (props) => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -35,7 +36,7 @@ const App = (props) => {
         <button onClick={showModal}>Show Modal</button>
         {isShowModal && (
           <Modal closeModal={closeModal}>
-            <DailyResult closeModal={closeModal} />
+            <Congratulations closeModal={closeModal} />
           </Modal>
         )}
       </div>
