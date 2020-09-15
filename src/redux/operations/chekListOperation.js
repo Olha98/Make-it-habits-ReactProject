@@ -4,13 +4,11 @@ import checkListActions from "../actions/checkListActions";
 // axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
 const getHabitsOperation = () => (dispatch) => {
-  console.log("hellooo from operation");
   dispatch(checkListActions.getHabitsRequest());
   axios
     .get("https://make-it-habit-api.herokuapp.com/habits")
-    .then((responce) => {
-      console.log(responce, "responce");
-      dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
+    .then((response) => {
+      dispatch(checkListActions.getHabitsSuccess(response.data.habits));
     })
     .catch((error) => console.log(error));
 };

@@ -4,10 +4,13 @@ const getDataUserRequest = () => ({
   type: constType.GET_DATA_USER_REQUEST,
 });
 
-const getDataUserSuccess = (user) => ({
-  type: constType.GET_DATA_USER_SUCCESS,
-  paylod: { ...user },
-});
+const getDataUserSuccess = (user) => {
+  console.log("USER", user);
+  return {
+    type: constType.GET_DATA_USER_SUCCESS,
+    paylod: { ...user },
+  };
+};
 
 const getDataUserError = (error) => ({
   type: constType.GET_DATA_USER_ERROR,

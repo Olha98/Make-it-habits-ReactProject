@@ -43,6 +43,14 @@
   line-height: 44px;
   color: #43d190;
   text-decoration: none;
+  border: 0;
+  background-color: #e9faf7;
+  cursor: pointer;
+}
+
+.habitTemplateItemLink:hover {
+  background-color: #cbf6e3;
+  color: #ffffff;
 }
 
 .habitTemplateItem {
@@ -54,13 +62,14 @@
   cursor: pointer;
   margin-right: 0;
 }
+
 .habitTemplateItem:last-child {
   margin-bottom: 0px;
 }
 
 .habitTemplateItem:hover {
   background-color: #cbf6e3;
-  color: #cbf6e3;
+  color: #ffffff;
 }
 
 .btnTransparentWhiteBorder {
