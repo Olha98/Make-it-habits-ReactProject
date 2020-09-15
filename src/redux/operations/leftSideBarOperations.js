@@ -1,12 +1,11 @@
 import axios from "axios";
 import leftSideBarAction from "../actions/leftSideBarActions";
 
-axios.defaults.baseURL = "https://api-habit.herokuapp.com";
+axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
 export const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWY1MDY5NmEyNTY4MDAxN2ZiNzc4OCIsImlhdCI6MTYwMDA4ODE3NiwiZXhwIjoxNjAwNjkyOTc2fQ.tmQWMAvlscCgq2P33o8RdZiqbnw9fI_rb0UfkXBRP6g";
+    axios.defaults.headers.common.Authorization = "";
   },
   unset() {
     axios.defaults.headers.common.Authorization = "";
@@ -22,8 +21,9 @@ const getCurrentUser = () => async (dispatch, getState) => {
   token.set(persistedToken);
   dispatch(leftSideBarAction.getCurrentUserStart());
   try {
-    const response = await axios.get("/users/current");
+    const response = await axios.get("/habits");
     dispatch(leftSideBarAction.getCurrentUserSuccess(response.data));
+    console.log("response.data", response.data);
   } catch (error) {
     dispatch(leftSideBarAction.getCurrentUserError(error));
   }
