@@ -11,18 +11,18 @@ import "../../../main.css";
 
 class Habits extends Component {
   state = {
-    isShowModal: false,
+    isShowModal: false
   };
 
   openModal = () => {
     this.setState({
-      isShowModal: true,
+      isShowModal: true
     });
   };
 
   closeModal = () => {
     this.setState({
-      isShowModal: false,
+      isShowModal: false
     });
   };
 
@@ -34,20 +34,16 @@ class Habits extends Component {
           <CustomScrollbars
             style={{
               width: 270,
-              height: 186,
+              height: 186
             }}
           >
             <ul className={style.leftSideBar_habits__list}>
-              {this.props.habits.map(({ id }, idx) => (
-                <HabitItem key={id} id={id} idx={idx} />
+              {this.props.habits.map(({ _id }, idx) => (
+                <HabitItem key={_id} idx={idx} />
               ))}
             </ul>
           </CustomScrollbars>
-          <button
-            type="button"
-            onClick={this.openModal}
-            className={style.leftSideBar_habits__button}
-          >
+          <button type="button" onClick={this.openModal} className={style.leftSideBar_habits__button}>
             Добавить привычку +
           </button>
           {this.state.isShowModal && (
@@ -60,7 +56,7 @@ class Habits extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  habits: leftSideBarSelectors.listOfHabits(state),
+const mapStateToProps = state => ({
+  habits: leftSideBarSelectors.listOfHabits(state)
 });
 export default connect(mapStateToProps)(Habits);

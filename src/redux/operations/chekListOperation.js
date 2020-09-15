@@ -1,19 +1,20 @@
 import axios from "axios";
 import checkListActions from "../actions/checkListActions";
 
-// axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+axios.defaults.headers.common.Authorization = "";
 
-const getHabitsOperation = (token) => (dispatch) => {
+const getHabitsOperation = () => dispatch => {
   console.log("hellooo from operation");
-  console.log("token", token);
+  // console.log("token", token);
   // dispatch(checkListActions.getHabitsRequest());
   axios
-    .get("https://make-it-habit-api.herokuapp.com/habits", token)
-    .then((responce) => {
+    .get("/habits")
+    .then(responce => {
       console.log("responce :", responce);
       dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
 // const getHabitsOperation = () = (dispatch) => {
