@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import imgAva from "../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png";
 import spinnerReducers from "../../components/Spinner/redux/spinnerReducers";
+import quizInfoReducer from "./quizInfoReducer";
 
 export const persistConfig = {
   key: "token",
@@ -27,12 +28,8 @@ const root = combineReducers({
     email: "admin@gmail.com",
     registerData: Date.now(),
   }),
-  quizInfo: () => ({
-    smokeYears: 0,
-    cigarettePerDay: 6,
-    cigarettePerTime: 15,
-    cigarettePackPrice: 100,
-  }),
+
+  quizInfo: quizInfoReducer,
 
   dayInfo: () => ({
     cigaretteQuantity: 1,

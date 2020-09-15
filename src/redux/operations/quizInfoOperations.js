@@ -4,13 +4,9 @@ import api from "../../api/api";
 const addInfo = (info) => async (dispatch) => {
   dispatch(quizInfoActions.addInfoRequest());
   try {
-    const { data, config } = await api.addInfoAPI(info);
-    console.log(data, config);
-    dispatch(
-      quizInfoActions.addInfoSuccess({
-        ...JSON.parse(config.data),
-      })
-    );
+    const { data } = await api.addInfoAPI(info);
+    console.log(data);
+    dispatch(quizInfoActions.addInfoSuccess(data));
   } catch (error) {
     dispatch(quizInfoActions.getInfoError(error));
   }
@@ -20,8 +16,9 @@ const fetchInfo = () => async (dispatch) => {
   dispatch(quizInfoActions.getInfoRequest());
   try {
     const { data } = await api.getInfoAPI();
-    console.log(data);
-    dispatch(quizInfoActions.getInfoSuccess(data[0]));
+    const { user } = data;
+    console.log(user.quizInfo);
+    dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
   } catch (error) {
     dispatch(quizInfoActions.getInfoSuccess(error));
   }

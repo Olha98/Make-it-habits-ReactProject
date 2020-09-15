@@ -88,6 +88,14 @@ class ModalInterview extends Component {
           <button className={styles.button} type="submit">
             Сохранить
           </button>
+          <br />
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => this.props.onGetInfo()}
+          >
+            Fetch
+          </button>
         </form>
       </section>
     );
@@ -96,6 +104,7 @@ class ModalInterview extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   onAddInfo: (info) => dispatch(quizInfoOperations.addInfo(info)),
+  onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
 export default connect(null, mapDispatchToProps)(ModalInterview);
