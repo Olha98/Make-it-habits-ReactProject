@@ -6,6 +6,8 @@ import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.s
 import authOperation from "../../redux/operations/authOperation";
 import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
 import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import transition from "./transition.module.css";
 
 class Login extends Component {
   state = {
@@ -15,7 +17,6 @@ class Login extends Component {
   };
 
   onEyeIconOldPassword = (name) => {
-    console.log(2222);
     this.setState({ [name]: !this.state[name] });
   };
 
@@ -38,9 +39,17 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, passwordVisible } = this.state;
+    const { email, password, passwordVisible, isOpen } = this.state;
+    const { btnClose } = this.props;
 
     return (
+      // <TransitionGroup>
+      // <CSSTransition
+      //   in={isOpen}
+      //   timeout={1000}
+      //   classNames={transition}
+      //   unmountOnExit
+      // >
       <div className={styles.Login}>
         <div className={styles.HomeLogo}>
           <div className={styles.HomeLogoSvg}>
@@ -93,11 +102,13 @@ class Login extends Component {
           </div>
         </form>
         <div className={styles.LoginButtonBlock}>
-          <button className={styles.LoginButton}>
+          <button className={styles.LoginButton} onClick={btnClose}>
             <p className={styles.LoginButtonTxt}>Регистрация</p>
           </button>
         </div>
       </div>
+      // </CSSTransition>
+      // </TransitionGroup>
     );
   }
 }

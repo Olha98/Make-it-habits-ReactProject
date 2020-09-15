@@ -28,8 +28,6 @@ class Registration extends Component {
 
   hendleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(1111111);
     const { email, password } = this.state;
     let NewUser = { email, password };
     this.props.onReegistration(NewUser);
@@ -38,7 +36,7 @@ class Registration extends Component {
 
   render() {
     const { passwordVisible, email, password } = this.state;
-
+    const { btnClose } = this.props;
     return (
       <div className={styles.Registration}>
         <div className={styles.RegistrationLogo}>
@@ -92,7 +90,7 @@ class Registration extends Component {
           </div>
         </form>
         <div className={styles.RegistrationButtonBlock}>
-          <button className={styles.RegistrationButton}>
+          <button className={styles.RegistrationButton} onClick={btnClose}>
             <p className={styles.RegistrationButtonTxt}>Войти</p>
           </button>
         </div>

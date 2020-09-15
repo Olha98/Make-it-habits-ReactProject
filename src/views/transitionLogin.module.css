@@ -1,5 +1,5 @@
 .enter {
-  transform: translateX(200%);
+  transform: translateX(-200%);
 }
 
 .enterActive {
@@ -12,6 +12,6 @@
 }
 
 .exitActive {
-  transform: translateX(200%);
+  transform: translateX(-200%);
   transition: transform 1000ms linear;
 }

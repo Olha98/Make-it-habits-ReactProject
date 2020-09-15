@@ -54,18 +54,17 @@ const userLogin = (credentials) => (dispatch) => {
     });
 };
 
-// const userLogOut = () => (dispatch) => {
-//   dispatch(authAction.logOutRequest());
-//   axios
-//     .post("/users/logout")
-//     .then(() => {
-//       token.unSet();
-//       dispatch(authAction.logOutSuccess());
-//     })
-//     .catch((err) => {
-//       dispatch(authAction.logOutError(err));
-//     });
-// };
+const userLogOut = () => (dispatch) => {
+  dispatch(authAction.logOutRequest());
+  Axios.post("/users/logout")
+    .then(() => {
+      token.unSet();
+      dispatch(authAction.logOutSuccess());
+    })
+    .catch((err) => {
+      dispatch(authAction.logOutError(err));
+    });
+};
 
 // const getCurrentUser = (credentials) => (dispatch, getState) => {
 //   const {
@@ -86,4 +85,4 @@ const userLogin = (credentials) => (dispatch) => {
 //     });
 // };
 
-export default { userRegistration, userLogin };
+export default { userRegistration, userLogin, userLogOut };
