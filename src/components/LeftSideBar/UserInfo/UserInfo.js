@@ -5,7 +5,6 @@ import leftSideBarOperations from "../../../redux/operations/leftSideBarOperatio
 import style from "../UserInfo/UserInfo.module.css";
 //import authOperations from "../../../redux/operations/authOperation";
 const UserInfo = ({ photo, name, surname, logout }) => {
-  console.log("state", name);
   return (
     <>
       <section className={style.leftSideBar_userInfo}>

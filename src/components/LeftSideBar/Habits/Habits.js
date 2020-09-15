@@ -63,7 +63,6 @@ class Habits extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   //const getNotifications =
   //const habitsArray = leftSideBarSelectors.listOfHabits(state); // [ [null, null, null], [null, null, null],[null, null, null]]
   //const numberOfHabits = habitsArray.length
