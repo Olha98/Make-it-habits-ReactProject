@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import habitReducer from "./checkListReducers";
 import spinnerReducers from "./spinnerReducers";
 import authReducer from "./authReducer";
 import dataUserReducer from "./reducersProfile";
-import castomHabitRedusers from "./castomHabitRedusers";
 
 export const persistConfig = {
   key: "token",
@@ -29,7 +29,7 @@ const root = combineReducers({
     cigaretteQuantity: 0,
   }),
 
-  habits: castomHabitRedusers,
+  habits: habitReducer,
 });
 
 export default root;

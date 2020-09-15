@@ -1,28 +1,49 @@
-import React, { useEffect, useRef } from "react";
-import styles from "./ModalBackDrop.module.css";
+import React, { Component } from "react";
+import style from "./ModalBackDrop.module.css";
 
-const Modal = ({ children, closeModal }) => {
-  const refOverlay = useRef();
-  const hendleKeyDown = ({ key }) => {
-    if (key !== "Escape") return;
-    closeModal();
-  };
-  const hendleClickOverlay = ({ target }) => {
-    if (refOverlay.current !== target) return;
-    closeModal();
-  };
-  useEffect(() => {
-    window.addEventListener("keydown", hendleKeyDown);
-    refOverlay.current.addEventListener("click", hendleClickOverlay);
-    return () => {
-      window.removeEventListener("keydown", hendleKeyDown);
-      refOverlay.current.removeEventListener("click", hendleClickOverlay);
+const modalBackDrop = (WrappedComponent) => {
+  return class ModalBackDrop extends Component {
+    state = {
+      isOpen: false,
     };
-  }, []);
-  return (
-    <div className={styles.overlay} ref={refOverlay}>
-      {children}
-    </div>
-  );
+
+    componentDidMount() {
+      this.setState({ isOpen: true });
+      window.addEventListener("keydown", this.closeModalKeydown);
+      document.addEventListener("click", this.closeModalOverlay);
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener("keydown", this.closeModalKeydown);
+      document.removeEventListener("click", this.closeModalOverlay);
+    }
+
+    closeModal = async () => {
+      await this.setState({ isOpen: false });
+      this.props.close();
+    };
+
+    closeModalKeydown = (e) => {
+      if (e.code === "Escape") {
+        this.closeModal();
+      } else return;
+    };
+
+    closeModalOverlay = (e) => {
+      if (e.target.dataset.type === "modal") {
+        this.closeModal();
+      } else return;
+    };
+
+    render() {
+      return (
+        this.state.isOpen && (
+          <div data-type="modal" className={style.overlay}>
+            <WrappedComponent {...this.props} closeModal={this.closeModal} />
+          </div>
+        )
+      );
+    }
+  };
 };
-export default Modal;
+export default modalBackDrop;
