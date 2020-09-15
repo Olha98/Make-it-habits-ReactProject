@@ -27,8 +27,10 @@ class CastomHabit extends Component {
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
-    } else if (e.target.dataset.delete) {
-      this.props.removeCastomHabit();
+    }
+    else if (e.target.dataset.delete) {
+      this.props.requestRemoveCastomHabit(this.props.habit._id);
+      this.props.closeModal();
     }
   };
 
@@ -57,6 +59,8 @@ class CastomHabit extends Component {
     const minute = this.editNumber(date.getMinutes())
     const planningDate = `${year}-${month}-${day}`
     const planningHours = `${hour}:${minute}`
+
+    console.log('this.props.habit._id', this.props.habit._id)
 
 
     return (
@@ -129,7 +133,8 @@ export default connect(
   null,
   {
     onAddCustomHabit: castomHabitActions.addCustomHabit,
+    removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
-    removeCastomHabit: castomHabitOperation.removeHabitOperation
+    requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation
   }
 )(CastomHabit);
