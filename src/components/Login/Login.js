@@ -4,11 +4,20 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
 import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
 import authOperation from "../../redux/operations/authOperation";
+import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
+import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import transition from "./transition.module.css";
 
 class Login extends Component {
   state = {
     email: "",
     password: "",
+    passwordVisible: false,
+  };
+
+  onEyeIconOldPassword = (name) => {
+    this.setState({ [name]: !this.state[name] });
   };
 
   handleEmail = (e) => {
@@ -30,9 +39,17 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, passwordVisible, isOpen } = this.state;
+    const { btnClose } = this.props;
 
     return (
+      // <TransitionGroup>
+      // <CSSTransition
+      //   in={isOpen}
+      //   timeout={1000}
+      //   classNames={transition}
+      //   unmountOnExit
+      // >
       <div className={styles.Login}>
         <div className={styles.HomeLogo}>
           <div className={styles.HomeLogoSvg}>
@@ -60,14 +77,23 @@ class Login extends Component {
           </div>
           <div className={styles.LoginInputForm}>
             <p className={styles.LoginInputTxt}>Пароль</p>
-            <input
-              className={styles.LoginInput}
-              value={password}
-              onChange={(e) => this.handlePassword(e)}
-              type="password"
-              placeholder="Введите пароль"
-              name="password"
-            />
+            <label className={styles.LoginPassword}>
+              <div
+                onClick={() => this.onEyeIconOldPassword("passwordVisible")}
+                className={styles.LoginPasswordBtn}
+              >
+                {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
+              </div>
+
+              <input
+                className={styles.LoginInput}
+                value={password}
+                onChange={(e) => this.handlePassword(e)}
+                type={!passwordVisible ? "password" : "text"}
+                placeholder="Введите пароль"
+                name="password"
+              />
+            </label>
           </div>
           <div className={styles.LoginButtonBlock}>
             <button className={styles.LoginButton}>
@@ -76,11 +102,13 @@ class Login extends Component {
           </div>
         </form>
         <div className={styles.LoginButtonBlock}>
-          <button className={styles.LoginButton}>
+          <button className={styles.LoginButton} onClick={btnClose}>
             <p className={styles.LoginButtonTxt}>Регистрация</p>
           </button>
         </div>
       </div>
+      // </CSSTransition>
+      // </TransitionGroup>
     );
   }
 }

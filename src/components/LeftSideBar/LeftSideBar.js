@@ -11,7 +11,7 @@ import leftSideBarOperations from "../../redux/operations/leftSideBarOperations"
 
 class LeftSideBar extends Component {
   componentDidMount() {
-    this.props.getUserInfo();
+    // this.props.getUserInfo();
   }
 
   render() {
