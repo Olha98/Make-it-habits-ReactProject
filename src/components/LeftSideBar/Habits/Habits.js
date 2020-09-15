@@ -28,7 +28,6 @@ class Habits extends Component {
   };
 
   render() {
-    console.log("this.props.habits", this.props.habits);
     return (
       <>
         <section className={style.leftSideBar_habits}>
