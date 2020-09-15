@@ -59,6 +59,7 @@ margin: 0 auto;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 145px;
+  padding: 10px 20px;
 }
 
 .castomHabitDate {
@@ -69,6 +70,7 @@ margin: 0 auto;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 126px;
+  padding: 10px 20px;
 }
 
 .castomHabitTime {
@@ -79,6 +81,7 @@ margin: 0 auto;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 168px;
+  padding: 10px 20px;
 }
 
 .castomHabitSelect {
@@ -89,6 +92,7 @@ margin: 0 auto;
   box-sizing: border-box;
   border-radius: 5px;
   margin-left: 125px;
+  padding: 10px 20px;
 }
 
 .castomHabitDelete {
