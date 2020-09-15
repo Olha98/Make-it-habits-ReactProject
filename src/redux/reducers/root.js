@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 import habitReducer from "./checkListReducers";
 import spinnerReducers from "./spinnerReducers";
 import authReducer from "./authReducer";
-import dataUserReducer from "./reducersProfile";
+
 import dataUser from "../actions/dataUser";
 
 export const persistConfig = {
@@ -13,13 +13,18 @@ export const persistConfig = {
   whitelist: ["token"],
 };
 
+export const persistUserConfig = {
+  key: "user",
+  storage,
+  blacklist: ["id"],
+};
+
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-  userData: dataUser,
 
   auth: persistReducer(persistConfig, authReducer),
 
-  user: dataUserReducer,
+  user: persistReducer(persistUserConfig, dataUser),
 
   quizInfo: () => ({
     smokeYears: 0,
