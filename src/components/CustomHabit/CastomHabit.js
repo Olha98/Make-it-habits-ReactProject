@@ -3,6 +3,7 @@ import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
 import castomHabitActions from "../../redux/actions/castomHabitActions";
 import castomHabitOperation from "../../redux/operations/castomHabitOperation";
+import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 class CastomHabit extends Component {
   state = {
@@ -128,8 +129,10 @@ class CastomHabit extends Component {
   }
 }
 
-export default connect(null, {
-  onAddCustomHabit: castomHabitActions.addCustomHabit,
-  requestAddCustomHabit: castomHabitOperation.addHabitOperation,
-  removeCastomHabit: castomHabitOperation.removeHabitOperation,
-})(CastomHabit);
+export default modalBackDrop(
+  connect(null, {
+    onAddCustomHabit: castomHabitActions.addCustomHabit,
+    requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+    removeCastomHabit: castomHabitOperation.removeHabitOperation,
+  })(CastomHabit)
+);

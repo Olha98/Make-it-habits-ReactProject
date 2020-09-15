@@ -4,11 +4,18 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
 import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
 import authOperation from "../../redux/operations/authOperation";
+import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
+import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
 
 class Registration extends Component {
   state = {
     email: "",
     password: "",
+    passwordVisible: false,
+  };
+
+  onEyeIconOldPassword = (name) => {
+    this.setState({ [name]: !this.state[name] });
   };
 
   handleEmail = (e) => {
@@ -28,8 +35,8 @@ class Registration extends Component {
   };
 
   render() {
-    const {  email, password } = this.state;
-
+    const { passwordVisible, email, password } = this.state;
+    const { btnClose } = this.props;
     return (
       <div className={styles.Registration}>
         <div className={styles.RegistrationLogo}>
@@ -58,14 +65,23 @@ class Registration extends Component {
           </div>
           <div className={styles.RegistrationInputForm}>
             <p className={styles.RegistrationInputTxt}>Пароль</p>
-            <input
-              className={styles.RegistrationInput}
-              value={password}
-              onChange={(e) => this.handlePassword(e)}
-              type="password"
-              placeholder="Придумайте пароль"
-              name="password"
-            />
+            <label className={styles.RegistrationPassword}>
+              <div
+                onClick={() => this.onEyeIconOldPassword("passwordVisible")}
+                className={styles.RegistrationPasswordBtn}
+              >
+                {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
+              </div>
+
+              <input
+                className={styles.RegistrationInput}
+                value={password}
+                onChange={(e) => this.handlePassword(e)}
+                type={!passwordVisible ? "password" : "text"}
+                placeholder="Придумайте пароль"
+                name="password"
+              />
+            </label>
           </div>
           <div className={styles.RegistrationButtonBlock}>
             <button className={styles.RegistrationButton}>
@@ -74,7 +90,7 @@ class Registration extends Component {
           </div>
         </form>
         <div className={styles.RegistrationButtonBlock}>
-          <button className={styles.RegistrationButton}>
+          <button className={styles.RegistrationButton} onClick={btnClose}>
             <p className={styles.RegistrationButtonTxt}>Войти</p>
           </button>
         </div>
