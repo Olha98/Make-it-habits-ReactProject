@@ -22,6 +22,14 @@ const templateHabits = [
 
 const HabitTemplate = () => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [habit, setHabit] = useState("");
+  const changeCurrentHabit = (habit) => {
+    setHabit(habit);
+  };
+  const chooseHabit = (habit) => {
+    showModal();
+    changeCurrentHabit(habit);
+  };
   const showModal = () => {
     setIsShowModal(true);
   };
@@ -38,7 +46,7 @@ const HabitTemplate = () => {
               <>
                 <li className={style.habitTemplateItem} data-value={habit}>
                   <button
-                    onClick={showModal}
+                    onClick={() => chooseHabit(habit)}
                     className={style.habitTemplateItemLink}
                   >
                     {habit}
@@ -48,7 +56,9 @@ const HabitTemplate = () => {
             ))}
           </ul>
         </CustomScrollbars>
-        {isShowModal && <CastomHabit closeModal={closeModal} />}
+        {isShowModal && (
+          <CastomHabit chosenHabit={habit} closeModal={closeModal} />
+        )}
         <button className={style.btnTransparentWhiteBorder}>Назад</button>
       </div>
     </>
