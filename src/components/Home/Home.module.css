@@ -1,9 +1,16 @@
+.HomeContainer {
+  background-color: #43d190;
+  width: 100vh;
+  height: 100vh;
+}
+
 .Home {
   background-color: #43d190;
   width: 1600px;
   height: 900px;
   position: relative;
   display: flex;
+  margin: 0 auto;
 }
 
 .HomeLeft {

@@ -26,6 +26,7 @@ const token = (state = null, { type, payload }) => {
     case authConstans.REGISTER_SUCCESS:
       return payload.access_token;
     case authConstans.LOGIN_SUCCESS:
+      console.log(payload, "payload token");
       return payload.access_token;
 
     default:

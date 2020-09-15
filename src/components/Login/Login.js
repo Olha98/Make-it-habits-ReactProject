@@ -4,11 +4,19 @@ import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
 import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
 import authOperation from "../../redux/operations/authOperation";
+import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
+import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
 
 class Login extends Component {
   state = {
     email: "",
     password: "",
+    passwordVisible: false,
+  };
+
+  onEyeIconOldPassword = (name) => {
+    console.log(2222);
+    this.setState({ [name]: !this.state[name] });
   };
 
   handleEmail = (e) => {
@@ -30,7 +38,7 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, passwordVisible } = this.state;
 
     return (
       <div className={styles.Login}>
@@ -60,14 +68,23 @@ class Login extends Component {
           </div>
           <div className={styles.LoginInputForm}>
             <p className={styles.LoginInputTxt}>Пароль</p>
-            <input
-              className={styles.LoginInput}
-              value={password}
-              onChange={(e) => this.handlePassword(e)}
-              type="password"
-              placeholder="Введите пароль"
-              name="password"
-            />
+            <label className={styles.LoginPassword}>
+              <div
+                onClick={() => this.onEyeIconOldPassword("passwordVisible")}
+                className={styles.LoginPasswordBtn}
+              >
+                {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
+              </div>
+
+              <input
+                className={styles.LoginInput}
+                value={password}
+                onChange={(e) => this.handlePassword(e)}
+                type={!passwordVisible ? "password" : "text"}
+                placeholder="Введите пароль"
+                name="password"
+              />
+            </label>
           </div>
           <div className={styles.LoginButtonBlock}>
             <button className={styles.LoginButton}>
