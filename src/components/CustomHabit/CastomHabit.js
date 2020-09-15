@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
+import castomHabitActions from "../../redux/actions/castomHabitActions";
 import castomHabitOperation from "../../redux/operations/castomHabitOperation";
 
 class CastomHabit extends Component {
   state = {
     name: "",
-    startDate: "",
-    time: "",
-    repeat: "",
+    date: "",
+    iteration: "",
+    time: ""
   };
 
   // handleSubmit = e => {
@@ -18,10 +19,12 @@ class CastomHabit extends Component {
 
   onClickSubmit = (e) => {
     e.preventDefault();
-    const { name, startDate, time, repeat } = this.state;
+    const { name, date, time, iteration } = this.state;
+    const planningTime = `${date}:${time}`
     if (e.target.dataset.save) {
-      this.props.onAddCustomHabit({ name, startDate, time, repeat });
-      this.props.closeModal();
+      // this.props.onAddCustomHabit({ name, planningTime, iteration })
+      this.props.requestAddCustomHabit({ name, planningTime, iteration })
+      this.props.closeModal()
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
@@ -37,8 +40,6 @@ class CastomHabit extends Component {
   };
 
   render() {
-    console.log("this.props.HABIT", this.props); //! тест пропов
-    // const { name, createAt, iteration, planningTime } = this.props.habit; //! тест пропов
 
     return (
       <div className={style.castomHabitContainer}>
@@ -63,7 +64,7 @@ class CastomHabit extends Component {
               <input
                 type="date"
                 className={style.castomHabitDate}
-                name="startDate"
+                name="date"
                 value={this.state.startDate}
                 onChange={this.handleChenge}
               />
@@ -80,12 +81,7 @@ class CastomHabit extends Component {
             </label>
             <label className={style.castomHabitLabel}>
               Повторение
-              <select
-                className={style.castomHabitSelect}
-                name="repeat"
-                value={this.state.repeat}
-                onChange={this.handleChenge}
-              >
+              <select className={style.castomHabitSelect} name="iteration" value={this.state.repeat} onChange={this.handleChenge}>
                 <option value="none" disabled>
                   выбрать
                 </option>
@@ -128,7 +124,11 @@ class CastomHabit extends Component {
   }
 }
 
-export default connect(null, {
-  onAddCustomHabit: castomHabitOperation.addHabitOperation,
-  removeCastomHabit: castomHabitOperation.removeHabitOperation,
-})(CastomHabit);
+export default connect(
+  null,
+  {
+    onAddCustomHabit: castomHabitActions.addCustomHabit,
+    requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+    removeCastomHabit: castomHabitOperation.removeHabitOperation,
+  }
+)(CastomHabit);
