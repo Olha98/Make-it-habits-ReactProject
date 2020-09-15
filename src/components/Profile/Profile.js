@@ -37,15 +37,10 @@ const validationSchema = Yup.object().shape({
 class Profile extends Component {
   state = {
     changePassword: false,
-
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    avatar: "",
   };
 
   componentDidMount() {
+    console.log("this.props", this.props);
     // this.setState((prevState) => ({ ...prevState, ...this.props }));
     this.props.getDataUserOperation();
   }
@@ -76,6 +71,13 @@ class Profile extends Component {
   render() {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
+    console.log("this.props", this.props);
+
+    console.log("this.props", this.props.firstName);
+
+    if (!this.props.firstName) {
+      return null;
+    } //!костыль для formik, чтобы сразу рендерился стейт
 
     return (
       <>
