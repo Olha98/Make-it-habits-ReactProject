@@ -11,6 +11,7 @@ import ErrorValidation from "./ErrorValidation";
 
 import style from "./Profile.module.css";
 import Card from "../Card/Card";
+import operationsProfile from "../../redux/operations/operationsProfile";
 // import {
 //   requiredField,
 //   maxLengthCreator,
@@ -20,11 +21,11 @@ import Card from "../Card/Card";
 // const minLengthCreator2 = minLengthCreator(2); //! delete
 
 const validationSchema = Yup.object().shape({
-  firstname: Yup.string()
+  firstName: Yup.string()
     .min(2, "минимальное количество символов: 2")
     .max(16, "максимальное количество символов: 16")
     .required("обязательное поле заполнения"),
-  lastname: Yup.string()
+  lastName: Yup.string()
     .min(2, "минимальное количество символов: 2")
     .max(16, "максимальное количество символов: 16"),
   email: Yup.string()
@@ -37,15 +38,16 @@ class Profile extends Component {
   state = {
     changePassword: false,
 
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     phone: "",
     email: "",
     avatar: "",
   };
 
   componentDidMount() {
-    this.setState((prevState) => ({ ...prevState, ...this.props }));
+    // this.setState((prevState) => ({ ...prevState, ...this.props }));
+    this.props.getDataUserOperation();
   }
   renderPasswordForm = () => {
     this.setState((prevState) => ({
@@ -64,14 +66,16 @@ class Profile extends Component {
   //   e.preventDefault();
   //   // const { name, value } = e.target;
   //   // this.setState({ [name]: value });
-  //   // const { firstname, lastname, phone, email, avatar } = this.state;
+  //   // const { firstName, lastName, phone, email, avatar } = this.state;
+
   //   this.props.addDataUserOperation({ ...this.state });
+  //   console.log("this.props", this.props);
+  //   console.log("this.state", this.state);
   // };
 
   render() {
     const { changePassword } = this.state;
-    const { firstname, lastname, phone, email, avatar } = this.state;
-    // const { firstname, lastname, phone, email, avatar } = this.props;
+    const { firstName, lastName, phone, email, avatar } = this.state;
 
     return (
       <>
@@ -87,11 +91,15 @@ class Profile extends Component {
               <div className={style.wrapperFirstColumn}>
                 <Formik
                   initialValues={{
-                    firstname: this.props.firstname,
-                    lastname: this.props.lastname,
+                    firstName: this.props.firstName,
+                    lastName: this.props.lastName,
+                    phone: this.props.phone,
+                    email: this.props.email,
+                    avatar: this.props.avatar,
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={({ values }) => {
+                  onSubmit={(values) => {
+                    console.log(22222222, values);
                     this.props.addDataUserOperation({ ...values });
                   }}
                 >
@@ -104,53 +112,53 @@ class Profile extends Component {
                         <span className={style.titleInput}>Имя</span>
                         <input
                           type="text"
-                          name="firstname"
-                          id="firstname"
-                          value={values.firstname}
+                          name="firstName"
+                          id="firstName"
+                          value={values.firstName}
                           // onChange={this.handleInputChange}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={
                             style.input +
                             " " +
-                            (touched.firstname && errors.firstname
+                            (touched.firstName && errors.firstName
                               ? style.inputInvalid
                               : style.inputValid)
                           }
                         />
                         <ErrorValidation
-                          touched={touched.firstname}
-                          message={errors.firstname}
+                          touched={touched.firstName}
+                          message={errors.firstName}
                         />
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>Фамилия</span>
                         {/* <input
                           type="text"
-                          name="lastname"
-                          value={lastname}
+                          name="lastName"
+                          value={lastName}
                           onChange={this.handleInputChange}
                           className={style.input}
                         /> */}
                         <input
                           type="text"
-                          name="lastname"
-                          id="lastname"
-                          value={values.lastname}
+                          name="lastName"
+                          id="lastName"
+                          value={values.lastName}
                           // onChange={this.handleInputChange}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={
                             style.input +
                             " " +
-                            (touched.lastname && errors.lastname
+                            (touched.lastName && errors.lastName
                               ? style.inputInvalid
                               : style.inputValid)
                           }
                         />
                         <ErrorValidation
-                          touched={touched.lastname}
-                          message={errors.lastname}
+                          touched={touched.lastName}
+                          message={errors.lastName}
                         />
                       </label>
                       <label className={style.label}>
@@ -158,13 +166,21 @@ class Profile extends Component {
                         <InputMask
                           type="tel"
                           name="phone"
-                          defaultValue={phone}
-                          mask="+3\8099 999 99 99"
-                          maskChar="_"
-                          onChange={this.handleInputChange}
+                          // value={values.phone}
+                          defaultValue={values.phone}
+                          id="phone"
+                          // defaultValue={phone}
+                          mask="\80999999999"
+                          // maskChar="_"
+                          // onChange={this.handleInputChange}
+                          onChange={handleChange}
                           className={style.input}
                           placeholder="+380__ ___ __ __"
                         />
+                        {/* <ErrorValidation
+                          touched={touched.phone}
+                          message={errors.phone}
+                        /> */}
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>E-mail</span>
@@ -198,7 +214,7 @@ class Profile extends Component {
                       </label>
                       <button
                         type="submit"
-                        onClick={this.handleSubmit}
+                        // onClick={()=>{handleSubmit()}}
                         className={style.btnSaveChange}
                       >
                         Сохранить изменения
@@ -256,7 +272,7 @@ class Profile extends Component {
             </div>
 
             {changePassword && <PasswordForm />}
-            <Card />
+            {/* <Card /> */}
           </div>
         </div>
       </>
@@ -265,8 +281,8 @@ class Profile extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    firstname: state.user.firstname,
-    lastname: state.user.lastname,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
@@ -274,9 +290,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  addDataUserOperation: actionsProfile.addDataUserSuccess,
+  // addDataUserOperation: actionsProfile.addDataUserSuccess,
 
-  // addDataUserOperation: operationsProfile.addDataUserSuccess,
-  // getDataUserOperation: operationsProfile.getDataUserSuccess,
+  getDataUserOperation: operationsProfile.getDataUserOperation,
+  addDataUserOperation: operationsProfile.addDataUserOperation,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

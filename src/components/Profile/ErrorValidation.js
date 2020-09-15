@@ -6,7 +6,7 @@ function ErrorValidation({ touched, message }) {
       {touched === false && <div>&nbsp;</div> ? (
         message && <div>{message}</div>
       ) : (
-        <div>все хорошо</div>
+        <span></span>
       )}
     </>
   );
