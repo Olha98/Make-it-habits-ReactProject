@@ -1,43 +1,48 @@
-import React, { useState, Suspense } from "react";
-import Modal from "../ModalBackDrop/ModalBackDrop";
-import { Switch } from "react-router-dom";
-import PrivateRoute from "../CustomRoutes/PrivateRoute";
-import PublicRoute from "../CustomRoutes/PublicRoute";
-import routes from "../../routes";
-import "../../css/vars.module.css";
-import "../../index.module.css";
-import Spinner from "../Spinner/Spinner";
-import ModalInterview from "../ModalInterview/ModalInterview";
+import React, { Suspense, useState } from 'react';
+import { Switch } from 'react-router-dom';
+import PrivateRoute from '../CustomRoutes/PrivateRoute';
+import PublicRoute from '../CustomRoutes/PublicRoute';
+import routes from '../../routes';
+import '../../css/vars.module.css';
+import '../../index.module.css';
+import Spinner from '../Spinner/Spinner';
+import ModalInterview from '../ModalInterview/ModalInterview';
 
-const App = (props) => {
-  const [isShowModal, setIsShowModal] = useState(false);
-  const showModal = () => {
-    setIsShowModal(true);
-  };
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
+import HabitTemplate from '../HabitTemplate/HabitTemplate';
+
+const App = () => {
+  const [isTestOpen, changeStateIsOpen] = useState(false);
   return (
     <>
       <Suspense fallback={<Spinner />}>
         <Switch>
-          {routes.map((route) =>
+          {routes.map(route =>
             route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (
               <PublicRoute key={route.label} {...route} />
-            )
+            ),
           )}
         </Switch>
       </Suspense>
-      <div>
-        <button onClick={showModal}>Show Modal</button>
-        {isShowModal && (
-          <Modal closeModal={closeModal}>
-            <ModalInterview closeModal={closeModal} />
-          </Modal>
-        )}
-      </div>
+      <button
+        onClick={() => changeStateIsOpen(prev => !prev)}
+        style={{
+          position: 'absolute',
+          top: 0,
+          width: '200px',
+          height: '50px',
+          fontSize: '18px',
+        }}
+      >
+        Show Modal
+      </button>
+      {isTestOpen && <ModalInterview close={changeStateIsOpen} />}
+
+      {/* <button onClick={() => changeStateIsOpen(prev => !prev)}>
+        OpenModal
+      </button>
+      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />} */}
     </>
   );
 };

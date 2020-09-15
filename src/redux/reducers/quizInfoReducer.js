@@ -1,5 +1,4 @@
-import { combineReducers } from "redux";
-import quizInfoConstants from "../constants/quizInfoConstants";
+import quizInfoConstants from '../constants/quizInfoConstants';
 
 const initialState = {
   smokeYears: 0,

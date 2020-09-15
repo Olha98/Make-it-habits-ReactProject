@@ -19,7 +19,6 @@ const root = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
   user: dataUserReducer,
   quizInfo: quizInfoReducer,
-  // user: { ...dataUserReducer, quizInfo: quizInfoReducer },
 
   dayInfo: () => ({
     cigaretteQuantity: 0,

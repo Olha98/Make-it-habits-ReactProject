@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import quizInfoOperations from "../../redux/operations/quizInfoOperations";
-import styles from "./ModalInterview.module.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import quizInfoOperations from '../../redux/operations/quizInfoOperations';
+import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
   state = {
@@ -10,12 +11,13 @@ class ModalInterview extends Component {
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   };
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onAddInfo(this.state);
+    this.props.close();
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -43,7 +45,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="smokeYears"
-              value={smokeYears ? smokeYears : ""}
+              value={smokeYears ? smokeYears : ''}
               required
               onChange={this.handleChange}
             />
@@ -54,7 +56,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="cigarettePerDay"
-              value={cigarettePerDay ? cigarettePerDay : ""}
+              value={cigarettePerDay ? cigarettePerDay : ''}
               required
               onChange={this.handleChange}
             />
@@ -67,7 +69,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="cigarettePerTime"
-              value={cigarettePerTime ? cigarettePerTime : ""}
+              value={cigarettePerTime ? cigarettePerTime : ''}
               required
               placeholder="__ мин"
               onChange={this.handleChange}
@@ -79,7 +81,7 @@ class ModalInterview extends Component {
               className={styles.input}
               type="number"
               name="cigarettePackPrice"
-              value={cigarettePackPrice ? cigarettePackPrice : ""}
+              value={cigarettePackPrice ? cigarettePackPrice : ''}
               required
               placeholder="__.__ грн"
               onChange={this.handleChange}
@@ -102,9 +104,9 @@ class ModalInterview extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onAddInfo: (info) => dispatch(quizInfoOperations.addInfo(info)),
+const mapDispatchToProps = dispatch => ({
+  onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
   onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
-export default connect(null, mapDispatchToProps)(ModalInterview);
+export default modalBackDrop(connect(null, mapDispatchToProps)(ModalInterview));
