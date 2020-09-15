@@ -1,8 +1,8 @@
 const getUserData = "@getUserdata/GET";
 
-const actionsGetUserData = (userData) => ({
+ export const actionsGetUserData = (userData) => ({
   type: getUserData,
-  paylod: { ...userData },
+  payload: { ...userData },
 });
 
 export default (state = {}, action) => {
