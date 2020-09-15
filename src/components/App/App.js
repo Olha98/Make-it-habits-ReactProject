@@ -1,5 +1,4 @@
-import React, { useState, Suspense } from "react";
-import Modal from "../ModalBackDrop/ModalBackDrop";
+import React, { Suspense, useState } from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
@@ -7,17 +6,12 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
-import DailyResult from "../DailyHabit/DayliResult";
+import Test from "../ModalBackDrop/Test";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
+// import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
-const App = (props) => {
-  const [isShowModal, setIsShowModal] = useState(false);
-  const showModal = () => {
-    setIsShowModal(true);
-  };
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
+const App = () => {
+  const [isTestOpen, changeStateIsOpen] = useState(false);
   return (
     <>
       <Suspense fallback={<Spinner />}>
@@ -31,14 +25,11 @@ const App = (props) => {
           )}
         </Switch>
       </Suspense>
-      <div>
-        <button onClick={showModal}>Show Modal</button>
-        {isShowModal && (
-          <Modal closeModal={closeModal}>
-            <HabitTemplate closeModal={closeModal} />
-          </Modal>
-        )}
-      </div>
+
+      <button onClick={() => changeStateIsOpen((prev) => !prev)}>
+        OpenModal
+      </button>
+      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />}
     </>
   );
 };

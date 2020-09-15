@@ -3,6 +3,7 @@ import style from "./HabitTemplate.module.css";
 import CustomScrollbars from "../../assests/scroll/scroll";
 import Modal from "../ModalBackDrop/ModalBackDrop";
 import CastomHabit from "../CustomHabit/CastomHabit";
+import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const templateHabits = [
   "Начинать утро с 10-15 минутной зарядки",
@@ -34,27 +35,24 @@ const HabitTemplate = () => {
         <CustomScrollbars style={{ width: 440, height: 300 }}>
           <ul className={style.habitTemplateList}>
             {templateHabits.map((habit) => (
-              <li className={style.habitTemplateItem} data-value={habit}>
-                <button
-                  onClick={showModal}
-                  className={style.habitTemplateItemLink}
-                >
-                  {habit}
-                </button>
-              </li>
+              <>
+                <li className={style.habitTemplateItem} data-value={habit}>
+                  <button
+                    onClick={showModal}
+                    className={style.habitTemplateItemLink}
+                  >
+                    {habit}
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
         </CustomScrollbars>
-
+        {isShowModal && <CastomHabit closeModal={closeModal} />}
         <button className={style.btnTransparentWhiteBorder}>Назад</button>
       </div>
-      {isShowModal && (
-        <Modal closeModal={closeModal}>
-          <CastomHabit closeModal={closeModal} />
-        </Modal>
-      )}
     </>
   );
 };
 
-export default HabitTemplate;
+export default modalBackDrop(HabitTemplate);
