@@ -42,7 +42,6 @@ const colors = [
   "#6fba82",
 ];
 const HabitItem = (habit, idx) => {
-  console.log("idx", idx);
   return (
     <li className={style.leftSideBar_habits__list_item}>
       <div

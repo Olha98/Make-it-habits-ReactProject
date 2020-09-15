@@ -8,9 +8,9 @@ const getHabitsOperation = () => (dispatch) => {
   dispatch(checkListActions.getHabitsRequest());
   axios
     .get("https://make-it-habit-api.herokuapp.com/habits")
-    .then((responce) => {
-      console.log(responce, "responce");
-      dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
+    .then((response) => {
+      console.log(response, "response");
+      dispatch(checkListActions.getHabitsSuccess(response.data.habits));
     })
     .catch((error) => console.log(error));
 };

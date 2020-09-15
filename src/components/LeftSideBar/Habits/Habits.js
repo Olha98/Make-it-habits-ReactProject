@@ -63,6 +63,7 @@ class Habits extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("state", state);
   //const getNotifications =
   //const habitsArray = leftSideBarSelectors.listOfHabits(state); // [ [null, null, null], [null, null, null],[null, null, null]]
   //const numberOfHabits = habitsArray.length
@@ -72,58 +73,58 @@ const mapStateToProps = (state) => {
   // for ( let i=0; i < numberOfHabits; i+=){
   //
   //}
+
   return {
     habits: leftSideBarSelectors.listOfHabits(state),
   };
 };
 export default connect(mapStateToProps)(Habits);
 
-const listOfHabits = [
-  {
-    createAt: "2020-09-14T06:15:57.588Z",
-    data: [false, false, false, false],
+// const listOfHabits = [
+//   {
+//     createAt: "2020-09-14T06:15:57.588Z",
+//     data: [false, false, false, false],
 
-    name: "1",
-  },
-  {
-    createAt: "2020-09-14T06:15:57.588Z",
-    data: [false, false, false, false, true],
+//     name: "1",
+//   },
+//   {
+//     createAt: "2020-09-14T06:15:57.588Z",
+//     data: [false, false, false, false, true],
 
-    name: "2",
-  },
-  {
-    createAt: "2020-09-14T06:15:57.588Z",
-    data: [false, false, false, false, true],
+//     name: "2",
+//   },
+//   {
+//     createAt: "2020-09-14T06:15:57.588Z",
+//     data: [false, false, false, false, true],
 
-    name: "3",
-  },
-  {
-    createAt: "2020-09-14T06:15:57.588Z",
-    data: [true, true, true, true, true],
+//     name: "3",
+//   },
+//   {
+//     createAt: "2020-09-14T06:15:57.588Z",
+//     data: [true, true, true, true, true],
 
-    name: "44",
-  },
-  {
-    createAt: "2020-09-14T06:15:57.588Z",
-    data: [true, true, true, true, true],
+//     name: "44",
+//   },
+//   {
+//     createAt: "2020-09-14T06:15:57.588Z",
+//     data: [true, true, true, true, true],
 
-    name: "55",
-  },
-];
+//     name: "55",
+//   },
+// ];
 
-const allNotifications = listOfHabits.filter(({ data, name }) => {
-  const isAllTrue = data.every((bool) => bool);
+// const allNotifications = listOfHabits.filter(({ data, name }) => {
+//   const isAllTrue = data.every((bool) => bool);
 
-  if (isAllTrue) {
-    return {
-      [name]: data.name,
-      // [name]: name,
-    };
-  }
-  return "";
-});
-console.log("findNotifications", allNotifications);
+//   if (isAllTrue) {
+//     return {
+//       [name]: data.name,
+//       // [name]: name,
+//     };
+//   }
+//   return "";
+// });
 
-const getName = allNotifications.forEach((el) => {
-  console.log("el", el.name);
-});
+// const getName = allNotifications.forEach((el) => {
+//   console.log("el", el.name);
+// });
