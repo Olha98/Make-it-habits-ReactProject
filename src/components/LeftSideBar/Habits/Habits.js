@@ -8,6 +8,7 @@ import CustomScrollbars from "../../../assests/scroll/scroll";
 import Modal from "../../ModalBackDrop/ModalBackDrop";
 
 import "../../../main.css";
+import HabitChoice from "../../HabitChoice/HabitChoice";
 
 class Habits extends Component {
   state = {
@@ -48,7 +49,7 @@ class Habits extends Component {
           </button>
           {this.state.isShowModal && (
             <Modal closeModal={this.closeModal}>
-              <h2>Hello, Kostya!</h2>
+              <HabitChoice closeModal={this.closeModal} />
             </Modal>
           )}
         </section>

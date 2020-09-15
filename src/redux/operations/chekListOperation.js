@@ -27,4 +27,4 @@ const getHabitsOperation = () => dispatch => {
 //         })
 // }
 
-export default { getHabitsOperation };
+export default getHabitsOperation;

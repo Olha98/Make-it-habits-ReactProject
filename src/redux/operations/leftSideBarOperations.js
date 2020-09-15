@@ -1,7 +1,7 @@
 import axios from "axios";
 import leftSideBarAction from "../actions/leftSideBarActions";
 
-axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com/";
+axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
 export const token = {
   set(token) {
@@ -23,6 +23,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   try {
     const response = await axios.get("/habits");
     dispatch(leftSideBarAction.getCurrentUserSuccess(response.data));
+    console.log("response.data", response.data);
   } catch (error) {
     dispatch(leftSideBarAction.getCurrentUserError(error));
   }
