@@ -8,7 +8,7 @@ const initialState = {
   email: null,
 };
 
-const User = (state = initialState, { type, payload }) => {
+const user = (state = initialState, { type, payload }) => {
   switch (type) {
     case authConstans.REGISTER_SUCCESS:
       return payload;
@@ -16,15 +16,9 @@ const User = (state = initialState, { type, payload }) => {
     case authConstans.LOGIN_SUCCESS:
       return payload;
 
-    default:
-      return state;
-  }
-};
-
-const token = (state = null, { type, payload }) => {
-  switch (type) {
     case authConstans.REGISTER_SUCCESS:
       return payload.access_token;
+
     case authConstans.LOGIN_SUCCESS:
       return payload.access_token;
 
@@ -33,4 +27,11 @@ const token = (state = null, { type, payload }) => {
   }
 };
 
-export default combineReducers({ User, token });
+// const token = (state = null, { type, payload }) => {
+//   switch (type) {
+//     default:
+//       return state;
+//   }
+// };
+
+export default user;

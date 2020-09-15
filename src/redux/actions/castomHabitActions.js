@@ -9,10 +9,10 @@ const addCustomHabit = habit => {
   }
 }
 
-const removeCustomHabit = id => {
+const removeCustomHabit = habitId => {
   return {
     type: customHabitConstans.REMOVE_CUSTOM_HABIT,
-    payload: id
+    payload: habitId
   }
 }
 

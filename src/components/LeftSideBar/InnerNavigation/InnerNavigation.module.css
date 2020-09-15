@@ -47,7 +47,7 @@
   background-color: #fc675e;
   color: white;
   text-align: center;
-  font-size: 10px;
+  font-size: 7px;
   font-weight: bold;
   line-height: 16px;
   position: absolute;
@@ -56,18 +56,4 @@
 }
 .leftSideBar_innerNavigation__list_item:nth-child(3) {
   position: relative;
-}
-.leftSideBar_innerNavigation__list_item_link_notify {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #fc675e;
-  color: white;
-  text-align: center;
-  font-size: 10px;
-  font-weight: bold;
-  line-height: 16px;
-  position: absolute;
-  top: 9px;
-  right: 14px;
 }
