@@ -39,20 +39,18 @@ const colors = [
   "#5073b8",
   "#1098ad",
   "#07b39b",
-  "#6fba82",
+  "#6fba82"
 ];
 const HabitItem = (habit, idx) => {
-  console.log("idx", idx);
+  // console.log("idx", idx);
   return (
     <li className={style.leftSideBar_habits__list_item}>
       <div
         style={{
-          background: `linear-gradient(60deg, ${colors[habit.idx]}, ${
-            colors[habit.idx + 1]
-          })`,
+          background: `linear-gradient(60deg, ${colors[habit.idx]}, ${colors[habit.idx + 1]})`
         }}
         className={style.leftSideBar_habits__list_item_circle}
-      ></div>
+      />
       <p className={style.leftSideBar_habits__list_item_habit}>{habit.name}</p>
     </li>
   );
@@ -61,7 +59,7 @@ const mapStateToProps = (state, ownProps) => {
   const habit = leftSideBarSelectors.getHabitById(state, ownProps.id);
   return {
     ...habit,
-    habits: leftSideBarSelectors.listOfHabits(state),
+    habits: leftSideBarSelectors.listOfHabits(state)
   };
 };
 export default connect(mapStateToProps)(HabitItem);

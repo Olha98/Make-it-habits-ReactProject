@@ -7,22 +7,27 @@ axios.defaults.headers.common.Authorization =
 console.dir(axios);
 
 const getHabitsOperation = () => (dispatch, getState) => {
-  console.log("hellooo from operation");
+  // console.log("hellooo from operation");
   dispatch(checkListActions.getHabitsRequest());
   axios
     .get("/habits")
-    .then(responce => {
-      console.log("responce :", responce.data.habits);
+    .then(res => {
       // console.log("getState()", getState());
-      dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
+      dispatch(checkListActions.getHabitsSuccess(res.data.habits));
     })
     .catch(error => console.log(error));
 };
 
-const addHabitStatus = () => (dispatch, getState) => {
+const addHabitStatus = () => dispatch => {
   console.log("addHabitStatus");
   dispatch(checkListActions.addHabitStatusRequest());
-  axios.get("/habits").then(res => console.log("res", res));
+  axios
+    .get("/habits")
+    .then(res => {
+      // console.log("res", res.data.habits)
+      dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
+    })
+    .catch(error => console.log(error));
 };
 
 export default { getHabitsOperation, addHabitStatus };

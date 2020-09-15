@@ -49,14 +49,13 @@ class CheckList extends Component {
   // }
 
   componentDidMount() {
-    console.log("HELLOOO");
-    console.log("this.props", this.props);
+    // console.log("HELLOOO");
+    // console.log("this.props", this.props);
     this.props.getCheckList();
   }
 
   render() {
     this.props.addStatus();
-    console.log("this.props", this.props);
 
     return (
       <div className={style.checkList}>
