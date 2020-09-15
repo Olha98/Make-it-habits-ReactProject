@@ -4,6 +4,7 @@ import CustomScrollbars from "../../assests/scroll/scroll";
 import Modal from "../ModalBackDrop/ModalBackDrop";
 import CastomHabit from "../CustomHabit/CastomHabit";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
+import HabitChoice from "../HabitChoice/HabitChoice";
 
 const templateHabits = [
   "Начинать утро с 10-15 минутной зарядки",
@@ -21,7 +22,17 @@ const templateHabits = [
 ];
 
 const HabitTemplate = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowCustomModal, setIsShowCustomModal] = useState(false);
+  const [isShowHabitChoice, setIsShowHabitChoice] = useState(false);
+
+  const showHabitChoice = () => {
+    setIsShowHabitChoice(true);
+  };
+
+  const closeHabitChoice = () => {
+    setIsShowHabitChoice(false);
+  };
+
   const [habit, setHabit] = useState("");
   const changeCurrentHabit = (habit) => {
     setHabit(habit);
@@ -31,10 +42,10 @@ const HabitTemplate = () => {
     changeCurrentHabit(habit);
   };
   const showModal = () => {
-    setIsShowModal(true);
+    setIsShowCustomModal(true);
   };
   const closeModal = () => {
-    setIsShowModal(false);
+    setIsShowCustomModal(false);
   };
   return (
     <>
@@ -56,10 +67,16 @@ const HabitTemplate = () => {
             ))}
           </ul>
         </CustomScrollbars>
-        {isShowModal && (
+        {isShowCustomModal && (
           <CastomHabit chosenHabit={habit} closeModal={closeModal} />
         )}
-        <button className={style.btnTransparentWhiteBorder}>Назад</button>
+        {isShowHabitChoice && <HabitChoice closeModal={closeHabitChoice} />}
+        <button
+          onClick={showHabitChoice}
+          className={style.btnTransparentWhiteBorder}
+        >
+          Назад
+        </button>
       </div>
     </>
   );
