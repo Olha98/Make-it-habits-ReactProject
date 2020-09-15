@@ -1,5 +1,4 @@
 import React, { useState, Suspense } from "react";
-import Congratulations from "../Congratulations/Congratulations";
 import Modal from "../ModalBackDrop/ModalBackDrop";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
@@ -8,6 +7,7 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
+import DailyResult from "../DailyHabit/DayliResult";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
 
 const App = (props) => {

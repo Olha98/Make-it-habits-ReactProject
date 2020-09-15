@@ -2,8 +2,10 @@
   border-bottom: 1px solid #d5e1dc;
   padding: 25px 0 25px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
 }
 
 .leftSideBar_habits_title {
@@ -11,59 +13,27 @@
   font-size: 18px;
   line-height: 21px;
   margin-bottom: 20px;
-
+  margin-left: 65px;
   color: #4f4f4f;
+  align-self: flex-start;
 }
 .leftSideBar_habits__list {
   margin-bottom: 20px;
 }
-.leftSideBar_habits__list_item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  color: #bdbdbd;
-  vertical-align: middle;
-}
+
 .leftSideBar_habits__button {
   width: 220px;
   height: 44px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
   background: #43d190;
   border-radius: 5px;
   color: white;
   border: none;
+  margin-top: 20px;
 }
 .leftSideBar_habits__button:hover {
   background: #cbf7e3;
   color: #4f4f4f;
-}
-/* ======================= */
-.leftSideBar-habits__list {
-  height: 213px;
-  overflow-y: scroll;
-}
-.leftSideBar-habits__list::-webkit-scrollbar {
-  width: 6px;
-}
-.leftSideBar-habits__list::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #f6f6f6;
-  border-radius: 3px;
-}
-.leftSideBar-habits__list::-webkit-scrollbar-thumb {
-  background: #43d190;
-  border-radius: 3px;
-}
-
-/* ============================== */
-.leftSideBar_habits__list_item_circle {
-  width: 18px;
-  height: 18px;
-  background-color: #2eebda;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-.leftSideBar_habits__list_item_habit {
-  font-size: 14px;
-  line-height: 17px;
-  width: 222px;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import withRouterHOC from "./withRouterHOC";
 import style from "./PrivateRoute.module.css";
+import RightSideBar from "../RightSideBar/RightSideBar";
 import LeftSideBar from "../LeftSideBar/LeftSideBar";
 
 /**
@@ -21,10 +22,10 @@ const PrivateRoute = ({
         <div className={style.mainContainer}>
           <LeftSideBar />
           <Component {...props} />
-          {/* <RightSideBar/> */}
+          <RightSideBar />
         </div>
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )
     }
   />

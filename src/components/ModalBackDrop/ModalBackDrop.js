@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./ModalBackDrop.module.css";
+
 const Modal = ({ children, closeModal }) => {
   const refOverlay = useRef();
   const hendleKeyDown = ({ key }) => {
