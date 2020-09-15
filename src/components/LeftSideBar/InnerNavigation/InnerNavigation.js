@@ -54,7 +54,7 @@ const InnerNavigation = ({ number }) => {
                 style.leftSideBar_innerNavigation__list_item_link_notify
               }
             >
-              <span>20</span>
+              <span>{number}</span>
             </div>
           </li>
         </ul>
@@ -63,6 +63,10 @@ const InnerNavigation = ({ number }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  return {
+    number: 100,
+  };
+};
 
 export default connect(mapStateToProps)(InnerNavigation);

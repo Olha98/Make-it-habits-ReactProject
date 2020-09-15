@@ -27,10 +27,23 @@ const loginSucces = (credential) => {
     payload: credential,
   };
 };
-const loginError = (error) => ({
+const logOutError = (error) => ({
   type: constans.LOGIN_ERROR,
   payload: error,
 });
+
+const logOutRequest = () => ({
+  type: constans.LOGOUT_START,
+});
+
+const logOutSuccess = (id) => ({
+  type: constans.LOGOUT_SUCCESS,
+  payload: {
+    id,
+  },
+});
+
+
 
 export default {
   registrationRequest,
@@ -38,5 +51,7 @@ export default {
   registrationError,
   loginRequest,
   loginSucces,
-  loginError,
+  logOutError,
+  logOutRequest,
+  logOutSuccess,
 };

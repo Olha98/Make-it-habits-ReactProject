@@ -1,6 +1,7 @@
 export default {
 	error: "",
-	loader: "", 
+    loader: "", 
+    
 
     auth:{
         token: "",
