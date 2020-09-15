@@ -8,6 +8,7 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
+import HabitTemplate from "../HabitTemplate/HabitTemplate";
 
 const App = (props) => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -34,7 +35,7 @@ const App = (props) => {
         <button onClick={showModal}>Show Modal</button>
         {isShowModal && (
           <Modal closeModal={closeModal}>
-            <Congratulations closeModal={closeModal} />
+            <HabitTemplate closeModal={closeModal} />
           </Modal>
         )}
       </div>

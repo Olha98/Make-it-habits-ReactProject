@@ -1,18 +1,6 @@
 import React from "react";
 import style from "./HabitTemplate.module.css";
-
-// import { Scrollbars } from "react-custom-scrollbars";
 import CustomScrollbars from "../../assests/scroll/scroll";
-
-// class App extends Component {
-//   render() {
-//     return (
-// <Scrollbars style={{ width: 500, height: 300 }}>
-//   <p>Some great content...</p>
-// </Scrollbars>
-//     );
-//   }
-// }
 
 const HabitTemplate = () => {
   return (
@@ -22,42 +10,62 @@ const HabitTemplate = () => {
         <ul className={style.habitTemplateList}>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Распланировать свой день
+              Начинать утро с 10-15 минутной зарядки
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Встать на 30 мин раньше обычного
+              Планировать свой день.
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Заменить сигарету половинкой киви
+              Вставать на 30 мин раньшьше обычного .
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Начать утро с 10-15 минутной зарядки
+              Читать минимум 30 мин в день
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Читать минимум 30 мин
+              Замена выкуриной сигареты половинкой киви.
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Делать 20 отжиманий день
+              Принять контрасный душ.
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Бегать 4 км по утрам
+              5 минутная зарядка для глаз (обед)
             </a>
           </li>
           <li className={style.habitTemplateItem}>
             <a className={style.habitTemplateItemLink} href="home">
-              Медитировать 15 минут в день
+              5 минут отдыха после 25 концентрации.
+            </a>
+          </li>
+          <li className={style.habitTemplateItem}>
+            <a className={style.habitTemplateItemLink} href="home">
+              Выходить на 15 минут раньше от времени
+            </a>
+          </li>
+          <li className={style.habitTemplateItem}>
+            <a className={style.habitTemplateItemLink} href="home">
+              Раз в неделлю проводить медитацию.
+            </a>
+          </li>
+          <li className={style.habitTemplateItem}>
+            <a className={style.habitTemplateItemLink} href="home">
+              Попробывать что то новое .
+            </a>
+          </li>
+          <li className={style.habitTemplateItem}>
+            <a className={style.habitTemplateItemLink} href="home">
+              Начинать робочий день с подготовки стола
             </a>
           </li>
         </ul>
