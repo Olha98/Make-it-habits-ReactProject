@@ -9,7 +9,7 @@ class CastomHabit extends Component {
     name: "",
     date: "",
     iteration: "",
-    time: ""
+    time: "",
   };
 
   // handleSubmit = e => {
@@ -20,11 +20,11 @@ class CastomHabit extends Component {
   onClickSubmit = (e) => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
-    const planningTime = `${date}:${time}`
+    const planningTime = `${date}:${time}`;
     if (e.target.dataset.save) {
       // this.props.onAddCustomHabit({ name, planningTime, iteration })
-      this.props.requestAddCustomHabit({ name, planningTime, iteration })
-      this.props.closeModal()
+      this.props.requestAddCustomHabit({ name, planningTime, iteration });
+      this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
@@ -40,7 +40,6 @@ class CastomHabit extends Component {
   };
 
   render() {
-
     return (
       <div className={style.castomHabitContainer}>
         <h2 className={style.castomHabitTitle}>Настройте привычку под себя</h2>
@@ -81,7 +80,12 @@ class CastomHabit extends Component {
             </label>
             <label className={style.castomHabitLabel}>
               Повторение
-              <select className={style.castomHabitSelect} name="iteration" value={this.state.repeat} onChange={this.handleChenge}>
+              <select
+                className={style.castomHabitSelect}
+                name="iteration"
+                value={this.state.repeat}
+                onChange={this.handleChenge}
+              >
                 <option value="none" disabled>
                   выбрать
                 </option>
@@ -124,11 +128,8 @@ class CastomHabit extends Component {
   }
 }
 
-export default connect(
-  null,
-  {
-    onAddCustomHabit: castomHabitActions.addCustomHabit,
-    requestAddCustomHabit: castomHabitOperation.addHabitOperation,
-    removeCastomHabit: castomHabitOperation.removeHabitOperation,
-  }
-)(CastomHabit);
+export default connect(null, {
+  onAddCustomHabit: castomHabitActions.addCustomHabit,
+  requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+  removeCastomHabit: castomHabitOperation.removeHabitOperation,
+})(CastomHabit);
