@@ -42,7 +42,6 @@ const mapStateToProps = (state) => {
   const priceForOneCigarettes =
     userSelectors.getCigarettePackPrice(state) / numberOfCigarettsInPack;
 
-  console.log("priceForOneCigarettes", priceForOneCigarettes);
   const savedMoney =
     (userSelectors.getConstAmountOfCigarettesPerDay(state) -
       userSelectors.getCurrentAmountOfCigarettes(state)) *
