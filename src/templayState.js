@@ -35,7 +35,7 @@ export default {
         efficiency : 0,
         id: "5f4d9edf6375b430bda8ce92",
         name: "My Habit",
-        iteration:"", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,
+        iteration:"//everyday,", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,
 	  },
 	  
       {}

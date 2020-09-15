@@ -1,9 +1,11 @@
-import React, { Suspense, useState } from "react";
+import React, { useState, Suspense } from "react";
+// import Modal from "../ModalBackDrop/ModalBackDrop";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
 import routes from "../../routes";
-import "../../css/vars.css";
+import "../../css/vars.module.css";
+import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
 import Test from "../ModalBackDrop/Test";
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";

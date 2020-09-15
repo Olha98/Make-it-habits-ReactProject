@@ -10,9 +10,9 @@
 }
 
 .button {
-    background-color: red;
-    width: 50px;
-    height: 20px;
-    z-index: 33;
-    margin-right: 200px;
+  background-color: red;
+  width: 50px;
+  height: 20px;
+  z-index: 33;
+  margin-right: 200px;
 }

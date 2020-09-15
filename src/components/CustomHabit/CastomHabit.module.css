@@ -1,0 +1,151 @@
+/* @import "../../assests/images/CastomHabit/bin.svg"; */
+
+.castomHabitContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 784px;
+  height: 580px;
+  background: #ffffff;
+  box-shadow: 0px 10px 16p;
+  border-radius: 10px;
+}
+
+.castomHabitTitle {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  color: #4f4f4f;
+  padding-top: 60px;
+  margin-bottom: 5px;
+}
+
+.castomHabitText {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: center;
+  color: #bdbdbd;
+  margin: 0 0 40px 0;
+}
+
+/* .castomHabitForm {
+  
+} */
+
+.castomHabitLableWrapper {
+    display: flex;
+    flex-direction: column; 
+    width: 647px;
+height: 276px;
+margin: 0 auto;
+
+}
+
+.castomHabitLabel{
+    margin-bottom: 20px;
+}
+
+.castomHabitName {
+  width: 425px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 145px;
+}
+
+.castomHabitDate {
+  width: 220px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 126px;
+}
+
+.castomHabitTime {
+  width: 220px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 168px;
+}
+
+.castomHabitSelect {
+  width: 220px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-left: 125px;
+}
+
+.castomHabitDelete {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  width: 200px;
+  height: 20px;
+  border: none;
+  background: #ffffff;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  /* background-image: url(../../assets/images/CastomHabit/bin.svg); */
+  background-repeat: no-repeat;
+}
+
+.castomHabitBtnWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+.castomHabitCancelBtn{
+    width: 220px;
+    height: 44px;
+    background: #ffffff;
+    border: 2px solid #43d190;
+    border-radius: 5px;
+    color: #43d190;
+    display: block;
+    margin-right: 15px;
+}
+
+.castomHabitCancelBtn:hover,
+.castomHabitCancelBtn:focus {
+  background-color: #43d190;
+  color: #ffffff;
+  outline: 0;
+}
+
+.castomHabitSaveBtn {
+    width: 220px;
+    height: 44px;
+    background: #43d190;
+    border: 2px solid #43d190;
+    border-radius: 5px;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 118px;
+}
+
+.castomHabitSaveBtn:hover,
+.castomHabitSaveBtn:focus {
+    color: #43d190;
+    background-color: #ffffff;
+    outline: 0;
+  }
