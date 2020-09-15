@@ -69,6 +69,7 @@ class RightSideBar extends Component {
   };
 
   componentDidMount = () => {
+    
     this.props.onGetHabit();
   };
 

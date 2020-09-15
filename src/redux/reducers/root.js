@@ -5,6 +5,7 @@ import habitReducer from "./checkListReducers";
 import spinnerReducers from "./spinnerReducers";
 import authReducer from "./authReducer";
 import dataUserReducer from "./reducersProfile";
+import dataUser from "../actions/dataUser";
 
 export const persistConfig = {
   key: "token",
@@ -14,6 +15,7 @@ export const persistConfig = {
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
+  userData: dataUser,
 
   auth: persistReducer(persistConfig, authReducer),
 

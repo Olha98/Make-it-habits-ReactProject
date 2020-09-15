@@ -1,5 +1,6 @@
 import Axios from "axios";
 import authAction from "../actions/authAction";
+import { actionsGetUserData } from "../actions/dataUser";
 
 Axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
@@ -34,6 +35,12 @@ const userLogin = (credentials) => (dispatch) => {
       console.log(res, "loginlogin");
       token.set(res.data.token);
       dispatch(authAction.loginSucces(res.data));
+      Axios.get('/habits')
+      .then(
+        // res=>console.log(res.data.user)
+        res=>dispatch(actionsGetUserData(res.data.user))
+        )
+
     })
     .catch((err) => {
       console.log(err, "error");
