@@ -11,7 +11,7 @@ import Spinner from "../Spinner/Spinner";
 // import DailyResult from "../DailyHabit/DayliResult";
 import Congratulations from "../Congratulations/Congratulations";
 
-const App = (props) => {
+const App = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const showModal = () => {
     setIsShowModal(true);
