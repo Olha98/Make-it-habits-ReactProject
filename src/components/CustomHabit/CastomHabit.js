@@ -40,7 +40,6 @@ class CastomHabit extends Component {
   };
 
   render() {
-    const { name, createAt, iteration, planningTime } = this.props.habit; //! тест пропов
 
     return (
       <div className={style.castomHabitContainer}>
