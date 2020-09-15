@@ -20,15 +20,12 @@ const PrivateRoute = ({
     render={(props) =>
       isAuthenticated ? (
         <div className={style.mainContainer}>
-        
-        
           <LeftSideBar />
           <Component {...props} />
-          <RightSideBar/>
-      
+          <RightSideBar />
         </div>
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       )
     }
   />

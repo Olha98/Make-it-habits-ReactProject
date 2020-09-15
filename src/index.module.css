@@ -1,8 +1,11 @@
 /* !Стили на прозрачную кнопку с белым бордером которая при ховере на белую переходит */
 
+@value colors: './css/vars.module.css';
+@value main_green, black_font from colors;
+
 :global(.button) {
-  background: #43d190;
-  border: 2px solid #43d190;
+  background: main_green;
+  border: 2px solid main_green;
   border-radius: 5px;
   color: #ffffff;
   display: block;
@@ -13,10 +16,10 @@
   width: 220px;
   height: 44px;
   background-color: transparent;
-  border: 2px solid #43d190;
+  border: 2px solid main_green;
   box-sizing: border-box;
   border-radius: 5px;
-  color: #43d190;
+  color: main_green;
   cursor: pointer;
   font-weight: 700;
   font-size: 16px;
@@ -25,7 +28,7 @@
 }
 :global(.buttonTransparent):hover,
 :global(.buttonTransparent):focus {
-  background-color: #43d190;
+  background-color: main_green;
   color: #ffffff;
   outline: 0;
 }
@@ -44,7 +47,7 @@
   border-radius: 3px;
 }
 :global(.habitTemplateList)::-webkit-scrollbar-thumb {
-  background: #43d190;
+  background: main_green;
   border-radius: 3px;
 }
 
@@ -54,15 +57,16 @@
   width: 220px;
   height: 44px;
   background-color: transparent;
-  border: 2px solid #43d190;
+  border: 2px solid main_green;
   box-sizing: border-box;
   border-radius: 5px;
-  color: #43d190;
+  background-color: #fff;
+  color: main_green;
   cursor: pointer;
 }
 :global(.btnTransparentWhiteBorder):hover,
 :global(.btnTransparentWhiteBorder):focus {
-  background-color: #43d190;
+  background-color: main_green;
   color: #ffffff;
   outline: 0;
 }

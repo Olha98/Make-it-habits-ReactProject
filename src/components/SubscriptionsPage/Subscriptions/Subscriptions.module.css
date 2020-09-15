@@ -1,0 +1,104 @@
+@value colors: '../../../css/vars.module.css';
+@value main_green, main_gradient, orange_gradient, pink_gradient, violet_gradient, black_font from colors;
+
+.subscriptionsContainer {
+  padding: 60px 62px;
+}
+
+.subscriptionsSectionTypes {
+  margin-bottom: 60px;
+}
+
+.subscriptionsSectionTitle {
+  font-size: 26px;
+  line-height: 31px;
+
+  color: black_font;
+  margin-bottom: 30px;
+}
+
+.subscriptionsList {
+  margin-bottom: 40px;
+}
+
+.subscriptionsItem {
+  display: flex;
+  align-items: center;
+}
+
+.subscriptionsItem:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.subscriptionsItemTitle {
+  width: 345px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: main_green;
+  border-radius: 5px;
+  margin-right: 30px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.subscriptionsItemDescriptionPrice {
+  font-weight: 500;
+}
+
+.subscriptionsItemDescriptionDiscount {
+  font-weight: 500;
+  color: main_green;
+}
+
+.subscriptionsItemTitleNoob:hover,
+.subscriptionsItemTitleNoob:focus {
+  box-shadow: 0 8px 6px -6px main_green;
+  font-weight: 500;
+}
+
+.subscriptionsItemTitleBasic {
+  background: main_gradient;
+}
+
+.subscriptionsItemTitleBasic:hover,
+.subscriptionsItemTitleBasic:focus {
+  box-shadow: 0 8px 6px -6px #2eebda;
+  font-weight: 500;
+}
+
+.subscriptionsItemTitleStandart {
+  background: orange_gradient;
+}
+
+.subscriptionsItemTitleStandart:hover,
+.subscriptionsItemTitleStandart:focus {
+  box-shadow: 0 8px 6px -6px #fe6083;
+  font-weight: 500;
+}
+
+.subscriptionsItemTitlePremium {
+  background: pink_gradient;
+}
+
+.subscriptionsItemTitlePremium:hover,
+.subscriptionsItemTitlePremium:focus {
+  box-shadow: 0 8px 6px -6px #b469fa;
+  font-weight: 500;
+}
+
+.subscriptionsItemTitleUltra {
+  background: violet_gradient;
+}
+
+.subscriptionsItemTitleUltra:hover,
+.subscriptionsItemTitleUltra:focus {
+  box-shadow: 0 8px 6px -6px #655de6;
+  font-weight: 500;
+}
+
+.subscriptionsSectionCards {
+  margin-bottom: 60px;
+}

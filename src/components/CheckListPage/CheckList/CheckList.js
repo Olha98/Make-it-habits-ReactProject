@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import chekListOperation from "../../../redux/operations/chekListOperation";
 import style from "./CheckList.module.css";
 import CheckListItem from "./CheckListItem/CheckListItem";
 
@@ -6,13 +8,13 @@ class CheckList extends Component {
   state = {
     habits: [
       {
-        createAt: "2020-09-01T01:07:23.330Z",
+        createAt: "2020-09-01",
         data: [null, null, null],
-        planningTime: 0,
+        planningTime: "10:00",
         efficiency: 70,
         _id: "5f4d9edf6375b430bda8ce92",
         name: "Утренняя зарядка 10-15 мин",
-        iteration: "", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
+        iteration: "everyday", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
       },
       {
         createAt: "2020-09-01T01:07:23.330Z",
@@ -45,6 +47,11 @@ class CheckList extends Component {
   //   }));
   // }
 
+  componentDidMount() {
+    console.log("HELLOOO");
+    this.props.getCheckList();
+  }
+
   render() {
     return (
       <div className={style.checkList}>
@@ -52,8 +59,7 @@ class CheckList extends Component {
           ? this.state.habits.map((habit) => (
               <CheckListItem
                 key={habit._id}
-                name={habit.name}
-                efficiency={habit.efficiency}
+                habit={habit}
                 // onClick={(e) => this.showFullInfo(e)}
               />
             ))
@@ -63,4 +69,10 @@ class CheckList extends Component {
   }
 }
 
-export default CheckList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CheckList);
