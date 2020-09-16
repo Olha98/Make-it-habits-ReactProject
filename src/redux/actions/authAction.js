@@ -1,33 +1,32 @@
-import constans from "../constants/authConstans";
+import constans from '../constants/authConstans';
 
-const registrationRequest = (credential) => ({
+const registrationRequest = credential => ({
   type: constans.REGISTER_REQUEST,
   payload: credential,
 });
 
-const registrationSucces = (credential) => ({
+const registrationSucces = credential => ({
   type: constans.REGISTER_SUCCESS,
   payload: credential,
 });
 
-const registrationError = (error) => ({
+const registrationError = error => ({
   type: constans.REGISTER_ERROR,
   payload: error,
 });
 
-const loginRequest = (credential) => ({
+const loginRequest = credential => ({
   type: constans.LOGIN_REQUEST,
   payload: credential,
 });
 
-const loginSucces = (credential) => {
-  console.log(credential, "loginSucces");
+const loginSucces = credential => {
   return {
     type: constans.LOGIN_SUCCESS,
     payload: credential,
   };
 };
-const logOutError = (error) => ({
+const logOutError = error => ({
   type: constans.LOGIN_ERROR,
   payload: error,
 });
@@ -36,14 +35,9 @@ const logOutRequest = () => ({
   type: constans.LOGOUT_START,
 });
 
-const logOutSuccess = (id) => ({
+const logOutSuccess = () => ({
   type: constans.LOGOUT_SUCCESS,
-  payload: {
-    id,
-  },
 });
-
-
 
 export default {
   registrationRequest,

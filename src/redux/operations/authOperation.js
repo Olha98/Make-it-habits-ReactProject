@@ -8,16 +8,14 @@ axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = token;
-    console.log('token', token);
   },
   unSet() {
-    axios.defaults.headers.common.Authorization = ``;
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
 const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
-  console.log(credentials);
   axios
     .post('/auth/registration', credentials)
     .then(res => {
@@ -31,33 +29,19 @@ const userRegistration = credentials => dispatch => {
 
 const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
-  console.log(credentials);
   axios
     .post('/auth/login', credentials)
     .then(res => {
-      console.log(res, 'loginlogin');
       token.set(res.data.access_token);
-
-      axios.get('/habits').then(
-        // (res) => console.log(res.data.user, "AAAAAAASSASSSASS")
-        res => dispatch(userActions.getDataUserSuccess(res.data.user)),
-      );
-
-      // Axios.get("/users/updateQuizInfo").then((res) =>
-      //   console.log(res, "updateQuizInfo!!!!!!!!!!!!")
-      // );
-      // Axios.get("/users/updateCigarettes").then((res) =>
-      //   console.log(res, "updateCigarettes!!!!!!!!!!!!")
-      // );
-
       dispatch(authAction.loginSucces(res.data));
-      axios.get('/habits').then(
-        // res=>console.log(res.data.user)
-        res => dispatch(actionsGetUserData(res.data.user)),
-      );
+
+      axios.get('/habits').then(res => {
+        dispatch(
+          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+        );
+      });
     })
     .catch(err => {
-      console.log(err, 'error');
       dispatch(authAction.loginError(err));
     });
 };
@@ -75,23 +59,4 @@ const userLogOut = () => dispatch => {
     });
 };
 
-// const getCurrentUser = (credentials) => (dispatch, getState) => {
-//   const {
-//     auth: { token: getingtoken },
-//   } = getState();
-//   if (!getingtoken) {
-//     return;
-//   }
-//   token.set(getingtoken);
-//   dispatch(authAction.getCurrentUserRequest());
-//   axios
-//     .get("/users/current", credentials)
-//     .then((res) => {
-//       dispatch(authAction.getCurrentUserSuccess(res.data));
-//     })
-//     .catch((err) => {
-//       dispatch(authAction.getCurrentUserError(err));
-//     });
-// };
-
-export default { userRegistration, userLogin, userLogOut };
+export default { token, userRegistration, userLogin, userLogOut };

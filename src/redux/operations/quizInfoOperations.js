@@ -24,10 +24,9 @@ const fetchInfo = () => async (dispatch, getState) => {
   try {
     const { data } = await axios.get('/habits');
     const { user } = data;
-    // console.log(user.quizInfo);
+
     dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
   } catch (error) {
-    // console.log(error);
     dispatch(quizInfoActions.getInfoError(error));
   }
   dispatch(actionsLoader.loaderOff());

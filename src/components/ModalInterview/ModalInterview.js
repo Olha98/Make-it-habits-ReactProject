@@ -12,9 +12,13 @@ class ModalInterview extends Component {
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.onAddInfo(this.state);
+    await this.props.onAddInfo(this.state);
+    // console.log(this.props.error);
+    if (this.props.error) {
+      return;
+    }
     this.props.close();
   };
 
