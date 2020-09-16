@@ -129,12 +129,9 @@ class CheckListItem extends Component {
               <ButtonEdit />
             </button>
             {isShowModal && (
-              <Modal closeModal={this.closeModal}>
-                <CastomHabit
-                  closeModal={this.closeModal}
-                  habit={this.props.habit}
-                />
-              </Modal>
+              // <Modal close={this.closeModal}>
+              <CastomHabit close={this.closeModal} habit={this.props.habit} />
+              // </Modal>
             )}
           </div>
         </div>

@@ -144,9 +144,11 @@ class CastomHabit extends Component {
   }
 }
 
-export default connect(null, {
-  onAddCustomHabit: castomHabitActions.addCustomHabit,
-  removeCastomHabit: castomHabitActions.removeCustomHabit,
-  requestAddCustomHabit: castomHabitOperation.addHabitOperation,
-  requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
-})(CastomHabit);
+export default modalBackDrop(
+  connect(null, {
+    onAddCustomHabit: castomHabitActions.addCustomHabit,
+    removeCastomHabit: castomHabitActions.removeCustomHabit,
+    requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+    requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
+  })(CastomHabit)
+);
