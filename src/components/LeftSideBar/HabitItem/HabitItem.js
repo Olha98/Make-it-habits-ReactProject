@@ -51,7 +51,7 @@ const HabitItem = (habit, idx) => {
           })`,
         }}
         className={style.leftSideBar_habits__list_item_circle}
-      ></div>
+      />
       <p className={style.leftSideBar_habits__list_item_habit}>{habit.name}</p>
     </li>
   );

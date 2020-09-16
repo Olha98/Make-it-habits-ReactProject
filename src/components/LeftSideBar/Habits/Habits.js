@@ -12,18 +12,18 @@ import HabitChoice from "../../HabitChoice/HabitChoice";
 
 class Habits extends Component {
   state = {
-    isShowModal: false
+    isShowModal: false,
   };
 
   openModal = () => {
     this.setState({
-      isShowModal: true
+      isShowModal: true,
     });
   };
 
   closeModal = () => {
     this.setState({
-      isShowModal: false
+      isShowModal: false,
     });
   };
 
@@ -35,7 +35,7 @@ class Habits extends Component {
           <CustomScrollbars
             style={{
               width: 270,
-              height: 186
+              height: 186,
             }}
           >
             <ul className={style.leftSideBar_habits__list}>
@@ -44,7 +44,11 @@ class Habits extends Component {
               ))}
             </ul>
           </CustomScrollbars>
-          <button type="button" onClick={this.openModal} className={style.leftSideBar_habits__button}>
+          <button
+            type="button"
+            onClick={this.openModal}
+            className={style.leftSideBar_habits__button}
+          >
             Добавить привычку +
           </button>
           {this.state.isShowModal && (
