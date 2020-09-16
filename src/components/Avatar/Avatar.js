@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-
-import style from "./Avatar.module.css";
+import operationsProfile from "../../redux/operations/operationsProfile";
 import { avatars } from "./dataAvatar";
+import style from "./Avatar.module.css";
 // ------------------------
 class Avatar extends Component {
   changeAvatar = (e) => {
-    //
+    // this.props.addDataUserOperation({ ...this.state });
   };
 
   render() {
@@ -48,8 +48,8 @@ class Avatar extends Component {
 //   }
 // };
 
-// const mapDispatchToProps  {
-//     onChangeAvatar: avatarOperations.changeAvatar,
-// };
-export default Avatar;
+const mapDispatchToProps = {
+  addDataUserOperation: operationsProfile.addDataUserOperation,
+};
+export default connect(null, mapDispatchToProps)(Avatar);
 // export default connect(null, mapDispatchToProps)(Avatar);
