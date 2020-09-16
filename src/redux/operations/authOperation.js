@@ -1,46 +1,46 @@
-import axios from "axios";
-import authAction from "../actions/authAction";
-import { actionsGetUserData } from "../actions/dataUser";
-import userActions from "../actions/actionsProfile";
+import axios from 'axios';
+import authAction from '../actions/authAction';
+import { actionsGetUserData } from '../actions/dataUser';
+import userActions from '../actions/actionsProfile';
 
-axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = token;
-    console.log("token", token);
+    console.log('token', token);
   },
   unSet() {
     axios.defaults.headers.common.Authorization = "";
   },
 };
 
-const userRegistration = (credentials) => (dispatch) => {
+const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
   console.log(credentials);
   axios
-    .post("/auth/registration", credentials)
-    .then((res) => {
+    .post('/auth/registration', credentials)
+    .then(res => {
       token.set(res.data.access_token);
       dispatch(authAction.registrationSuccess(res.data));
     })
-    .catch((err) => {
+    .catch(err => {
       dispatch(authAction.registrationError(err));
     });
 };
 
-const userLogin = (credentials) => (dispatch) => {
+const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
   console.log(credentials);
   axios
-    .post("/auth/login", credentials)
-    .then((res) => {
-      console.log(res, "loginlogin");
+    .post('/auth/login', credentials)
+    .then(res => {
+      console.log(res, 'loginlogin');
       token.set(res.data.access_token);
 
-      axios.get("/habits").then(
+      axios.get('/habits').then(
         // (res) => console.log(res.data.user, "AAAAAAASSASSSASS")
-        (res) => dispatch(userActions.getDataUserSuccess(res.data.user))
+        res => dispatch(userActions.getDataUserSuccess(res.data.user)),
       );
 
       // Axios.get("/users/updateQuizInfo").then((res) =>
@@ -51,26 +51,26 @@ const userLogin = (credentials) => (dispatch) => {
       // );
 
       dispatch(authAction.loginSucces(res.data));
-      axios.get("/habits").then(
+      axios.get('/habits').then(
         // res=>console.log(res.data.user)
-        (res) => dispatch(actionsGetUserData(res.data.user))
+        res => dispatch(actionsGetUserData(res.data.user)),
       );
     })
-    .catch((err) => {
-      console.log(err, "error");
+    .catch(err => {
+      console.log(err, 'error');
       dispatch(authAction.loginError(err));
     });
 };
 
-const userLogOut = () => (dispatch) => {
+const userLogOut = () => dispatch => {
   dispatch(authAction.logOutRequest());
   axios
-    .post("/users/logout")
+    .post('/users/logout')
     .then(() => {
       token.unSet();
       dispatch(authAction.logOutSuccess());
     })
-    .catch((err) => {
+    .catch(err => {
       dispatch(authAction.logOutError(err));
     });
 };

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import style from "./InnerNavigation.module.css";
-import { ReactComponent as Bell } from "../../../assests/images/LeftSideBar/bell.svg";
-import { ReactComponent as Win } from "../../../assests/images/LeftSideBar/win.svg";
-import { ReactComponent as Calendar } from "../../../assests/images/LeftSideBar/calendar.svg";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import leftSideBarSelectors from "../../../redux/selectors/leftSideBarSelectors";
+import React, { Component } from 'react';
+import style from './InnerNavigation.module.css';
+import { ReactComponent as Bell } from '../../../assests/images/LeftSideBar/bell.svg';
+import { ReactComponent as Win } from '../../../assests/images/LeftSideBar/win.svg';
+import { ReactComponent as Calendar } from '../../../assests/images/LeftSideBar/calendar.svg';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 class InnerNavigation extends Component {
   state = {
@@ -65,7 +65,7 @@ class InnerNavigation extends Component {
                   style.leftSideBar_innerNavigation__list_item_link_notify
                 }
               >
-                <span>{this.props.number}</span>
+                {this.props.number && <span>{this.props.number}</span>}
               </div>
             </li>
           </ul>
@@ -75,20 +75,20 @@ class InnerNavigation extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const listOfHabits = leftSideBarSelectors.listOfHabits(state);
   const allNotifications = listOfHabits.filter(({ data, name }) => {
-    const isAllTrue = data.every((bool) => bool);
+    const isAllTrue = data.every(bool => bool);
 
     if (isAllTrue) {
       return {
         [name]: data.name,
       };
     }
-    return "";
+    return '';
   });
 
-  const getName = allNotifications.forEach((el) => {});
+  const getName = allNotifications.forEach(el => {});
   return {
     number: allNotifications.length,
     names: getName,
