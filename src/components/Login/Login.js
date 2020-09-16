@@ -1,41 +1,48 @@
-import React, { Component } from "react";
-import styles from "./Login.module.css";
-import { connect } from "react-redux";
-import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
-import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
-import authOperation from "../../redux/operations/authOperation";
-import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
-import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import transition from "./transition.module.css";
+import React, { Component } from 'react';
+import styles from './Login.module.css';
+import { connect } from 'react-redux';
+import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabitblack.svg';
+import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
+import authOperation from '../../redux/operations/authOperation';
+import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
+import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
+import ModalInterview from '../ModalInterview/ModalInterview.js';
 
 class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     passwordVisible: false,
+    // isShovModal: false,
   };
 
-  onEyeIconOldPassword = (name) => {
+  // toggleModal = () => {
+  //   this.setState(prevState => {
+  //     return { isShovModal: !prevState.isShovModal };
+  //   });
+  // };
+
+  onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
   };
 
-  handleEmail = (e) => {
+  handleEmail = e => {
     this.setState({ email: e.target.value });
   };
 
-  handlePassword = (e) => {
+  handlePassword = e => {
     this.setState({ password: e.target.value });
   };
 
-  hendleSubmit = (e) => {
+  hendleSubmit = e => {
     e.preventDefault();
     // console.log(this.state, "this");
     const { email, password } = this.state;
     let OneUser = { email, password };
     // console.log(OneUser, "login");
     this.props.onLogin(OneUser);
-    this.setState({ email: "", password: "" });
+    this.setState({ email: '', password: '' });
+    // this.toggleModal();
   };
 
   render() {
@@ -43,13 +50,6 @@ class Login extends Component {
     const { btnClose } = this.props;
 
     return (
-      // <TransitionGroup>
-      // <CSSTransition
-      //   in={isOpen}
-      //   timeout={1000}
-      //   classNames={transition}
-      //   unmountOnExit
-      // >
       <div className={styles.Login}>
         <div className={styles.HomeLogo}>
           <div className={styles.HomeLogoSvg}>
@@ -69,7 +69,7 @@ class Login extends Component {
             <input
               className={styles.LoginInput}
               value={email}
-              onChange={(e) => this.handleEmail(e)}
+              onChange={e => this.handleEmail(e)}
               type="email"
               placeholder="Введите свой E-mail"
               name="email"
@@ -79,7 +79,7 @@ class Login extends Component {
             <p className={styles.LoginInputTxt}>Пароль</p>
             <label className={styles.LoginPassword}>
               <div
-                onClick={() => this.onEyeIconOldPassword("passwordVisible")}
+                onClick={() => this.onEyeIconOldPassword('passwordVisible')}
                 className={styles.LoginPasswordBtn}
               >
                 {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
@@ -88,8 +88,8 @@ class Login extends Component {
               <input
                 className={styles.LoginInput}
                 value={password}
-                onChange={(e) => this.handlePassword(e)}
-                type={!passwordVisible ? "password" : "text"}
+                onChange={e => this.handlePassword(e)}
+                type={!passwordVisible ? 'password' : 'text'}
                 placeholder="Введите пароль"
                 name="password"
               />
@@ -106,12 +106,13 @@ class Login extends Component {
             <p className={styles.LoginButtonTxt}>Регистрация</p>
           </button>
         </div>
+        {/* {this.state.isShovModal && <ModalInterview close={this.toggleModal} />} */}
       </div>
-      // </CSSTransition>
-      // </TransitionGroup>
     );
   }
 }
-const mapDispachToProps = { onLogin: authOperation.userLogin };
+const mapDispachToProps = {
+  onLogin: authOperation.userLogin,
+};
 
 export default connect(null, mapDispachToProps)(Login);

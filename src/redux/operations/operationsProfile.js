@@ -49,7 +49,7 @@ const addDataUserOperation = user => async (dispatch, getState) => {
       }),
     );
   } catch (error) {
-    // console.log("error-add", error);
+    console.log('error-add', error);
     dispatch(actionsUser.addDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());

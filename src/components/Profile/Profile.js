@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 // import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from './PasswordForm';
 import ErrorValidation from './ErrorValidation';
-
+import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modalMarinaMel
 import style from './Profile.module.css';
 import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
@@ -37,19 +37,22 @@ const validationSchema = Yup.object().shape({
 class Profile extends Component {
   state = {
     changePassword: false,
+    isShowModal: this.props.isModalInterview === 0,
   };
 
-  // componentDidMount() {
-  //   // console.log("this.props", this.props);
-  //   // this.setState((prevState) => ({ ...prevState, ...this.props }));
-  //   this.props.getDataUserOperation();
-  // }
+  componentDidMount() {
+    // console.log("this.props", this.props);
+    this.setState(prevState => ({ ...prevState, ...this.props }));
+    // this.props.getDataUserOperation();
+  }
   renderPasswordForm = () => {
     this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
-
+  changePath = () => {
+    //
+  };
   // ------------------
 
   // handleInputChange = (e) => {
@@ -98,8 +101,9 @@ class Profile extends Component {
                   }}
                   validationSchema={validationSchema}
                   onSubmit={values => {
-                    console.log(22222222, values);
+                    // console.log(22222222, values);
                     this.props.addDataUserOperation({ ...values });
+                    this.changePath();
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
@@ -255,6 +259,8 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             <Card />
           </div>
+
+          {this.state.isShowModal && <ModalInterview close={() => null} />}
         </div>
       </>
     );
@@ -268,6 +274,7 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
+    isModalInterview: state.user.quizInfo.smokeYears,
   };
 };
 
