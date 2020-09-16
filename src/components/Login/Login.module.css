@@ -79,6 +79,18 @@
   padding: 10px;
 }
 
+.LoginPassword {
+  position: relative;
+}
+
+.LoginPasswordBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: none;
+}
+
 .LoginInputTxt {
   font-family: Rubik;
   font-style: normal;

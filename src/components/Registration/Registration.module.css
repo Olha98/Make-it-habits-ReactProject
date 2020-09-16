@@ -79,6 +79,18 @@
   padding: 10px;
 }
 
+.RegistrationPassword {
+  position: relative;
+}
+
+.RegistrationPasswordBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: none;
+}
+
 .RegistrationInputTxt {
   font-family: "Rubik";
   font-style: normal;

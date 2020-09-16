@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ru from "date-fns/locale/ru";
+import RightSideBar from "./RightSideBar";
 registerLocale("ru", ru);
 
 const birthdayStyle = `
@@ -141,12 +142,15 @@ const birthdayStyle = `
 	font-size: 14px;
 	line-height: 17px;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
+
   }
 
   .react-datepicker__navigation--next{
-	  margin-top: 20px;
+    margin-top: 20px;
   }
+
+ 
 
   .react-datepicker__navigation--next::after{
    contant:"";
@@ -173,7 +177,6 @@ const Calendar = () => {
         onChange={(date) => setStartDate(date)}
         locale="ru"
         inline
-        // filterDate={isWeekday}
       />
     </>
   );
