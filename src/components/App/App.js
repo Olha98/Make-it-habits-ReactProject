@@ -6,9 +6,8 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
-// import Test from "../ModalBackDrop/Test";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
-// import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
+import DailyResult from "../DailyHabit/DayliResult";
 
 const App = () => {
   const [isTestOpen, changeStateIsOpen] = useState(false);

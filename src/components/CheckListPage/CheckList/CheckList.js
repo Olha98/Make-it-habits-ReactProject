@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import chekListOperation from "../../../redux/operations/chekListOperation";
+// import chekListOperation from "../../../redux/operations/chekListOperation";
 import style from "./CheckList.module.css";
 import CheckListItem from "./CheckListItem/CheckListItem";
 
@@ -48,15 +49,18 @@ class CheckList extends Component {
   // }
 
   componentDidMount() {
-    console.log("HELLOOO");
+    // console.log("HELLOOO");
+    // console.log("this.props", this.props);
     this.props.getCheckList();
   }
 
   render() {
+    this.props.addStatus();
+
     return (
       <div className={style.checkList}>
-        {this.state.habits
-          ? this.state.habits.map((habit) => (
+        {this.props.habits
+          ? this.props.habits.map((habit) => (
               <CheckListItem
                 key={habit._id}
                 habit={habit}
@@ -69,10 +73,17 @@ class CheckList extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+    habits: state.habits,
   };
 };
 
-export default connect(null, mapDispatchToProps)(CheckList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+    addStatus: () => dispatch(chekListOperation.addHabitStatus()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckList);

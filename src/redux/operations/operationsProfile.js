@@ -2,46 +2,51 @@ import axios from "axios";
 import actionsUser from "../actions/actionsProfile";
 import actionsLoader from "../actions/spinnerActions";
 
-axios.defaults.headers.common.Authorization =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
+// const instance = axios.create({
+//   baseURL: "https://make-it-habit-api.herokuapp.com",
+//   headers: {
+//     Authorization:
+//       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDE2NjQzMiwiZXhwIjoxNjAwNzcxMjMyfQ.qQ77kpKwqrJN8VQCfMSR0zrV9DVhWUKcNjIxES3Bi4w",
+//   },
+// });
 
-const addDataUserOperation = (user) => (dispatch) => {
+// axios.defaults.headers.common.Authorization =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDE2NjQzMiwiZXhwIjoxNjAwNzcxMjMyfQ.qQ77kpKwqrJN8VQCfMSR0zrV9DVhWUKcNjIxES3Bi4w";
+
+axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+// console.dir(axios);
+
+const getDataUserOperation = () => async (dispatch) => {
   dispatch(actionsLoader.loaderOn());
   try {
-    const result = axios.post(
-      "https://make-it-habit-api.herokuapp.com/habits",
-      user
-    );
+    const data = await axios.get("/habits");
+    console.log("data-Get", data.data.user);
     dispatch(
-      actionsUser.addDataUserSuccess({
-        ...user,
-        id: result.user.id,
-      })
+      actionsUser.getDataUserSuccess(data.data.user),
+      console.log("data-habits", data.data.user)
     );
   } catch (error) {
     console.log("error-add", error);
-    dispatch(actionsUser.addDataUserError(error));
+    dispatch(actionsUser.getDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
   }
 };
 
-const getDataUserOperation = (user) => (dispatch) => {
+const addDataUserOperation = (user) => async (dispatch) => {
+  // console.log(111111111, user);
   dispatch(actionsLoader.loaderOn());
   try {
-    const result = axios.post(
-      "https://make-it-habit-api.herokuapp.com/habits",
-      user
-    );
+    const { data } = await axios.patch("/users", user);
+    console.log("data-Add", data);
     dispatch(
       actionsUser.addDataUserSuccess({
-        ...user,
-        id: result.user.id,
+        ...data,
       })
     );
   } catch (error) {
     console.log("error-add", error);
-    dispatch(actionsUser.getDataUserError(error));
+    dispatch(actionsUser.addDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
   }

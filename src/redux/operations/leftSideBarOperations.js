@@ -3,14 +3,14 @@ import leftSideBarAction from "../actions/leftSideBarActions";
 
 axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
-export const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = "";
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = "";
-  },
-};
+// export const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = "";
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = "";
+//   },
+// };
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
@@ -18,7 +18,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   if (!persistedToken) {
     return;
   }
-  token.set(persistedToken);
+  // token.set(persistedToken);
   dispatch(leftSideBarAction.getCurrentUserStart());
   try {
     const response = await axios.get("/habits");
@@ -35,7 +35,7 @@ const logout = () => async (dispatch) => {
   try {
     await axios.post("users/logout");
 
-    token.unset();
+    // token.unset();
     dispatch(leftSideBarAction.logoutSuccess());
   } catch (error) {
     dispatch(leftSideBarAction.logoutError(error.message));
