@@ -37,12 +37,10 @@ const root = combineReducers({
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   }),
-  
+
   dayInfo: () => ({
     cigaretteQuantity: 0,
   }),
-
-  habits: habitReducer,
 });
 
 export default root;
