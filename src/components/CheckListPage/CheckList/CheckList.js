@@ -38,16 +38,6 @@ class CheckList extends Component {
   //   ],
   // };
 
-  // showFullInfo(e) {
-  //   console.log("e.target", e.target);
-  //   // console.log("e.target.nodeName", e.target.nodeName);
-  //   // if (e.target.nodeName !== "BTN" && e.target.closest("[data-element]")) {
-  //   // }
-  //   this.setState((prevState) => ({
-  //     showFullInfo: !prevState.showFullInfo,
-  //   }));
-  // }
-
   componentDidMount() {
     // console.log("HELLOOO");
     // console.log("this.props", this.props);
@@ -55,8 +45,6 @@ class CheckList extends Component {
   }
 
   render() {
-    this.props.addStatus();
-
     return (
       <div className={style.checkList}>
         {this.props.habits

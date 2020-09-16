@@ -2,8 +2,9 @@ import axios from "axios";
 import checkListActions from "../actions/checkListActions";
 
 axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
-axios.defaults.headers.common.Authorization = "";
-// console.dir(axios);
+axios.defaults.headers.common.Authorization =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDI0NjUzNCwiZXhwIjoxNjAwODUxMzM0fQ.YKxjnY2hfW10QhLWLtrpQpwaXsGXI79SVr0VXKtoxt4";
+console.dir(axios);
 
 const getHabitsOperation = () => (dispatch) => {
   dispatch(checkListActions.getHabitsRequest());

@@ -12,6 +12,7 @@ import {
   main_yellow,
   main_blue,
 } from "../../../../css/vars.module.css";
+import { connect } from "react-redux";
 
 class CheckListItem extends Component {
   state = {

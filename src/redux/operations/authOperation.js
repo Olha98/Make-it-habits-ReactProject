@@ -39,8 +39,8 @@ const userLogin = (credentials) => (dispatch) => {
       token.set(res.data.access_token);
 
       axios.get("/habits").then(
-        // (res) => console.log(res.data.user, "AAAAAAASSASSSASS")
-        (res) => dispatch(userActions.getDataUserSuccess(res.data.user))
+        (res) => console.log(res.data.user, "AAAAAAASSASSSASS")
+        // (res) => dispatch(userActions.getDataUserSuccess(res.data.user))
       );
 
       // Axios.get("/users/updateQuizInfo").then((res) =>
