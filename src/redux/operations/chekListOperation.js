@@ -2,6 +2,8 @@ import axios from "axios";
 import checkListActions from "../actions/checkListActions";
 
 axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+axios.defaults.headers.common.Authorization = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
+
 // axios.defaults.headers.common.Authorization =""
 // console.dir(axios);
 
@@ -12,13 +14,19 @@ const getHabitsOperation = () => (dispatch) => {
     .then((response) => {
       dispatch(checkListActions.getHabitsSuccess(response.data.habits));
     })
-    .catch(error => console.log(error));
+    .catch((error) => console.log(error));
 };
 
-const addHabitStatus = () => (dispatch, getState) => {
+const addHabitStatus = () => (dispatch) => {
   console.log("addHabitStatus");
   dispatch(checkListActions.addHabitStatusRequest());
-  axios.get("/habits").then(res => console.log("res", res));
+  axios
+    .get("/habits")
+    .then((res) => {
+      // console.log("res", res.data.habits)
+      dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
+    })
+    .catch((error) => console.log(error));
 };
 
 export default { getHabitsOperation, addHabitStatus };

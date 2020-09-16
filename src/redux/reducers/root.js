@@ -6,6 +6,7 @@ import spinnerReducers from "./spinnerReducers";
 import authReducer from "./authReducer";
 
 import dataUser from "../actions/dataUser";
+import dataUserReducer from "./reducersProfile";
 
 export const persistConfig = {
   key: "auth",
@@ -24,7 +25,8 @@ const root = combineReducers({
 
   auth: persistReducer(persistConfig, authReducer),
 
-  user: persistReducer(persistUserConfig, dataUser),
+  // user: persistReducer(persistUserConfig, dataUser),
+  user: persistReducer(persistUserConfig, dataUserReducer),
 
   quizInfo: () => ({
     smokeYears: 0,

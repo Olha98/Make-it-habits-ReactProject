@@ -1,4 +1,5 @@
 import React from "react";
+import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 import style from "./DailyHabit.module.css";
 
@@ -33,4 +34,4 @@ const DailyResult = () => {
   );
 };
 
-export default DailyResult;
+export default modalBackDrop(DailyResult);

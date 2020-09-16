@@ -15,7 +15,7 @@ class CheckList extends Component {
         efficiency: 70,
         _id: "5f4d9edf6375b430bda8ce92",
         name: "Утренняя зарядка 10-15 мин",
-        iteration: "everyday" //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
+        iteration: "everyday", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
       },
       {
         createAt: "2020-09-01T01:07:23.330Z",
@@ -24,7 +24,7 @@ class CheckList extends Component {
         efficiency: 50,
         _id: "5f4d9edf6375b430hgfjhgf",
         name: "Замена сигарет на леденцы, орешки и т.п.",
-        iteration: "" //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
+        iteration: "", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
       },
       {
         createAt: "2020-09-01T01:07:23.330Z",
@@ -33,9 +33,9 @@ class CheckList extends Component {
         efficiency: 10,
         _id: "5f4d9edf6375b430bdfhgjf",
         name: "Читать минимум 30 мин в день",
-        iteration: "" //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
-      }
-    ]
+        iteration: "", //everyday, onceADay, onceInTwoDays, MonWedFri,TueThuSat,,
+      },
+    ],
   };
 
   // showFullInfo(e) {
@@ -49,17 +49,18 @@ class CheckList extends Component {
   // }
 
   componentDidMount() {
-    this.props.getCheckList();
+    // console.log("HELLOOO");
+    // console.log("this.props", this.props);
+    // this.props.getCheckList();
   }
 
   render() {
-    this.props.addStatus();
-    console.log("this.props", this.props);
+    // this.props.addStatus();
 
     return (
       <div className={style.checkList}>
         {this.props.habits
-          ? this.props.habits.map(habit => (
+          ? this.props.habits.map((habit) => (
               <CheckListItem
                 key={habit._id}
                 habit={habit}
@@ -72,20 +73,17 @@ class CheckList extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    habits: state.habits
+    habits: state.habits,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
-    addStatus: () => dispatch(chekListOperation.addHabitStatus())
+    // getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+    // addStatus: () => dispatch(chekListOperation.addHabitStatus()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CheckList);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckList);
