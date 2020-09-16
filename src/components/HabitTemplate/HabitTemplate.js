@@ -80,7 +80,7 @@ const HabitTemplate = ({ close }) => {
         >
           Назад
         </button>
-        <div onClick={close} className={style.closeBtnWrapper}>
+        <div onClick={() => close()} className={style.closeBtnWrapper}>
           <img width="16" height="16" alt="closeBtn" src={closeBtn} />
         </div>
       </div>
