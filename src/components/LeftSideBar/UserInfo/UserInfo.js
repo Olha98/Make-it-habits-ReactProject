@@ -6,16 +6,18 @@ import style from "../UserInfo/UserInfo.module.css";
 import authOperations from "../../../redux/operations/authOperation";
 import Axios from "axios";
 import { render } from "@testing-library/react";
+import authAction from "../../../redux/actions/authAction";
 Axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 
 class UserInfo extends Component {
-  logout = (e) => {
-    console.log(e.target, "target");
+  // logout = (e) => {
+  //   console.log(e.target, "target");
 
-    return (Axios.defaults.headers.common.Authorization = "");
-  };
+  //   return (Axios.defaults.headers.common.Authorization = "");
+  // };
   render() {
-    const { photo, name, surname } = this.props;
+    console.log("this.props", this.props);
+    const { photo, name, surname, logout } = this.props;
     return (
       <>
         <section className={style.leftSideBar_userInfo}>
@@ -23,11 +25,11 @@ class UserInfo extends Component {
             <img src={photo} alt="avatar" />
           </div>
           <p className={style.leftSideBar_userInfo__name}>
-            {name} {surname}
+            {name ? `${name} ${surname}` : "User"}
           </p>
           <button
             type="button"
-            onClick={this.logout}
+            onClick={logout}
             className={style.leftSideBar_userInfo__button}
           >
             Выход
@@ -53,7 +55,9 @@ const mapStateToProps = (state) => ({
   surname: state.user.lastName,
 });
 // const mapDispatchToProps = (dispatch) => ({
-//   logout: () => dispatch(authOperations.userLogOut()),
-//   // logout: dispatch(authOperations.token.unSet()),
+//   //logout: () => dispatch(authOperations.userLogOut()),
+//   logout: authOperations.logOutSuccess,
 // });
-export default connect(mapStateToProps)(UserInfo);
+export default connect(mapStateToProps, {
+  logout: authAction.logOutSuccess,
+})(UserInfo);

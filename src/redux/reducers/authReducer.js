@@ -28,6 +28,8 @@ const token = (state = null, { type, payload }) => {
     case authConstans.LOGIN_SUCCESS:
       console.log(payload, "payload token");
       return payload.access_token;
+    case authConstans.LOGOUT_SUCCESS:
+      return "";
 
     default:
       return state;
