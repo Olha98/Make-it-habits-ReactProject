@@ -5,7 +5,7 @@ import CastomHabit from '../../../CustomHabit/CastomHabit';
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
-import chekListOperation from '../../../../redux/operations/chekListOperation';
+import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
 import {
   main_violet,
@@ -34,13 +34,13 @@ class CheckListItem extends Component {
     ],
   };
 
-  showFullInfo(e) {
-    if (e.target.closest('[data-element="button"]')) {
-      this.setState(prevState => ({
-        showFullInfo: !prevState.showFullInfo,
-      }));
-    }
-  }
+  // showFullInfo(e) {
+  //   if (e.target.closest('[data-element="button"]')) {
+  //     this.setState(prevState => ({
+  //       showFullInfo: !prevState.showFullInfo,
+  //     }));
+  //   }
+  // }
 
   openModal = () => {
     this.setState({
@@ -52,6 +52,41 @@ class CheckListItem extends Component {
     this.setState({
       isShowModal: false,
     });
+  };
+
+  onStatus = bool => {
+    this.setState({
+      showFullInfo: true,
+    });
+    // if (bool) {
+    //   // console.log('bool', bool);
+    //   // this.setState({
+    //   //   showFullInfo: true,
+    //   // });
+    // }
+    // else
+    // this.setState({
+    //   showFullInfo: false,
+    // });
+    const id = this.props.habit._id;
+    const status = bool;
+
+    const updateInfo = { id, status };
+
+    const array = this.props.habit.data;
+    array.find((elem, idx) => {
+      if (elem[idx] !== status) {
+        console.log('elem[idx]', elem[idx]);
+        // elem[idx] = status;
+        console.log('elem', elem);
+      }
+    });
+    console.log('array', array);
+
+    //  const newArray;
+    // return;
+
+    this.props.addStatus(updateInfo);
   };
 
   // getRandomIntInclusive(min, max) {
@@ -67,7 +102,7 @@ class CheckListItem extends Component {
   }
 
   render() {
-    // console.log("this.props.ITEM", this.props);
+    // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
@@ -79,7 +114,7 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        onClick={e => this.showFullInfo(e)}
+        // onClick={e => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
@@ -103,23 +138,27 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
-              data-element="button"
+              // data-element="button"
+              // data-status="true"
               className={[
                 style.checkListButton,
                 style.checkListButtonSubmit,
               ].join(' ')}
               type="button"
+              onClick={() => this.onStatus(true)}
             >
               <ButtonOk data-element="svg" />
             </button>
             <button
-              disabled
-              data-element="button"
+              // disabled
+              // data-element="button"
+              // data-status="false"
               className={[
                 style.checkListButton,
                 style.checkListButtonDelete,
               ].join(' ')}
               type="button"
+              onClick={() => this.onStatus(false)}
             >
               <ButtonDelete data-element="svg" />
             </button>
@@ -163,7 +202,7 @@ class CheckListItem extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addStatus: () => dispatch(chekListOperation.addHabitStatus()),
+    addStatus: updateInfo => dispatch(addHabitStatus(updateInfo)),
   };
 };
 
