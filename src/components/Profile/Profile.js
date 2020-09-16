@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import InputMask from "react-input-mask";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import InputMask from 'react-input-mask';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 // import dataUser from "../actions/dataUser";
 // import actionsProfile from "../../redux/actions/actionsProfile";
-import PasswordForm from "./PasswordForm";
-import ErrorValidation from "./ErrorValidation";
-
-import style from "./Profile.module.css";
-import Card from "../Card/Card";
-import operationsProfile from "../../redux/operations/operationsProfile";
+import PasswordForm from './PasswordForm';
+import ErrorValidation from './ErrorValidation';
+import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modalMarinaMel
+import style from './Profile.module.css';
+import Card from '../Card/Card';
+import operationsProfile from '../../redux/operations/operationsProfile';
 // import {
 //   requiredField,
 //   maxLengthCreator,
@@ -22,27 +22,29 @@ import operationsProfile from "../../redux/operations/operationsProfile";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, "минимальное количество символов: 2")
-    .max(16, "максимальное количество символов: 16")
-    .required("обязательное поле заполнения"),
+    .min(2, 'минимальное количество символов: 2')
+    .max(16, 'максимальное количество символов: 16')
+    .required('обязательное поле заполнения'),
   lastName: Yup.string()
-    .min(2, "минимальное количество символов: 2")
-    .max(16, "максимальное количество символов: 16"),
+    .min(2, 'минимальное количество символов: 2')
+    .max(16, 'максимальное количество символов: 16'),
   email: Yup.string()
-    .email("укажите правильный email")
-    .max(30, "максимальное количество символов: 30")
-    .required("обязательное поле заполнения"),
+    .email('укажите правильный email')
+    .max(30, 'максимальное количество символов: 30')
+    .required('обязательное поле заполнения'),
 });
 
 class Profile extends Component {
   state = {
     changePassword: false,
+    isShovModal: false,
   };
 
   componentDidMount() {
-    console.log("this.props", this.props);
+    console.log('this.props', this.props);
     // this.setState((prevState) => ({ ...prevState, ...this.props }));
     this.props.getDataUserOperation();
+    this.toggleModal();
   }
   renderPasswordForm = () => {
     this.setState(prevState => ({
@@ -68,12 +70,18 @@ class Profile extends Component {
   //   console.log("this.state", this.state);
   // };
 
+  toggleModal = () => {
+    this.setState(prevState => {
+      return { isShovModal: !prevState.isShovModal };
+    });
+  };
+
   render() {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
-    console.log("this.props", this.props);
+    console.log('this.props', this.props);
 
-    console.log("this.props", this.props.firstName);
+    console.log('this.props', this.props.firstName);
 
     if (!this.props.firstName) {
       return null;
@@ -100,7 +108,7 @@ class Profile extends Component {
                     avatar: this.props.avatar,
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={(values) => {
+                  onSubmit={values => {
                     console.log(22222222, values);
                     this.props.addDataUserOperation({ ...values });
                   }}
@@ -118,7 +126,7 @@ class Profile extends Component {
                           onBlur={handleBlur}
                           className={
                             style.input +
-                            " " +
+                            ' ' +
                             (touched.firstName && errors.firstName
                               ? style.inputInvalid
                               : style.inputValid)
@@ -140,7 +148,7 @@ class Profile extends Component {
                           onBlur={handleBlur}
                           className={
                             style.input +
-                            " " +
+                            ' ' +
                             (touched.lastName && errors.lastName
                               ? style.inputInvalid
                               : style.inputValid)
@@ -179,7 +187,7 @@ class Profile extends Component {
                           onBlur={handleBlur}
                           className={
                             style.input +
-                            " " +
+                            ' ' +
                             (touched.email && errors.email
                               ? style.inputInvalid
                               : style.inputValid)
@@ -252,6 +260,11 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             {/* <Card /> */}
           </div>
+          <button onClick={this.toggleModal}>modal</button>
+
+          {this.state.isShovModal && (
+            <ModalInterview close={this.toggleModal} />
+          )}
         </div>
       </>
     );
