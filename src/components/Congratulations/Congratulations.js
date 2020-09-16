@@ -35,7 +35,10 @@ const Congratulations = () => {
           >
             Повторить
           </button>
-          <button className={style.buttonTransparent}>
+          <button
+            onClick={() => showModal()}
+            className={style.buttonTransparent}
+          >
             Добавить новую привычку
           </button>
         </div>
