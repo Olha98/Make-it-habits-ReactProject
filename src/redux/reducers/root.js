@@ -7,6 +7,7 @@ import authReducer from "./authReducer";
 
 import dataUser from "../actions/dataUser";
 import dataUserReducer from "./reducersProfile";
+import dayInfoReducer from "./dailyCiggaretsReduces";
 
 export const persistConfig = {
   key: "auth",
@@ -34,9 +35,7 @@ const root = combineReducers({
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   }),
-  dayInfo: () => ({
-    cigaretteQuantity: 0,
-  }),
+  dayInfo: dayInfoReducer,
 
   habits: habitReducer,
 });

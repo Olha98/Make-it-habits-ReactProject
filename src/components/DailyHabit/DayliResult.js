@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import updateDailyResul from "../../redux/operations/dailyResultOperation";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 import style from "./DailyHabit.module.css";
 
-const DailyResult = () => {
+const DailyResult = ({ close, updateResult }) => {
+  const [quantity, setQuantity] = useState(0);
+  const changeQuantity = (e) => {
+    setQuantity(Number(e.target.value));
+  };
+
+  const submitQuantity = (e) => {
+    e.preventDefault();
+    console.log({ startedAt: Date.now(), data: [quantity] });
+    // updateResult({ startedAt: Date.now(), data: [quantity] });
+  };
   return (
     <div className={style.dailyHabitWrapper}>
       <div>
@@ -14,15 +26,23 @@ const DailyResult = () => {
           Давайте вместе постараемся свести это число к нулю.
         </p>
       </div>
-      <form>
+      <form onSubmit={(e) => submitQuantity(e)}>
         <div className={style.dailyHabitInputWrapper}>
           <p className={style.inputTitle}>Количество сигарет</p>
           <label>
-            <input placeholder="_._шт" className={style.dailyResultInput} />
+            <input
+              onChange={(e) => changeQuantity(e)}
+              placeholder="_._шт"
+              className={style.dailyResultInput}
+            />
           </label>
         </div>
         <div className={style.dailyHabitBtns}>
-          <button type="button" className="buttonTransparent">
+          <button
+            onClick={() => close()}
+            type="button"
+            className="buttonTransparent"
+          >
             Отмена
           </button>
           <button type="submit" className="buttonTransparent">
@@ -34,4 +54,6 @@ const DailyResult = () => {
   );
 };
 
-export default modalBackDrop(DailyResult);
+export default modalBackDrop(
+  connect(null, { updateResult: updateDailyResul })(DailyResult)
+);
