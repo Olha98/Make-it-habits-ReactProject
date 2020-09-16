@@ -17,15 +17,27 @@ const addHabitOperation = habit => dispatch => {
 
 const removeHabitOperation = habitId => dispatch => {
   // dispatch(actions.removeContactRequest());
+  console.log("SuccessID", habitId)
   axios
     .delete(`habits/${habitId}`)
     .then(() => {
-      // console.log(habitId, "SuccessID")
       dispatch(actions.removeCustomHabit(habitId));
     })
     .catch(error => {
       console.log(error, "error");
     });
 };
+
+// const removeContact = id => dispatch => {
+//   dispatch(contactsActions.remooveContactRequest());
+//   axios
+//     .delete(`https://bc22hwreact7.firebaseio.com/contacts/${id}.json`)
+//     .then(() => {
+//       dispatch(contactsActions.remooveContactSuccess(id))
+//     })
+//     .catch(error => {
+//       dispatch(contactsActions.remooveContactError(error))
+//     });
+// };
 
 export default { addHabitOperation, removeHabitOperation };
