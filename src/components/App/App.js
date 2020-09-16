@@ -1,5 +1,4 @@
-import React, { useState, Suspense } from "react";
-// import Modal from "../ModalBackDrop/ModalBackDrop";
+import React, { Suspense, useState } from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "../CustomRoutes/PrivateRoute";
 import PublicRoute from "../CustomRoutes/PublicRoute";
@@ -7,7 +6,8 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
-import Test from "../ModalBackDrop/Test";
+// import Test from "../ModalBackDrop/Test";
+import HabitTemplate from "../HabitTemplate/HabitTemplate";
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
       <button onClick={() => changeStateIsOpen((prev) => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <Test close={changeStateIsOpen} />}
+      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />}
     </>
   );
 };

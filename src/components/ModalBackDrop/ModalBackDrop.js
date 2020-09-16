@@ -40,18 +40,10 @@ const modalBackDrop = (WrappedComponent) => {
         this.state.isOpen && (
           <div data-type="modal" className={style.overlay}>
             <WrappedComponent {...this.props} closeModal={this.closeModal} />
-            <button
-              data-modalbtn="modalbtn"
-              className={style.button}
-              onClick={this.closeModal}
-            >
-              X
-            </button>
           </div>
         )
       );
     }
   };
 };
-
 export default modalBackDrop;
