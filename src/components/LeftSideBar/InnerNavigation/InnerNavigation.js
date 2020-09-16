@@ -94,5 +94,5 @@ const mapStateToProps = state => {
     names: getName,
   };
 };
-
+const mapDispatchToProps = dispatch => {};
 export default connect(mapStateToProps)(InnerNavigation);
