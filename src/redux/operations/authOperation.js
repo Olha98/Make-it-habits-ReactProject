@@ -40,7 +40,7 @@ const userLogin = (credentials) => (dispatch) => {
 
       axios.get("/habits").then((res) => {
         console.log(res, "res!!!!!!!!");
-        dispatch(actionsGetUserData({...res.data.user, ...res.data.habits}));
+        dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
       });
 
       
