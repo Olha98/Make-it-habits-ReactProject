@@ -19,11 +19,8 @@ const logoutStart = () => ({
   type: sidebarActionTypes.LOGOUT_START,
 });
 
-const logoutSuccess = (id) => ({
+const logoutSuccess = () => ({
   type: sidebarActionTypes.LOGOUT_SUCCESS,
-  payload: {
-    id,
-  },
 });
 const logoutError = (error) => ({
   type: sidebarActionTypes.LOGOUT_ERROR,
