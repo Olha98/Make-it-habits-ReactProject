@@ -5,6 +5,7 @@ import Modal from "../ModalBackDrop/ModalBackDrop";
 import CastomHabit from "../CustomHabit/CastomHabit";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 import HabitChoice from "../HabitChoice/HabitChoice";
+import closeBtn from "../../assests/images/closeBlack.png";
 
 const templateHabits = [
   "Начинать утро с 10-15 минутной зарядки",
@@ -21,7 +22,7 @@ const templateHabits = [
   "Начинать робочий день с подготовки стола",
 ];
 
-const HabitTemplate = () => {
+const HabitTemplate = ({ close }) => {
   const [isShowCustomModal, setIsShowCustomModal] = useState(false);
   const [isShowHabitChoice, setIsShowHabitChoice] = useState(false);
 
@@ -79,6 +80,9 @@ const HabitTemplate = () => {
         >
           Назад
         </button>
+        <div onClick={close} className={style.closeBtnWrapper}>
+          <img width="16" height="16" alt="closeBtn" src={closeBtn} />
+        </div>
       </div>
     </>
   );
