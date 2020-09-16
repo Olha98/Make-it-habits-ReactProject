@@ -2,6 +2,14 @@ import axios from "axios";
 import leftSideBarAction from "../actions/leftSideBarActions";
 
 axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+<<<<<<< HEAD
+<<<<<<< HEAD
+// axios.defaults.headers.common.Authorization =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
+=======
+>>>>>>> 6dd2317079d8212c1903db9a18818823ff39489f
+=======
+>>>>>>> 6dd2317079d8212c1903db9a18818823ff39489f
 
 // export const token = {
 //   set(token) {
@@ -11,19 +19,20 @@ axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 //     axios.defaults.headers.common.Authorization = "";
 //   },
 // };
+
 const getCurrentUser = () => async (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
-  if (!persistedToken) {
-    return;
-  }
+  // const {
+  //   auth: { token: persistedToken },
+  // } = getState();
+  // if (!persistedToken) {
+  //   return;
+  // }
   // token.set(persistedToken);
-  dispatch(leftSideBarAction.getCurrentUserStart());
+  // dispatch(leftSideBarAction.getCurrentUserStart());
   try {
-    const response = await axios.get("/habits");
-    dispatch(leftSideBarAction.getCurrentUserSuccess(response.data));
-    console.log("response.data", response.data);
+    // const response = await axios.get("/habits");
+    // dispatch(leftSideBarAction.getCurrentUserSuccess(response.data));
+    // console.log("response.data", response.data);
   } catch (error) {
     dispatch(leftSideBarAction.getCurrentUserError(error));
   }

@@ -101,6 +101,4 @@ class RightSideBar extends Component {
   }
 }
 
-export default connect(null, {
-  onGetHabit: getHabitsOperation,
-})(RightSideBar);
+export default RightSideBar;
