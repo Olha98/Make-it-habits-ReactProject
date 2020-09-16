@@ -43,7 +43,14 @@
   border: none;
   outline: none;
 }
-.leftSideBar_userInfo__button:hover {
-  background: #cbf7e3;
-  color: #333333;
+.leftSideBar_userInfo__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.leftSideBar_userInfo__link:hover {
+  text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+.leftSideBar_userInfo__link .leftSideBar_userInfo__avatar:hover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
 }
