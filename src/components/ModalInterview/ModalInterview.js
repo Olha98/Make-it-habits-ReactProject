@@ -31,15 +31,22 @@ class ModalInterview extends Component {
       cigarettePackPrice,
     } = this.state;
     const { error } = this.props;
-
+    // console.log(error);
     return (
       <section className={styles.modalInterview}>
-        <header className={styles.sectionHeader}>
+        <header
+          className={styles.sectionHeader}
+          style={{ marginBottom: `${error ? '20px' : '40px'}` }}
+        >
           <h2 className={styles.title}>Ответьте на 4 коротких вопроса.</h2>
           <p className={styles.description}>
             Так мы сможем более точно дать вам рекомендации:
           </p>
-          {error && <h3>Извините, произощла ошибка: {error.message}</h3>}
+          {error && (
+            <h3 className={styles.error}>
+              Извините, произошла ошибка: {error.message}{' '}
+            </h3>
+          )}
         </header>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
@@ -120,4 +127,6 @@ const mapDispatchToProps = dispatch => ({
   onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
-export default modalBackDrop(connect(null, mapDispatchToProps)(ModalInterview));
+export default modalBackDrop(
+  connect(mapStateToProps, mapDispatchToProps)(ModalInterview),
+);

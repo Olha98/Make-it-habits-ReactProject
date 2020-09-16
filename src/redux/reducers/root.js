@@ -4,10 +4,10 @@ import storage from 'redux-persist/lib/storage';
 import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
+import quizReducer from './quizInfoReducer';
 
 import dataUser from '../actions/dataUser';
 import dataUserReducer from './reducersProfile';
-import quizReducer from './quizInfoReducer';
 
 export const persistConfig = {
   key: 'auth',
