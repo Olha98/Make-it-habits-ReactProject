@@ -15,7 +15,7 @@ axios.defaults.headers.common.Authorization =
 // };
 const getCurrentUser = () => async (dispatch, getState) => {
   const {
-    auth: { token: persistedToken },
+    auth: { token: persistedToken }
   } = getState();
   if (!persistedToken) {
     return;
@@ -31,7 +31,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-const logout = () => async (dispatch) => {
+const logout = () => async dispatch => {
   dispatch(leftSideBarAction.logoutStart());
 
   try {
