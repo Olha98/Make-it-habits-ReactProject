@@ -30,6 +30,7 @@ const userRegistration = credentials => dispatch => {
 };
 
 const userLogin = credentials => dispatch => {
+  console.log("userLogin!!!!!!!!!!!!!!!!!!!!");
   dispatch(authAction.loginRequest());
   console.log(credentials);
   axios
@@ -39,7 +40,7 @@ const userLogin = credentials => dispatch => {
       dispatch(authAction.loginSucces(res.data));
 
       axios.get("/habits").then((res) => {
-        console.log(res, "res!!!!!!!!");
+        console.log(res, "res!!!!!!!!!!!!!!!!!!!!");
         dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
       });
 
