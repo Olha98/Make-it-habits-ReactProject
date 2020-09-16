@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Modal from "../../ModalBackDrop/ModalBackDrop";
+// import Modal from "../../ModalBackDrop/ModalBackDrop";
 import style from "./CheckListHeader.module.css";
+import DailyResult from "../../DailyHabit/DayliResult";
 
 function CheckListHeader() {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -21,11 +22,7 @@ function CheckListHeader() {
       >
         + Сигареты за сегодня
       </button>
-      {isShowModal && (
-        <Modal closeModal={closeModal}>
-          <h2>Hello, Ismail!</h2>
-        </Modal>
-      )}
+      {isShowModal && <DailyResult close={closeModal} />}
     </div>
   );
 }

@@ -78,7 +78,7 @@ class InnerNavigation extends Component {
 const mapStateToProps = (state) => {
   const listOfHabits = leftSideBarSelectors.listOfHabits(state);
   const allNotifications = listOfHabits.filter(({ data, name }) => {
-    const isAllTrue = data.every((bool) => !bool);
+    const isAllTrue = data.every((bool) => bool);
 
     if (isAllTrue) {
       return {
@@ -88,9 +88,7 @@ const mapStateToProps = (state) => {
     return "";
   });
 
-  const getName = allNotifications.forEach((el) => {
-    console.log("el", el.name);
-  });
+  const getName = allNotifications.forEach((el) => {});
   return {
     number: allNotifications.length,
     names: getName,
