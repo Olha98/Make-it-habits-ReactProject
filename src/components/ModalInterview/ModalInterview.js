@@ -15,7 +15,6 @@ class ModalInterview extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     await this.props.onAddInfo(this.state);
-    // console.log(this.props.error);
     if (this.props.error) {
       return;
     }
@@ -107,14 +106,6 @@ class ModalInterview extends Component {
             style={{ margin: '0 auto' }}
           >
             Сохранить
-          </button>
-          <p>&nbsp;</p>
-          <button
-            className={styles.button}
-            type="button"
-            onClick={() => this.props.onGetInfo()}
-          >
-            Fetch
           </button>
         </form>
       </section>
