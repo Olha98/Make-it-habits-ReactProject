@@ -36,12 +36,13 @@ body {
 
 .container {
   width: 842px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .wrapperHeader {
   border-bottom: 1px solid #d5e1dc;
   background-color: #ffffff;
+  height: 110px;
   padding: 40px 62px;
 }
 

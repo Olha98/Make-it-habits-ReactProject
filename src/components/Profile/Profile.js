@@ -39,11 +39,11 @@ class Profile extends Component {
     changePassword: false,
   };
 
-  componentDidMount() {
-    console.log("this.props", this.props);
-    // this.setState((prevState) => ({ ...prevState, ...this.props }));
-    this.props.getDataUserOperation();
-  }
+  // componentDidMount() {
+  //   // console.log("this.props", this.props);
+  //   // this.setState((prevState) => ({ ...prevState, ...this.props }));
+  //   this.props.getDataUserOperation();
+  // }
   renderPasswordForm = () => {
     this.setState((prevState) => ({
       changePassword: !prevState.changePassword,
@@ -71,9 +71,6 @@ class Profile extends Component {
   render() {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
-    console.log("this.props", this.props);
-
-    console.log("this.props", this.props.firstName);
 
     if (!this.props.firstName) {
       return null;
@@ -190,13 +187,19 @@ class Profile extends Component {
                           message={errors.email}
                         />
                       </label>
-                      <button
-                        type="submit"
-                        // onClick={()=>{handleSubmit()}}
-                        className={style.btnSaveChange}
+                      <NavLink
+                        exact
+                        to="/checklist"
+                        className={style.linkChenlistSaveChanges}
                       >
-                        Сохранить изменения
-                      </button>
+                        <button
+                          type="submit"
+                          // onClick={()=>{handleSubmit()}}
+                          className={style.btnSaveChange}
+                        >
+                          Сохранить изменения
+                        </button>
+                      </NavLink>
                     </Form>
                   )}
                 </Formik>
@@ -250,7 +253,7 @@ class Profile extends Component {
             </div>
 
             {changePassword && <PasswordForm />}
-            {/* <Card /> */}
+            <Card />
           </div>
         </div>
       </>

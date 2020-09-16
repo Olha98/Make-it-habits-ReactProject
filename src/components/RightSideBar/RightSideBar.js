@@ -68,14 +68,12 @@ class RightSideBar extends Component {
     currentDay: "",
   };
 
-  componentDidMount = () => {
-    this.props.onGetHabit();
- 
-  };
+  // componentDidMount = () => {
+  //   this.props.onGetHabit();
 
-  addState = () => {
+  // };
 
-  };
+  addState = () => {};
 
   render() {
     const { dayWeek, getData } = this.state;

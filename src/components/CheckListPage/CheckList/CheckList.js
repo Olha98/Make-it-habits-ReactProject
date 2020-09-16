@@ -48,14 +48,14 @@ class CheckList extends Component {
   //   }));
   // }
 
-  componentDidMount() {
-    // console.log("HELLOOO");
-    // console.log("this.props", this.props);
-    this.props.getCheckList();
-  }
+  // componentDidMount() {
+  //   // console.log("HELLOOO");
+  //   // console.log("this.props", this.props);
+  //   this.props.getCheckList();
+  // }
 
   render() {
-    this.props.addStatus();
+    // this.props.addStatus();
 
     return (
       <div className={style.checkList}>
@@ -81,8 +81,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
-    addStatus: () => dispatch(chekListOperation.addHabitStatus()),
+    // getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+    // addStatus: () => dispatch(chekListOperation.addHabitStatus()),
   };
 };
 

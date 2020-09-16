@@ -163,6 +163,9 @@ body {
   display: flex;
   justify-content: center;
 }
+.linkChenlistSaveChanges {
+  margin: 0 auto;
+}
 .btnSaveChange {
   width: 220px;
   font-style: normal;
@@ -174,7 +177,7 @@ body {
   border-radius: 5px;
   color: #ffffff;
   line-height: 44px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   cursor: pointer;
 }
 

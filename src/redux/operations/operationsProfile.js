@@ -20,13 +20,13 @@ const getDataUserOperation = () => async (dispatch) => {
   dispatch(actionsLoader.loaderOn());
   try {
     const data = await axios.get("/habits");
-    console.log("data-Get", data.data.user);
+    console.log("data-Get", data.data);
     dispatch(
-      actionsUser.getDataUserSuccess(data.data.user),
-      console.log("data-habits", data.data.user)
+      actionsUser.getDataUserSuccess(data.data.user)
+      // console.log("data-habits", data.data.user)
     );
   } catch (error) {
-    console.log("error-add", error);
+    // console.log("error-add", error);
     dispatch(actionsUser.getDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
@@ -38,14 +38,14 @@ const addDataUserOperation = (user) => async (dispatch) => {
   dispatch(actionsLoader.loaderOn());
   try {
     const { data } = await axios.patch("/users", user);
-    console.log("data-Add", data);
+    // console.log("data-Add", data);
     dispatch(
       actionsUser.addDataUserSuccess({
         ...data,
       })
     );
   } catch (error) {
-    console.log("error-add", error);
+    // console.log("error-add", error);
     dispatch(actionsUser.addDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
