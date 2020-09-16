@@ -11,7 +11,7 @@ const token = {
     console.log('token', token);
   },
   unSet() {
-    axios.defaults.headers.common.Authorization = ``;
+    axios.defaults.headers.common.Authorization = "";
   },
 };
 
@@ -94,4 +94,4 @@ const userLogOut = () => dispatch => {
 //     });
 // };
 
-export default { userRegistration, userLogin, userLogOut };
+export default { token, userRegistration, userLogin, userLogOut };
