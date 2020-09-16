@@ -1,24 +1,24 @@
-import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import habitReducer from "./checkListReducers";
-import spinnerReducers from "./spinnerReducers";
-import authReducer from "./authReducer";
-
-import dataUser from "../actions/dataUser";
-import dataUserReducer from "./reducersProfile";
-import dayInfoReducer from "./dailyCiggaretsReduces";
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import habitReducer from './checkListReducers';
+import spinnerReducers from './spinnerReducers';
+import authReducer from './authReducer';
+import dayInfoReducer from './dailyCiggaretsReduces';
+import dataUser from '../actions/dataUser';
+import dataUserReducer from './reducersProfile';
+import quizReducer from './quizInfoReducer';
 
 export const persistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-  whitelist: ["access_token", "email"],
+  whitelist: ['access_token', 'email'],
 };
 
 export const persistUserConfig = {
-  key: "user",
+  key: 'user',
   storage,
-  blacklist: ["id"],
+  blacklist: ['id'],
 };
 
 const root = combineReducers({
@@ -26,8 +26,10 @@ const root = combineReducers({
 
   auth: persistReducer(persistConfig, authReducer),
 
-  // user: persistReducer(persistUserConfig, dataUser),
-  user: persistReducer(persistUserConfig, dataUserReducer),
+  user: persistReducer(persistUserConfig, dataUser),
+  // user: persistReducer(persistUserConfig, dataUserReducer),
+  quizInfo: quizReducer.quizInfo,
+  error: quizReducer.error,
 
   quizInfo: () => ({
     smokeYears: 0,

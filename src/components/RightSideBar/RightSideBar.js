@@ -69,13 +69,10 @@ class RightSideBar extends Component {
   };
 
   componentDidMount = () => {
-    this.props.onGetHabit();
- 
+    // this.props.onGetHabit();
   };
 
-  addState = () => {
-
-  };
+  addState = () => {};
 
   render() {
     const { dayWeek, getData } = this.state;
@@ -104,6 +101,4 @@ class RightSideBar extends Component {
   }
 }
 
-export default connect(null, {
-  onGetHabit: getHabitsOperation,
-})(RightSideBar);
+export default RightSideBar;

@@ -45,7 +45,7 @@ class Profile extends Component {
     this.props.getDataUserOperation();
   }
   renderPasswordForm = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
@@ -75,9 +75,9 @@ class Profile extends Component {
 
     console.log("this.props", this.props.firstName);
 
-    if (!this.props.firstName) {
-      return null;
-    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
+    // if (!this.props.firstName) {
+    //   return null;
+    // } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
 
     return (
       <>
@@ -257,7 +257,7 @@ class Profile extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
