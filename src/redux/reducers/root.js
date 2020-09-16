@@ -1,53 +1,45 @@
-import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import imgAva from "../../assests/images/png-transparent-male-portrait-avatar-computer-icons-icon-design-avatar-flat-face-icon-people-head-cartoon.png";
-import castomHabitRedusers from "./castomHabitRedusers";
-import spinnerReducers from "../../components/Spinner/redux/spinnerReducers";
+import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import habitReducer from './checkListReducers';
+import spinnerReducers from './spinnerReducers';
+import authReducer from './authReducer';
+import dayInfoReducer from './dailyCiggaretsReduces';
+import dataUser from '../actions/dataUser';
+import dataUserReducer from './reducersProfile';
+import quizReducer from './quizInfoReducer';
 
 export const persistConfig = {
-  key: "token",
+  key: 'auth',
   storage,
-  whitelist: ["token"],
+  whitelist: ['access_token', 'email'],
+};
+
+export const persistUserConfig = {
+  key: 'user',
+  storage,
+  blacklist: ['id'],
 };
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-  auth: persistReducer(persistConfig, () => ({
-    token: "1234",
-    login: "",
-    email: "",
-  })),
 
-  user: () => ({
-    avatar: imgAva,
-    firstName: "Anna",
-    lastName: "Bond",
-    phone: "+3809438643",
-    email: "admin@gmail.com",
-    registerData: Date.now(),
-  }),
+  auth: persistReducer(persistConfig, authReducer),
+
+  user: persistReducer(persistUserConfig, dataUser),
+  // user: persistReducer(persistUserConfig, dataUserReducer),
+  quizInfo: quizReducer.quizInfo,
+  error: quizReducer.error,
+
   quizInfo: () => ({
     smokeYears: 0,
     cigarettePerDay: 0,
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   }),
-  dayInfo: () => ({
-    cigaretteQuantity: 0,
-  }),
+  dayInfo: dayInfoReducer,
 
-  //  habits:()=>([{
-  // createAt: "",
-  // data: [],
-  // planningTime: 0,
-  // efficiency : 0,
-  // id: "",
-  // name: "",
-  // iteration:"",
-  //   }]),
-
-  habits: castomHabitRedusers,
+  habits: habitReducer,
 });
 
 export default root;

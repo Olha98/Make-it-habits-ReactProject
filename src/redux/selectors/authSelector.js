@@ -1,2 +1,3 @@
- const isAuthenticated = (state) => state.auth.token;
- export default {isAuthenticated}
+const isAuthenticated = (state) => state.auth.access_token;
+// const isAuthenticated = true;
+export default { isAuthenticated };

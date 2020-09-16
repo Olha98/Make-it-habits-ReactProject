@@ -1,0 +1,137 @@
+.Registration {
+  position: absolute;
+  z-index: 1;
+  background: #f6f6f6;
+  width: 1035px;
+  height: 900px;
+  right: 0;
+  top: 0;
+}
+
+.RegistrationLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+  margin-top: 90px;
+}
+
+.RegistrationLogoSvg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
+  margin-right: 5px;
+}
+
+.RegistrationLogoPng svg {
+  display: block;
+}
+
+.RegistrationHi {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  color: #4f4f4f;
+}
+
+.RegistrationTxt {
+  width: 405px;
+  margin: 0 auto;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 31px;
+  text-align: center;
+  color: #4f4f4f;
+  padding-bottom: 30px;
+}
+
+.RegistrationForm {
+  width: 450px;
+  margin: 0 auto;
+}
+
+.RegistrationInput {
+  width: 345px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.RegistrationInputForm {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.RegistrationPassword {
+  position: relative;
+}
+
+.RegistrationPasswordBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: none;
+}
+
+.RegistrationInputTxt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #4f4f4f;
+}
+
+.RegistrationButton {
+  cursor: pointer;
+  margin: 0 auto;
+  width: 220px;
+  height: 44px;
+  margin-bottom: 20px;
+  background: #43d190;
+  border-radius: 5px;
+  border: #43d190 2px solid;
+}
+
+.RegistrationButtonTxt {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.RegistrationButton:hover {
+  background-color: #ffffff;
+}
+
+.RegistrationButton:hover .RegistrationButtonTxt {
+  color: #43d190;
+}
+
+.RegistrationButtonBlock {
+  display: flex;
+  justify-content: center;
+}

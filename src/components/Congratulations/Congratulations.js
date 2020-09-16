@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import style from "./Congratulations.module.css";
-import congratsPhoto from "../../assests/images/congratulations//Ресурс 1 1.png";
-import Modal from "../ModalBackDrop/ModalBackDrop";
-import CastomHabit from "../CustomHabit/CastomHabit";
+import React, { useState } from 'react';
+import style from './Congratulations.module.css';
+import congratsPhoto from '../../assests/images/congratulations//Ресурс 1 1.png';
+import Modal from '../ModalBackDrop/ModalBackDrop';
+import CastomHabit from '../CustomHabit/CastomHabit';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 const Congratulations = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -28,7 +29,10 @@ const Congratulations = () => {
           />
         </div>
         <div className={style.congratsBtnWrapper}>
-          <button onClick={showModal} className={style.buttonTransparent}>
+          <button
+            onClick={() => showModal()}
+            className={style.buttonTransparent}
+          >
             Повторить
           </button>
           <button className={style.buttonTransparent}>
@@ -37,13 +41,9 @@ const Congratulations = () => {
         </div>
       </div>
 
-      {isShowModal && (
-        <Modal>
-          <CastomHabit closeModal={closeModal} />
-        </Modal>
-      )}
+      {isShowModal && <CastomHabit closeModal={closeModal} />}
     </>
   );
 };
 
-export default Congratulations;
+export default modalBackDrop(Congratulations);

@@ -1,44 +1,60 @@
-import React, { Component } from "react";
-import style from "./CastomHabit.module.css";
-import { connect } from "react-redux";
-import castomHabitOperation from "../../redux/operations/castomHabitOperation";
+import React, { Component } from 'react';
+import style from './CastomHabit.module.css';
+import { connect } from 'react-redux';
+import castomHabitActions from '../../redux/actions/castomHabitActions';
+import castomHabitOperation from '../../redux/operations/castomHabitOperation';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 class CastomHabit extends Component {
   state = {
-    name: "",
-    startDate: "",
-    time: "",
-    repeat: "",
+    name: '',
+    date: '',
+    iteration: '',
+    time: '',
   };
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-
-  // };
-
-  onClickSubmit = (e) => {
+  onClickSubmit = e => {
     e.preventDefault();
-    const { name, startDate, time, repeat } = this.state;
+    const { name, date, time, iteration } = this.state;
+    const planningTime = `${date}:${time}`;
     if (e.target.dataset.save) {
-      this.props.onAddCustomHabit({ name, startDate, time, repeat });
+      // this.props.onAddCustomHabit({ name, planningTime, iteration })
+      this.props.requestAddCustomHabit({ name, planningTime, iteration });
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
-      this.props.removeCastomHabit();
+      this.props.requestRemoveCastomHabit(this.props.habit._id);
+      this.props.closeModal();
     }
   };
 
-  handleChenge = (e) => {
+  handleChenge = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
+  editNumber = number => {
+    if (number < 10) {
+      return `0${number}`;
+    } else return number;
+  };
+
   render() {
-    console.log("this.props.HABIT", this.props); //! тест пропов
-    // const { name, createAt, iteration, planningTime } = this.props.habit; //! тест пропов
+    console.log('this.props.HABIT', this.props);
+    const { name, iteration } = this.props.habit;
+    const date = new Date(this.props.habit.planningTime);
+    const day = this.editNumber(date.getDate());
+    const month = this.editNumber(date.getMonth());
+    const year = date.getFullYear();
+    const hour = this.editNumber(date.getHours());
+    const minute = this.editNumber(date.getMinutes());
+    const planningDate = `${year}-${month}-${day}`;
+    const planningHours = `${hour}:${minute}`;
+
+    console.log('this.props.habit._id', this.props.habit._id);
 
     return (
       <div className={style.castomHabitContainer}>
@@ -54,7 +70,7 @@ class CastomHabit extends Component {
                 type="text"
                 className={style.castomHabitName}
                 name="name"
-                value={this.state.name}
+                value={name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -63,8 +79,8 @@ class CastomHabit extends Component {
               <input
                 type="date"
                 className={style.castomHabitDate}
-                name="startDate"
-                value={this.state.startDate}
+                name="date"
+                value={planningDate}
                 onChange={this.handleChenge}
               />
             </label>
@@ -74,7 +90,7 @@ class CastomHabit extends Component {
                 type="time"
                 className={style.castomHabitTime}
                 name="time"
-                value={this.state.time}
+                value={planningHours}
                 onChange={this.handleChenge}
               />
             </label>
@@ -82,8 +98,8 @@ class CastomHabit extends Component {
               Повторение
               <select
                 className={style.castomHabitSelect}
-                name="repeat"
-                value={this.state.repeat}
+                name="iteration"
+                value={iteration}
                 onChange={this.handleChenge}
               >
                 <option value="none" disabled>
@@ -129,6 +145,8 @@ class CastomHabit extends Component {
 }
 
 export default connect(null, {
-  onAddCustomHabit: castomHabitOperation.addHabitOperation,
-  removeCastomHabit: castomHabitOperation.removeHabitOperation,
+  onAddCustomHabit: castomHabitActions.addCustomHabit,
+  removeCastomHabit: castomHabitActions.removeCustomHabit,
+  requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+  requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
 })(CastomHabit);

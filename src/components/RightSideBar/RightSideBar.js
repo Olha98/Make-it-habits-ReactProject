@@ -4,7 +4,10 @@ import style from "./RightSideBar.module.css";
 import Calendar from "./Calendar";
 import TimeDoItList from "./TimeDoIt";
 import moment from "moment";
-import  "moment/locale/ru";
+import "moment/locale/ru";
+import CustomScrollbars from "../../assests/scroll/scroll";
+import { getHabitsOperation } from "../../redux/operations/calendarOperations";
+import { connect } from "react-redux";
 
 const task = [
   {
@@ -37,40 +40,43 @@ const task = [
     iteration: "onceInTwoDays",
   },
 
-  // {
-  //   createAt: "2020-14-01T01:07:23.330Z",
-  //   data: [null, null, null],
-  //   planningTime: "2020-09-07T01:07:23.330Z",
-  //   efficiency: 50,
-  //   id: "5f4d9edf6375b430bda8ce92",
-  //   name: "Съесть килограм мороженого и закусить селеткой",
-  //   iteration: "MonWedFri",
-  // },
+  {
+    createAt: "2020-14-01T01:07:23.330Z",
+    data: [null, null, null],
+    planningTime: "2020-09-07T01:07:23.330Z",
+    efficiency: 50,
+    id: "5f4d9edf6375b430bda8ce92",
+    name: "Съесть килограм мороженого и закусить селеткой",
+    iteration: "MonWedFri",
+  },
 
-  // {
-  //   createAt: "2020-14-11T01:07:23.330Z",
-  //   data: [null, null, null],
-  //   planningTime: "2020-09-07T01:07:23.330Z",
-  //   efficiency: 50,
-  //   id: "5f4d9edf6375b430bda8ce92",
-  //   name: "Съесть килограм мороженого и закусить селеткой",
-  //   iteration: "TueThuSat",
-  // },
+  {
+    createAt: "2020-14-11T01:07:23.330Z",
+    data: [null, null, null],
+    planningTime: "2020-09-07T01:07:23.330Z",
+    efficiency: 50,
+    id: "5f4d9edf6375b430bda8ce92",
+    name: "Съесть килограм мороженого и закусить селеткой",
+    iteration: "TueThuSat",
+  },
 ];
-
-console.log(task);
 
 class RightSideBar extends Component {
   state = {
     dayWeek: moment().format("dddd"),
-    getData: moment().format('LL').split(' ').slice(0,2),
-
+    getData: moment().format("LL").split(" ").slice(0, 2),
+    currentDay: "",
   };
 
+  componentDidMount = () => {
+    // this.props.onGetHabit();
+  };
+
+  addState = () => {};
 
   render() {
     const { dayWeek, getData } = this.state;
-    console.log(this.state);
+
     return (
       <div className={style.boxRightSideBar}>
         <div className={style.containerRightSideBar}>
@@ -78,14 +84,16 @@ class RightSideBar extends Component {
             <div className={style.headerRightSideBarBox}>
               <span>{dayWeek}</span>
               <span>&#183;</span>
-           <span>{getData.join().replace(/[\s.,%]/g, ' ')}</span>
+              <span>{getData.join().replace(/[\s.,%]/g, " ")}</span>
             </div>
           </div>
           <div className={style.bodyRightSideBar}>
             <Calendar />
           </div>
           <div className={style.footerRightSideBar}>
-            <TimeDoItList task={task}/>
+            <CustomScrollbars style={{ width: 360, height: 300 }}>
+              <TimeDoItList task={task} />
+            </CustomScrollbars>
           </div>
         </div>
       </div>
