@@ -105,7 +105,6 @@ function Subscriptions() {
         <button className="btnTransparentWhiteBorder">Изменить подписку</button>
       </section>
       <section className={style.subscriptionsSectionCards}>
-        <p className={style.subscriptionsSectionTitle}>Мои карты</p>
         <Card />
       </section>
     </div>

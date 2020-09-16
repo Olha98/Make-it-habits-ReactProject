@@ -32,11 +32,19 @@ const addHabitStatusError = error => ({
   payload: error
 });
 
+const removeCustomHabit = habitId => {
+  return {
+    type: checkListConstants.REMOVE_CUSTOM_HABIT,
+    payload: habitId
+  }
+}
+
 export default {
   getHabitsRequest,
   getHabitsSuccess,
   getHabitsError,
   addHabitStatusRequest,
   addHabitStatusSuccess,
-  addHabitStatusError
+  addHabitStatusError,
+  removeCustomHabit
 };

@@ -1,4 +1,4 @@
-import actions from "../actions/castomHabitActions";
+// import actions from "../actions/castomHabitActions";
 import axios from "axios";
 import checkListActions from "../actions/checkListActions";
 axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com/";
@@ -21,23 +21,12 @@ const removeHabitOperation = habitId => dispatch => {
   axios
     .delete(`habits/${habitId}`)
     .then(() => {
-      dispatch(actions.removeCustomHabit(habitId));
+      dispatch(checkListActions.removeCustomHabit(habitId));
     })
     .catch(error => {
       console.log(error, "error");
     });
 };
 
-// const removeContact = id => dispatch => {
-//   dispatch(contactsActions.remooveContactRequest());
-//   axios
-//     .delete(`https://bc22hwreact7.firebaseio.com/contacts/${id}.json`)
-//     .then(() => {
-//       dispatch(contactsActions.remooveContactSuccess(id))
-//     })
-//     .catch(error => {
-//       dispatch(contactsActions.remooveContactError(error))
-//     });
-// };
 
 export default { addHabitOperation, removeHabitOperation };

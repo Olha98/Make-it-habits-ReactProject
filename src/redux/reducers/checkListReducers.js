@@ -7,6 +7,9 @@ const habitReducer = (state = [], action) => {
 
     case checkListConstants.ADD_HABIT_STATUS_SUCCESS:
       return [...state, action.payload];
+    
+    case checkListConstants.REMOVE_CUSTOM_HABIT:
+      return state.filter(habit => habit._id !== action.payload);
 
     default:
       return state;
