@@ -56,7 +56,7 @@ const userLogin = (credentials) => (dispatch) => {
 
 const userLogOut = () => (dispatch) => {
   dispatch(authAction.logOutRequest());
-  Axios.post("/users/logout")
+  Axios.post("/auth/logout")
     .then(() => {
       token.unSet();
       dispatch(authAction.logOutSuccess());

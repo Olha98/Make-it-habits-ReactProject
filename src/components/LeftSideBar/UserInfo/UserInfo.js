@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
+//import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
 //import avatar from "../../../assests/images/LeftSideBar/avatar.png";
 import style from "../UserInfo/UserInfo.module.css";
-//import authOperations from "../../../redux/operations/authOperation";
+import authOperations from "../../../redux/operations/authOperation";
 const UserInfo = ({ photo, name, surname, logout }) => {
   return (
     <>
@@ -26,21 +26,21 @@ const UserInfo = ({ photo, name, surname, logout }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  photo: state.user.avatar,
-  name: state.user.firstname,
-  surname: state.user.lastname,
-});
-const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(leftSideBarOperations.logout()),
-});
-
 // const mapStateToProps = (state) => ({
 //   photo: state.user.avatar,
-//   name: state.user.firstName,
-//   surname: state.user.lastName,
+//   name: state.user.firstname,
+//   surname: state.user.lastname,
 // });
 // const mapDispatchToProps = (dispatch) => ({
-//   logout: () => dispatch(authOperations.userLogOut()),
+//   logout: () => dispatch(leftSideBarOperations.logout()),
 // });
+
+const mapStateToProps = (state) => ({
+  photo: state.user.avatar,
+  name: state.user.firstName,
+  surname: state.user.lastName,
+});
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(authOperations.userLogOut()),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
