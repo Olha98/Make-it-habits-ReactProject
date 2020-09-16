@@ -9,7 +9,7 @@ class CastomHabitV extends Component {
     name: "",
     date: "",
     iteration: "",
-    time: ""
+    time: "",
   };
 
   onClickSubmit = e => {
@@ -17,11 +17,12 @@ class CastomHabitV extends Component {
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`
     if (e.target.dataset.save) {
-      this.props.onAddCustomHabit({ name, planningTime, iteration })
+      // this.props.onAddCustomHabit({ name, planningTime, iteration })
       this.props.requestAddCustomHabit({ name, planningTime, iteration });
+      this.props.close();
      
     } else if (e.target.dataset.cancel) {
-      this.props.closeModal();
+      this.props.close();
     }
   };
 

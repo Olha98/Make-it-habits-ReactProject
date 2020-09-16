@@ -10,7 +10,8 @@ class CastomHabit extends Component {
     name: "",
     date: "",
     iteration: "",
-    time: ""
+    time: "",
+    isCheckList: true,
   };
 
   onClickSubmit = e => {
@@ -67,7 +68,7 @@ class CastomHabit extends Component {
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
               Название
-              <input type="text" className={style.castomHabitName} name="name" value={name} onChange={this.handleChenge} />
+              <input type="text" className={style.castomHabitName} name="name" value={this.state.isCheckList && "HELLO"} onChange={this.handleChenge} />
             </label>
             <label className={style.castomHabitLabel}>
               Дата старта

@@ -6,7 +6,7 @@ const habitReducer = (state = [], action) => {
       return [...action.payload];
 
     case checkListConstants.ADD_HABIT_STATUS_SUCCESS:
-      return state;
+      return [...state, action.payload];
 
     default:
       return state;
