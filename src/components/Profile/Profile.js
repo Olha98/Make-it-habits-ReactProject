@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import InputMask from "react-input-mask";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-
-import actionsProfile from "../../redux/actions/actionsProfile";
+// import dataUser from "../actions/dataUser";
+// import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from "./PasswordForm";
 import ErrorValidation from "./ErrorValidation";
 
@@ -77,7 +77,7 @@ class Profile extends Component {
 
     if (!this.props.firstName) {
       return null;
-    } //!костыль для formik, чтобы сразу рендерился стейт
+    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
 
     return (
       <>
@@ -107,9 +107,6 @@ class Profile extends Component {
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
                     <Form className={style.form}>
-                      {/* <form onSubmit={this.handleSubmit} className={style.form}> */}
-                      {/* {console.log("values", values)}
-                      {console.log("touched", touched)} */}
                       <label className={style.label}>
                         <span className={style.titleInput}>Имя</span>
                         <input
@@ -117,7 +114,6 @@ class Profile extends Component {
                           name="firstName"
                           id="firstName"
                           value={values.firstName}
-                          // onChange={this.handleInputChange}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={
@@ -135,19 +131,11 @@ class Profile extends Component {
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>Фамилия</span>
-                        {/* <input
-                          type="text"
-                          name="lastName"
-                          value={lastName}
-                          onChange={this.handleInputChange}
-                          className={style.input}
-                        /> */}
                         <input
                           type="text"
                           name="lastName"
                           id="lastName"
                           value={values.lastName}
-                          // onChange={this.handleInputChange}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={
@@ -168,13 +156,9 @@ class Profile extends Component {
                         <InputMask
                           type="tel"
                           name="phone"
-                          // value={values.phone}
                           defaultValue={values.phone}
                           id="phone"
-                          // defaultValue={phone}
                           mask="\80999999999"
-                          // maskChar="_"
-                          // onChange={this.handleInputChange}
                           onChange={handleChange}
                           className={style.input}
                           placeholder="+380__ ___ __ __"
@@ -186,19 +170,11 @@ class Profile extends Component {
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>E-mail</span>
-                        {/* <input
-                          type="email"
-                          name="email"
-                          value={email}
-                          onChange={this.handleInputChange}
-                          className={style.input}
-                        /> */}
                         <input
                           type="email"
                           name="email"
                           id="email"
                           value={values.email}
-                          // onChange={this.handleInputChange}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className={

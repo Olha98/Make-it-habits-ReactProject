@@ -15,6 +15,14 @@ import avatar14 from "../../assests/images/avatars/Avatar.png";
 import avatar15 from "../../assests/images/avatars/Avatar-4-1.png";
 import avatar16 from "../../assests/images/avatars/Avatar-default.png";
 
+function toDataUrl(element) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(element.files[0]);
+  });
+}
+
 export const avatars = [
   { image: avatar1, id: "1" },
   { image: avatar2, id: "2" },
@@ -33,3 +41,5 @@ export const avatars = [
   { image: avatar15, id: "15" },
   { image: avatar16, id: "16" },
 ];
+
+console.log("avatar16", `${avatar16}`);

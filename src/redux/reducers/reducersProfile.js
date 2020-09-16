@@ -23,10 +23,11 @@ const initialState = {
 const dataUserReducer = (state = { ...initialState }, action) => {
   switch (action.type) {
     case constTypes.GET_DATA_USER_SUCCESS:
-      return { ...action.payload };
+      return { ...action.payload }; //! userData Оля
 
     case constTypes.ADD_DATA_USER_SUCCESS:
-      return { ...state, ...action.payload };
+      // console.log("action", action);
+      return action.payload;
 
     default:
       return state;

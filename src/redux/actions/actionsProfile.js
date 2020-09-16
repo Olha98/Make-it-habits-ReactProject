@@ -29,7 +29,7 @@ const addDataUserSuccess = (user) => {
 
 const addDataUserError = (error) => ({
   type: constType.ADD_DATA_USER_ERROR,
-  paylod: error,
+  payload: error,
 });
 
 export default {
