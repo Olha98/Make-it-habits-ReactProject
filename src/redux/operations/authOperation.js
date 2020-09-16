@@ -5,10 +5,10 @@ import userActions from '../actions/actionsProfile';
 
 axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = token;
-    console.log('token', token);
+    console.log('token auth 111', token);
   },
   unSet() {
     axios.defaults.headers.common.Authorization = '';
@@ -41,8 +41,10 @@ const userLogin = credentials => dispatch => {
 
       axios.get('/habits').then(res => {
         console.log(res, 'res!!!!!!!!!!!!!!!!!!!!');
-        // dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
-        dispatch(actionsGetUserData(res.data));
+        dispatch(
+          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+        );
+        // dispatch(actionsGetUserData(res.data));
       });
     })
     .catch(err => {

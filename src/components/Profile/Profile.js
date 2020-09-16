@@ -187,19 +187,19 @@ class Profile extends Component {
                           message={errors.email}
                         />
                       </label>
-                      <NavLink
+                      {/* <NavLink
                         exact
                         to="/checklist"
                         className={style.linkChenlistSaveChanges}
+                      > */}
+                      <button
+                        type="submit"
+                        // onClick={()=>{handleSubmit()}}
+                        className={style.btnSaveChange}
                       >
-                        <button
-                          type="submit"
-                          // onClick={()=>{handleSubmit()}}
-                          className={style.btnSaveChange}
-                        >
-                          Сохранить изменения
-                        </button>
-                      </NavLink>
+                        Сохранить изменения
+                      </button>
+                      {/* </NavLink> */}
                     </Form>
                   )}
                 </Formik>
@@ -263,17 +263,16 @@ class Profile extends Component {
 const mapStateToProps = state => {
   // console.log('state', state);
   return {
-    firstName: state.user.user.firstName,
-    lastName: state.user.user.lastName,
-    phone: state.user.user.phone,
-    email: state.user.user.email,
-    avatar: state.user.user.avatar,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+    phone: state.user.phone,
+    email: state.user.email,
+    avatar: state.user.avatar,
   };
 };
 
 const mapDispatchToProps = {
   // addDataUserOperation: actionsProfile.addDataUserSuccess,
-
   // getDataUserOperation: operationsProfile.getDataUserOperation,
   addDataUserOperation: operationsProfile.addDataUserOperation,
 };
