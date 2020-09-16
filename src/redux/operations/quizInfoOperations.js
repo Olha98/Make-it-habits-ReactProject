@@ -17,9 +17,9 @@ const addInfo = info => async (dispatch, getState) => {
     auth: { access_token: persistedToken },
   } = getState();
 
-  if (!persistedToken) {
-    return;
-  }
+  // if (!persistedToken) {
+  //   return;
+  // }
 
   // token.set(persistedToken);
   dispatch(quizInfoActions.addInfoRequest());
@@ -37,10 +37,10 @@ const fetchInfo = () => async (dispatch, getState) => {
   const {
     auth: { access_token: persistedToken },
   } = getState();
-
-  if (!persistedToken) {
-    return;
-  }
+  console.log(persistedToken);
+  // if (!persistedToken) {
+  //   return;
+  // }
 
   // token.set(persistedToken);
   dispatch(quizInfoActions.getInfoRequest());
