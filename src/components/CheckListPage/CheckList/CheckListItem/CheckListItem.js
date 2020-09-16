@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import style from "./CheckListItem.module.css";
-import Modal from "../../../ModalBackDrop/ModalBackDrop";
-import CastomHabit from "../../../CustomHabit/CastomHabit";
-import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckListPage/button_ok.svg";
-import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
-import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
+import React, { Component } from 'react';
+import style from './CheckListItem.module.css';
+import Modal from '../../../ModalBackDrop/ModalBackDrop';
+import CastomHabit from '../../../CustomHabit/CastomHabit';
+import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
+import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
+import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
+import chekListOperation from '../../../../redux/operations/chekListOperation';
 
 import {
   main_violet,
   main_pink,
   main_yellow,
   main_blue,
-} from "../../../../css/vars.module.css";
-import { connect } from "react-redux";
+} from '../../../../css/vars.module.css';
+import { connect } from 'react-redux';
 
 class CheckListItem extends Component {
   state = {
@@ -24,18 +25,18 @@ class CheckListItem extends Component {
       main_pink,
       main_yellow,
       main_blue,
-      "deepskyblue",
-      "lightcoral",
-      "green",
-      "darkorange",
-      "lightseagreen",
-      "violet",
+      'deepskyblue',
+      'lightcoral',
+      'green',
+      'darkorange',
+      'lightseagreen',
+      'violet',
     ],
   };
 
   showFullInfo(e) {
     if (e.target.closest('[data-element="button"]')) {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         showFullInfo: !prevState.showFullInfo,
       }));
     }
@@ -78,7 +79,7 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        onClick={(e) => this.showFullInfo(e)}
+        onClick={e => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
@@ -106,7 +107,7 @@ class CheckListItem extends Component {
               className={[
                 style.checkListButton,
                 style.checkListButtonSubmit,
-              ].join(" ")}
+              ].join(' ')}
               type="button"
             >
               <ButtonOk data-element="svg" />
@@ -117,7 +118,7 @@ class CheckListItem extends Component {
               className={[
                 style.checkListButton,
                 style.checkListButtonDelete,
-              ].join(" ")}
+              ].join(' ')}
               type="button"
             >
               <ButtonDelete data-element="svg" />
@@ -153,11 +154,17 @@ class CheckListItem extends Component {
             </li>
           </ul>
         ) : (
-          ""
+          ''
         )}
       </div>
     );
   }
 }
 
-export default CheckListItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    addStatus: () => dispatch(chekListOperation.addHabitStatus()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CheckListItem);
