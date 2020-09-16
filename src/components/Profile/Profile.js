@@ -75,9 +75,9 @@ class Profile extends Component {
 
     console.log("this.props", this.props.firstName);
 
-    if (!this.props.firstName) {
-      return null;
-    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
+    // if (!this.props.firstName) {
+    //   return null;
+    // } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
 
     return (
       <>
