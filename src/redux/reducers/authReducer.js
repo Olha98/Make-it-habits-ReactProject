@@ -1,14 +1,6 @@
-// import React from "react";
-// import { combineReducers } from "redux";
-// import authAction from "../actions/authAction";
 import authConstans from "../constants/authConstans";
 
-const initialState = {
-  login: null,
-  email: null,
-};
-
-const user = (state = initialState, { type, payload }) => {
+const user = (state = {}, { type, payload }) => {
   switch (type) {
     case authConstans.REGISTER_SUCCESS:
       return payload;
@@ -26,12 +18,5 @@ const user = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-
-// const token = (state = null, { type, payload }) => {
-//   switch (type) {
-//     default:
-//       return state;
-//   }
-// };
 
 export default user;

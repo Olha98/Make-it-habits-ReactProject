@@ -26,7 +26,6 @@ const dataUserReducer = (state = { ...initialState }, action) => {
       return { ...action.payload }; //! userData Оля
 
     case constTypes.ADD_DATA_USER_SUCCESS:
-      // console.log("action", action);
       return action.payload;
 
     default:

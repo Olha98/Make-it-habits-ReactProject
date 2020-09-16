@@ -6,7 +6,7 @@ import spinnerReducers from "./spinnerReducers";
 import authReducer from "./authReducer";
 
 import dataUser from "../actions/dataUser";
-import dataUserReducer from "./reducersProfile";
+import dataUserReducer from "../actions/dataUser";
 
 export const persistConfig = {
   key: "auth",
@@ -37,6 +37,7 @@ const root = combineReducers({
   dayInfo: () => ({
     cigaretteQuantity: 0,
   }),
+
 
   habits: habitReducer,
 });
