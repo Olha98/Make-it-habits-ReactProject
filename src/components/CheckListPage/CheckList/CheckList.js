@@ -51,7 +51,7 @@ class CheckList extends Component {
   componentDidMount() {
     // console.log("HELLOOO");
     // console.log("this.props", this.props);
-    // this.props.getCheckList();
+    this.props.getCheckList();
   }
 
   render() {
@@ -81,8 +81,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
-    // addStatus: () => dispatch(chekListOperation.addHabitStatus()),
+    getCheckList: () => dispatch(chekListOperation.getHabitsOperation()),
+    addStatus: () => dispatch(chekListOperation.addHabitStatus()),
   };
 };
 
