@@ -6,12 +6,7 @@ import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckList
 import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
 import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
 
-import {
-  main_violet,
-  main_pink,
-  main_yellow,
-  main_blue,
-} from "../../../../css/vars.module.css";
+import { main_violet, main_pink, main_yellow, main_blue } from "../../../../css/vars.module.css";
 
 class CheckListItem extends Component {
   state = {
@@ -27,27 +22,27 @@ class CheckListItem extends Component {
       "green",
       "darkorange",
       "lightseagreen",
-      "violet",
-    ],
+      "violet"
+    ]
   };
 
   showFullInfo(e) {
     if (e.target.closest('[data-element="button"]')) {
-      this.setState((prevState) => ({
-        showFullInfo: !prevState.showFullInfo,
+      this.setState(prevState => ({
+        showFullInfo: !prevState.showFullInfo
       }));
     }
   }
 
   openModal = () => {
     this.setState({
-      isShowModal: true,
+      isShowModal: true
     });
   };
 
   closeModal = () => {
     this.setState({
-      isShowModal: false,
+      isShowModal: false
     });
   };
 
@@ -64,7 +59,6 @@ class CheckListItem extends Component {
   }
 
   render() {
-    console.log("this.props", this.props);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
@@ -73,38 +67,28 @@ class CheckListItem extends Component {
       <div
         data-element="habit"
         style={{
-          borderLeft: `8px solid ${color}`,
+          borderLeft: `8px solid ${color}`
         }}
         className={style.checkListItem}
-        onClick={(e) => this.showFullInfo(e)}
+        onClick={e => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
             <div className={style.checkListItemContent}>
               <label className={style.checkListItemProgressLabel}>
                 <span>{name}</span>
-                <progress
-                  className={style.checkListItemProgress}
-                  id="file"
-                  max="100"
-                  value={efficiency}
-                >
+                <progress className={style.checkListItemProgress} id="file" max="100" value={efficiency}>
                   70%
                 </progress>
               </label>
               <p className={style.checkListItemProgressValue}>{efficiency}%</p>
             </div>
-            <p className={style.checkListItemProgressComment}>
-              Прогресс привития привычки
-            </p>
+            <p className={style.checkListItemProgressComment}>Прогресс привития привычки</p>
           </div>
           <div className={style.checkListButtons}>
             <button
               data-element="button"
-              className={[
-                style.checkListButton,
-                style.checkListButtonSubmit,
-              ].join(" ")}
+              className={[style.checkListButton, style.checkListButtonSubmit].join(" ")}
               type="button"
             >
               <ButtonOk data-element="svg" />
@@ -112,28 +96,17 @@ class CheckListItem extends Component {
             <button
               disabled
               data-element="button"
-              className={[
-                style.checkListButton,
-                style.checkListButtonDelete,
-              ].join(" ")}
+              className={[style.checkListButton, style.checkListButtonDelete].join(" ")}
               type="button"
             >
               <ButtonDelete data-element="svg" />
             </button>
-            <button
-              data-element="button_edit"
-              className={style.checkListButtonEdit}
-              type="button"
-              onClick={this.openModal}
-            >
+            <button data-element="button_edit" className={style.checkListButtonEdit} type="button" onClick={this.openModal}>
               <ButtonEdit />
             </button>
             {isShowModal && (
               <Modal closeModal={this.closeModal}>
-                <CastomHabit
-                  closeModal={this.closeModal}
-                  habit={this.props.habit}
-                />
+                <CastomHabit closeModal={this.closeModal} habit={this.props.habit} />
               </Modal>
             )}
           </div>
