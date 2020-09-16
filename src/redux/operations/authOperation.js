@@ -9,7 +9,7 @@ const token = {
     Axios.defaults.headers.common.Authorization = token;
   },
   unSet() {
-    Axios.defaults.headers.common.Authorization = ``;
+    Axios.defaults.headers.common.Authorization = "";
   },
 };
 
@@ -85,4 +85,4 @@ const userLogOut = () => (dispatch) => {
 //     });
 // };
 
-export default { userRegistration, userLogin, userLogOut };
+export default { token, userRegistration, userLogin, userLogOut };
