@@ -9,7 +9,7 @@ const token = {
     axios.defaults.headers.common.Authorization = token;
   },
   unSet() {
-    axios.defaults.headers.common.Authorization = "";
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -29,8 +29,8 @@ const userRegistration = credentials => dispatch => {
 const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
   axios
-    .post("/auth/login", credentials)
-    .then((res) => {
+    .post('/auth/login', credentials)
+    .then(res => {
       token.set(res.data.access_token);
       dispatch(authAction.loginSucces(res.data));
 
@@ -49,7 +49,7 @@ const userLogin = credentials => dispatch => {
 const userLogOut = () => dispatch => {
   dispatch(authAction.logOutRequest());
   axios
-    .post("/users/logout")
+    .post('/users/logout')
     .then(() => {
       token.unSet();
       dispatch(authAction.logOutSuccess());
@@ -58,6 +58,5 @@ const userLogOut = () => dispatch => {
       dispatch(authAction.logOutError(err));
     });
 };
-
 
 export default { token, userRegistration, userLogin, userLogOut };

@@ -5,10 +5,10 @@ import quizInfoActions from '../actions/quizInfoActions';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = token;
+    // axios.defaults.headers.common.Authorization = token;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    // axios.defaults.headers.common.Authorization = '';
   },
 };
 
