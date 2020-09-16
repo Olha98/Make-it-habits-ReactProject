@@ -16,15 +16,7 @@ class Habits extends Component {
   };
 
   openModal = () => {
-    this.setState({
-      isShowModal: true,
-    });
-  };
-
-  closeModal = () => {
-    this.setState({
-      isShowModal: false,
-    });
+    this.setState((prevState) => ({ isShowModal: !prevState.isShowModal }));
   };
 
   render() {
@@ -51,11 +43,7 @@ class Habits extends Component {
           >
             Добавить привычку +
           </button>
-          {this.state.isShowModal && (
-            <Modal closeModal={this.closeModal}>
-              <HabitChoice closeModal={this.closeModal} />
-            </Modal>
-          )}
+          {this.state.isShowModal && <HabitChoice close={this.openModal} />}
         </section>
       </>
     );

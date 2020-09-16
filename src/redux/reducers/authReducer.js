@@ -13,6 +13,8 @@ const user = (state = {}, { type, payload }) => {
 
     case authConstans.LOGIN_SUCCESS:
       return payload.access_token;
+    case authConstans.LOGOUT_SUCCESS:
+      return "";
 
     default:
       return state;

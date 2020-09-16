@@ -35,11 +35,8 @@ const logOutRequest = () => ({
   type: constans.LOGOUT_START,
 });
 
-const logOutSuccess = (id) => ({
+const logOutSuccess = () => ({
   type: constans.LOGOUT_SUCCESS,
-  payload: {
-    id,
-  },
 });
 
 
