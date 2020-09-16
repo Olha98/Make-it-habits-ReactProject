@@ -26,8 +26,8 @@ const root = combineReducers({
 
   auth: persistReducer(persistConfig, authReducer),
 
-  // user: persistReducer(persistUserConfig, dataUser),
-  user: persistReducer(persistUserConfig, dataUserReducer),
+  user: persistReducer(persistUserConfig, dataUser),
+  // user: persistReducer(persistUserConfig, dataUserReducer),
   quizInfo: quizReducer.quizInfo,
   error: quizReducer.error,
 
