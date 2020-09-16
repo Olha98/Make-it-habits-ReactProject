@@ -17,6 +17,7 @@ class CheckListItem extends Component {
   state = {
     showFullInfo: false,
     isShowModal: false,
+    fromCheckList: true,
     colors: [
       main_violet,
       main_pink,
@@ -130,7 +131,11 @@ class CheckListItem extends Component {
             </button>
             {isShowModal && (
               // <Modal close={this.closeModal}>
-              <CastomHabit close={this.closeModal} habit={this.props.habit} />
+              <CastomHabit
+                close={this.closeModal}
+                habit={this.props.habit}
+                fromCheckList={this.props.fromCheckList}
+              />
               // </Modal>
             )}
           </div>
