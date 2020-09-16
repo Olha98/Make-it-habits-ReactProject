@@ -30,10 +30,10 @@ class Login extends Component {
 
   hendleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state, "this");
+    // console.log(this.state, "this");
     const { email, password } = this.state;
     let OneUser = { email, password };
-    console.log(OneUser, "login");
+    // console.log(OneUser, "login");
     this.props.onLogin(OneUser);
     this.setState({ email: "", password: "" });
   };
