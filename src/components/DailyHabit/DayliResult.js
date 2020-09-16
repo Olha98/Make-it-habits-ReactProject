@@ -6,7 +6,7 @@ import style from "./DailyHabit.module.css";
 import moment from "moment";
 import "moment/locale/ru";
 
-const DailyResult = ({ close, updateResult }) => {
+const DailyResult = ({ close, updateResult, prevData }) => {
   const [quantity, setQuantity] = useState(0);
   const changeQuantity = (e) => {
     setQuantity(Number(e.target.value));
@@ -14,11 +14,11 @@ const DailyResult = ({ close, updateResult }) => {
 
   const submitQuantity = (e) => {
     e.preventDefault();
-    // const date = Date.now();
-    // console.log();
-    // console.log(date.getdate());
-    // console.log({ startedAt: moment().format(), data: [quantity] });
-    updateResult({ startedAt: moment().format(), data: [quantity] });
+    updateResult({
+      startedAt: moment().format(),
+      data: [...prevData, quantity],
+    });
+    close();
   };
   return (
     <div className={style.dailyHabitWrapper}>
@@ -58,6 +58,13 @@ const DailyResult = ({ close, updateResult }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  // console.log("state", state);
+  return {
+    prevData: state.dayInfo.data,
+  };
+};
+
 export default modalBackDrop(
-  connect(null, { updateResult: updateDailyResul })(DailyResult)
+  connect(mapStateToProps, { updateResult: updateDailyResul })(DailyResult)
 );
