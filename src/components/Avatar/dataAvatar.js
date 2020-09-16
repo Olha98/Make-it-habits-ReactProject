@@ -15,21 +15,31 @@ import avatar14 from "../../assests/images/avatars/Avatar.png";
 import avatar15 from "../../assests/images/avatars/Avatar-4-1.png";
 import avatar16 from "../../assests/images/avatars/Avatar-default.png";
 
+function toDataUrl(element) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(element.files[0]);
+  });
+}
+
 export const avatars = [
-  { image: avatar1, id: 1 },
-  { image: avatar2, id: 2 },
-  { image: avatar3, id: 3 },
-  { image: avatar4, id: 4 },
-  { image: avatar5, id: 5 },
-  { image: avatar6, id: 6 },
-  { image: avatar7, id: 7 },
-  { image: avatar8, id: 8 },
-  { image: avatar9, id: 9 },
-  { image: avatar10, id: 10 },
-  { image: avatar11, id: 11 },
-  { image: avatar12, id: 12 },
-  { image: avatar13, id: 13 },
-  { image: avatar14, id: 14 },
-  { image: avatar15, id: 15 },
-  { image: avatar16, id: 16 },
+  { image: avatar1, id: "1" },
+  { image: avatar2, id: "2" },
+  { image: avatar3, id: "3" },
+  { image: avatar4, id: "4" },
+  { image: avatar5, id: "5" },
+  { image: avatar6, id: "6" },
+  { image: avatar7, id: "7" },
+  { image: avatar8, id: "8" },
+  { image: avatar9, id: "9" },
+  { image: avatar10, id: "10" },
+  { image: avatar11, id: "11" },
+  { image: avatar12, id: "12" },
+  { image: avatar13, id: "13" },
+  { image: avatar14, id: "14" },
+  { image: avatar15, id: "15" },
+  { image: avatar16, id: "16" },
 ];
+
+console.log("avatar16", `${avatar16}`);
