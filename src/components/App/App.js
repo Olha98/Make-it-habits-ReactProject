@@ -6,9 +6,7 @@ import routes from "../../routes";
 import "../../css/vars.module.css";
 import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
-import Test from "../ModalBackDrop/Test";
-import HabitTemplate from "../HabitTemplate/HabitTemplate";
-import CastomHabitV from "../CustomHabitV/CastomHabitV";
+import DailyResult from "../DailyHabit/DayliResult";
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
@@ -30,7 +28,7 @@ const App = () => {
       <button onClick={() => changeStateIsOpen((prev) => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <CastomHabitV close={changeStateIsOpen} />}
+      {isTestOpen && <DailyResult close={changeStateIsOpen} />}
     </>
   );
 };
