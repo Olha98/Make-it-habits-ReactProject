@@ -72,9 +72,9 @@ class Profile extends Component {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
 
-    if (!this.props.firstName) {
-      return null;
-    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
+    // if (!this.props.firstName) {
+    //   return null;
+    // } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
 
     return (
       <>
