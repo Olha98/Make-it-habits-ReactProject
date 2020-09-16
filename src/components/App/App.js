@@ -7,6 +7,7 @@ import '../../css/vars.module.css';
 import '../../index.module.css';
 import Spinner from '../Spinner/Spinner';
 import DailyResult from '../DailyHabit/DayliResult';
+import ModalInterview from '../ModalInterview/ModalInterview';
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
@@ -24,11 +25,24 @@ const App = () => {
           )}
         </Switch>
       </Suspense>
+      <button
+        onClick={() => changeStateIsOpen(prev => !prev)}
+        style={{
+          position: 'absolute',
+          top: 0,
+          width: '200px',
+          height: '50px',
+          fontSize: '18px',
+        }}
+      >
+        Show Modal
+      </button>
+      {isTestOpen && <ModalInterview close={changeStateIsOpen} />}
 
-      <button onClick={() => changeStateIsOpen(prev => !prev)}>
+      {/* <button onClick={() => changeStateIsOpen(prev => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <DailyResult close={changeStateIsOpen} />}
+      {isTestOpen && <DailyResult close={changeStateIsOpen} />} */}
     </>
   );
 };
