@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import updateDailyResul from "../../redux/operations/dailyResultOperation";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
-
 import style from "./DailyHabit.module.css";
+import moment from "moment";
+import "moment/locale/ru";
 
 const DailyResult = ({ close, updateResult }) => {
   const [quantity, setQuantity] = useState(0);
@@ -13,8 +14,11 @@ const DailyResult = ({ close, updateResult }) => {
 
   const submitQuantity = (e) => {
     e.preventDefault();
-    console.log({ startedAt: Date.now(), data: [quantity] });
-    // updateResult({ startedAt: Date.now(), data: [quantity] });
+    // const date = Date.now();
+    // console.log();
+    // console.log(date.getdate());
+    // console.log({ startedAt: moment().format(), data: [quantity] });
+    updateResult({ startedAt: moment().format(), data: [quantity] });
   };
   return (
     <div className={style.dailyHabitWrapper}>
