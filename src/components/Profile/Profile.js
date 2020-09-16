@@ -26,6 +26,7 @@ class Profile extends Component {
   };
   componentDidMount() {
     this.setState(prevState => ({ ...prevState, ...this.props }));
+    console.log(this.state);
   }
   renderPasswordForm = () => {
     this.setState(prevState => ({

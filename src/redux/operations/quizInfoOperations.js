@@ -28,7 +28,8 @@ const addInfo = info => async (dispatch, getState) => {
     console.log(data);
     dispatch(quizInfoActions.addInfoSuccess(data));
   } catch (error) {
-    dispatch(quizInfoActions.getInfoError(error));
+    console.log(error);
+    dispatch(quizInfoActions.addInfoError(error));
   }
 };
 
@@ -49,7 +50,8 @@ const fetchInfo = () => async (dispatch, getState) => {
     console.log(user.quizInfo);
     dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
   } catch (error) {
-    dispatch(quizInfoActions.getInfoSuccess(error));
+    console.log(error);
+    dispatch(quizInfoActions.getInfoError(error));
   }
 };
 
