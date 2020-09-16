@@ -31,7 +31,7 @@ const App = () => {
       <button onClick={() => changeStateIsOpen((prev) => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <Congratulations close={changeStateIsOpen} />}
+      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />}
     </>
   );
 };
