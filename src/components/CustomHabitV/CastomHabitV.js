@@ -3,6 +3,7 @@ import style from "./CastomHabitV.module.css";
 import { connect } from "react-redux";
 import castomHabitActions from "../../redux/actions/castomHabitActions";
 import castomHabitOperation from "../../redux/operations/castomHabitOperation";
+import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 class CastomHabitV extends Component {
   state = {
@@ -10,7 +11,9 @@ class CastomHabitV extends Component {
     date: "",
     iteration: "",
     time: "",
+   
   };
+
 
   onClickSubmit = e => {
     e.preventDefault();
@@ -99,7 +102,7 @@ class CastomHabitV extends Component {
   }
 }
 
-export default connect(
+export default modalBackDrop(connect(
   null,
   {
     onAddCustomHabit: castomHabitActions.addCustomHabit,
@@ -107,4 +110,4 @@ export default connect(
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
     requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation
   }
-)(CastomHabitV);
+)(CastomHabitV));

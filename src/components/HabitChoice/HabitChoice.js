@@ -4,7 +4,7 @@ import CastomHabit from "../CustomHabit/CastomHabit";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 import CastomHabitV from "../CustomHabitV/CastomHabitV";
 
-function HabitChoice() {
+function HabitChoice({ close}) {
   const [isShowModal, setIsShowModal] = useState(false);
   const showModal = () => {
     setIsShowModal(true);
@@ -19,8 +19,12 @@ function HabitChoice() {
       <button className={style.habitChoiceTemplateBtn}>Выбрать шаблонную привычку +</button>
       <p className={style.habitChoiceText}>или создать свою собственную</p>
       <button onClick={showModal} className={style.habitChoiceOwnBtn}>Добавить свою привычку +</button>
-      {isShowModal && <CastomHabitV closeModal={closeModal} />}
-      <button className={style.habitChoiceCancelBtn}>Отмена</button>
+      {isShowModal && (
+        <CastomHabitV
+          close={closeModal}
+        />
+      )}
+      <button className={style.habitChoiceCancelBtn} onClick={close}>Отмена</button>
     </div>
   );
 }

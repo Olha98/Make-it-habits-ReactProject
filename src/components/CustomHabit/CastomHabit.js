@@ -54,8 +54,6 @@ class CastomHabit extends Component {
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
 
-    console.log("this.props.habit._id", this.props.habit._id);
-
     return (
       <div className={style.castomHabitContainer}>
         <h2 className={style.castomHabitTitle}>Настройте привычку под себя</h2>
