@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import quizInfoOperations from '../../redux/operations/quizInfoOperations';
+import quizInfoSelectors from '../../redux/selectors/quizInfoSelectors';
 import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
@@ -29,6 +30,7 @@ class ModalInterview extends Component {
       cigarettePerTime,
       cigarettePackPrice,
     } = this.state;
+    const { error } = this.props;
 
     return (
       <section className={styles.modalInterview}>
@@ -37,6 +39,7 @@ class ModalInterview extends Component {
           <p className={styles.description}>
             Так мы сможем более точно дать вам рекомендации:
           </p>
+          {error && <h3>Извините, произощла ошибка: {error.message}</h3>}
         </header>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
@@ -87,7 +90,11 @@ class ModalInterview extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button className={styles.button} type="submit">
+          <button
+            className="btnTransparentWhiteBorder"
+            type="submit"
+            style={{ margin: '0 auto' }}
+          >
             Сохранить
           </button>
           <p>&nbsp;</p>
@@ -103,6 +110,10 @@ class ModalInterview extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  error: quizInfoSelectors.getError(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),

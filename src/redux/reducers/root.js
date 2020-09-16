@@ -4,8 +4,10 @@ import storage from 'redux-persist/lib/storage';
 import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
+
 import dataUser from '../actions/dataUser';
-import quizInfoReducer from './quizInfoReducer';
+import dataUserReducer from './reducersProfile';
+import quizReducer from './quizInfoReducer';
 
 export const persistConfig = {
   key: 'auth',
@@ -23,8 +25,11 @@ const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
 
   auth: persistReducer(persistConfig, authReducer),
-  user: persistReducer(persistUserConfig, dataUser),
-  quizInfo: quizInfoReducer,
+
+  // user: persistReducer(persistUserConfig, dataUser),
+  user: persistReducer(persistUserConfig, dataUserReducer),
+  quizInfo: quizReducer.quizInfo,
+  error: quizReducer.error,
 
   dayInfo: () => ({
     cigaretteQuantity: 0,

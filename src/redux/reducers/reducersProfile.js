@@ -1,6 +1,6 @@
 // import actionsProfile from "../actions/actionsProfile";
 import constTypes from "../constants/constProfile";
-import imgAva from "../../assests/images/avatars/Avatar-default.png";
+// import imgAva from "../../assests/images/avatars/Avatar-default.png";
 
 // const initialState = {
 //   avatar: imgAva,
@@ -12,7 +12,7 @@ import imgAva from "../../assests/images/avatars/Avatar-default.png";
 // };
 
 const initialState = {
-  avatar: imgAva,
+  avatar: "",
   firstname: "",
   lastname: "",
   phone: "",
@@ -23,10 +23,11 @@ const initialState = {
 const dataUserReducer = (state = { ...initialState }, action) => {
   switch (action.type) {
     case constTypes.GET_DATA_USER_SUCCESS:
-      return { ...state, ...action.payload };
+      return { ...action.payload }; //! userData Оля
 
     case constTypes.ADD_DATA_USER_SUCCESS:
-      return { ...state, ...action.payload };
+      // console.log("action", action);
+      return action.payload;
 
     default:
       return state;

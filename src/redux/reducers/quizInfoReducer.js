@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import quizInfoConstants from '../constants/quizInfoConstants';
 
 const initialState = {
@@ -18,4 +19,15 @@ const quizInfo = (state = { ...initialState }, action) => {
   }
 };
 
-export default quizInfo;
+const error = (state = null, action) => {
+  switch (action.type) {
+    case quizInfoConstants.ADD_ERROR:
+      return action.payload;
+    case quizInfoConstants.GET_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export default { quizInfo, error };

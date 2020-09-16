@@ -6,9 +6,9 @@ import routes from '../../routes';
 import '../../css/vars.module.css';
 import '../../index.module.css';
 import Spinner from '../Spinner/Spinner';
+import DailyResult from '../DailyHabit/DayliResult';
 import ModalInterview from '../ModalInterview/ModalInterview';
-
-import HabitTemplate from '../HabitTemplate/HabitTemplate';
+// import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
   const [isTestOpen, changeStateIsOpen] = useState(false);
@@ -42,7 +42,7 @@ const App = () => {
       {/* <button onClick={() => changeStateIsOpen(prev => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />} */}
+      {isTestOpen && <DailyResult close={changeStateIsOpen} />} */}
     </>
   );
 };
