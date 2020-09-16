@@ -1,15 +1,10 @@
-import axios from "axios";
-import leftSideBarAction from "../actions/leftSideBarActions";
+import axios from 'axios';
+import leftSideBarAction from '../actions/leftSideBarActions';
 
-axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
-<<<<<<< HEAD
-<<<<<<< HEAD
+axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
+
 // axios.defaults.headers.common.Authorization =
 //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
-=======
->>>>>>> 6dd2317079d8212c1903db9a18818823ff39489f
-=======
->>>>>>> 6dd2317079d8212c1903db9a18818823ff39489f
 
 // export const token = {
 //   set(token) {
@@ -38,11 +33,11 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-const logout = () => async (dispatch) => {
+const logout = () => async dispatch => {
   dispatch(leftSideBarAction.logoutStart());
 
   try {
-    await axios.post("users/logout");
+    await axios.post('users/logout');
 
     // token.unset();
     dispatch(leftSideBarAction.logoutSuccess());
