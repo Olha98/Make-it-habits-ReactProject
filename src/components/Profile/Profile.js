@@ -37,14 +37,13 @@ const validationSchema = Yup.object().shape({
 class Profile extends Component {
   state = {
     changePassword: false,
-    isShovModal: false,
+    isShowModal: this.props.isModalInterview === 0,
   };
 
   componentDidMount() {
     console.log('this.props', this.props);
     // this.setState((prevState) => ({ ...prevState, ...this.props }));
     this.props.getDataUserOperation();
-    this.toggleModal();
   }
   renderPasswordForm = () => {
     this.setState(prevState => ({
@@ -69,12 +68,6 @@ class Profile extends Component {
   //   console.log("this.props", this.props);
   //   console.log("this.state", this.state);
   // };
-
-  toggleModal = () => {
-    this.setState(prevState => {
-      return { isShovModal: !prevState.isShovModal };
-    });
-  };
 
   render() {
     const { changePassword } = this.state;
@@ -260,11 +253,8 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             {/* <Card /> */}
           </div>
-          <button onClick={this.toggleModal}>modal</button>
 
-          {this.state.isShovModal && (
-            <ModalInterview close={this.toggleModal} />
-          )}
+          {this.state.isShowModal && <ModalInterview close={() => null} />}
         </div>
       </>
     );
@@ -277,6 +267,7 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
+    isModalInterview: state.quizInfo.smokeYears,
   };
 };
 
