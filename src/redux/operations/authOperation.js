@@ -11,7 +11,7 @@ const token = {
     console.log('token', token);
   },
   unSet() {
-    axios.defaults.headers.common.Authorization = "";
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -30,21 +30,20 @@ const userRegistration = credentials => dispatch => {
 };
 
 const userLogin = credentials => dispatch => {
-  console.log("userLogin!!!!!!!!!!!!!!!!!!!!");
+  console.log('userLogin!!!!!!!!!!!!!!!!!!!!');
   dispatch(authAction.loginRequest());
   console.log(credentials);
   axios
-    .post("/auth/login", credentials)
-    .then((res) => {
+    .post('/auth/login', credentials)
+    .then(res => {
       token.set(res.data.access_token);
       dispatch(authAction.loginSucces(res.data));
 
-      axios.get("/habits").then((res) => {
-        console.log(res, "res!!!!!!!!!!!!!!!!!!!!");
-        dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
+      axios.get('/habits').then(res => {
+        console.log(res, 'res!!!!!!!!!!!!!!!!!!!!');
+        // dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
+        dispatch(actionsGetUserData(res.data));
       });
-
-      
     })
     .catch(err => {
       console.log(err, 'error');
@@ -55,7 +54,7 @@ const userLogin = credentials => dispatch => {
 const userLogOut = () => dispatch => {
   dispatch(authAction.logOutRequest());
   axios
-    .post("/users/logout")
+    .post('/users/logout')
     .then(() => {
       token.unSet();
       dispatch(authAction.logOutSuccess());
@@ -64,6 +63,5 @@ const userLogOut = () => dispatch => {
       dispatch(authAction.logOutError(err));
     });
 };
-
 
 export default { token, userRegistration, userLogin, userLogOut };
