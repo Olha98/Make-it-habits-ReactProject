@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import leftSideBarSelectors from "../../../redux/selectors/leftSideBarSelectors";
-import HabitItem from "../HabitItem/HabitItem";
-import style from "./Habits.module.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
+import HabitItem from '../HabitItem/HabitItem';
+import style from './Habits.module.css';
 
-import CustomScrollbars from "../../../assests/scroll/scroll";
-import Modal from "../../ModalBackDrop/ModalBackDrop";
+import CustomScrollbars from '../../../assests/scroll/scroll';
+//import Modal from "../../ModalBackDrop/ModalBackDrop";
 
-import "../../../main.css";
-import HabitChoice from "../../HabitChoice/HabitChoice";
+import '../../../main.css';
+import HabitChoice from '../../HabitChoice/HabitChoice';
 
 class Habits extends Component {
   state = {
@@ -16,7 +16,7 @@ class Habits extends Component {
   };
 
   openModal = () => {
-    this.setState((prevState) => ({ isShowModal: !prevState.isShowModal }));
+    this.setState(prevState => ({ isShowModal: !prevState.isShowModal }));
   };
 
   render() {
@@ -50,7 +50,7 @@ class Habits extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   //const getNotifications =
   //const habitsArray = leftSideBarSelectors.listOfHabits(state); // [ [null, null, null], [null, null, null],[null, null, null]]
   //const numberOfHabits = habitsArray.length
