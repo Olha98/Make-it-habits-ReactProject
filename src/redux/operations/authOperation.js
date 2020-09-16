@@ -33,28 +33,17 @@ const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
   console.log(credentials);
   axios
-    .post('/auth/login', credentials)
-    .then(res => {
-      console.log(res, 'loginlogin');
+    .post("/auth/login", credentials)
+    .then((res) => {
       token.set(res.data.access_token);
-
-      axios.get('/habits').then(
-        // (res) => console.log(res.data.user, "AAAAAAASSASSSASS")
-        res => dispatch(userActions.getDataUserSuccess(res.data.user)),
-      );
-
-      // Axios.get("/users/updateQuizInfo").then((res) =>
-      //   console.log(res, "updateQuizInfo!!!!!!!!!!!!")
-      // );
-      // Axios.get("/users/updateCigarettes").then((res) =>
-      //   console.log(res, "updateCigarettes!!!!!!!!!!!!")
-      // );
-
       dispatch(authAction.loginSucces(res.data));
-      axios.get('/habits').then(
-        // res=>console.log(res.data.user)
-        res => dispatch(actionsGetUserData(res.data.user)),
-      );
+
+      axios.get("/habits").then((res) => {
+        console.log(res, "res!!!!!!!!");
+        dispatch(actionsGetUserData({...res.data.user, habits: res.data.habits}));
+      });
+
+      
     })
     .catch(err => {
       console.log(err, 'error');
@@ -65,7 +54,7 @@ const userLogin = credentials => dispatch => {
 const userLogOut = () => dispatch => {
   dispatch(authAction.logOutRequest());
   axios
-    .post('/users/logout')
+    .post("/users/logout")
     .then(() => {
       token.unSet();
       dispatch(authAction.logOutSuccess());
@@ -75,23 +64,5 @@ const userLogOut = () => dispatch => {
     });
 };
 
-// const getCurrentUser = (credentials) => (dispatch, getState) => {
-//   const {
-//     auth: { token: getingtoken },
-//   } = getState();
-//   if (!getingtoken) {
-//     return;
-//   }
-//   token.set(getingtoken);
-//   dispatch(authAction.getCurrentUserRequest());
-//   axios
-//     .get("/users/current", credentials)
-//     .then((res) => {
-//       dispatch(authAction.getCurrentUserSuccess(res.data));
-//     })
-//     .catch((err) => {
-//       dispatch(authAction.getCurrentUserError(err));
-//     });
-// };
 
 export default { token, userRegistration, userLogin, userLogOut };
