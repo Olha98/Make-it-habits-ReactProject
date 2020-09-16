@@ -8,6 +8,8 @@ import "../../index.module.css";
 import Spinner from "../Spinner/Spinner";
 import Test from "../ModalBackDrop/Test";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
+import DailyResult from "../DailyHabit/DayliResult";
+import Congratulations from "../Congratulations/Congratulations";
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
@@ -29,7 +31,7 @@ const App = () => {
       <button onClick={() => changeStateIsOpen((prev) => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <HabitTemplate close={changeStateIsOpen} />}
+      {isTestOpen && <Congratulations close={changeStateIsOpen} />}
     </>
   );
 };

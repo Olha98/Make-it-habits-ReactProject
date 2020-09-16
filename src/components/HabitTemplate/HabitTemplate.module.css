@@ -40,17 +40,19 @@
 
 .habitTemplateItemLink {
   font-size: 18px;
+  font-weight: 500;
   line-height: 44px;
   color: #43d190;
   text-decoration: none;
   border: 0;
   background-color: #e9faf7;
   cursor: pointer;
+  width: 425px;
 }
 
 .habitTemplateItemLink:hover {
   background-color: #cbf6e3;
-  color: #ffffff;
+  color: #4f4f4f;
 }
 
 .habitTemplateItem {
