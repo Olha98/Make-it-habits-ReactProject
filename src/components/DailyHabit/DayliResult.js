@@ -5,6 +5,7 @@ import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 import style from "./DailyHabit.module.css";
 import moment from "moment";
 import "moment/locale/ru";
+import closeBtn from "../../assests/images/closeBlack.png";
 
 const DailyResult = ({ close, updateResult, prevData }) => {
   const [quantity, setQuantity] = useState(0);
@@ -52,6 +53,9 @@ const DailyResult = ({ close, updateResult, prevData }) => {
           <button type="submit" className="buttonTransparent">
             Сохранить
           </button>
+          <div onClick={close} className={style.closeBtnWrapper}>
+            <img width="16" height="16" alt="closeBtn" src={closeBtn} />
+          </div>
         </div>
       </form>
     </div>
