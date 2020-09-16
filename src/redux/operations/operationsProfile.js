@@ -42,8 +42,8 @@ import { token } from './authOperation';
 const addDataUserOperation = user => async (dispatch, getState) => {
   
   const tokenNow = getState().auth.access_token;
-  console.log(tokenNow, 'tokenNow');
   token.set(tokenNow);
+
   dispatch(actionsLoader.loaderOn());
   try {
     const { data } = await axios.patch('/users', user);
@@ -53,6 +53,7 @@ const addDataUserOperation = user => async (dispatch, getState) => {
         ...data,
       }),
     );
+    
   } catch (error) {
     console.log('error-add', error);
     dispatch(actionsUser.addDataUserError(error));
