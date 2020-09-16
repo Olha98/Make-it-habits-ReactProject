@@ -8,7 +8,6 @@ axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = token;
-    console.log('token', token);
   },
   unSet() {
     axios.defaults.headers.common.Authorization = '';
@@ -17,7 +16,6 @@ const token = {
 
 const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
-  console.log(credentials);
   axios
     .post('/auth/registration', credentials)
     .then(res => {
@@ -30,25 +28,20 @@ const userRegistration = credentials => dispatch => {
 };
 
 const userLogin = credentials => dispatch => {
-  console.log('userLogin!!!!!!!!!!!!!!!!!!!!');
   dispatch(authAction.loginRequest());
-  console.log(credentials);
   axios
     .post('/auth/login', credentials)
     .then(res => {
-      console.log(res.data, 'oken');
       token.set(res.data.access_token);
       dispatch(authAction.loginSucces(res.data));
 
       axios.get('/habits').then(res => {
-        console.log(res, 'res!!!!!!!!!!!!!!!!!!!!');
         dispatch(
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
         );
       });
     })
     .catch(err => {
-      console.log(err, 'error');
       dispatch(authAction.loginError(err));
     });
 };
