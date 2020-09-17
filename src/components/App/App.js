@@ -25,7 +25,7 @@ const App = () => {
           )}
         </Switch>
       </Suspense>
-      {/* <button
+      <button
         onClick={() => changeStateIsOpen(prev => !prev)}
         style={{
           position: 'absolute',
@@ -37,7 +37,7 @@ const App = () => {
       >
         Show Modal
       </button>
-      {isTestOpen && <ModalInterview close={changeStateIsOpen} />} */}
+      {isTestOpen && <ModalInterview close={changeStateIsOpen} />}
 
       {/* <button onClick={() => changeStateIsOpen(prev => !prev)}>
         OpenModal

@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import style from "./CastomHabit.module.css";
-import { connect } from "react-redux";
-import castomHabitActions from "../../redux/actions/castomHabitActions";
-import castomHabitOperation from "../../redux/operations/castomHabitOperation";
-import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
+import React, { Component } from 'react';
+import style from './CastomHabit.module.css';
+import { connect } from 'react-redux';
+import castomHabitActions from '../../redux/actions/castomHabitActions';
+import castomHabitOperation from '../../redux/operations/castomHabitOperation';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 class CastomHabit extends Component {
   state = {
-    name: "",
-    date: "",
-    iteration: "",
-    time: "",
+    name: '',
+    date: '',
+    iteration: '',
+    time: '',
   };
 
-  onClickSubmit = (e) => {
+  onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
@@ -29,14 +29,14 @@ class CastomHabit extends Component {
     }
   };
 
-  handleChenge = (e) => {
+  handleChenge = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  editNumber = (number) => {
+  editNumber = number => {
     if (number < 10) {
       return `0${number}`;
     } else return number;
@@ -69,7 +69,7 @@ class CastomHabit extends Component {
                 type="text"
                 className={style.castomHabitName}
                 name="name"
-                value={this.props.fromCheckList && this.props.habit.name}
+                value={this.props.chosenHabit || this.props.fromCheckList && this.props.habit.name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -79,7 +79,7 @@ class CastomHabit extends Component {
                 type="date"
                 className={style.castomHabitDate}
                 name="date"
-                value={this.props.fromCheckList && this.props.habit.planningDate}
+                value={this.props.fromCheckList && planningDate}
                 onChange={this.handleChenge}
               />
             </label>
@@ -89,7 +89,7 @@ class CastomHabit extends Component {
                 type="time"
                 className={style.castomHabitTime}
                 name="time"
-                value={this.props.fromCheckList && this.props.habit.planningHours}
+                value={this.props.fromCheckList && planningHours}
                 onChange={this.handleChenge}
               />
             </label>
@@ -149,5 +149,5 @@ export default modalBackDrop(
     removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
     requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
-  })(CastomHabit)
+  })(CastomHabit),
 );

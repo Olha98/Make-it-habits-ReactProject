@@ -73,15 +73,13 @@ class CheckListItem extends Component {
 
     const updateInfo = { id, status };
 
-    const array = this.props.habit.data;
-    array.find((elem, idx) => {
-      if (elem[idx] !== status) {
-        console.log('elem[idx]', elem[idx]);
-        // elem[idx] = status;
-        console.log('elem', elem);
-      }
+    // const array = [...this.props.habit.data];
+    const array = [null, null, null];
+    const newArray = array.map((elem, idx) => {
+      console.log('elem', elem);
     });
     console.log('array', array);
+    console.log('newArray', newArray);
 
     //  const newArray;
     // return;
@@ -102,6 +100,7 @@ class CheckListItem extends Component {
   }
 
   render() {
+    console.log('this.stateLISTITEM', this.state);
     // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
