@@ -6,6 +6,7 @@ import authConstans from '../constants/authConstans';
 const initialState = {
   login: null,
   email: null,
+  access_token: null,
 };
 
 const user = (state = initialState, { type, payload }) => {
