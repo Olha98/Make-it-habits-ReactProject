@@ -1,4 +1,5 @@
 .dailyHabitWrapper {
+  position: relative;
   width: 784px;
   height: 368px;
   background-color: #ffffff;
@@ -70,6 +71,14 @@
 }
 
 ::placeholder {
-  /* padding-left: 20px; */
   font-weight: 300;
+}
+
+.closeBtnWrapper {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }

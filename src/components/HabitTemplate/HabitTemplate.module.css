@@ -1,4 +1,5 @@
 .habbitTemplateWrapper {
+  position: relative;
   width: 784px;
   height: 580px;
   background-color: #ffffff;
@@ -17,20 +18,6 @@
   /* overflow-y: scroll; */
 }
 
-/* .habitTemplateList::-webkit-scrollbar {
-  width: 6px;
-}
-
-.habitTemplateList::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #f6f6f6;
-  border-radius: 3px;
-}
-
-.habitTemplateList::-webkit-scrollbar-thumb {
-  background: #43d190;
-  border-radius: 3px;
-} */
-
 .habitTemplateTitle {
   font-weight: 500;
   font-size: 26px;
@@ -40,17 +27,19 @@
 
 .habitTemplateItemLink {
   font-size: 18px;
+  font-weight: 500;
   line-height: 44px;
   color: #43d190;
   text-decoration: none;
   border: 0;
   background-color: #e9faf7;
   cursor: pointer;
+  width: 425px;
 }
 
 .habitTemplateItemLink:hover {
   background-color: #cbf6e3;
-  color: #ffffff;
+  color: #4f4f4f;
 }
 
 .habitTemplateItem {
@@ -87,4 +76,13 @@
   background-color: #43d190;
   color: #ffffff;
   outline: 0;
+}
+
+.closeBtnWrapper {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
 }

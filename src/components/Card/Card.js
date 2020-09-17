@@ -6,6 +6,7 @@ import { ReactComponent as TelegramIcon } from "../../assests/images/Card/telegr
 function Card() {
   return (
     <>
+      <p className={style.sectionTitle}>Мои карты</p>
       <div className={style.card}>
         <p className={style.cardName}>Моя карта</p>
         <p className={style.cardNumber}>4213 3535 5631 0991</p>
