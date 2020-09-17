@@ -189,11 +189,11 @@ class CheckListItem extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    stateHabits: state.user.habits,
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     stateHabits: state.user.habits,
+//   };
+// };
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -201,4 +201,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckListItem);
+export default connect(null, mapDispatchToProps)(CheckListItem);
