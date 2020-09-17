@@ -7,13 +7,18 @@ import style from './Avatar.module.css';
 // ------------------------
 
 class Avatar extends Component {
-  changeAvatar = avatar => {
-    // avatars.find(avatar => avatar.id === id);
-    console.log('this.propsQQQQ', this.props);
-    this.props.addDataUserOperation({ ...this.props.avatar });
+  state = {
+    avatars,
+  };
+
+  changeAvatar = () => {
+    const qwerty = avatars.find(item => item.id === 10);
+    console.log('qwerty', qwerty);
+    // this.props.addDataUserOperation({ ...this.props.avatar });
   };
 
   render() {
+    // console.log('object', changeAvatar());
     return (
       <>
         <div className={style.container}>
@@ -25,7 +30,7 @@ class Avatar extends Component {
               {avatars.map(avatar => (
                 <li
                   key={avatar.id}
-                  onClick={this.changeAvatar(avatar)}
+                  onClick={this.changeAvatar()}
                   className={style.item}
                 >
                   <NavLink exact to="/profile">

@@ -6,6 +6,7 @@ import authConstans from "../constants/authConstans";
 const initialState = {
   login: null,
   email: null,
+  access_token: null,
 };
 
 const user = (state = initialState, { type, payload }) => {
@@ -21,6 +22,7 @@ const user = (state = initialState, { type, payload }) => {
 
     case authConstans.LOGIN_SUCCESS:
       return payload.access_token;
+      
     case authConstans.LOGOUT_SUCCESS:
       return "";
 

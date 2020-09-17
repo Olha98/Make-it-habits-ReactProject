@@ -40,16 +40,18 @@ class Profile extends Component {
     isShowModal: this.props.isModalInterview === 0,
   };
 
-  componentDidMount() {
-    // console.log("this.props", this.props);
-    this.setState(prevState => ({ ...prevState, ...this.props }));
-    // this.props.getDataUserOperation();
-  }
+  // componentDidMount() {
+  //   // console.log('this.props', this.props);
+  //   // this.setState((prevState) => ({ ...prevState, ...this.props }));
+  //   // this.props.getDataUserOperation();
+  // }
+
   renderPasswordForm = () => {
     this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
+
   changePath = () => {
     //
   };
@@ -62,11 +64,11 @@ class Profile extends Component {
 
   // handleSubmit = (e) => {
   //   e.preventDefault();
-  //   // const { name, value } = e.target;
-  //   // this.setState({ [name]: value });
-  //   // const { firstName, lastName, phone, email, avatar } = this.state;
+  // const { name, value } = e.target;
+  // this.setState({ [name]: value });
+  // const { firstName, lastName, phone, email, avatar } = this.state;
 
-  //   this.props.addDataUserOperation({ ...this.state });
+  // this.props.addDataUserOperation({ ...this.state });
   //   console.log("this.props", this.props);
   //   console.log("this.state", this.state);
   // };
@@ -274,7 +276,8 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: state.user.quizInfo.smokeYears,
+    isModalInterview: 111111,
+    // isModalInterview: state.user.quizInfo.smokeYears,
   };
 };
 

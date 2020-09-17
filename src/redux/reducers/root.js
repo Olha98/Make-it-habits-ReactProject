@@ -5,6 +5,7 @@ import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
 import dataUser from '../actions/dataUser';
+// import dataUserReducer from './reducersProfile';
 import quizReducer from './quizInfoReducer';
 import dayInfoReducer from './dailyCiggaretsReduces';
 // import dataUserReducer from './reducersProfile';

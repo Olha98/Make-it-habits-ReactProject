@@ -23,7 +23,7 @@ const initialState = {
 const dataUserReducer = (state = { ...initialState }, action) => {
   switch (action.type) {
     // case constTypes.GET_DATA_USER_SUCCESS:
-    //   return { ...action.payload }; //! используем общий запрос userData Оля
+    //   return { ...action.payload }; //! userData Оля
 
     case constTypes.ADD_DATA_USER_SUCCESS:
       console.log('action', action);
