@@ -13,7 +13,6 @@ const addHabitOperation = habit => (dispatch, getState) => {
     .post('habits', habit)
     .then(response => {
       console.log(response, "response")
-      // dispatch(checkListActions.addHabitStatusSuccess({ ...response.data, ...habit }));
       axios.get('/habits').then(res => {
         dispatch(
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
@@ -41,5 +40,21 @@ const removeHabitOperation = habitId => (dispatch, getState) => {
     });
 };
 
+const patchHabitOperation = habit => (dispatch, getState) => {
+  const tokenNow = getState().auth.access_token;
+  token.set(tokenNow);
+  axios
+    .patch('habits', habit)
+    .then(response => {
+      console.log(response, "response")
+      axios.get('/habits').then(res => {
+        dispatch(
+          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+        );
+      });
+    })
+    .catch(error => console.log('ERROR'));
+};
 
-export default { addHabitOperation, removeHabitOperation };
+
+export default { addHabitOperation, removeHabitOperation, patchHabitOperation };

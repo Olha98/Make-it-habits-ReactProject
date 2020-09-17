@@ -39,6 +39,15 @@ const removeCustomHabit = habitId => {
   }
 }
 
+const patchHabitStatus = habit => {
+  return {
+    type: checkListConstants.PATCH_CUSTOM_HABIT,
+    payload: {
+      ...habit
+    }
+  };
+};
+
 export default {
   getHabitsRequest,
   getHabitsSuccess,
@@ -46,5 +55,6 @@ export default {
   addHabitStatusRequest,
   addHabitStatusSuccess,
   addHabitStatusError,
-  removeCustomHabit
+  removeCustomHabit,
+  patchHabitStatus
 };

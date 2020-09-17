@@ -13,12 +13,28 @@ class CastomHabit extends Component {
     time: '',
   };
 
+  componentDidMount() {
+    if (this.props.chosenHabit) {
+      this.setState({ name: this.props.chosenHabit })
+    }
+    if (this.props.fromCheckList) {
+      console.log('this.props.habit', this.props.habit)
+      this.setState({ name: this.props.habit.name })
+    }
+  }
+
   onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
-    if (e.target.dataset.save) {
-      // this.props.onAddCustomHabit({ name, planningTime, iteration })
+    let id = "";
+    if (this.props.habit) {
+      id = this.props.habit._id
+    }
+    if (e.target.dataset.save && this.props.fromCheckList) {
+      this.props.requestPatchCustomHabit({ name, id});
+      this.props.closeModal();
+    } else if (e.target.dataset.save) {
       this.props.requestAddCustomHabit({ name, planningTime, iteration });
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
@@ -26,7 +42,7 @@ class CastomHabit extends Component {
     } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
-    }
+    } 
   };
 
   handleChenge = e => {
@@ -43,8 +59,6 @@ class CastomHabit extends Component {
   };
 
   render() {
-    // const { name, iteration, planningTime } = this.props.habit;
-    // const { fromCheckList } = this.props
     const date = new Date(this.props.habit?.planningTime);
     const day = this.editNumber(date.getDate());
     const month = this.editNumber(date.getMonth());
@@ -53,7 +67,7 @@ class CastomHabit extends Component {
     const minute = this.editNumber(date.getMinutes());
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
-
+console.log('this.props', this.props)
 
     return (
       <div className={style.castomHabitContainer}>
@@ -69,7 +83,7 @@ class CastomHabit extends Component {
                 type="text"
                 className={style.castomHabitName}
                 name="name"
-                value={this.props.chosenHabit || this.props.fromCheckList && this.props.habit.name}
+                value={this.state.name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -111,14 +125,14 @@ class CastomHabit extends Component {
               </select>
             </label>
           </div>
-
+          {this.props.fromCheckList &&
           <button
             onClick={this.onClickSubmit}
             data-delete="delete"
             className={style.castomHabitDelete}
           >
             удалить привычку
-          </button>
+          </button>}
           <div className={style.castomHabitBtnWrapper}>
             <button
               type="submit"
@@ -149,5 +163,6 @@ export default modalBackDrop(
     removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
     requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
+    requestPatchCustomHabit: castomHabitOperation.patchHabitOperation,
   })(CastomHabit),
 );

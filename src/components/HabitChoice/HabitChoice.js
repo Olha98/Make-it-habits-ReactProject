@@ -33,12 +33,12 @@ function HabitChoice({ close}) {
       <button type="button" onClick={showModal} className={style.habitChoiceOwnBtn}>Добавить свою привычку +</button>
       {isShowModal && (
         <CastomHabit
-          close={closeModal}
+          close={close}
         />
       )}
       {isShowTemplate && (
         <HabitTemplate
-          close={closeTemplateModal}
+          close={close}
         />
       )}
       <button className={style.habitChoiceCancelBtn} onClick={close}>Отмена</button>
