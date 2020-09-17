@@ -42,6 +42,7 @@ import { token } from './authOperation';
 const addDataUserOperation = user => async (dispatch, getState) => {
   const tokenNow = getState().auth.access_token;
   token.set(tokenNow);
+  
 
   dispatch(actionsLoader.loaderOn());
   try {
