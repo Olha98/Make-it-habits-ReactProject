@@ -9,7 +9,7 @@ const getCurrentAmountOfCigarettes = (state) => state.dayInfo.cigaretteQuantity;
 
 const getTimeForOneCigarette = (state) => state.quizInfo.cigarettePerTime;
 
-// ===============habits=========
+// ===============habits========
 
 const listOfHabits = (state) => state.habits;
 
