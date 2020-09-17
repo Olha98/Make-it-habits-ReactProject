@@ -44,7 +44,7 @@ const App = () => {
       <button onClick={() => changeStateIsOpen(prev => !prev)}>
         OpenModal
       </button>
-      {isTestOpen && <CastomHabit close={changeStateIsOpen} />}
+      {isTestOpen && <Congratulations close={changeStateIsOpen} />}
     </>
   );
 };
