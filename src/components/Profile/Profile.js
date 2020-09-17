@@ -267,7 +267,8 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: state.user.quizInfo.smokeYears,
+    isModalInterview: 111111,
+    // isModalInterview: state.user.quizInfo.smokeYears,
   };
 };
 

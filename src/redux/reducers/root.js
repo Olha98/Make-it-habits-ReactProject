@@ -6,6 +6,7 @@ import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
 import dayInfoReducer from './dailyCiggaretsReduces';
 import dataUser from '../actions/dataUser';
+// import dataUserReducer from './reducersProfile';
 import quizReducer from './quizInfoReducer';
 
 
