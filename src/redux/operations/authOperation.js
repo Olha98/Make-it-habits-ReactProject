@@ -37,7 +37,7 @@ const userLogin = credentials => dispatch => {
       dispatch(authAction.loginSucces(res.data));
 
       axios.get('/habits').then(res => {
-        console.log(res, "RESMOTHERFACKER")
+        console.log(res, 'RESMOTHERFACKER');
         dispatch(
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
         );
