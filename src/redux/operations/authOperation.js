@@ -1,76 +1,64 @@
-import Axios from "axios";
-import authAction from "../actions/authAction";
+import axios from 'axios';
+import authAction from '../actions/authAction';
+import dataUser, { actionsGetUserData } from '../actions/dataUser';
+import userActions from '../actions/actionsProfile';
 
-Axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
+axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
-    Axios.defaults.headers.common.Authorization = token;
+    console.log(token, 'token!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    axios.defaults.headers.common.Authorization = token;
   },
   unSet() {
-    Axios.defaults.headers.common.Authorization = ``;
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
-const userRegistration = (credentials) => (dispatch) => {
+const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
-  console.log(credentials);
-  Axios.post("/auth/registration", credentials)
-    .then((res) => {
-      console.log(res, "registr");
-      token.set(res.data.token);
+  axios
+    .post('/auth/registration', credentials)
+    .then(res => {
+      token.set(res.data.access_token);
       dispatch(authAction.registrationSuccess(res.data));
     })
-    .catch((err) => {
+    .catch(err => {
       dispatch(authAction.registrationError(err));
     });
 };
 
-const userLogin = (credentials) => (dispatch) => {
+const userLogin = credentials => dispatch => {
   dispatch(authAction.loginRequest());
-  console.log(credentials);
-  Axios.post("/auth/login", credentials)
-    .then((res) => {
-      console.log(res, "loginlogin");
-      token.set(res.data.token);
+  axios
+    .post('/auth/login', credentials)
+    .then(res => {
+      token.set(res.data.access_token);
       dispatch(authAction.loginSucces(res.data));
+
+      axios.get('/habits').then(res => {
+        console.log(res, "RESMOTHERFACKER")
+        dispatch(
+          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+        );
+      });
     })
-    .catch((err) => {
-      console.log(err, "error");
+    .catch(err => {
       dispatch(authAction.loginError(err));
     });
 };
 
-// const userLogOut = () => (dispatch) => {
-//   dispatch(authAction.logOutRequest());
-//   axios
-//     .post("/users/logout")
-//     .then(() => {
-//       token.unSet();
-//       dispatch(authAction.logOutSuccess());
-//     })
-//     .catch((err) => {
-//       dispatch(authAction.logOutError(err));
-//     });
-// };
+const userLogOut = () => dispatch => {
+  dispatch(authAction.logOutRequest());
+  axios
+    .post('/users/logout')
+    .then(() => {
+      token.unSet();
+      dispatch(authAction.logOutSuccess());
+    })
+    .catch(err => {
+      dispatch(authAction.logOutError(err));
+    });
+};
 
-// const getCurrentUser = (credentials) => (dispatch, getState) => {
-//   const {
-//     auth: { token: getingtoken },
-//   } = getState();
-//   if (!getingtoken) {
-//     return;
-//   }
-//   token.set(getingtoken);
-//   dispatch(authAction.getCurrentUserRequest());
-//   axios
-//     .get("/users/current", credentials)
-//     .then((res) => {
-//       dispatch(authAction.getCurrentUserSuccess(res.data));
-//     })
-//     .catch((err) => {
-//       dispatch(authAction.getCurrentUserError(err));
-//     });
-// };
-
-export default { userRegistration, userLogin };
+export default { token, userRegistration, userLogin, userLogOut };

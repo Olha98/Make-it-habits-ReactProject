@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import leftSideBarSelectors from "../../../redux/selectors/leftSideBarSelectors";
-import HabitItem from "../HabitItem/HabitItem";
-import style from "./Habits.module.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
+import HabitItem from '../HabitItem/HabitItem';
+import style from './Habits.module.css';
 
-import CustomScrollbars from "../../../assests/scroll/scroll";
-import Modal from "../../ModalBackDrop/ModalBackDrop";
+import CustomScrollbars from '../../../assests/scroll/scroll';
+//import Modal from "../../ModalBackDrop/ModalBackDrop";
 
-import "../../../main.css";
-import HabitChoice from "../../HabitChoice/HabitChoice";
+import '../../../main.css';
+import HabitChoice from '../../HabitChoice/HabitChoice';
 
 class Habits extends Component {
   state = {
@@ -16,15 +16,7 @@ class Habits extends Component {
   };
 
   openModal = () => {
-    this.setState({
-      isShowModal: true,
-    });
-  };
-
-  closeModal = () => {
-    this.setState({
-      isShowModal: false,
-    });
+    this.setState(prevState => ({ isShowModal: !prevState.isShowModal }));
   };
 
   render() {
@@ -39,8 +31,8 @@ class Habits extends Component {
             }}
           >
             <ul className={style.leftSideBar_habits__list}>
-              {this.props.habits.map(({ id }, idx) => (
-                <HabitItem key={id} id={id} idx={idx} />
+              {this.props.habits.map(({ _id }, idx) => (
+                <HabitItem key={_id} id={_id} idx={idx} />
               ))}
             </ul>
           </CustomScrollbars>
@@ -51,17 +43,16 @@ class Habits extends Component {
           >
             Добавить привычку +
           </button>
-          {this.state.isShowModal && (
-            <Modal closeModal={this.closeModal}>
-              <HabitChoice closeModal={this.closeModal} />
-            </Modal>
-          )}
+          {this.state.isShowModal && <HabitChoice close={this.openModal} />}
         </section>
       </>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  habits: leftSideBarSelectors.listOfHabits(state),
-});
+
+const mapStateToProps = state => {
+  return {
+    habits: leftSideBarSelectors.listOfHabits(state),
+  };
+};
 export default connect(mapStateToProps)(Habits);

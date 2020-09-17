@@ -6,7 +6,8 @@ const habitReducer = (state = [], action) => {
       return [...state, action.payload];
     
     case customHabitConstans.REMOVE_CUSTOM_HABIT:
-      return (state, action) => state.filter(habit => habit.habitId !== action.payload);
+      return state.filter(habit => habit.habitId !== action.payload);
+
 
 
     default:
