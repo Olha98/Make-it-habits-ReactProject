@@ -39,7 +39,7 @@ const root = combineReducers({
   }),
   dayInfo: dayInfoReducer,
 
-  habits: habitReducer,
+  // habits: habitReducer,
 });
 
 export default root;

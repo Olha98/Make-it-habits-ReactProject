@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import style from "./CastomHabit.module.css";
-import { connect } from "react-redux";
-import castomHabitActions from "../../redux/actions/castomHabitActions";
-import castomHabitOperation from "../../redux/operations/castomHabitOperation";
-import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
+import React, { Component } from 'react';
+import style from './CastomHabit.module.css';
+import { connect } from 'react-redux';
+import castomHabitActions from '../../redux/actions/castomHabitActions';
+import castomHabitOperation from '../../redux/operations/castomHabitOperation';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 class CastomHabit extends Component {
   state = {
-    name: "",
-    date: "",
-    iteration: "",
-    time: "",
+    name: '',
+    date: '',
+    iteration: '',
+    time: '',
   };
 
-  onClickSubmit = (e) => {
+  onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
@@ -29,21 +29,21 @@ class CastomHabit extends Component {
     }
   };
 
-  handleChenge = (e) => {
+  handleChenge = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  editNumber = (number) => {
+  editNumber = number => {
     if (number < 10) {
       return `0${number}`;
     } else return number;
   };
 
   render() {
-    console.log("this.props.HABIT", this.props);
+    // console.log("this.props.HABIT", this.props);
     const { name, iteration } = this.props.habit;
     const date = new Date(this.props.habit.planningTime);
     const day = this.editNumber(date.getDate());
@@ -54,7 +54,7 @@ class CastomHabit extends Component {
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
 
-    console.log("this.props.habit._id", this.props.habit._id);
+    // console.log("this.props.habit._id", this.props.habit._id);
 
     return (
       <div className={style.castomHabitContainer}>
@@ -150,5 +150,5 @@ export default modalBackDrop(
     removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
     requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
-  })(CastomHabit)
+  })(CastomHabit),
 );
