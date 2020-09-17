@@ -19,7 +19,7 @@ const NotificationHeader = ({ number }) => {
 
 const mapStateToProps = state => {
   const navNot = leftSideBarSelectors.allNotifications(state);
-  console.log(navNot);
+  // console.log(navNot);
 
   return {
     number: navNot.length,

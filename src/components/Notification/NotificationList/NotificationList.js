@@ -33,7 +33,7 @@ const mapStateToProps = state => {
   });
 
   const getName = allNotifications.map(el => el.name);
-  console.log('getName', getName);
+  // console.log('getName', getName);
   return {
     getName: getName,
     allNotifications: leftSideBarSelectors.listOfHabits(state),

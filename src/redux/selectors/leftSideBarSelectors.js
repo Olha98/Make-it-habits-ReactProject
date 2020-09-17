@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getConstAmountOfCigarettesPerDay = state => {
-  console.log('state', state);
+  // console.log('state', state);
   return state.user.quizInfo.cigarettePerDay;
 };
 const getCigarettePackPrice = state => {
@@ -23,7 +23,7 @@ const getHabitById = (state, habitId) => {
 };
 
 const allNotifications = createSelector([listOfHabits], habits => {
-  console.log('habits', habits);
+  // console.log('habits', habits);
 
   return habits.filter(({ data, name }) => {
     const isAllTrue = data.every(bool => bool);
