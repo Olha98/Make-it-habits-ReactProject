@@ -20,7 +20,7 @@ const PrivateRoute = ({
     render={props =>
       isAuthenticated ? (
         <div className={style.mainContainer}>
-          <LeftSideBar />
+          {/* <LeftSideBar /> */}
           <Component {...props} />
           <RightSideBar />
         </div>

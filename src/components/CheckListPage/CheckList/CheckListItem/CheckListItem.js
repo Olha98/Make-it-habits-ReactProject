@@ -71,19 +71,29 @@ class CheckListItem extends Component {
     const id = this.props.habit._id;
     const status = bool;
 
-    const updateInfo = { id, status };
+    // const statusHabit = this.props.stateHabits.find(habit => {
+    //   habit._id === id;
+    // });
 
-    // const array = [...this.props.habit.data];
-    const array = ['nuHYll', null, null];
-    const newArray = array.map((elem, idx) => {
-      console.log('elem', array[idx]);
-      console.log('idx', idx);
+    const array = [...this.props.habit.data];
+    // const array = [null, null, null];
+
+    let isFirst = true;
+
+    const firstNull = array.map(elem => {
+      if (elem === null && isFirst) {
+        isFirst = false;
+        return status;
+      }
+
+      return elem;
     });
-    console.log('array', array);
-    console.log('newArray', newArray);
 
-    //  const newArray;
-    // return;
+    const updateInfo = { id, data: [...firstNull] };
+
+    // // console.log('array', array);
+    console.log('firstNull', firstNull);
+    console.log('updateInfo', updateInfo);
 
     this.props.addStatus(updateInfo);
   };
@@ -101,8 +111,6 @@ class CheckListItem extends Component {
   }
 
   render() {
-    console.log('this.stateLISTITEM', this.state);
-    // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
@@ -200,10 +208,16 @@ class CheckListItem extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    stateHabits: state.user.habits,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     addStatus: updateInfo => dispatch(addHabitStatus(updateInfo)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(CheckListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckListItem);

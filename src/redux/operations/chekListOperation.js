@@ -19,21 +19,21 @@ import { token } from './authOperation';
 // };
 
 const addHabitStatus = updateInfo => (dispatch, getState) => {
-  // const tokenNow = getState().auth.access_token;
+  const tokenNow = getState().auth.access_token;
   // console.log(tokenNow, 'tokenNow');
-  // token.set(tokenNow);
+  token.set(tokenNow);
 
-  console.log('updateInfoOPER', updateInfo);
+  // console.log('updateInfoOPER', updateInfo);
   dispatch(checkListActions.addHabitStatusRequest());
   axios.patch('/habits', updateInfo).then(res => {
-    console.log('res', res);
-    // dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
-    // axios.get('/habits').then(res => {
-    //   console.log(res, 'updateDailyResul876545544');
-    //   dispatch(
-    //     actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
-    //   );
-    // });
+    // console.log('res', res);
+    dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
+    axios.get('/habits').then(res => {
+      // console.log(res, 'updateDailyResul876545544');
+      dispatch(
+        actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+      );
+    });
   });
   // .catch(error => console.log(error));
 };
