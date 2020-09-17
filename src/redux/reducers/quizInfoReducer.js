@@ -11,7 +11,6 @@ const initialState = {
 const quizInfo = (state = { ...initialState }, action) => {
   switch (action.type) {
     case quizInfoConstants.ADD_SUCCESS:
-      return action.payload;
     case quizInfoConstants.GET_SUCCESS:
       return action.payload;
     default:
@@ -22,9 +21,11 @@ const quizInfo = (state = { ...initialState }, action) => {
 const error = (state = null, action) => {
   switch (action.type) {
     case quizInfoConstants.ADD_ERROR:
-      return action.payload;
     case quizInfoConstants.GET_ERROR:
       return action.payload;
+    case quizInfoConstants.ADD_REQUEST:
+    case quizInfoConstants.GET_REQUEST:
+      return null;
     default:
       return state;
   }

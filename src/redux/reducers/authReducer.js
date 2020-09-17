@@ -1,7 +1,7 @@
 // import React from "react";
-// import { combineReducers } from "redux";
+// import { combineReducers } from 'redux';
 // import authAction from "../actions/authAction";
-import authConstans from "../constants/authConstans";
+import authConstans from '../constants/authConstans';
 
 const initialState = {
   login: null,
@@ -22,9 +22,9 @@ const user = (state = initialState, { type, payload }) => {
 
     case authConstans.LOGIN_SUCCESS:
       return payload.access_token;
-      
+
     case authConstans.LOGOUT_SUCCESS:
-      return "";
+      return '';
 
     default:
       return state;
