@@ -1,14 +1,14 @@
 import axios from 'axios';
 import authAction from '../actions/authAction';
-import { actionsGetUserData } from '../actions/dataUser';
+import dataUser, { actionsGetUserData } from '../actions/dataUser';
 import userActions from '../actions/actionsProfile';
 
 axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
+    console.log(token, 'token!!!!!!!!!!!!!!!!!!!!!!!!!!');
     axios.defaults.headers.common.Authorization = token;
-    console.log('token', token);
   },
   unSet() {
     axios.defaults.headers.common.Authorization = '';
@@ -17,7 +17,6 @@ const token = {
 
 const userRegistration = credentials => dispatch => {
   dispatch(authAction.registrationRequest());
-  console.log(credentials);
   axios
     .post('/auth/registration', credentials)
     .then(res => {
@@ -30,9 +29,7 @@ const userRegistration = credentials => dispatch => {
 };
 
 const userLogin = credentials => dispatch => {
-  console.log('userLogin!!!!!!!!!!!!!!!!!!!!');
   dispatch(authAction.loginRequest());
-  console.log(credentials);
   axios
     .post('/auth/login', credentials)
     .then(res => {
@@ -40,14 +37,13 @@ const userLogin = credentials => dispatch => {
       dispatch(authAction.loginSucces(res.data));
 
       axios.get('/habits').then(res => {
-        console.log(res, 'res!!!!!!!!!!!!!!!!!!!!');
+        console.log(res, 'RESMOTHERFACKER');
         dispatch(
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
         );
       });
     })
     .catch(err => {
-      console.log(err, 'error');
       dispatch(authAction.loginError(err));
     });
 };

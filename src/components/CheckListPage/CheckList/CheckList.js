@@ -38,13 +38,15 @@ class CheckList extends Component {
   //   ],
   // };
 
-  // componentDidMount() {
-  //   // console.log("HELLOOO");
-  //   // console.log("this.props", this.props);
-  //   this.props.getCheckList();
-  // }
+  componentDidMount() {
+    // console.log("HELLOOO");
+    // console.log("this.props", this.props);
+    // this.props.getCheckList();
+  }
 
   render() {
+    // this.props.addStatus();
+
     return (
       <div className={style.checkList}>
         {this.props.habits
@@ -74,4 +76,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckList);
+export default connect(mapStateToProps)(CheckList);
