@@ -2,7 +2,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import dailyResultAction from '../actions/dailyResultAction';
 import { token } from './leftSideBarOperations';
-axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
+console.dir(axios);
 
 const updateDailyResul = update => dispatch => {
   dispatch(dailyResultAction.updateCiggaretsRequest());
