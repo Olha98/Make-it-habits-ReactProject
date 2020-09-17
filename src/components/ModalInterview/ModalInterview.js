@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import Spinner from '../Spinner/Spinner';
 import quizInfoOperations from '../../redux/operations/quizInfoOperations';
 import quizInfoSelectors from '../../redux/selectors/quizInfoSelectors';
 import styles from './ModalInterview.module.css';
@@ -12,9 +13,12 @@ class ModalInterview extends Component {
     cigarettePerTime: 0,
     cigarettePackPrice: 0,
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.onAddInfo(this.state);
+    await this.props.onAddInfo(this.state);
+    if (this.props.error) {
+      return;
+    }
     this.props.close();
   };
 
@@ -30,17 +34,25 @@ class ModalInterview extends Component {
       cigarettePerTime,
       cigarettePackPrice,
     } = this.state;
-    const { error } = this.props;
-
+    const { error, isLoading } = this.props;
+    // console.log(error);
     return (
       <section className={styles.modalInterview}>
-        <header className={styles.sectionHeader}>
+        <header
+          className={styles.sectionHeader}
+          style={{ marginBottom: `${error ? '20px' : '40px'}` }}
+        >
           <h2 className={styles.title}>Ответьте на 4 коротких вопроса.</h2>
           <p className={styles.description}>
             Так мы сможем более точно дать вам рекомендации:
           </p>
-          {error && <h3>Извините, произощла ошибка: {error.message}</h3>}
+          {error && (
+            <h3 className={styles.error}>
+              Извините, произошла ошибка: {error.message}{' '}
+            </h3>
+          )}
         </header>
+        {isLoading && <Spinner />}
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
             Сколько лет Вы курите?
@@ -97,14 +109,6 @@ class ModalInterview extends Component {
           >
             Сохранить
           </button>
-          <p>&nbsp;</p>
-          <button
-            className={styles.button}
-            type="button"
-            onClick={() => this.props.onGetInfo()}
-          >
-            Fetch
-          </button>
         </form>
       </section>
     );
@@ -113,6 +117,7 @@ class ModalInterview extends Component {
 
 const mapStateToProps = state => ({
   error: quizInfoSelectors.getError(state),
+  isLoading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -120,4 +125,6 @@ const mapDispatchToProps = dispatch => ({
   onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
-export default modalBackDrop(connect(null, mapDispatchToProps)(ModalInterview));
+export default modalBackDrop(
+  connect(mapStateToProps, mapDispatchToProps)(ModalInterview),
+);
