@@ -27,12 +27,12 @@ const root = combineReducers({
 
   user: persistReducer(persistUserConfig, dataUser),
   // user: persistReducer(persistUserConfig, dataUserReducer),
-  quizInfo: quizReducer.quizInfo,
+  // quizInfo: quizReducer.quizInfo,
   error: quizReducer.error,
 
   dayInfo: dayInfoReducer,
 
-  habits: habitReducer,
+  // habits: habitReducer,
 });
 
 export default root;
