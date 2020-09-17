@@ -7,14 +7,12 @@ import style from './Avatar.module.css';
 // ------------------------
 
 class Avatar extends Component {
-  state = {
-    avatars,
-  };
+  // state = {
+  //   avatars,
+  // };
 
-  changeAvatar = () => {
-    const qwerty = avatars.find(item => item.id === 10);
-    console.log('qwerty', qwerty);
-    // this.props.addDataUserOperation({ ...this.props.avatar });
+  changeAvatar = id => {
+    this.props.addDataUserOperation({ avatar: id });
   };
 
   render() {
@@ -30,12 +28,15 @@ class Avatar extends Component {
               {avatars.map(avatar => (
                 <li
                   key={avatar.id}
-                  onClick={this.changeAvatar()}
+                  onClick={() => {
+                    this.changeAvatar(avatar.id);
+                  }}
                   className={style.item}
                 >
                   <NavLink exact to="/profile">
                     <img
                       src={avatar.image}
+                      // loading="lazy"
                       alt="avatar"
                       width="157"
                       height="157"

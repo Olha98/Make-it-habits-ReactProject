@@ -8,7 +8,8 @@ import * as Yup from 'yup';
 // import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from './PasswordForm';
 import ErrorValidation from './ErrorValidation';
-import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modalMarinaMel
+import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+import { avatars } from '../Avatar/dataAvatar';
 import style from './Profile.module.css';
 import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
@@ -19,7 +20,6 @@ import operationsProfile from '../../redux/operations/operationsProfile';
 // } from "./utils/validators"; //! delete
 // import Input from "./utils/FormsControls";  //! delete
 // const minLengthCreator2 = minLengthCreator(2); //! delete
-
 const validationSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, 'минимальное количество символов: 2')
@@ -80,6 +80,7 @@ class Profile extends Component {
     // if (!this.props.firstName) {
     //   return null;
     // } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
+    console.log('!!!avatars', avatars);
 
     return (
       <>
@@ -224,7 +225,9 @@ class Profile extends Component {
                   to="/profile/avatar"
                 >
                   <img
-                    src={avatar}
+                    src={
+                      avatars.find(item => item.id === this.props.avatar).image
+                    }
                     alt="avatar"
                     width="108"
                     higth="108"
