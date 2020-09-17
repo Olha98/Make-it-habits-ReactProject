@@ -80,7 +80,7 @@ const mapStateToProps = state => {
   // console.log(navNot);
 
   return {
-    number: navNot.length,
+    number: navNot && navNot.length,
   };
 };
 

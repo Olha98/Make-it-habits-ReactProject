@@ -42,20 +42,29 @@ class Economizing extends Component {
 }
 
 const mapStateToProps = state => {
+  const packPrice = userSelectors.getCigarettePackPrice(state);
+  const cigarettesPerDay = userSelectors.getConstAmountOfCigarettesPerDay(state)
+    ? userSelectors.getConstAmountOfCigarettesPerDay(state)
+    : 0
+    ? userSelectors.getCigarettePackPrice(state)
+    : 0;
+  const currentAmountOfCigarettes = userSelectors.getCurrentAmountOfCigarettes(
+    state,
+  )
+    ? userSelectors.getCurrentAmountOfCigarettes(state)
+    : 0;
+  const timeForOneCigarette = userSelectors.getTimeForOneCigarette(state)
+    ? userSelectors.getTimeForOneCigarette(state)
+    : 0;
   const array1 = [];
   const numberOfCigarettsInPack = 20;
-  const priceForOneCigarettes =
-    userSelectors.getCigarettePackPrice(state) / numberOfCigarettsInPack;
+  const priceForOneCigarettes = packPrice / numberOfCigarettsInPack;
 
   const savedMoney =
-    (userSelectors.getConstAmountOfCigarettesPerDay(state) -
-      userSelectors.getCurrentAmountOfCigarettes(state)) *
-    priceForOneCigarettes;
+    (cigarettesPerDay - currentAmountOfCigarettes) * priceForOneCigarettes;
 
   const savedTime =
-    (userSelectors.getConstAmountOfCigarettesPerDay(state) -
-      userSelectors.getCurrentAmountOfCigarettes(state)) *
-    userSelectors.getTimeForOneCigarette(state);
+    (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
 
   const totalTime = array1.push(savedTime);
   console.log('totalTime', totalTime);
