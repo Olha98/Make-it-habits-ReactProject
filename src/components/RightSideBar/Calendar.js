@@ -167,41 +167,54 @@ const birthdayStyle = `
 
   `;
 
-//   createAt(pin):"2020-09-15T17:30:43.096Z"
-// efficiency(pin):100
-// planningTime(pin):"2020-09-17:22:56"
-// iteration(pin):"onceInTwoDays"
-// _id(pin):"5f611bcf4a40080017c17f53"
-// name(pin):"test1"
+
 
 const Calendar = ({ userHabits }) => {
   const [startDate, setStartDate] = useState(new Date());
   const nowDay = new Date();
   const choseDay = startDate;
   const allHabits = userHabits;
+  console.log(allHabits)
+  const dataEnd =[];
 
   for (let habit of allHabits) {
     const planningTime = moment(habit.planningTime).format('L');
     console.log(planningTime, 'planningTime');
-    const data = Number(planningTime.substr(0, 2)); //09
-    const month = Number(planningTime.substr(3, 2));//10
-    const year = Number(planningTime.substr(6, 4));//2020
+    let data = Number(planningTime.substr(0, 2)); //09
+    let month = Number(planningTime.substr(3, 2)); //10
+    let year = Number(planningTime.substr(6, 4)); //2020
 
-    console.log(data, 'data');
+    // console.log(data, 'data');
     console.log(month, 'month');
-    console.log(year, 'year');
+    // console.log(year, 'year');
 
     switch (habit.iteration) {
       case 'onceInTwoDays':
-        console.log(habit, 'onceInTwoDays here');
-        const sum = data
-      const arrayData =[]
+        let sum = data;
+        const arrayData = [];
         for (let i = 0; i < 21; i++) {
-          arrayData.push(sum+2)
+          if (sum < 30) {
+            arrayData.push((sum += 2));
+          } else if (sum >= 30) {
+            sum = 0;
+            month += 1;
+            console.log(month, 'mont+1');
+            arrayData.push((sum += 2));
+          }
         }
-        console.log(arrayData,"arayData!!")
+        console.log(arrayData, 'arayData!!');
 
         break;
+
+
+        case 'everyday':
+          break;
+
+          case 'TueThuSat':
+          break;
+
+          case 'TueThuSat':
+          break;
 
       default:
         break;
