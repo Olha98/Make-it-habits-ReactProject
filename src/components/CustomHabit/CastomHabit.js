@@ -43,9 +43,9 @@ class CastomHabit extends Component {
   };
 
   render() {
-    console.log("this.props.HABIT", this.props);
-    const { name, iteration } = this.props.habit;
-    const date = new Date(this.props.habit.planningTime);
+    // const { name, iteration, planningTime } = this.props.habit;
+    // const { fromCheckList } = this.props
+    const date = new Date(this.props.habit?.planningTime);
     const day = this.editNumber(date.getDate());
     const month = this.editNumber(date.getMonth());
     const year = date.getFullYear();
@@ -53,6 +53,7 @@ class CastomHabit extends Component {
     const minute = this.editNumber(date.getMinutes());
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
+
 
     return (
       <div className={style.castomHabitContainer}>
@@ -68,7 +69,7 @@ class CastomHabit extends Component {
                 type="text"
                 className={style.castomHabitName}
                 name="name"
-                value={name}
+                value={this.props.fromCheckList && this.props.habit.name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -78,7 +79,7 @@ class CastomHabit extends Component {
                 type="date"
                 className={style.castomHabitDate}
                 name="date"
-                value={planningDate}
+                value={this.props.fromCheckList && this.props.habit.planningDate}
                 onChange={this.handleChenge}
               />
             </label>
@@ -88,7 +89,7 @@ class CastomHabit extends Component {
                 type="time"
                 className={style.castomHabitTime}
                 name="time"
-                value={planningHours}
+                value={this.props.fromCheckList && this.props.habit.planningHours}
                 onChange={this.handleChenge}
               />
             </label>
@@ -97,7 +98,7 @@ class CastomHabit extends Component {
               <select
                 className={style.castomHabitSelect}
                 name="iteration"
-                value={iteration}
+                value={this.props.fromCheckList && this.props.habit.iteration}
                 onChange={this.handleChenge}
               >
                 <option value="none" disabled>
