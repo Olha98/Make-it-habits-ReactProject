@@ -5,7 +5,7 @@ const getConstAmountOfCigarettesPerDay = state => {
   return state.user.quizInfo.cigarettePerDay;
 };
 const getCigarettePackPrice = state => {
-  return state.quizInfo.cigarettePackPrice;
+  return state.user.quizInfo.cigarettePackPrice;
 };
 
 const getCurrentAmountOfCigarettes = state =>
