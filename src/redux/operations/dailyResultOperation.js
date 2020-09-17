@@ -25,7 +25,6 @@ const updateDailyResul = update => (dispatch, getState) => {
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
         );
       });
-      
     })
     .catch(err => {
       dispatch(dailyResultAction.updateCiggaretsError(err));
