@@ -1,6 +1,7 @@
 import axios from 'axios';
+import actionsProfile from '../actions/actionsProfile';
 import actionsUser from '../actions/actionsProfile';
-import dataUser, { actionsGetUserData } from '../actions/dataUser';
+import { actionsGetUserData } from '../actions/dataUser';
 import actionsLoader from '../actions/spinnerActions';
 import { token } from './authOperation';
 
@@ -60,4 +61,20 @@ const addDataUserOperation = user => async (dispatch, getState) => {
   }
 };
 
-export default { addDataUserOperation };
+const postPasswordOperation = password => async (dispatch, getState) => {
+  const tokenNow = getState().auth.access_token;
+  token.set(tokenNow);
+
+  dispatch(actionsLoader.loaderOn());
+  try {
+    const { data } = await axios.post('/auth/updatePassword', password);
+    console.log('dataPassWord', data);
+    dispatch(actionsUser.postPasswordSuccess({ ...password }));
+  } catch (error) {
+    dispatch(actionsProfile.postPasswordError(error));
+  } finally {
+    dispatch(actionsLoader.loaderOff());
+  }
+};
+
+export default { addDataUserOperation, postPasswordOperation };
