@@ -14,7 +14,7 @@ const getCurrentAmountOfCigarettes = state =>
 
 const getTimeForOneCigarette = state => state.user.quizInfo.cigarettePerTime?state.user.quizInfo.cigarettePerTime:0;
 
-// ===============habits=========
+// ===============habits========
 
 const listOfHabits = state => state.user.habits;
 
