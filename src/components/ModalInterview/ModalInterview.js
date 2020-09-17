@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import Spinner from '../Spinner/Spinner';
 import quizInfoOperations from '../../redux/operations/quizInfoOperations';
 import quizInfoSelectors from '../../redux/selectors/quizInfoSelectors';
 import styles from './ModalInterview.module.css';
@@ -33,7 +34,7 @@ class ModalInterview extends Component {
       cigarettePerTime,
       cigarettePackPrice,
     } = this.state;
-    const { error } = this.props;
+    const { error, isLoading } = this.props;
     // console.log(error);
     return (
       <section className={styles.modalInterview}>
@@ -51,6 +52,7 @@ class ModalInterview extends Component {
             </h3>
           )}
         </header>
+        {isLoading && <Spinner />}
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
             Сколько лет Вы курите?
@@ -115,6 +117,7 @@ class ModalInterview extends Component {
 
 const mapStateToProps = state => ({
   error: quizInfoSelectors.getError(state),
+  isLoading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
