@@ -19,7 +19,14 @@ class UserInfo extends Component {
         <section className={style.leftSideBar_userInfo}>
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
-              <img src={photo ? `${photo} ` : `${avatar}`} alt="avatar" />
+              <img
+                src={
+                  photo
+                    ? `${photo} `
+                    : `${`http://localhost:3000/static/media/Avatar-10.04be2625.png`}`
+                }
+                alt="avatar"
+              />
             </div>
             <p className={style.leftSideBar_userInfo__name}>
               {name ? `${name} ${surname}` : 'User'}
