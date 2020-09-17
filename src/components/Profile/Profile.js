@@ -45,7 +45,7 @@ class Profile extends Component {
     this.props.getDataUserOperation();
   }
   renderPasswordForm = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
@@ -257,7 +257,7 @@ class Profile extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
