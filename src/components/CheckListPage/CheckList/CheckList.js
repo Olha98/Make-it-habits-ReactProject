@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CustomScrollbars from '../../../assests/scroll/scroll';
 import chekListOperation from '../../../redux/operations/chekListOperation';
 // import chekListOperation from "../../../redux/operations/chekListOperation";
 import style from './CheckList.module.css';
@@ -49,15 +50,17 @@ class CheckList extends Component {
 
     return (
       <div className={style.checkList}>
-        {this.props.habits
-          ? this.props.habits.map(habit => (
-              <CheckListItem
-                key={habit._id}
-                habit={habit}
-                // onClick={(e) => this.showFullInfo(e)}
-              />
-            ))
-          : 'No habits added'}
+        <div className={style.checkListWrapper}>
+          {this.props.habits
+            ? this.props.habits.map(habit => (
+                <CheckListItem
+                  key={habit._id}
+                  habit={habit}
+                  // onClick={(e) => this.showFullInfo(e)}
+                />
+              ))
+            : 'No habits added'}
+        </div>
       </div>
     );
   }

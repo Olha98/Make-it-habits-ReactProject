@@ -7,12 +7,7 @@ import { ReactComponent as ButtonDelete } from '../../../../assests/images/Check
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
 import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
-import {
-  main_violet,
-  main_pink,
-  main_yellow,
-  main_blue,
-} from '../../../../css/vars.module.css';
+import { main_yellow } from '../../../../css/vars.module.css';
 import { connect } from 'react-redux';
 
 class CheckListItem extends Component {
@@ -20,18 +15,10 @@ class CheckListItem extends Component {
     showFullInfo: false,
     isShowModal: false,
     fromCheckList: true,
-    colors: [
-      main_violet,
-      main_pink,
-      main_yellow,
-      main_blue,
-      'deepskyblue',
-      'lightcoral',
-      'green',
-      'darkorange',
-      'lightseagreen',
-      'violet',
-    ],
+    daysProgress: [],
+    daysDone: '',
+    daysPassed: '',
+    habitId: '',
   };
 
   // showFullInfo(e) {
@@ -41,6 +28,20 @@ class CheckListItem extends Component {
   //     }));
   //   }
   // }
+
+  componentDidMount() {
+    this.setState({
+      daysProgress: [...this.props.habit.data],
+      habitId: this.props.habit._id,
+    });
+  }
+
+  getRandomColor = () => {
+    const color = Math.floor(Math.random() * 16777215).toString(16);
+    if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
+      return `#${color}`;
+    } else return `${main_yellow}`;
+  };
 
   openModal = () => {
     this.setState({
@@ -55,65 +56,47 @@ class CheckListItem extends Component {
   };
 
   onStatus = bool => {
-    this.setState({
-      showFullInfo: true,
-    });
+    // this.setState({
+    //   showFullInfo: true,
+    // });
+    this.setState(prev => ({ showFullInfo: !prev.showFullInfo }));
+
     // if (bool) {
-    //   // console.log('bool', bool);
-    //   // this.setState({
-    //   //   showFullInfo: true,
-    //   // });
+    //   console.log('bool', bool);
+    //   this.setState(prev => ({ showFullInfo: !prev.showFullInfo }));
     // }
     // else
-    // this.setState({
-    //   showFullInfo: false,
-    // });
-    const id = this.props.habit._id;
-    const status = bool;
+    //   this.setState({
+    //     showFullInfo: false,
+    //   });
 
     // const statusHabit = this.props.stateHabits.find(habit => {
     //   habit._id === id;
     // });
 
-    const array = [...this.props.habit.data];
-    // const array = [null, null, null];
-
     let isFirst = true;
 
-    const firstNull = array.map(elem => {
+    const firstNull = this.state.daysProgress.map(elem => {
       if (elem === null && isFirst) {
         isFirst = false;
-        return status;
+        return bool;
       }
-
       return elem;
     });
 
-    const updateInfo = { id, data: [...firstNull] };
+    this.setState({
+      daysDone: firstNull.filter(elem => elem === true).length,
+      daysPassed: firstNull.filter(elem => elem === false).length,
+    });
 
-    // // console.log('array', array);
-    console.log('firstNull', firstNull);
-    console.log('updateInfo', updateInfo);
-
+    const updateInfo = { id: this.state.habitId, data: [...firstNull] };
     this.props.addStatus(updateInfo);
   };
 
-  // getRandomIntInclusive(min, max) {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-  getRandomIntInclusive(max) {
-    max = Math.floor(max);
-
-    return Math.floor(Math.random() * max);
-  }
-
   render() {
     const { name, efficiency } = this.props.habit;
-    const { colors, isShowModal } = this.state;
-    const color = colors[this.getRandomIntInclusive(colors.length)];
+    const { isShowModal, daysDone, daysPassed } = this.state;
+    const color = this.getRandomColor();
 
     return (
       <div
@@ -179,13 +162,11 @@ class CheckListItem extends Component {
               <ButtonEdit />
             </button>
             {isShowModal && (
-              // <Modal close={this.closeModal}>
               <CastomHabit
                 close={this.closeModal}
                 habit={this.props.habit}
                 fromCheckList={this.state.fromCheckList}
               />
-              // </Modal>
             )}
           </div>
         </div>
@@ -193,11 +174,11 @@ class CheckListItem extends Component {
           <ul className={style.progressDaysContentList}>
             <li className={style.progressDaysContentItem}>
               <p className={style.progressDaysTitle}>К-во выполненных дней</p>
-              <p className={style.fulfiledDays}>5</p>
+              <p className={style.fulfiledDays}>{daysDone}</p>
             </li>
             <li>
               <p className={style.progressDaysTitle}>К-во пропущенных дней</p>
-              <p className={style.missedDays}>2</p>
+              <p className={style.missedDays}>{daysPassed}</p>
             </li>
           </ul>
         ) : (

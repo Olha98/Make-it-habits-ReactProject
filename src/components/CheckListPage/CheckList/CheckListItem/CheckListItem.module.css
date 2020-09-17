@@ -2,7 +2,7 @@
 @value main_gradient, main_green,background,green_1,green_2,main_violet, main_pink,main_yellow,main_blue,black_font,grey_font from colors;
 
 .checkListItem {
-  width: 720px;
+  width: 100%;
   border-radius: 10px;
   padding-top: 20px;
   padding-right: 45px;
