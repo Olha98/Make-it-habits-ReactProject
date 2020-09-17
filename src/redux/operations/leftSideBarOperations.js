@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { actionsGetUserData } from '../actions/dataUser';
 import leftSideBarAction from '../actions/leftSideBarActions';
 
 const logout = () => async dispatch => {
@@ -9,6 +10,8 @@ const logout = () => async dispatch => {
 
     // token.unset();
     dispatch(leftSideBarAction.logoutSuccess());
+
+
   } catch (error) {
     dispatch(leftSideBarAction.logoutError(error.message));
   }

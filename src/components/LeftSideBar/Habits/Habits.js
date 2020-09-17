@@ -20,6 +20,8 @@ class Habits extends Component {
   };
 
   render() {
+    const { habits = [] } = this.props.habits;
+
     return (
       <>
         <section className={style.leftSideBar_habits}>
@@ -31,7 +33,7 @@ class Habits extends Component {
             }}
           >
             <ul className={style.leftSideBar_habits__list}>
-              {this.props.habits.map(({ _id }, idx) => (
+              {habits.map(({ _id }, idx) => (
                 <HabitItem key={_id} id={_id} idx={idx} />
               ))}
             </ul>
