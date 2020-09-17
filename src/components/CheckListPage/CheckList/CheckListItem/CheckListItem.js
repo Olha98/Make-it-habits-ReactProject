@@ -74,9 +74,10 @@ class CheckListItem extends Component {
     const updateInfo = { id, status };
 
     // const array = [...this.props.habit.data];
-    const array = [null, null, null];
+    const array = ['nuHYll', null, null];
     const newArray = array.map((elem, idx) => {
-      console.log('elem', elem);
+      console.log('elem', array[idx]);
+      console.log('idx', idx);
     });
     console.log('array', array);
     console.log('newArray', newArray);
