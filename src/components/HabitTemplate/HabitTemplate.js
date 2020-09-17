@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import style from './HabitTemplate.module.css';
 import CustomScrollbars from '../../assests/scroll/scroll';
+import Modal from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import HabitChoice from '../HabitChoice/HabitChoice';
+import closeBtn from '../../assests/images/closeBlack.png';
 
 const templateHabits = [
   'Начинать утро с 10-15 минутной зарядки',
@@ -19,13 +22,31 @@ const templateHabits = [
   'Начинать робочий день с подготовки стола',
 ];
 
-const HabitTemplate = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
+const HabitTemplate = ({ close }) => {
+  const [isShowCustomModal, setIsShowCustomModal] = useState(false);
+  const [isShowHabitChoice, setIsShowHabitChoice] = useState(false);
+
+  const showHabitChoice = () => {
+    setIsShowHabitChoice(true);
+  };
+
+  const closeHabitChoice = () => {
+    setIsShowHabitChoice(false);
+  };
+
+  const [habit, setHabit] = useState('');
+  const changeCurrentHabit = habit => {
+    setHabit(habit);
+  };
+  const chooseHabit = habit => {
+    showModal();
+    changeCurrentHabit(habit);
+  };
   const showModal = () => {
-    setIsShowModal(true);
+    setIsShowCustomModal(true);
   };
   const closeModal = () => {
-    setIsShowModal(false);
+    setIsShowCustomModal(false);
   };
   return (
     <>
@@ -34,21 +55,34 @@ const HabitTemplate = () => {
         <CustomScrollbars style={{ width: 440, height: 300 }}>
           <ul className={style.habitTemplateList}>
             {templateHabits.map(habit => (
-              <>
-                <li className={style.habitTemplateItem} data-value={habit}>
-                  <button
-                    onClick={showModal}
-                    className={style.habitTemplateItemLink}
-                  >
-                    {habit}
-                  </button>
-                </li>
-              </>
+              <li
+                key={habit}
+                className={style.habitTemplateItem}
+                data-value={habit}
+              >
+                <button
+                  onClick={() => chooseHabit(habit)}
+                  className={style.habitTemplateItemLink}
+                >
+                  {habit}
+                </button>
+              </li>
             ))}
           </ul>
         </CustomScrollbars>
-        {isShowModal && <CastomHabit closeModal={closeModal} />}
-        <button className={style.btnTransparentWhiteBorder}>Назад</button>
+        {isShowCustomModal && (
+          <CastomHabit chosenHabit={habit} close={closeModal} />
+        )}
+        {isShowHabitChoice && <HabitChoice close={closeHabitChoice} />}
+        <button
+          onClick={showHabitChoice}
+          className={style.btnTransparentWhiteBorder}
+        >
+          Назад
+        </button>
+        <div onClick={() => close()} className={style.closeBtnWrapper}>
+          <img width="16" height="16" alt="closeBtn" src={closeBtn} />
+        </div>
       </div>
     </>
   );
