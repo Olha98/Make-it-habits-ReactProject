@@ -6,7 +6,6 @@ import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.s
 import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
-import ModalInterview from '../ModalInterview/ModalInterview.js';
 
 class Login extends Component {
   state = {

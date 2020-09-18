@@ -11,16 +11,16 @@ function HabitChoice({ close}) {
   const showModal = () => {
     setIsShowModal(true);
   };
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
+  // const closeModal = () => {
+  //   setIsShowModal(false);
+  // };
 
   const showTemplateModal = () => {
     setTemplateModal(true);
   };
-  const closeTemplateModal = () => {
-    setTemplateModal(false);
-  };
+  // const closeTemplateModal = () => {
+  //   setTemplateModal(false);
+  // };
 
 
 

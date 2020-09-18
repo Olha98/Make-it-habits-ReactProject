@@ -6,7 +6,6 @@ import routes from '../../routes';
 import '../../css/vars.module.css';
 import '../../index.module.css';
 import Spinner from '../Spinner/Spinner';
-import DailyResult from '../DailyHabit/DayliResult';
 import ModalInterview from '../ModalInterview/ModalInterview';
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 

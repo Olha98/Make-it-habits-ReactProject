@@ -30,9 +30,9 @@ const HabitTemplate = ({ close }) => {
     setIsShowHabitChoice(true);
   };
 
-  const closeHabitChoice = () => {
-    setIsShowHabitChoice(false);
-  };
+  // const closeHabitChoice = () => {
+  //   setIsShowHabitChoice(false);
+  // };
 
   const [habit, setHabit] = useState('');
   const changeCurrentHabit = habit => {

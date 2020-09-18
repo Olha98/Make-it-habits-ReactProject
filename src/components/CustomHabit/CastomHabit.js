@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import castomHabitActions from '../../redux/actions/castomHabitActions';
 import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+// import moment from 'moment';
+// import 'moment/locale/ru';
 
 class CastomHabit extends Component {
   state = {
@@ -67,7 +69,13 @@ class CastomHabit extends Component {
     const minute = this.editNumber(date.getMinutes());
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
-console.log('this.props', this.props)
+
+    const dateToday = new Date();
+    const dayToday = this.editNumber(dateToday.getDate());
+    const monthToday = this.editNumber(dateToday.getMonth() + 1);
+    const yearToday = dateToday.getFullYear();
+
+    const planningDateToday = `${yearToday}-${monthToday}-${dayToday}`;
 
     return (
       <div className={style.castomHabitContainer}>
@@ -94,6 +102,7 @@ console.log('this.props', this.props)
                 className={style.castomHabitDate}
                 name="date"
                 value={this.props.fromCheckList && planningDate}
+                min={planningDateToday}
                 onChange={this.handleChenge}
               />
             </label>
@@ -115,9 +124,6 @@ console.log('this.props', this.props)
                 value={this.props.fromCheckList && this.props.habit.iteration}
                 onChange={this.handleChenge}
               >
-                <option value="none" disabled>
-                  выбрать
-                </option>
                 <option value="everyday">Ежедневно</option>
                 <option value="onceInTwoDays">Раз в 2 дня</option>
                 <option value="MonWedFri">ПН, СР, ПТ</option>
