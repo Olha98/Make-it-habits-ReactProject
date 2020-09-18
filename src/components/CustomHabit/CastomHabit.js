@@ -124,6 +124,7 @@ class CastomHabit extends Component {
                 value={this.props.fromCheckList && this.props.habit.iteration}
                 onChange={this.handleChenge}
               >
+                <option value="none">Выбрать</option>
                 <option value="everyday">Ежедневно</option>
                 <option value="onceInTwoDays">Раз в 2 дня</option>
                 <option value="MonWedFri">ПН, СР, ПТ</option>
