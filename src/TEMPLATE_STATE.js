@@ -39,20 +39,20 @@ const state = {
 
 }
 
-state.habits.filter(habit=> {
+// state.habits.filter(habit=> {
     
-})
+// })
 
 
 
-function chhoseData(habit){
-    switch (key) {
-        case "everyDays":
-            return getOnceOfTwoDays(habit)
-        default:
-            break;
-    }
-}
+// function chhoseData(habit){
+//     switch (key) {
+//         case "everyDays":
+//             return getOnceOfTwoDays(habit)
+//         default:
+//             break;
+//     }
+// }
 // function getOnceOfTwoDays{
 //     const currentDay = Date.now();
 //     const resultArray = [];

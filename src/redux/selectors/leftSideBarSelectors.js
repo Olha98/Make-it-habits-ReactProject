@@ -11,7 +11,7 @@ const getTimeForOneCigarette = (state) => state.quizInfo.cigarettePerTime;
 
 // ===============habits=========
 
-const listOfHabits = (state) => state.habits;
+const listOfHabits = (state) => state.habits.allHabits;
 
 const getHabitById = (state, habitId) => {
   const habits = listOfHabits(state);

@@ -1,7 +1,9 @@
 import axios from 'axios';
 import dailyResultAction from '../actions/dailyResultAction';
-import { actionsGetUserData } from '../actions/dataUser';
+// import { actionsGetUserData } from '../actions/dataUser';
+import { getUserData } from '../actions/userActions';
 import { token } from './authOperation';
+
 
 // axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
@@ -24,7 +26,7 @@ const updateDailyResul = update => (dispatch, getState) => {
       axios.get('/habits').then(res => {
         console.log(res, 'updateDailyResul876545544');
         dispatch(
-          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+          getUserData({ ...res.data.user }),
         );
       });
       

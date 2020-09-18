@@ -5,9 +5,10 @@ import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
 import dayInfoReducer from './dailyCiggaretsReduces';
-import dataUser from '../actions/dataUser';
-// import dataUserReducer from './reducersProfile';
 import quizReducer from './quizInfoReducer';
+
+import userReducer from './userReducer';
+import habitsReducer from './habitsReducer';
 
 
 export const persistConfig = {
@@ -20,28 +21,29 @@ export const persistUserConfig = {
   key: 'user',
   storage,
   blacklist: ['id'],
+  // blacklist: ['id', 'quizInfo', "cigarettes"],
 };
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
 
   auth: persistReducer(persistConfig, authReducer),
+  user: persistReducer(persistUserConfig, userReducer),
+  habits: habitsReducer,
 
-  user: persistReducer(persistUserConfig, dataUser),
+
+
   // user: persistReducer(persistUserConfig, dataUserReducer),
   quizInfo: quizReducer.quizInfo,
   error: quizReducer.error,
 
-  quizInfo: () => ({
-    smokeYears: 0,
-    cigarettePerDay: 0,
-    cigarettePerTime: 0,
-    cigarettePackPrice: 0,
-  }),
+  // quizInfo: () => ({
+  //   smokeYears: 0,
+  //   cigarettePerDay: 0,
+  //   cigarettePerTime: 0,
+  //   cigarettePackPrice: 0,
+  // }),
   dayInfo: dayInfoReducer,
-
-
-  habits: habitReducer,
 });
 
 export default root;
