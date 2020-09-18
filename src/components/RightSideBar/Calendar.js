@@ -167,58 +167,109 @@ const birthdayStyle = `
 
   `;
 
+const task = [
+  {
+    createAt: '2020-09-07T01:07:23.330Z',
+    data: [null, null, null],
+    planningTime: '2020-09-07T01:07:23.330Z',
+    efficiency: 20,
+    id: '5f4d9edf6375b430bda8ce92',
+    name: 'Покушать кофеток и лечь спать',
+    iteration: 'everyday',
+  },
 
+  {
+    createAt: '2020-10-21T01:07:23.330Z',
+    data: [null, null, null],
+    planningTime: '2020-09-07T01:07:23.330Z',
+    efficiency: 50,
+    id: '5f4d9edf6375b430bda8ce92',
+    name: 'Пойти поспать и посмотреть фильмец',
+    iteration: 'onceADay',
+  },
 
-const Calendar = ({ userHabits }) => {
+  {
+    createAt: '2020-14-06T01:07:23.330Z',
+    data: [null, null, null],
+    planningTime: '2020-09-07T01:07:23.330Z',
+    efficiency: 50,
+    id: '5f4d9edf6375b430bda8ce92',
+    name: 'Съесть килограм мороженого и закусить селеткой',
+    iteration: 'onceInTwoDays',
+  },
+
+  {
+    createAt: '2020-14-01T01:07:23.330Z',
+    data: [null, null, null],
+    planningTime: '2020-09-07T01:07:23.330Z',
+    efficiency: 50,
+    id: '5f4d9edf6375b430bda8ce92',
+    name: 'Съесть килограм мороженого и закусить селеткой',
+    iteration: 'MonWedFri',
+  },
+
+  {
+    createAt: '2020-14-11T01:07:23.330Z',
+    data: [null, null, null],
+    planningTime: '2020-09-07T01:07:23.330Z',
+    efficiency: 50,
+    id: '5f4d9edf6375b430bda8ce92',
+    name: 'Съесть килограм мороженого и закусить селеткой',
+    iteration: 'TueThuSat',
+  },
+];
+
+const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const dataNow = Data.now();
   const nowDay = new Date();
   const choseDay = startDate;
-  const allHabits = userHabits;
-  console.log(allHabits)
-  const dataEnd =[];
+  const allHabits = task;
 
+// var millennium =new Date(2000, 0, 1) //Month is 0-11 in JavaScript
 
+// //Get 1 day in milliseconds
+// var one_day=1000*60*60*24
+ 
+// //Calculate difference btw the two dates, and convert to days
+const dataNeq = Math.ceil((nowDay.getTime()-nowDay.getTime())/(one_day))
+console.log(dataNeq)
+ 
 
+  const resultArray = [];
+  console.log()
+
+  for (let i = 0; i < 21; i++) {
+    resultArray.push(i)
+    i+=
+  }
 
   for (let habit of allHabits) {
-    const planningTime = moment(habit.planningTime).format('L');
-    console.log(planningTime, 'planningTime');
-    let data = Number(planningTime.substr(0, 2)); //09
-    let month = Number(planningTime.substr(3, 2)); //10
-    let year = Number(planningTime.substr(6, 4)); //2020
+    const startPlanningTime = habit.planningTime;
+    console.log(startPlanningTime, 'startPlanningTime');
 
-    // console.log(data, 'data');
-    console.log(month, 'month');
-    // console.log(year, 'year');
+    const date = new Date(startPlanningTime);
+
+    const miliSecPlanningTime = Number(date.getMinutes()) * 60 * 1000;
+    console.log(miliSecPlanningTime, 'miliSecPlanningTime');
 
     switch (habit.iteration) {
       case 'onceInTwoDays':
-        let sum = data;
-        const arrayData = [];
-        for (let i = 0; i < 21; i++) {
-          if (sum < 30) {
-            arrayData.push((sum += 2));
-          } else if (sum >= 30) {
-            sum = 0;
-            month += 1;
-            console.log(month, 'mont+1');
-            arrayData.push((sum += 2));
-          }
-        }
-        console.log(arrayData, 'arayData!!');
-
+        console.log(habit, 'onceInTwoDays!!');
+        
         break;
 
+      case 'everyday':
+        console.log(habit, 'everyday!!');
+        break;
 
-        case 'everyday':
-          break;
+      case 'TueThuSat':
+        console.log(habit, 'TueThuSat!!');
+        break;
 
-          case 'TueThuSat':
-          
-          break;
-
-          case 'TueThuSat':
-          break;
+      case 'MonWedFri':
+        console.log(habit, 'MonWedFri!!');
+        break;
 
       default:
         break;
