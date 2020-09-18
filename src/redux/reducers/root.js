@@ -9,6 +9,7 @@ import quizReducer from './quizInfoReducer';
 
 import userReducer from './userReducer';
 import habitsReducer from './habitsReducer';
+import cigarettesReducer from './cigarettesReduser';
 
 
 export const persistConfig = {
@@ -30,6 +31,8 @@ const root = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
   user: persistReducer(persistUserConfig, userReducer),
   habits: habitsReducer,
+  cigarettes: cigarettesReducer,
+
 
 
 
@@ -43,7 +46,7 @@ const root = combineReducers({
   //   cigarettePerTime: 0,
   //   cigarettePackPrice: 0,
   // }),
-  dayInfo: dayInfoReducer,
+  // dayInfo: dayInfoReducer,
 });
 
 export default root;

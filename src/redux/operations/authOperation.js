@@ -3,6 +3,7 @@ import authAction from '../actions/authAction';
 // import { actionsGetUserData } from '../actions/dataUser';
 import { getHabits } from '../actions/habitsActions';
 import { getUserData } from '../actions/userActions';
+import { getCigarettes } from '../actions/cigarettesActions';
 
 
 axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
@@ -39,10 +40,12 @@ const userLogin = credentials => dispatch => {
 
       
       axios.get('/habits').then(res => {
-        // dispatch(actionsGetUserData({ ...res.data.user, habits: res.data.habits }));
+        console.log(res.data, "REEEEEEEEEEEES");
+      
         dispatch(getUserData({...res.data.user}));
-        dispatch(getHabits({...res.data.habits}));
-        // dispatch()
+        dispatch(getHabits([...res.data.habits]));
+        dispatch(getCigarettes([...res.data.user.cigarettes]))
+        // dailyResultAction
         // dispatch()
         // dispatch()
         // dispatch()

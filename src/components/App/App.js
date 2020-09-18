@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Switch } from 'react-router-dom';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
 import PublicRoute from '../CustomRoutes/PublicRoute';
@@ -8,10 +8,22 @@ import '../../index.module.css';
 import Spinner from '../Spinner/Spinner';
 import DailyResult from '../DailyHabit/DayliResult';
 import ModalInterview from '../ModalInterview/ModalInterview';
+import { useDispatch } from 'react-redux';
+import { getGlobalState } from '../../redux/operations/stateOperation';
+
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
   const [isTestOpen, changeStateIsOpen] = useState(false);
+  
+const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getGlobalState())
+    },
+    [],
+  );
+
+
   return (
     <>
       <Suspense fallback={<Spinner />}>

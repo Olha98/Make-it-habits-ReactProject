@@ -16,24 +16,29 @@ const state = {
             // {date, amount}
         ]
     },
+    
     habits: {
         allHabits: [],
         currentHabits: [],
         doneHabits: [],
     },
+
     quize_info: {
         smokeYears: 0,
         cigarettePerDay: 0,
         cigarettePerTime: 0,
         cigarettePackPrice: 0
     },
+
     cigarettesInfo: {
         data: [],
         startedAt: ''
     },
+
     subscriptions: [
         // {type: '', dateStart: '', dateCancel: ''}
     ],
+    
     error: "",
     loader: false,
 

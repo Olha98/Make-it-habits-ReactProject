@@ -75,7 +75,7 @@ class CheckList extends Component {
 
 const mapStateToProps = state => {
   return {
-    habits: state.habits,
+    habits: state.habits.allHabits,
   };
 };
 
