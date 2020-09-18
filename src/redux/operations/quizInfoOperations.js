@@ -8,9 +8,8 @@ import { token } from './authOperation';
 
 const addInfo = info => async (dispatch, getState) => {
   const tokenNow = getState().auth.access_token;
-  console.log(tokenNow, 'tokenNow');
   token.set(tokenNow);
-  console.log(axios);
+
   dispatch(actionsLoader.loaderOn());
   dispatch(quizInfoActions.addInfoRequest());
   try {
@@ -19,7 +18,6 @@ const addInfo = info => async (dispatch, getState) => {
     // dispatch(quizInfoActions.addInfoSuccess(data));
 
     axios.get('/habits').then(res => {
-      console.log(res, 'updateDailyResul876545544');
       dispatch(
         actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
       );

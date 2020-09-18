@@ -5,6 +5,7 @@ import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
 import quizReducer from './quizInfoReducer';
+import subscribeReducer from './subscribeReducer';
 import dayInfoReducer from './dailyCiggaretsReduces';
 import dataUser from '../actions/dataUser';
 
@@ -27,8 +28,11 @@ const root = combineReducers({
 
   user: persistReducer(persistUserConfig, dataUser),
   // user: persistReducer(persistUserConfig, dataUserReducer),
-  quizInfo: quizReducer.quizInfo,
+  quizInfo: quizReducer.quizInfo, // удалим попозже (LeftSideBar-селектор перенастроят вначале)
   error: quizReducer.error,
+  typeSubscription: subscribeReducer.typeSubscription,
+  cards: subscribeReducer.addCard,
+  isPaid: false,
 
   dayInfo: dayInfoReducer,
 

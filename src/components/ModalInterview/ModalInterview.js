@@ -19,7 +19,7 @@ class ModalInterview extends Component {
     if (this.props.error) {
       return;
     }
-    this.props.close();
+    this.props.closeModal();
   };
 
   handleChange = e => {
@@ -122,7 +122,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
-  onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
 export default modalBackDrop(
