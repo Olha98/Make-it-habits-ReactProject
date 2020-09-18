@@ -8,14 +8,17 @@ const getCigarettePackPrice = state => {
   return state.user?.user?.quizInfo?.cigarettePackPrice;
 };
 
-const getCurrentAmountOfCigarettes = state =>
-  state.dayInfo.data[state.dayInfo.data.length - 1];
-//state.user?.user?.cigarettes?.data[state.user.cigarettes.data.length - 1];
+const getCurrentAmountOfCigarettes = state => {
+  return state.user?.user?.cigarettes?.data[
+    state.user.cigarettes.data.length - 1
+  ];
+};
+// state.dayInfo?.data[state.dayInfo.data.length - 1];
 
 const getTimeForOneCigarette = state =>
   state.user?.user?.quizInfo.cigarettePerTime;
 
-// ===============habits=========
+// ===============habits========
 
 const listOfHabits = state => state.user?.habits;
 

@@ -30,7 +30,7 @@ const root = combineReducers({
   //quizInfo: quizReducer.quizInfo,
   error: quizReducer.error,
 
-  dayInfo: dayInfoReducer,
+  // dayInfo: dayInfoReducer,
 
   // habits: habitReducer,
 });
