@@ -26,8 +26,12 @@ const loginSucces = credential => {
     payload: credential,
   };
 };
-const logOutError = error => ({
+const loginError = error => ({
   type: constans.LOGIN_ERROR,
+  payload: error,
+});
+const logOutError = error => ({
+  type: constans.LOGOUT_ERROR,
   payload: error,
 });
 
@@ -45,6 +49,7 @@ export default {
   registrationError,
   loginRequest,
   loginSucces,
+  loginError,
   logOutError,
   logOutRequest,
   logOutSuccess,
