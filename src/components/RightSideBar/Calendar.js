@@ -177,6 +177,9 @@ const Calendar = ({ userHabits }) => {
   console.log(allHabits)
   const dataEnd =[];
 
+
+
+
   for (let habit of allHabits) {
     const planningTime = moment(habit.planningTime).format('L');
     console.log(planningTime, 'planningTime');
@@ -211,6 +214,7 @@ const Calendar = ({ userHabits }) => {
           break;
 
           case 'TueThuSat':
+          
           break;
 
           case 'TueThuSat':
