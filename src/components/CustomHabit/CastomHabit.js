@@ -3,7 +3,6 @@ import style from "./CastomHabit.module.css";
 import { connect } from "react-redux";
 import castomHabitActions from "../../redux/actions/castomHabitActions";
 import castomHabitOperation from "../../redux/operations/castomHabitOperation";
-import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 class CastomHabit extends Component {
   state = {
@@ -43,7 +42,7 @@ class CastomHabit extends Component {
   };
 
   render() {
-    console.log("this.props.HABIT", this.props);
+    // console.log("this.props.HABIT", this.props);
     const { name, iteration } = this.props.habit;
     const date = new Date(this.props.habit.planningTime);
     const day = this.editNumber(date.getDate());
@@ -54,7 +53,7 @@ class CastomHabit extends Component {
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
 
-    console.log("this.props.habit._id", this.props.habit._id);
+    // console.log("this.props.habit._id", this.props.habit._id);
 
     return (
       <div className={style.castomHabitContainer}>

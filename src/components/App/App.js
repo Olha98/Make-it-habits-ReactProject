@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Switch } from 'react-router-dom';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
 import PublicRoute from '../CustomRoutes/PublicRoute';
@@ -9,13 +9,11 @@ import { getGlobalState } from '../../redux/operations/stateOperation';
 import '../../css/vars.module.css';
 import '../../index.module.css';
 
-// import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = ({ getGlobalState, token }) => {
-  const [isTestOpen, changeStateIsOpen] = useState(false);
+ 
 
   useEffect(() => {
-    console.log('MOUNT');
     getGlobalState();
   }, [token]);
 

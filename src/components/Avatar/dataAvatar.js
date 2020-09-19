@@ -42,4 +42,4 @@ export const avatars = [
   { image: avatar16, id: "16" },
 ];
 
-console.log("avatar16", `${avatar16}`);
+// console.log("avatar16", `${avatar16}`);

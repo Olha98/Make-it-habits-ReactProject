@@ -11,7 +11,6 @@ const getAllStateRequest = () => {
 };
 
 const getAllStateSuccess = state => {
-  console.log(state, 'state!!!!');
   return {
     type: GET_STATE_SUCCESS,
     payload: state,

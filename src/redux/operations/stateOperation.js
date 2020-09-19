@@ -19,13 +19,10 @@ export const getGlobalState = () => (dispatch, getState) => {
   axios
     .get('https://make-it-habit-api.herokuapp.com/habits')
     .then(res => {
-      console.log(res, 'responce');
-      // dispatch(actionsState.getAllStateSuccess(res.data.habits));
       dispatch(getUserData({ ...res.data.user }));
       dispatch(getHabits([...res.data.habits]));
       dispatch(getCigarettes({ ...res.data.user.cigarettes }));
       dispatch(getQuizeInfo.getInfoSuccess({ ...res.data.user.quizInfo }));
-      
 
     })
     .catch(error => actionsState.getAllStateError(error))
