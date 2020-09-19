@@ -9,27 +9,30 @@ import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors'
 
 class InnerNavigation extends Component {
   state = {
-    isShowNotify: true,
+    isShowNotify: false,
     number: 0,
   };
   componentDidMount() {
-    // this.setState({
-    //   // isShowNotify: false,
-    //   number: this.props.number,
-    // });
+    const newNumber = localStorage.getItem('number');
+    // if (newNumber >= 0) {
+    this.setState({
+      isShowNotify: true,
+      number: this.props.number,
+    });
+    // }
     window.addEventListener('click', this.changeNotify);
   }
   changeNotify = e => {
     console.log('e.target', e.target);
     if (e.target.dataset.set === 'notify') {
-      const { isShowNotify, number } = this.state;
+      const { isShowNotify } = this.state;
 
       // this.setState({
       //   isShowNotify: false,
       //   number: this.props.number,
       // });
-      localStorage.setItem('isShowNotify', isShowNotify);
-      localStorage.setItem('number', number);
+      localStorage.setItem('isShowNotify', false);
+      localStorage.setItem('number', 0);
       localStorage.setItem('Date', Date.now());
       this.setState({
         isShowNotify: false,
@@ -97,7 +100,7 @@ class InnerNavigation extends Component {
                     style.leftSideBar_innerNavigation__list_item_link_notify
                   }
                 >
-                  {this.props.number && <span>{this.props.number}</span>}
+                  {this.state.number && <span>{this.state.number}</span>}
                 </div>
               )}
             </li>

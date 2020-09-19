@@ -14,24 +14,19 @@ Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
   render() {
     // console.log('this.props', this.props);
-    const {
-      //photo,
-      name,
-      surname,
-      logout,
-    } = this.props;
+    const { photo, name, surname, logout } = this.props;
     return (
       <>
         <section className={style.leftSideBar_userInfo}>
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
-                src={avatars.find(item => item.id === this.props.photo).image}
-                // src={
-                //   photo
-                //     ? `${photo} `
-                //     : `${`http://localhost:3000/static/media/Avatar-10.04be2625.png`}`
-                // }
+                //src={avatars.find(item => item.id === this.props.photo).image}
+                src={
+                  photo
+                    ? `${photo} `
+                    : `${`http://localhost:3000/static/media/Avatar-10.04be2625.png`}`
+                }
                 alt="avatar"
               />
             </div>

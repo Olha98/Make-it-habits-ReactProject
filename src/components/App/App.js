@@ -8,13 +8,17 @@ import '../../index.module.css';
 import Spinner from '../Spinner/Spinner';
 import DailyResult from '../DailyHabit/DayliResult';
 import ModalInterview from '../ModalInterview/ModalInterview';
+//import LeftSideBar from '../LeftSideBar/LeftSideBar';
+//import { useSelector } from 'react-redux';
 // import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const App = () => {
   const [isTestOpen, changeStateIsOpen] = useState(false);
+  //const token = useSelector(state => state.auth.access_token);
   return (
     <>
       <Suspense fallback={<Spinner />}>
+        {/* {token && <LeftSideBar />} */}
         <Switch>
           {routes.map(route =>
             route.private ? (
