@@ -1,11 +1,6 @@
-const GET_HABITS_REQUEST = "@checklist/getHabitsRequest";
-const GET_HABITS_SUCCESS = "@checklist/getHabitsSuccess";
-const GET_HABITS_ERROR = "@checklist/getHabitsError";
-
-
+const ADD_ACTUAL_HABITS_CALENDAR = "@calendar/addHabitCalendar";
 
 export default {
-  GET_HABITS_REQUEST,
-  GET_HABITS_SUCCESS,
-  GET_HABITS_ERROR,
+  ADD_ACTUAL_HABITS_CALENDAR,
+
 };

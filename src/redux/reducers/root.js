@@ -7,6 +7,8 @@ import authReducer from './authReducer';
 import quizReducer from './quizInfoReducer';
 import dayInfoReducer from './dailyCiggaretsReduces';
 import dataUser from '../actions/dataUser';
+import {calendarReducer} from  "../reducers/calendarReduser"
+
 
 export const persistConfig = {
   key: 'auth',
@@ -26,6 +28,7 @@ const root = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
 
   user: persistReducer(persistUserConfig, dataUser),
+  currentHubit: calendarReducer,
   // user: persistReducer(persistUserConfig, dataUserReducer),
   //quizInfo: quizReducer.quizInfo,
   error: quizReducer.error,

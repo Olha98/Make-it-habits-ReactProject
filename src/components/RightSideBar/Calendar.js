@@ -3,6 +3,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import addActualHabits from '../../redux/actions/calendarActions';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -165,7 +166,7 @@ const birthdayStyle = `
 
   `;
 
-const Calendar = ({ userHabits }) => {
+const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const nowDay = new Date();
@@ -175,56 +176,71 @@ const Calendar = ({ userHabits }) => {
     .format('dddd')
     .slice(0, 3); //weekday Mon
 
-  // const chosActualDate = moment(startDate).format('LL').slice(0, 2); //day 25
+  const calendarActualDay = moment(startDate).format('L');
+  console.log(calendarActualDay, 'ДЕНЬ КОТОРЫЙ ВЫБРАЛА!');
+
   const currentHabit = [];
 
-  // console.log(choseDay, 'choseDay');
-
-  // const array = ['22:54', '22:35', '9:87', '10:74', '12:34'];
-  // array.sort(function (a, b) {
-  //   return a - b;
-  // });
-  // console.log(array, "array")
 
   const allHabits = userHabits;
 
   for (let habit of allHabits) {
     const startPlanningTime = habit.planningTime;
-    const date = new Date(startPlanningTime);
-    const miliSecPlanningTime = Number(date.getMinutes()) * 60 * 1000;
+    const startWeekPlanningTime = moment(startPlanningTime)
+      .locale('en')
+      .format('dddd')
+      .slice(0, 3);
 
-    console.log(miliSecPlanningTime, 'miliSecPlanningTime');
-
+    let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
     switch (habit.iteration) {
       case 'onceInTwoDays':
-        // console.log(habit, 'onceInTwoDays!!');
+        //  console.log(habit, 'onceInTwoDays!!');
+        const arrayHabitsOnceInTwoDays = [];
+
+        for (let i = 0; i < 21; i++) {
+          arrayHabitsOnceInTwoDays.push(
+            moment(startPlanningTimeinML).format('L'),
+          );
+          startPlanningTimeinML += 86400000 * 2;
+        }
+
+        for (let arrayHabit of arrayHabitsOnceInTwoDays) {
+          if (arrayHabit.includes(calendarActualDay)) {
+            currentHabit.push(habit);
+          }
+        }
 
         break;
 
       case 'everyday':
-        // console.log(habit, 'everyday!!');
-        let timeEveryDayML = new Date(startPlanningTime).getTime(); // 1498555006770
-        console.log(startPlanningTime, 'startPlanningTime');
-        console.log(timeEveryDayML, 'timeEveryDay ');
-        // let date = new Date(timeEveryDayML);
-        const arrayHabits = [];
-        // console.log(date.toString(date));
-
+        const arrayHabitsEveryDay = [];
         for (let i = 0; i < 21; i++) {
-          i += timeEveryDayML + 1;
-          arrayHabits.push(i);
+          arrayHabitsEveryDay.push(moment(startPlanningTimeinML).format('L'));
+          startPlanningTimeinML += 86400000;
         }
-        console.log(arrayHabits, 'arrayHabits');
-        // const choosActualDate = moment(startDate).format('LL').slice(0, 2);
-        // console.log(choosActualDate, 'chosActualDate');
+
+        for (let arrayHabit of arrayHabitsEveryDay) {
+          if (arrayHabit.includes(calendarActualDay)) {
+            const result = arrayHabit.includes(calendarActualDay);
+            console.log(result);
+            currentHabit.push(habit);
+          }
+        }
 
         break;
 
       case 'TueThuSat':
-        // const getStartPlanningDay =startPlanningTime.getDay()
-        // console.log(habit, 'TueThuSat!!');
-        //  console.log(getStartPlanningDay, 'getStartPlanningDay!!');
+        console.log(habit, 'TueThuSat!!');
+        const iterationTueThuSat = habit.iteration
+          .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
+          .split(' ');
 
+        for (let iteration of iterationTueThuSat) {
+          console.log(iteration, 'iteration');
+          if (iteration.includes(choseActualWeekDay)) {
+            currentHabit.push(habit);
+          }
+        }
         break;
 
       case 'MonWedFri':
@@ -233,23 +249,12 @@ const Calendar = ({ userHabits }) => {
           .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
           .split(' ');
 
-        const startWeekPlanningTime = moment(startPlanningTime)
-          .locale('en')
-          .format('dddd')
-          .slice(0, 3);
-
-        // console.log(startWeekPlanningTime, 'startWeekPlanningTime');
-        // console.log(choseActualWeekDay, 'choseActualWeekDay');
-        // console.log(iterationMonWedFri, 'iterationMonWedFri');
-
         for (let iteration of iterationMonWedFri) {
           if (iteration.includes(choseActualWeekDay)) {
             currentHabit.push(habit);
           }
         }
-
         break;
-
       default:
         break;
     }

@@ -1,17 +1,9 @@
 import calendarConstants from "../constants/calendarConstants";
 
-const getHabitsRequest = () => ({
-  type: calendarConstants.GET_HABITS_REQUEST,
+const addActualHabitsCalendar = (currentHabits) => ({
+  type: calendarConstants.ADD_ACTUAL_HABITS_CALENDAR,
+  payload: currentHabits
 });
 
-const getHabitsSuccess = (habits) => ({
-  type: calendarConstants.GET_HABITS_SUCCESS,
-  payload: habits,
-});
 
-const getHabitsError = (error) => ({
-  type: calendarConstants.GET_HABITS_ERROR,
-  payload: error,
-});
-
-export default { getHabitsRequest, getHabitsSuccess, getHabitsError};
+export default  addActualHabitsCalendar;

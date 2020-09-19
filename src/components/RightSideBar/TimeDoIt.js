@@ -1,17 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
-import  TaskDoItItem from './TaskDiItItem'
+import React from 'react';
+import { connect } from 'react-redux';
+import TaskDoItItem from './TaskDiItItem';
 
 const TimeDoIt = ({ userHabits }) => {
-
-
-
   return (
     <ul>
-      {userHabits.map((userHabit) => (
-        
-        <TaskDoItItem userHabit={userHabit} key={userHabit._id}/>
-      ))}
+      {userHabits &&
+        userHabits.map(userHabit => (
+          <TaskDoItItem userHabit={userHabit} key={userHabit._id} />
+        ))}
     </ul>
   );
 };
