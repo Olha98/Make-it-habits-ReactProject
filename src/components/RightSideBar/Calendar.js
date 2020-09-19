@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
-import RightSideBar from './RightSideBar';
 import { connect } from 'react-redux';
-import moment, { parseTwoDigitYear } from 'moment';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -161,88 +159,17 @@ const birthdayStyle = `
    width: 30px;
     height: 30px;
     color: red;
- 
 
   }
 
   `;
 
-const task = [
-  {
-    createAt: '2020-09-07T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 20,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Покушать кофеток и лечь спать',
-    iteration: 'everyday',
-  },
-
-  {
-    createAt: '2020-10-21T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Пойти поспать и посмотреть фильмец',
-    iteration: 'onceADay',
-  },
-
-  {
-    createAt: '2020-14-06T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'onceInTwoDays',
-  },
-
-  {
-    createAt: '2020-14-01T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'MonWedFri',
-  },
-
-  {
-    createAt: '2020-14-11T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'TueThuSat',
-  },
-];
-
-const Calendar = () => {
+const Calendar = ({userHabits}) => {
   const [startDate, setStartDate] = useState(new Date());
-  const dataNow = Data.now();
+
   const nowDay = new Date();
   const choseDay = startDate;
-  const allHabits = task;
-
-// var millennium =new Date(2000, 0, 1) //Month is 0-11 in JavaScript
-
-// //Get 1 day in milliseconds
-// var one_day=1000*60*60*24
- 
-// //Calculate difference btw the two dates, and convert to days
-const dataNeq = Math.ceil((nowDay.getTime()-nowDay.getTime())/(one_day))
-console.log(dataNeq)
- 
-
-  const resultArray = [];
-  console.log()
-
-  for (let i = 0; i < 21; i++) {
-    resultArray.push(i)
-    i+=
-  }
+  const allHabits = userHabits;
 
   for (let habit of allHabits) {
     const startPlanningTime = habit.planningTime;
@@ -251,7 +178,6 @@ console.log(dataNeq)
     const date = new Date(startPlanningTime);
 
     const miliSecPlanningTime = Number(date.getMinutes()) * 60 * 1000;
-    console.log(miliSecPlanningTime, 'miliSecPlanningTime');
 
     switch (habit.iteration) {
       case 'onceInTwoDays':

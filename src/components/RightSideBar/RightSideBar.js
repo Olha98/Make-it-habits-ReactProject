@@ -6,58 +6,9 @@ import TimeDoItList from './TimeDoIt';
 import moment from 'moment';
 import 'moment/locale/ru';
 import CustomScrollbars from '../../assests/scroll/scroll';
+import { connect } from 'react-redux';
 
-const task = [
-  {
-    createAt: '2020-09-07T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 20,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Покушать кофеток и лечь спать',
-    iteration: 'everyday',
-  },
 
-  {
-    createAt: '2020-10-21T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Пойти поспать и посмотреть фильмец',
-    iteration: 'onceADay',
-  },
-
-  {
-    createAt: '2020-14-06T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'onceInTwoDays',
-  },
-
-  {
-    createAt: '2020-14-01T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'MonWedFri',
-  },
-
-  {
-    createAt: '2020-14-11T01:07:23.330Z',
-    data: [null, null, null],
-    planningTime: '2020-09-07T01:07:23.330Z',
-    efficiency: 50,
-    id: '5f4d9edf6375b430bda8ce92',
-    name: 'Съесть килограм мороженого и закусить селеткой',
-    iteration: 'TueThuSat',
-  },
-];
 
 class RightSideBar extends Component {
   state = {
@@ -66,14 +17,9 @@ class RightSideBar extends Component {
     currentDay: '',
   };
 
-  componentDidMount = () => {
-    // this.props.onGetHabit();
-  };
-
-  addState = () => {};
-
   render() {
     const { dayWeek, getData } = this.state;
+
 
     return (
       <div className={style.boxRightSideBar}>
@@ -90,7 +36,7 @@ class RightSideBar extends Component {
           </div>
           <div className={style.footerRightSideBar}>
             <CustomScrollbars style={{ width: 360, height: 300 }}>
-              <TimeDoItList task={task} />
+              <TimeDoItList/>
             </CustomScrollbars>
           </div>
         </div>
@@ -98,5 +44,7 @@ class RightSideBar extends Component {
     );
   }
 }
+
+
 
 export default RightSideBar;

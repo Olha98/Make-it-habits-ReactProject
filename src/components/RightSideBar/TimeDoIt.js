@@ -1,15 +1,25 @@
 import React from "react";
+import { connect } from "react-redux";
 import  TaskDoItItem from './TaskDiItItem'
 
-const TimeDoIt = ({ task }) => {
-	
+const TimeDoIt = ({ userHabits }) => {
+
+
+
   return (
     <ul>
-      {task.map((task) => (
-        <TaskDoItItem task={task} key={task.createAt}/>
+      {userHabits.map((userHabit) => (
+        
+        <TaskDoItItem userHabit={userHabit} key={userHabit._id}/>
       ))}
     </ul>
   );
 };
 
-export default TimeDoIt;
+const mapStateToProps = function (state) {
+  return {
+    userHabits: state.user.habits,
+  };
+};
+
+export default connect(mapStateToProps)(TimeDoIt);
