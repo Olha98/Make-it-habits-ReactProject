@@ -11,12 +11,10 @@ const habitsReducer = (state = { ...initialState }, action) => {
   switch (action.type) {
     case GET_HABITS:
     // case GET_STATE_SUCCESS:
-      return { ...initialState, allHabits: [...action.payload] };
+    return { ...initialState, allHabits: [...action.payload] };
 
-      
     case GET_STATE_SUCCESS:
       return { ...initialState, allHabits: [...action.payload.habits] };
-      
 
     default:
       return state;

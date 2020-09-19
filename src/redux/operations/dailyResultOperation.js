@@ -13,18 +13,11 @@ const updateDailyResul = update => (dispatch, getState) => {
   token.set(tokenNow);
 
   dispatch(dailyResultAction.updateCiggaretsRequest());
-  console.log('-------------------');
-  console.dir(axios);
-  // axios.defaults.headers.common.Authorization = token;
+
   axios
     .post('/users/updateCigarettes', update)
     .then(res => {
-      console.log('dailyResul234567894567t', res);
-      dispatch(getCigarettes(...res.data));
-      
-      axios.get('/habits').then(res => {
-        dispatch(getUserData({ ...res.data.user }));
-      });
+      dispatch(getCigarettes({ ...res.data }));
     })
     .catch(err => {
       dispatch(dailyResultAction.updateCiggaretsError(err));

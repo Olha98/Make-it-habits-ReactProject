@@ -14,6 +14,7 @@ const quizInfo = (state = { ...initialState }, action) => {
       return action.payload;
     case quizInfoConstants.GET_SUCCESS:
       return action.payload;
+
     default:
       return state;
   }

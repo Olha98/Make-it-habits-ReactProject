@@ -33,26 +33,27 @@ const addInfo = info => async (dispatch, getState) => {
   }
 };
 
-const fetchInfo = () => async (dispatch, getState) => {
-  const {
-    auth: { access_token: persistedToken },
-  } = getState();
-  console.log(persistedToken);
-  // if (!persistedToken) {
-  //   return;
-  // }
+// const fetchInfo = () => async (dispatch, getState) => {
+//   const {
+//     auth: { access_token: persistedToken },
+//   } = getState();
+//   console.log(persistedToken);
+//   // if (!persistedToken) {
+//   //   return;
+//   // }
 
-  // token.set(persistedToken);
-  dispatch(quizInfoActions.getInfoRequest());
-  try {
-    const { data } = await axios.get('/habits');
-    const { user } = data;
-    // console.log(user.quizInfo);
-    dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
-  } catch (error) {
-    console.log(error);
-    dispatch(quizInfoActions.getInfoError(error));
-  }
-};
+//   // token.set(persistedToken);
+//   dispatch(quizInfoActions.getInfoRequest());
+//   try {
+//     const { data } = await axios.get('/habits');
+//     const { user } = data;
+//     // console.log(user.quizInfo);
+//     dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
+//   } catch (error) {
+//     console.log(error);
+//     dispatch(quizInfoActions.getInfoError(error));
+//   }
+// };
 
-export default { addInfo, fetchInfo };
+// export default { addInfo, fetchInfo };
+export default { addInfo };
