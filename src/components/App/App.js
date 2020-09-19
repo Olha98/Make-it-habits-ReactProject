@@ -15,7 +15,7 @@ const App = ({ getGlobalState, token }) => {
 
   useEffect(() => {
     getGlobalState();
-  }, [token]);
+  }, [token, getGlobalState]);
 
   return (
     <>

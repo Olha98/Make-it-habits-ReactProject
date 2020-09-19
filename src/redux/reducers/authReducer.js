@@ -1,6 +1,5 @@
 import authConstants from '../constants/authConstans';
 
-
 const initialState = {
   access_token: '',
 };

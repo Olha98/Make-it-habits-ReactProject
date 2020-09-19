@@ -10,12 +10,14 @@ import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors'
 class InnerNavigation extends Component {
   state = {
     isShowNotify: true,
+    number: 0,
   };
-  changeNotify = () => {
+  componentDidMount() {
     this.setState({
-      isShowNotify: false,
+      isShowNotify: true,
+      number: this.props.number,
     });
-  };
+  }
   render() {
     return (
       <div>
@@ -47,9 +49,11 @@ class InnerNavigation extends Component {
                 </div>
               </NavLink>
             </li>
-            <li className={style.leftSideBar_innerNavigation__list_item}>
+            <li
+              onClick={this.changeNotify}
+              className={style.leftSideBar_innerNavigation__list_item}
+            >
               <NavLink
-                onClick={() => this.changeNotify()}
                 to="/notifications"
                 className={style.leftSideBar_innerNavigation__list_item_link}
                 activeClassName={
@@ -60,6 +64,7 @@ class InnerNavigation extends Component {
                   <Bell />
                 </div>
               </NavLink>
+              {/* {this.state.isShowNotify && ( */}
               <div
                 className={
                   style.leftSideBar_innerNavigation__list_item_link_notify
@@ -67,6 +72,7 @@ class InnerNavigation extends Component {
               >
                 {this.props.number && <span>{this.props.number}</span>}
               </div>
+              {/* )} */}
             </li>
           </ul>
         </section>
@@ -76,22 +82,11 @@ class InnerNavigation extends Component {
 }
 
 const mapStateToProps = state => {
-  const listOfHabits = leftSideBarSelectors.listOfHabits(state);
-  const allNotifications = listOfHabits.filter(({ data, name }) => {
-    const isAllTrue = data.every(bool => bool);
+  const navNot = leftSideBarSelectors.allNotifications(state);
+  // console.log(navNot);
 
-    if (isAllTrue) {
-      return {
-        [name]: data.name,
-      };
-    }
-    return '';
-  });
-
-  const getName = allNotifications.forEach(el => {});
   return {
-    number: allNotifications.length,
-    names: getName,
+    number: navNot && navNot.length,
   };
 };
 

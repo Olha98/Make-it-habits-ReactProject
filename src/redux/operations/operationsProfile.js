@@ -41,9 +41,9 @@ import { getUserData } from '../actions/userActions';
 // };
 
 const addDataUserOperation = user => async (dispatch, getState) => {
-  
   const tokenNow = getState().auth.access_token;
   token.set(tokenNow);
+  
 
   dispatch(actionsLoader.loaderOn());
   try {
@@ -54,7 +54,6 @@ const addDataUserOperation = user => async (dispatch, getState) => {
         ...data,
       }),
     );
-    
   } catch (error) {
     console.log('error-add', error);
     dispatch(actionsUser.addDataUserError(error));

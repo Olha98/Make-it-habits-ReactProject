@@ -1,6 +1,14 @@
 @value colors: '../../css/vars.module.css';
 @value main_green, main_blue, main_pink, main_gradient, orange_gradient, pink_gradient, violet_gradient, black_font from colors;
 
+.sectionTitle {
+  font-size: 26px;
+  line-height: 31px;
+
+  color: black_font;
+  margin-bottom: 30px;
+}
+
 .card {
   width: 344px;
   height: 200px;

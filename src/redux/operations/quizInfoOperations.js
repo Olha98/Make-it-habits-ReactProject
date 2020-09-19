@@ -1,59 +1,22 @@
 import axios from 'axios';
 import quizInfoActions from '../actions/quizInfoActions';
+import actionsLoader from '../actions/spinnerActions';
+import { token } from './authOperation';
 
-// axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
-
-const token = {
-  set(token) {
-    // axios.defaults.headers.common.Authorization = token;
-  },
-  unset() {
-    // axios.defaults.headers.common.Authorization = '';
-  },
-};
 
 const addInfo = info => async (dispatch, getState) => {
-  const {
-    auth: { access_token: persistedToken },
-  } = getState();
+  const tokenNow = getState().auth.access_token;
+  token.set(tokenNow);
 
-  // if (!persistedToken) {
-  //   return;
-  // }
-
-  // token.set(persistedToken);
+  dispatch(actionsLoader.loaderOn());
   dispatch(quizInfoActions.addInfoRequest());
   try {
-    const { data } = await axios.post('/users/updateQuizInfo', info);
-    // console.log(data);
-    dispatch(quizInfoActions.addInfoSuccess(data));
+    await axios.post('/users/updateQuizInfo', info);
+    dispatch(quizInfoActions.addInfoSuccess(info));
   } catch (error) {
-    console.log(error);
     dispatch(quizInfoActions.addInfoError(error));
   }
+  dispatch(actionsLoader.loaderOff());
 };
 
-// const fetchInfo = () => async (dispatch, getState) => {
-//   const {
-//     auth: { access_token: persistedToken },
-//   } = getState();
-//   console.log(persistedToken);
-//   // if (!persistedToken) {
-//   //   return;
-//   // }
-
-//   // token.set(persistedToken);
-//   dispatch(quizInfoActions.getInfoRequest());
-//   try {
-//     const { data } = await axios.get('/habits');
-//     const { user } = data;
-//     // console.log(user.quizInfo);
-//     dispatch(quizInfoActions.getInfoSuccess(user.quizInfo));
-//   } catch (error) {
-//     console.log(error);
-//     dispatch(quizInfoActions.getInfoError(error));
-//   }
-// };
-
-// export default { addInfo, fetchInfo };
 export default { addInfo };

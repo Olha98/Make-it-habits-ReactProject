@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import style from "./CastomHabit.module.css";
-import { connect } from "react-redux";
-import castomHabitActions from "../../redux/actions/castomHabitActions";
-import castomHabitOperation from "../../redux/operations/castomHabitOperation";
+import React, { Component } from 'react';
+import style from './CastomHabit.module.css';
+import { connect } from 'react-redux';
+import castomHabitActions from '../../redux/actions/castomHabitActions';
+import castomHabitOperation from '../../redux/operations/castomHabitOperation';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 class CastomHabit extends Component {
   state = {
-    name: "",
-    date: "",
-    iteration: "",
-    time: "",
+    name: '',
+    date: '',
+    iteration: '',
+    time: '',
   };
 
-  onClickSubmit = (e) => {
+  onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
@@ -28,14 +29,14 @@ class CastomHabit extends Component {
     }
   };
 
-  handleChenge = (e) => {
+  handleChenge = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
 
-  editNumber = (number) => {
+  editNumber = number => {
     if (number < 10) {
       return `0${number}`;
     } else return number;
@@ -143,9 +144,11 @@ class CastomHabit extends Component {
   }
 }
 
-export default connect(null, {
-  onAddCustomHabit: castomHabitActions.addCustomHabit,
-  removeCastomHabit: castomHabitActions.removeCustomHabit,
-  requestAddCustomHabit: castomHabitOperation.addHabitOperation,
-  requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
-})(CastomHabit);
+export default modalBackDrop(
+  connect(null, {
+    onAddCustomHabit: castomHabitActions.addCustomHabit,
+    removeCastomHabit: castomHabitActions.removeCustomHabit,
+    requestAddCustomHabit: castomHabitOperation.addHabitOperation,
+    requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
+  })(CastomHabit),
+);

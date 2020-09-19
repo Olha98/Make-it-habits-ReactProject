@@ -26,7 +26,7 @@ const userRegistration = credentials => dispatch => {
     });
 };
 
-const userLogin = credentials => dispatch => {
+const userLogin = credentials =>  dispatch => {
   dispatch(authAction.loginRequest());
   axios
     .post('/auth/login', credentials)
