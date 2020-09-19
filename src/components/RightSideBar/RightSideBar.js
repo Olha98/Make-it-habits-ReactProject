@@ -4,22 +4,20 @@ import style from './RightSideBar.module.css';
 import Calendar from './Calendar';
 import TimeDoItList from './TimeDoIt';
 import moment from 'moment';
-import 'moment/locale/ru';
 import CustomScrollbars from '../../assests/scroll/scroll';
-import { connect } from 'react-redux';
-
+import 'moment/locale/ru';
 
 
 class RightSideBar extends Component {
   state = {
     dayWeek: moment().format('dddd'),
     getData: moment().format('LL').split(' ').slice(0, 2),
-    currentDay: '',
   };
+
+  
 
   render() {
     const { dayWeek, getData } = this.state;
-
 
     return (
       <div className={style.boxRightSideBar}>
@@ -35,8 +33,8 @@ class RightSideBar extends Component {
             <Calendar />
           </div>
           <div className={style.footerRightSideBar}>
-            <CustomScrollbars style={{ width: 360, height: 300 }}>
-              <TimeDoItList/>
+            <CustomScrollbars style={{ width: 370, height: 340, top: 10 }}>
+              <TimeDoItList />
             </CustomScrollbars>
           </div>
         </div>
@@ -44,7 +42,5 @@ class RightSideBar extends Component {
     );
   }
 }
-
-
 
 export default RightSideBar;

@@ -28,7 +28,7 @@ const userRegistration = credentials => dispatch => {
     });
 };
 
-const userLogin = credentials => dispatch => {
+const userLogin = credentials =>  dispatch => {
   dispatch(authAction.loginRequest());
   axios
     .post('/auth/login', credentials)
@@ -37,7 +37,7 @@ const userLogin = credentials => dispatch => {
       dispatch(authAction.loginSucces(res.data));
 
       axios.get('/habits').then(res => {
-        console.log(res, "RESMOTHERFACKER")
+        console.log(res, 'RESMOTHERFACKER');
         dispatch(
           actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
         );

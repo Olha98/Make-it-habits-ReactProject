@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import { connect } from 'react-redux';
+import moment from 'moment';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -157,50 +158,104 @@ const birthdayStyle = `
    position: absolute;
    transform: rotate(-135deg);
    width: 30px;
-    height: 30px;
-    color: red;
+   height: 30px;
+  color: red;
 
   }
 
   `;
 
-const Calendar = ({userHabits}) => {
+const Calendar = ({ userHabits }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const nowDay = new Date();
-  const choseDay = startDate;
+
+  const choseActualWeekDay = moment(startDate)
+    .locale('en')
+    .format('dddd')
+    .slice(0, 3); //weekday Mon
+
+  // const chosActualDate = moment(startDate).format('LL').slice(0, 2); //day 25
+  const currentHabit = [];
+
+  // console.log(choseDay, 'choseDay');
+
+  // const array = ['22:54', '22:35', '9:87', '10:74', '12:34'];
+  // array.sort(function (a, b) {
+  //   return a - b;
+  // });
+  // console.log(array, "array")
+
   const allHabits = userHabits;
 
   for (let habit of allHabits) {
     const startPlanningTime = habit.planningTime;
-    console.log(startPlanningTime, 'startPlanningTime');
-
     const date = new Date(startPlanningTime);
-
     const miliSecPlanningTime = Number(date.getMinutes()) * 60 * 1000;
+
+    console.log(miliSecPlanningTime, 'miliSecPlanningTime');
 
     switch (habit.iteration) {
       case 'onceInTwoDays':
-        console.log(habit, 'onceInTwoDays!!');
-        
+        // console.log(habit, 'onceInTwoDays!!');
+
         break;
 
       case 'everyday':
-        console.log(habit, 'everyday!!');
+        // console.log(habit, 'everyday!!');
+        let timeEveryDayML = new Date(startPlanningTime).getTime(); // 1498555006770
+        console.log(startPlanningTime, 'startPlanningTime');
+        console.log(timeEveryDayML, 'timeEveryDay ');
+        // let date = new Date(timeEveryDayML);
+        const arrayHabits = [];
+        // console.log(date.toString(date));
+
+        for (let i = 0; i < 21; i++) {
+          i += timeEveryDayML + 1;
+          arrayHabits.push(i);
+        }
+        console.log(arrayHabits, 'arrayHabits');
+        // const choosActualDate = moment(startDate).format('LL').slice(0, 2);
+        // console.log(choosActualDate, 'chosActualDate');
+
         break;
 
       case 'TueThuSat':
-        console.log(habit, 'TueThuSat!!');
+        // const getStartPlanningDay =startPlanningTime.getDay()
+        // console.log(habit, 'TueThuSat!!');
+        //  console.log(getStartPlanningDay, 'getStartPlanningDay!!');
+
         break;
 
       case 'MonWedFri':
-        console.log(habit, 'MonWedFri!!');
+        // console.log(habit, 'MonWedFri!!');
+        const iterationMonWedFri = habit.iteration
+          .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
+          .split(' ');
+
+        const startWeekPlanningTime = moment(startPlanningTime)
+          .locale('en')
+          .format('dddd')
+          .slice(0, 3);
+
+        // console.log(startWeekPlanningTime, 'startWeekPlanningTime');
+        // console.log(choseActualWeekDay, 'choseActualWeekDay');
+        // console.log(iterationMonWedFri, 'iterationMonWedFri');
+
+        for (let iteration of iterationMonWedFri) {
+          if (iteration.includes(choseActualWeekDay)) {
+            currentHabit.push(habit);
+          }
+        }
+
         break;
 
       default:
         break;
     }
   }
+
+  console.log(currentHabit, 'currentHabit');
 
   return (
     <>
