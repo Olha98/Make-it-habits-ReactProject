@@ -53,5 +53,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  logout: authAction.logOutSuccess,
+  logout: authAction.logout,
 })(UserInfo);
