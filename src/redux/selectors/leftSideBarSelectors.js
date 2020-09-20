@@ -30,17 +30,30 @@ const allNotifications = createSelector([listOfHabits], habits => {
 
   return (
     habits &&
-    habits.filter(({ data, name }) => {
-      const isAllTrue = data.every(bool => bool);
+    habits.filter(habit => {
+      //const isAllTrue = habit.data.every(bool => bool);
 
-      if (isAllTrue) {
-        return {
-          [name]: data.name,
-        };
+      if (habit.efficiency === 100) {
+        console.log('data', habit.name);
+        return [...habit.name];
       }
       return '';
     })
   );
+  // return (
+  //   habits &&
+  //   habits.filter(({ data, name, }) => {
+  //     const isAllTrue = data.every(bool => bool);
+
+  //     if (isAllTrue) {
+  //       console.log('data', data);
+  //       return {
+  //         [name]: data,
+  //       };
+  //     }
+  //     return '';
+  //   })
+  // );
 });
 // ===============habits=========
 export default {

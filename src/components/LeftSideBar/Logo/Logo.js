@@ -1,11 +1,11 @@
-import React from "react";
-import logoimage from "../../../assests/images/LeftSideBar/logoimage.png";
-import style from "./Logo.module.css";
+import React from 'react';
+import logoimage from '../../../assests/images/LeftSideBar/logoimage.png';
+import style from './Logo.module.css';
 
 export default function Logo() {
   return (
     <>
-      <section className={style.logo}>
+      <div className={style.logo}>
         <div>
           <div>
             <img
@@ -16,7 +16,7 @@ export default function Logo() {
             />
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }

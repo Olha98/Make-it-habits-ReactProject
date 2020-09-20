@@ -18,6 +18,9 @@ const habitsReducer = (state = { ...initialState }, action) => {
     case GET_CURRENT_HABITS:
       return { ...state, currentHabits: action.payload };
 
+    //  case GET_CURRENT_HABITS:
+    //  return { ...state, currentHabits: action.payload };
+
     default:
       return state;
   }
