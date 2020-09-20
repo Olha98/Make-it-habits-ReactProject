@@ -79,7 +79,6 @@ function Subscriptions() {
         {isShowModal && <ChoiceType close={setIsShowModal} />}
       </section>
       <section className={style.subscriptionsSectionCards}>
-        <p className={style.subscriptionsSectionTitle}>Мои карты</p>
         <Card />
       </section>
     </div>

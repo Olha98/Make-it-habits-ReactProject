@@ -1,0 +1,39 @@
+.notificationItem {
+  display: flex;
+  flex-direction: column;
+
+  align-items: left;
+  width: 720px;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-right: 45px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0px 10px 16px rgba(68, 68, 68, 0.04);
+  position: relative;
+
+  box-shadow: 0px 8px 16px rgba(67, 209, 144, 0.15);
+  transition: all 0.2s linear;
+}
+.notificationItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 8px 16px rgba(106, 155, 163, 0.3);
+  /* background: #43d190; */
+  outline: 0;
+}
+.notificationItem:not(:last-child) {
+  margin-bottom: 30px;
+}
+.notificationItem_HabitName {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #4f4f4f;
+  margin-bottom: 10px;
+}
+.notificationItem_HabitName_small {
+  font-size: 14px;
+  line-height: 17px;
+  color: #bdbdbd;
+}

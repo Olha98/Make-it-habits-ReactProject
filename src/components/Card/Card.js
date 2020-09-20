@@ -8,6 +8,7 @@ const Card = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   return (
     <>
+      <p className={style.sectionTitle}>Мои карты</p>
       <div className={style.card}>
         <p className={style.cardName}>Моя карта</p>
         <p className={style.cardNumber}>4213 3535 5631 0991</p>

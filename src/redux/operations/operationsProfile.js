@@ -1,8 +1,9 @@
 import axios from 'axios';
 import actionsUser from '../actions/actionsProfile';
-import dataUser, { actionsGetUserData } from '../actions/dataUser';
+// import dataUser, { actionsGetUserData } from '../actions/dataUser';
 import actionsLoader from '../actions/spinnerActions';
 import { token } from './authOperation';
+import { getUserData } from '../actions/userActions';
 
 // const instance = axios.create({
 //   baseURL: "https://make-it-habit-api.herokuapp.com",
@@ -42,13 +43,14 @@ import { token } from './authOperation';
 const addDataUserOperation = user => async (dispatch, getState) => {
   const tokenNow = getState().auth.access_token;
   token.set(tokenNow);
+  
 
   dispatch(actionsLoader.loaderOn());
   try {
     const { data } = await axios.patch('/users', user);
     console.log('data-Add', data);
     dispatch(
-      actionsGetUserData({
+      getUserData({
         ...data,
       }),
     );

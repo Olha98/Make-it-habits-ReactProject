@@ -9,14 +9,6 @@
   margin-bottom: 60px;
 }
 
-.subscriptionsSectionTitle {
-  font-size: 26px;
-  line-height: 31px;
-
-  color: black_font;
-  margin-bottom: 30px;
-}
-
 .subscriptionsList {
   margin-bottom: 40px;
 }
@@ -108,9 +100,10 @@
   font-weight: 500;
 }
 
-.subscriptionsSectionCards {
+/* .subscriptionsSectionCards {
   margin-bottom: 60px;
 }
+} */
 
 .choiceTypeWrapper {
   width: 784px;
