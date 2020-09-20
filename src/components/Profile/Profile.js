@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 // import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from './PasswordForm';
 import ErrorValidation from './ErrorValidation';
-import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+// import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
 import { avatars } from '../Avatar/dataAvatar';
 import style from './Profile.module.css';
 import Card from '../Card/Card';
@@ -24,10 +24,13 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, 'минимальное количество символов: 2')
     .max(16, 'максимальное количество символов: 16')
+    .matches(/^[A-Za-zА-Яа-яА-Яа-яËё]+$/)
     .required('обязательное поле заполнения'),
+  // firstName: Yup.number().max(0),
   lastName: Yup.string()
     .min(2, 'минимальное количество символов: 2')
-    .max(16, 'максимальное количество символов: 16'),
+    .max(16, 'максимальное количество символов: 16')
+    .matches(/^[A-Za-zА-Яа-яА-Яа-яËё]+$/),
   email: Yup.string()
     .email('укажите правильный email')
     .max(30, 'максимальное количество символов: 30')
@@ -72,15 +75,14 @@ class Profile extends Component {
   //   console.log("this.props", this.props);
   //   console.log("this.state", this.state);
   // };
-
   render() {
-    const { changePassword, avatar } = this.state;
+    const { changePassword } = this.state;
     // const { firstName, lastName, phone, email, avatar } = this.state;
 
     // if (!this.props.firstName) {
     //   return null;
     // } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
-    console.log('!!!avatars', avatars);
+    // console.log('!!!avatars', avatars);
 
     return (
       <>
@@ -106,13 +108,13 @@ class Profile extends Component {
                   onSubmit={values => {
                     // console.log(22222222, values);
                     this.props.addDataUserOperation({ ...values });
-                    this.changePath();
+                    // this.changePath();
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
                     <Form className={style.form}>
                       <label className={style.label}>
-                        <span className={style.titleInput}>Имя</span>
+                        <span className={style.titleInput}>Имя*</span>
                         <input
                           type="text"
                           name="firstName"
@@ -162,18 +164,18 @@ class Profile extends Component {
                           name="phone"
                           defaultValue={values.phone}
                           id="phone"
-                          mask="\80999999999"
+                          mask="+3\8099 999 99 99"
                           onChange={handleChange}
                           className={style.input}
                           placeholder="+380__ ___ __ __"
                         />
-                        {/* <ErrorValidation
+                        <ErrorValidation
                           touched={touched.phone}
                           message={errors.phone}
-                        /> */}
+                        />
                       </label>
                       <label className={style.label}>
-                        <span className={style.titleInput}>E-mail</span>
+                        <span className={style.titleInput}>E-mail*</span>
                         <input
                           type="email"
                           name="email"
@@ -201,7 +203,14 @@ class Profile extends Component {
                       > */}
                       <button
                         type="submit"
-                        // onClick={()=>{handleSubmit()}}
+                        onClick={() => {
+                          errors.firstName &&
+                            alert('Имя должно быть от 2 до 16 букв');
+                          errors.lastName &&
+                            alert('Фамилия должна быть от 2 до 16 букв');
+                          errors.phone && alert('Введите 11 цифр');
+                          errors.email && alert('Введите корректный email');
+                        }}
                         className={style.btnSaveChange}
                       >
                         Сохранить изменения
@@ -250,8 +259,7 @@ class Profile extends Component {
                   to="/subscriptions"
                 >
                   <button
-                    // type="submit"
-                    // onSubmit={this.handleSubmit}
+                    type="button"
                     // onClick={this.onChangeSubscriptions}
                     className={style.button}
                   >
@@ -265,28 +273,25 @@ class Profile extends Component {
             <Card />
           </div>
 
-          {this.state.isShowModal && <ModalInterview close={() => null} />}
+          {/* {this.state.isShowModal && <ModalInterview close={() => null} />} */}
         </div>
       </>
     );
   }
 }
 const mapStateToProps = state => {
-  // console.log('state', state);
   return {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: 111111,
-    // isModalInterview: state.user.quizInfo.smokeYears,
+    // isModalInterview: 111111,
+    isModalInterview: state.user.quizInfo.smokeYears,
   };
 };
 
 const mapDispatchToProps = {
-  // addDataUserOperation: actionsProfile.addDataUserSuccess,
-  // getDataUserOperation: operationsProfile.getDataUserOperation,
   addDataUserOperation: operationsProfile.addDataUserOperation,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

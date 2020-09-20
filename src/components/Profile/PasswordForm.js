@@ -26,10 +26,10 @@ class PasswordForm extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     });
-    console.log('this.props.postPasswordOperation', {
-      password: this.state.password,
-      confirmPassword: this.state.confirmPassword,
-    });
+    // console.log('this.props.postPasswordOperation', {
+    //   password: this.state.password,
+    //   confirmPassword: this.state.confirmPassword,
+    // });
   };
 
   handleChange = e => {
@@ -43,7 +43,7 @@ class PasswordForm extends Component {
 
   render() {
     const {
-      passwordOld,
+      // passwordOld,
       passwordNew,
       passwordNewRepeat,
 

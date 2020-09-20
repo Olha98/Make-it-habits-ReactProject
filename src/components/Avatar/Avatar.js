@@ -36,7 +36,6 @@ class Avatar extends Component {
                   <NavLink exact to="/profile">
                     <img
                       src={avatar.image}
-                      // loading="lazy"
                       alt="avatar"
                       width="157"
                       height="157"

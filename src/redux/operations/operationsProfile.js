@@ -68,7 +68,7 @@ const postPasswordOperation = password => async (dispatch, getState) => {
   dispatch(actionsLoader.loaderOn());
   try {
     const { data } = await axios.post('/auth/updatePassword', password);
-    console.log('dataPassWord', data);
+    // console.log('dataPassWord', data);
     dispatch(actionsUser.postPasswordSuccess({ ...password }));
   } catch (error) {
     dispatch(actionsProfile.postPasswordError(error));
