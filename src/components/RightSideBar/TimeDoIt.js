@@ -4,59 +4,23 @@ import TaskDoItItem from './TaskDiItItem';
 import moment from 'moment';
 
 const TimeDoIt = ({ currentHabits }) => {
-  // const newCurrent = currentHabits
-  //   .map(item =>
-  //     moment(new Date(item.planningTime).format('LT').replace(/:/g, '')),
-  //   )
-  //   .sort((a, b) => a - b);
+  const newCurrent = currentHabits
+    .map(item => {
+      return {
+        ...item,
+        timeNow: new Date(item.planningTime).getTime(),
+      };
+    })
+    .sort((a, b) => a.timeNow - b.timeNow);
 
-  // console.log(newCurrent, 'newCurrent');
+  console.log(newCurrent, 'newCurrent');
 
-
-
-  // for(let currentHabit of currentHabits){
-  //   const time = moment(new Date(currentHabit.planningTime)).format('LT').replace(/:/g, '');
-  //   // console.log('time', time.replace(/:/g, ''))
-  //   // const arr =[1123, 345, 985, 1030]
-  //   // arr.sort( (a, b) => a - b );
-  //   // console.log(arr)
-
-  // }
-  // const x = currentHabits.sort((a, b) => a.moment(new Date(planningTime)).format('LT').replace(/:/g, '')
-  //  - b.moment(new Date(planningTime)).format('LT').replace(/:/g, ''));
-  // console.log(x,"x")
-
-  //   for (let currentHabit of currentHabits) {
-
-  //     dates.push(moment(currentHabit.created));
-  //   }
-  //   dates.sort(function(a,b){
-  //     var da = new Date(a).getTime();
-  //     var db = new Date(b).getTime();
-
-  //     return da < db ? -1 : da > db ? 1 : 0
-  //   });
-  // }
-  // console.log(dates);
-
-  // const getNamesSortedByFriendsCount = users => {
-
-  //   currentHabits.sort((a, b) => {
-  //     return{
-  //       new Date(a.planningTime) - new Date(b.planningTime)
-  //     }
-
-  //   });
-  //   return users.map(elem => elem.name);
-
-  // };
-
-  // console.log(getNamesSortedByFriendsCount(users));
+ 
 
   return (
     <ul>
-      {currentHabits &&
-        currentHabits.map(currentHabit => (
+      {newCurrent &&
+        newCurrent.map(currentHabit => (
           <TaskDoItItem currentHabit={currentHabit} key={currentHabit._id} />
         ))}
     </ul>
