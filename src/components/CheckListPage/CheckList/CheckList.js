@@ -8,7 +8,6 @@ class CheckList extends Component {
     return (
       <div className={style.checkList}>
         <div className={style.checkListWrapper}>
-          {console.log('this.props', this.props)}
           {this.props.habits
             ? // this.props.habits.filter(habit => {
               //     if (habit.efficiency !== 100) {
@@ -51,9 +50,8 @@ class CheckList extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log('stateList', state);
   return {
-    habits: state.habits.allHabits,
+    habits: state.habits.currentHabits,
   };
 };
 

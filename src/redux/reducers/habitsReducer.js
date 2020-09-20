@@ -1,6 +1,5 @@
 import { GET_HABITS, GET_CURRENT_HABITS } from '../constants/habitsConstants';
 import { GET_STATE_SUCCESS } from '../constants/stateConstants';
-import checkListConstants from '../constants/checkListConstants';
 
 const initialState = {
   allHabits: [],
@@ -18,9 +17,6 @@ const habitsReducer = (state = { ...initialState }, action) => {
 
     case GET_CURRENT_HABITS:
       return { ...state, currentHabits: action.payload };
-
-    case checkListConstants.ADD_HABIT_STATUS_SUCCESS:
-      return { ...initialState, allHabits: [...action.payload] };
 
     default:
       return state;

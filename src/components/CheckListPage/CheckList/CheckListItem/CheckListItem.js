@@ -18,6 +18,8 @@ class CheckListItem extends Component {
     daysProgress: [],
     daysDone: '',
     daysPassed: '',
+    habitChecked: false,
+    checkedStatus: '',
     habitId: '',
   };
 
@@ -29,12 +31,10 @@ class CheckListItem extends Component {
   //   }
   // }
 
-  componentDidUpdate() {
-    console.log('this.propsCDM', this.props);
-    // this.setState({
-    //   daysProgress: [...this.props.habit.data],
-    //   habitId: this.props.habit._id,
-    // });
+  componentDidMount() {
+    this.setState({
+      daysProgress: [...this.props.habit.data],
+    });
   }
 
   getRandomColor = () => {
@@ -60,7 +60,23 @@ class CheckListItem extends Component {
     // this.setState({
     //   showFullInfo: true,
     // });
-    this.setState(prev => ({ showFullInfo: !prev.showFullInfo }));
+    this.setState(prev => ({
+      showFullInfo: !prev.showFullInfo,
+      habitId: this.props.habit._id,
+      habitChecked: true,
+    }));
+
+    console.log('BEFOREbool', bool);
+
+    if (bool) {
+      this.setState({
+        checkedStatus: true,
+      });
+    } else {
+      this.setState({
+        checkedStatus: false,
+      });
+    }
 
     // if (bool) {
     //   console.log('bool', bool);
@@ -70,10 +86,6 @@ class CheckListItem extends Component {
     //   this.setState({
     //     showFullInfo: false,
     //   });
-
-    // const statusHabit = this.props.stateHabits.find(habit => {
-    //   habit._id === id;
-    // });
 
     let isFirst = true;
 
@@ -88,18 +100,23 @@ class CheckListItem extends Component {
     this.setState({
       daysDone: firstNull.filter(elem => elem === true).length,
       daysPassed: firstNull.filter(elem => elem === false).length,
-      daysProgress: [...this.props.habit.data],
+      // daysProgress: [...this.props.habit.data],
       // habitId: this.props.habit._id,
     });
 
     const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
-    console.log('updateInfo', updateInfo);
     this.props.addStatus(updateInfo);
   };
 
   render() {
     const { name, efficiency } = this.props.habit;
-    const { isShowModal, daysDone, daysPassed } = this.state;
+    const {
+      isShowModal,
+      daysDone,
+      daysPassed,
+      habitChecked,
+      checkedStatus,
+    } = this.state;
     const color = this.getRandomColor();
 
     return (
@@ -132,25 +149,50 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
+              disabled={habitChecked}
               // data-element="button"
               // data-status="true"
-              className={[
-                style.checkListButton,
-                style.checkListButtonSubmit,
-              ].join(' ')}
+              className={
+                checkedStatus
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonSubmitDisabled,
+                      style.checkListButtonSubmitDisabledActive,
+                    ].join(' ')
+                  : checkedStatus === false
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonSubmitDisabledNoHover,
+                    ].join(' ')
+                  : [style.checkListButton, style.checkListButtonSubmit].join(
+                      ' ',
+                    )
+              }
               type="button"
               onClick={() => this.onStatus(true)}
             >
               <ButtonOk data-element="svg" />
             </button>
             <button
-              // disabled
+              disabled={habitChecked && checkedStatus}
               // data-element="button"
               // data-status="false"
-              className={[
-                style.checkListButton,
-                style.checkListButtonDelete,
-              ].join(' ')}
+              className={
+                checkedStatus === false
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonDeleteDisabled,
+                      style.checkListButtonDeleteDisabledActive,
+                    ].join(' ')
+                  : checkedStatus
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonDeleteDisabledNoHover,
+                    ].join(' ')
+                  : [style.checkListButton, style.checkListButtonDelete].join(
+                      ' ',
+                    )
+              }
               type="button"
               onClick={() => this.onStatus(false)}
             >
