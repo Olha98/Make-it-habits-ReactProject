@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import {getCurrentHabits} from '../../redux/actions/habitsActions'
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
-import { connect } from 'react-redux';
 import moment from 'moment';
-import addActualHabits from '../../redux/actions/calendarActions';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -166,10 +166,8 @@ const birthdayStyle = `
 
   `;
 
-const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
+const Calendar = ({ userHabits, onGetCurrentHabits }) => {
   const [startDate, setStartDate] = useState(new Date());
-
-  const nowDay = new Date();
 
   const choseActualWeekDay = moment(startDate)
     .locale('en')
@@ -177,24 +175,21 @@ const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
     .slice(0, 3); //weekday Mon
 
   const calendarActualDay = moment(startDate).format('L');
-  console.log(calendarActualDay, 'ДЕНЬ КОТОРЫЙ ВЫБРАЛА!');
-
   const currentHabit = [];
+
+  if(currentHabit.length>0){
+    onGetCurrentHabits([...currentHabit])
+  }
 
 
   const allHabits = userHabits;
 
   for (let habit of allHabits) {
     const startPlanningTime = habit.planningTime;
-    const startWeekPlanningTime = moment(startPlanningTime)
-      .locale('en')
-      .format('dddd')
-      .slice(0, 3);
-
     let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
+
     switch (habit.iteration) {
       case 'onceInTwoDays':
-        //  console.log(habit, 'onceInTwoDays!!');
         const arrayHabitsOnceInTwoDays = [];
 
         for (let i = 0; i < 21; i++) {
@@ -209,7 +204,6 @@ const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
             currentHabit.push(habit);
           }
         }
-
         break;
 
       case 'everyday':
@@ -221,22 +215,17 @@ const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
 
         for (let arrayHabit of arrayHabitsEveryDay) {
           if (arrayHabit.includes(calendarActualDay)) {
-            const result = arrayHabit.includes(calendarActualDay);
-            console.log(result);
             currentHabit.push(habit);
           }
         }
-
         break;
 
       case 'TueThuSat':
-        console.log(habit, 'TueThuSat!!');
         const iterationTueThuSat = habit.iteration
           .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
           .split(' ');
 
         for (let iteration of iterationTueThuSat) {
-          console.log(iteration, 'iteration');
           if (iteration.includes(choseActualWeekDay)) {
             currentHabit.push(habit);
           }
@@ -244,7 +233,6 @@ const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
         break;
 
       case 'MonWedFri':
-        // console.log(habit, 'MonWedFri!!');
         const iterationMonWedFri = habit.iteration
           .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
           .split(' ');
@@ -277,8 +265,8 @@ const Calendar = ({ userHabits, onaddActualHabitsCalendar }) => {
 
 const mapStateToProps = function (state) {
   return {
-    userHabits: state.user.habits,
+    userHabits: state.habits?.allHabits,
   };
 };
 
-export default connect(mapStateToProps)(Calendar);
+export default connect(mapStateToProps, {onGetCurrentHabits:getCurrentHabits})(Calendar);
