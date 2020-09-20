@@ -29,11 +29,12 @@ class CheckListItem extends Component {
   //   }
   // }
 
-  componentDidMount() {
-    this.setState({
-      daysProgress: [...this.props.habit.data],
-      habitId: this.props.habit._id,
-    });
+  componentDidUpdate() {
+    console.log('this.propsCDM', this.props);
+    // this.setState({
+    //   daysProgress: [...this.props.habit.data],
+    //   habitId: this.props.habit._id,
+    // });
   }
 
   getRandomColor = () => {
@@ -87,9 +88,12 @@ class CheckListItem extends Component {
     this.setState({
       daysDone: firstNull.filter(elem => elem === true).length,
       daysPassed: firstNull.filter(elem => elem === false).length,
+      daysProgress: [...this.props.habit.data],
+      // habitId: this.props.habit._id,
     });
 
-    const updateInfo = { id: this.state.habitId, data: [...firstNull] };
+    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
+    console.log('updateInfo', updateInfo);
     this.props.addStatus(updateInfo);
   };
 
@@ -190,8 +194,9 @@ class CheckListItem extends Component {
 }
 
 // const mapStateToProps = state => {
+//   // console.log('state', state);
 //   return {
-//     stateHabits: state.user.habits,
+//     stateHabits: state.habits.allHabits,
 //   };
 // };
 

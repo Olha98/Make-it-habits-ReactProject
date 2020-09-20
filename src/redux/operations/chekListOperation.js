@@ -1,7 +1,8 @@
 import axios from 'axios';
 import checkListActions from '../actions/checkListActions';
 import { actionsGetUserData } from '../actions/dataUser';
-import { token } from './authOperation';
+import { getUserData } from '../actions/userActions';
+// import { token } from './authOperation';
 
 // axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
 // axios.defaults.headers.common.Authorization =
@@ -18,24 +19,30 @@ import { token } from './authOperation';
 //     .catch(error => console.log(error));
 // };
 
-const addHabitStatus = updateInfo => (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
-  // console.log(tokenNow, 'tokenNow');
-  token.set(tokenNow);
+const addHabitStatus = updateInfo => dispatch => {
+  // const tokenNow = getState().auth.access_token;
+  // token.set(tokenNow);
 
   // console.log('updateInfoOPER', updateInfo);
   dispatch(checkListActions.addHabitStatusRequest());
-  axios.patch('/habits', updateInfo).then(res => {
-    // console.log('res', res);
-    dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
-    axios.get('/habits').then(res => {
-      // console.log(res, 'updateDailyResul876545544');
+  axios
+    .patch('/habits', updateInfo)
+    .then(res => {
+      console.log('res', res);
       dispatch(
-        actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
+        checkListActions.addHabitStatusSuccess(res.data.updatedHabit.data),
       );
-    });
-  });
-  // .catch(error => console.log(error));
+      // axios.get('/habits').then(res => {
+      //   console.log(res, 'updateDailyResul876545544');
+      //   dispatch(
+      //     getUserData({
+      //       ...res.data.user,
+      //       habits: { allHabits: res.data.habits },
+      //     }),
+      //   );
+      // });
+    })
+    .catch(error => console.log(error));
 };
 
 export default addHabitStatus;
