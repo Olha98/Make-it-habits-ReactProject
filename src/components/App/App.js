@@ -17,6 +17,7 @@ const App = ({ getGlobalState, token }) => {
   return (
     <>
       <Suspense fallback={<Spinner />}>
+        {/* {token && <LeftSideBar />} */}
         <Switch>
           {routes.map(route =>
             route.private ? (

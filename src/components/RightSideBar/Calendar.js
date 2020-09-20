@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentHabits } from '../../redux/actions/habitsActions';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
-// import RightSideBar from "./RightSideBar";
+import moment from 'moment';
+import useCalendar from './useCalendar';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -157,16 +160,41 @@ const birthdayStyle = `
    position: absolute;
    transform: rotate(-135deg);
    width: 30px;
-    height: 30px;
-    color: red;
- 
+   height: 30px;
+  color: red;
 
   }
 
   `;
 
 const Calendar = () => {
+  const dispatch = useDispatch();
+
+  const allHabits = useSelector(state => state.habits.allHabits);
+
   const [startDate, setStartDate] = useState(new Date());
+  const [currentHabits, setCurrentHabits] = useState([]);
+
+  useEffect(() => {
+    dispatch(getCurrentHabits(currentHabits));
+  }, [dispatch, currentHabits]);
+
+  const choseActualWeekDay = moment(startDate)
+    .locale('en')
+    .format('dddd')
+    .slice(0, 3); //weekday Mon
+
+  const calendarActualDay = moment(startDate).format('L');
+
+  const { currentHabitsT } = useCalendar({
+    allHabits,
+    calendarActualDay,
+    choseActualWeekDay,
+  });
+
+  useEffect(() => {
+    setCurrentHabits(currentHabitsT);
+  }, [currentHabitsT]);
 
   return (
     <>
