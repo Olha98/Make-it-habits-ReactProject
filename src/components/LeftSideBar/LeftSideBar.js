@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 //import getHabitsOperations from "../../redux/operations/chekListOperation";
 class LeftSideBar extends Component {
   render() {
+    console.log('RENDER LeftSideBar !!!');
+
     return (
       <div>
         <section className={style.leftSideBar}>

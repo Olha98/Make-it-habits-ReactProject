@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import {getCurrentHabits} from '../../redux/actions/habitsActions'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentHabits } from '../../redux/actions/habitsActions';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import moment from 'moment';
+import useCalendar from './useCalendar';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
@@ -166,8 +167,17 @@ const birthdayStyle = `
 
   `;
 
-const Calendar = ({ userHabits, onGetCurrentHabits }) => {
+const Calendar = () => {
+  const dispatch = useDispatch();
+
+  const allHabits = useSelector(state => state.habits.allHabits);
+
   const [startDate, setStartDate] = useState(new Date());
+  const [currentHabits, setCurrentHabits] = useState([]);
+
+  useEffect(() => {
+    dispatch(getCurrentHabits(currentHabits));
+  }, [dispatch, currentHabits]);
 
   const choseActualWeekDay = moment(startDate)
     .locale('en')
@@ -175,80 +185,16 @@ const Calendar = ({ userHabits, onGetCurrentHabits }) => {
     .slice(0, 3); //weekday Mon
 
   const calendarActualDay = moment(startDate).format('L');
-  const currentHabit = [];
 
-  if(currentHabit.length>0){
-    onGetCurrentHabits([...currentHabit])
-  }
+  const { currentHabitsT } = useCalendar({
+    allHabits,
+    calendarActualDay,
+    choseActualWeekDay,
+  });
 
-
-  const allHabits = userHabits;
-
-  for (let habit of allHabits) {
-    const startPlanningTime = habit.planningTime;
-    let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
-
-    switch (habit.iteration) {
-      case 'onceInTwoDays':
-        const arrayHabitsOnceInTwoDays = [];
-
-        for (let i = 0; i < 21; i++) {
-          arrayHabitsOnceInTwoDays.push(
-            moment(startPlanningTimeinML).format('L'),
-          );
-          startPlanningTimeinML += 86400000 * 2;
-        }
-
-        for (let arrayHabit of arrayHabitsOnceInTwoDays) {
-          if (arrayHabit.includes(calendarActualDay)) {
-            currentHabit.push(habit);
-          }
-        }
-        break;
-
-      case 'everyday':
-        const arrayHabitsEveryDay = [];
-        for (let i = 0; i < 21; i++) {
-          arrayHabitsEveryDay.push(moment(startPlanningTimeinML).format('L'));
-          startPlanningTimeinML += 86400000;
-        }
-
-        for (let arrayHabit of arrayHabitsEveryDay) {
-          if (arrayHabit.includes(calendarActualDay)) {
-            currentHabit.push(habit);
-          }
-        }
-        break;
-
-      case 'TueThuSat':
-        const iterationTueThuSat = habit.iteration
-          .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
-          .split(' ');
-
-        for (let iteration of iterationTueThuSat) {
-          if (iteration.includes(choseActualWeekDay)) {
-            currentHabit.push(habit);
-          }
-        }
-        break;
-
-      case 'MonWedFri':
-        const iterationMonWedFri = habit.iteration
-          .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
-          .split(' ');
-
-        for (let iteration of iterationMonWedFri) {
-          if (iteration.includes(choseActualWeekDay)) {
-            currentHabit.push(habit);
-          }
-        }
-        break;
-      default:
-        break;
-    }
-  }
-
-  console.log(currentHabit, 'currentHabit');
+  useEffect(() => {
+    setCurrentHabits(currentHabitsT);
+  }, [currentHabitsT]);
 
   return (
     <>
@@ -263,10 +209,75 @@ const Calendar = ({ userHabits, onGetCurrentHabits }) => {
   );
 };
 
-const mapStateToProps = function (state) {
-  return {
-    userHabits: state.habits?.allHabits,
-  };
-};
+export default Calendar;
 
-export default connect(mapStateToProps, {onGetCurrentHabits:getCurrentHabits})(Calendar);
+// // const currentHabitsT = [];
+
+//   // const allHabits = userHabits;
+
+//   // const
+
+//   for (let habit of allHabits) {
+//     const startPlanningTime = habit.planningTime;
+//     let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
+
+//     switch (habit.iteration) {
+//       case 'onceInTwoDays':
+//         const arrayHabitsOnceInTwoDays = [];
+
+//         for (let i = 0; i < 21; i++) {
+//           arrayHabitsOnceInTwoDays.push(
+//             moment(startPlanningTimeinML).format('L'),
+//           );
+//           startPlanningTimeinML += 86400000 * 2;
+//         }
+//         for (let arrayHabit of arrayHabitsOnceInTwoDays) {
+//           if (arrayHabit.includes(calendarActualDay)) {
+//             currentHabitsT.push(habit);
+//             // setCurrentHabits(prevState => [...prevState, habit]);
+//           }
+//         }
+//         break;
+
+//       case 'everyday':
+//         const arrayHabitsEveryDay = [];
+//         for (let i = 0; i < 21; i++) {
+//           arrayHabitsEveryDay.push(moment(startPlanningTimeinML).format('L'));
+//           startPlanningTimeinML += 86400000;
+//         }
+//         for (let arrayHabit of arrayHabitsEveryDay) {
+//           if (arrayHabit.includes(calendarActualDay)) {
+//             currentHabitsT.push(habit);
+//             // setCurrentHabits(prevState => [...prevState, habit]);
+//           }
+//         }
+//         break;
+
+//       case 'TueThuSat':
+//         const iterationTueThuSat = habit.iteration
+//           .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
+//           .split(' ');
+//         for (let iteration of iterationTueThuSat) {
+//           if (iteration.includes(choseActualWeekDay)) {
+//             currentHabitsT.push(habit);
+//             // setCurrentHabits(prevState => [...prevState, habit]);
+//           }
+//         }
+//         break;
+
+//       case 'MonWedFri':
+//         const iterationMonWedFri = habit.iteration
+//           .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
+//           .split(' ');
+//         for (let iteration of iterationMonWedFri) {
+//           if (iteration.includes(choseActualWeekDay)) {
+//             currentHabitsT.push(habit);
+//             // setCurrentHabits(prevState => [...prevState, habit]);
+//           }
+//         }
+//         break;
+
+//       default:
+//         break;
+//     }
+//   }
