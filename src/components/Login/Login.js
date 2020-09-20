@@ -6,12 +6,12 @@ import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.s
 import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
-import ModalInterview from '../ModalInterview/ModalInterview.js';
+// import ModalInterview from '../ModalInterview/ModalInterview.js';
 
 class Login extends Component {
   state = {
-    email: '',
-    password: '',
+    email: 'kostya123@gmail.com',
+    password: 'Qwerty123',
     passwordVisible: false,
     // isShovModal: false,
   };
@@ -46,7 +46,8 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, passwordVisible, isOpen } = this.state;
+    const { email, password, passwordVisible } = this.state;
+    // const {isOpen}=this.state;
     const { btnClose } = this.props;
 
     return (

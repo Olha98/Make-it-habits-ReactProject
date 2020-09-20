@@ -1,43 +1,46 @@
-import React, { Component } from "react";
-import style from "./CheckListItem.module.css";
-import Modal from "../../../ModalBackDrop/ModalBackDrop";
-import CastomHabit from "../../../CustomHabit/CastomHabit";
-import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckListPage/button_ok.svg";
-import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
-import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
+import React, { Component } from 'react';
+import style from './CheckListItem.module.css';
+// import Modal from '../../../ModalBackDrop/ModalBackDrop';
+import CastomHabit from '../../../CustomHabit/CastomHabit';
+import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
+import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
+import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
+import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
 import {
   main_violet,
   main_pink,
   main_yellow,
   main_blue,
-} from "../../../../css/vars.module.css";
+} from '../../../../css/vars.module.css';
+import { connect } from 'react-redux';
 
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
     isShowModal: false,
+    fromCheckList: true,
     colors: [
       main_violet,
       main_pink,
       main_yellow,
       main_blue,
-      "deepskyblue",
-      "lightcoral",
-      "green",
-      "darkorange",
-      "lightseagreen",
-      "violet",
+      'deepskyblue',
+      'lightcoral',
+      'green',
+      'darkorange',
+      'lightseagreen',
+      'violet',
     ],
   };
 
-  showFullInfo(e) {
-    if (e.target.closest('[data-element="button"]')) {
-      this.setState((prevState) => ({
-        showFullInfo: !prevState.showFullInfo,
-      }));
-    }
-  }
+  // showFullInfo(e) {
+  //   if (e.target.closest('[data-element="button"]')) {
+  //     this.setState(prevState => ({
+  //       showFullInfo: !prevState.showFullInfo,
+  //     }));
+  //   }
+  // }
 
   openModal = () => {
     this.setState({
@@ -49,6 +52,39 @@ class CheckListItem extends Component {
     this.setState({
       isShowModal: false,
     });
+  };
+
+  onStatus = bool => {
+    this.setState({
+      showFullInfo: true,
+    });
+    // if (bool) {
+    //   // console.log('bool', bool);
+    //   // this.setState({
+    //   //   showFullInfo: true,
+    //   // });
+    // }
+    // else
+    // this.setState({
+    //   showFullInfo: false,
+    // });
+    const id = this.props.habit._id;
+    const status = bool;
+
+    const updateInfo = { id, status };
+
+    // const array = [...this.props.habit.data];
+    // const array = [null, null, null];
+    // const newArray = array.map(elem => {
+    //   console.log('elem', elem);
+    // });
+    // console.log('array', array);
+    // console.log('newArray', newArray);
+
+    //  const newArray;
+    // return;
+
+    this.props.addStatus(updateInfo);
   };
 
   // getRandomIntInclusive(min, max) {
@@ -64,7 +100,8 @@ class CheckListItem extends Component {
   }
 
   render() {
-    // console.log("this.props.ITEM", this.props);
+    console.log('this.stateLISTITEM', this.state);
+    // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
     const color = colors[this.getRandomIntInclusive(colors.length)];
@@ -76,7 +113,7 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        onClick={(e) => this.showFullInfo(e)}
+        // onClick={e => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
@@ -100,23 +137,27 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
-              data-element="button"
+              // data-element="button"
+              // data-status="true"
               className={[
                 style.checkListButton,
                 style.checkListButtonSubmit,
-              ].join(" ")}
+              ].join(' ')}
               type="button"
+              onClick={() => this.onStatus(true)}
             >
               <ButtonOk data-element="svg" />
             </button>
             <button
-              disabled
-              data-element="button"
+              // disabled
+              // data-element="button"
+              // data-status="false"
               className={[
                 style.checkListButton,
                 style.checkListButtonDelete,
-              ].join(" ")}
+              ].join(' ')}
               type="button"
+              onClick={() => this.onStatus(false)}
             >
               <ButtonDelete data-element="svg" />
             </button>
@@ -129,12 +170,13 @@ class CheckListItem extends Component {
               <ButtonEdit />
             </button>
             {isShowModal && (
-              <Modal closeModal={this.closeModal}>
-                <CastomHabit
-                  closeModal={this.closeModal}
-                  habit={this.props.habit}
-                />
-              </Modal>
+              // <Modal close={this.closeModal}>
+              <CastomHabit
+                close={this.closeModal}
+                habit={this.props.habit}
+                fromCheckList={this.state.fromCheckList}
+              />
+              // </Modal>
             )}
           </div>
         </div>
@@ -150,11 +192,17 @@ class CheckListItem extends Component {
             </li>
           </ul>
         ) : (
-          ""
+          ''
         )}
       </div>
     );
   }
 }
 
-export default CheckListItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    addStatus: updateInfo => dispatch(addHabitStatus(updateInfo)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CheckListItem);

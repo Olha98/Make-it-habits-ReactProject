@@ -77,6 +77,7 @@ class Profile extends Component {
   // };
   render() {
     const { changePassword } = this.state;
+    // console.log('this.props.', this.props);
     // const { firstName, lastName, phone, email, avatar } = this.state;
 
     // if (!this.props.firstName) {
@@ -235,7 +236,7 @@ class Profile extends Component {
                 >
                   <img
                     src={
-                      avatars.find(item => item.id === this.props.avatar).image
+                      avatars.find(item => item.id === this.props.avatar)?.image
                     }
                     alt="avatar"
                     width="108"
@@ -287,7 +288,7 @@ const mapStateToProps = state => {
     email: state.user.email,
     avatar: state.user.avatar,
     // isModalInterview: 111111,
-    isModalInterview: state.user.quizInfo.smokeYears,
+    // isModalInterview: state.user.quizInfo.smokeYears,
   };
 };
 

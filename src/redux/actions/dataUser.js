@@ -11,6 +11,14 @@ export const actionsGetUserData = userData => {
 
 const initialState = {
   user: null,
+  // {
+  //   quizInfo: {
+  //     cigarettePerDay: 0,
+  //     cigarettePerTime: 0,
+  //     cigarettePackPrice: 0,
+  //   },
+  // habits: [],
+  //},
   habits: null,
 };
 

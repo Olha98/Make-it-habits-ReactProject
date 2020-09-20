@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Congratulations.module.css";
 import congratsPhoto from "../../assests/images/congratulations//Ресурс 1 1.png";
+import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 
 const Congratulations = () => {
   return (
@@ -22,4 +23,4 @@ const Congratulations = () => {
   );
 };
 
-export default Congratulations;
+export default modalBackDrop(Congratulations);
