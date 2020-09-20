@@ -11,11 +11,13 @@ const addDataUserOperation = user => async (dispatch, getState) => {
 
   dispatch(actionsLoader.loaderOn());
   try {
-    const { data } = await axios.patch('/users', user);
-    // console.log('data-Add', data);
+    const data = await axios.patch('/users', user);
+    // console.log('data-Add', data.status);
+    // console.log('data-Add', data.data);
     dispatch(
       getUserData({
-        ...data,
+        ...data.data,
+        ...data.status,
       }),
     );
   } catch (error) {

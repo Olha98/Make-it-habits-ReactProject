@@ -5,7 +5,7 @@ const initialState = {
   lastName: '',
   email: '',
   registerData: '',
-  avatar: '17',
+  avatar: '',
   phone: '',
   cards: [],
   payments: [],

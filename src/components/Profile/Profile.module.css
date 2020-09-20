@@ -192,6 +192,12 @@ body {
   cursor: pointer;
 }
 
+.btnSaveChange:hover,
+.btnSaveChange:focus {
+  background: rgba(67, 209, 144, 0.7);
+  border: 2px solid rgba(67, 209, 144, 0.7);
+}
+
 .button,
 .buttonChangePassword {
   font-style: normal;
@@ -211,3 +217,10 @@ body {
   margin: 0 auto;
   cursor: pointer;
 }
+
+/* .buttonChangePassword:hover,
+.buttonChangePassword:focus {
+  background: rgba(67, 209, 144, 0.7);
+  border: 2px solid rgba(67, 209, 144, 0.7);
+  color: #ffffff;
+} */

@@ -3,47 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import InputMask from 'react-input-mask';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-// import dataUser from "../actions/dataUser";
-// import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from './PasswordForm';
 import ErrorValidation from './utils/ErrorValidation';
-import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+import funcMessage from './utils/funcMessage';
 import { avatars } from '../Avatar/dataAvatar';
-import style from './Profile.module.css';
 import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
-import funcMessage from './utils/funcMessage';
-// import {
-//   requiredField,
-//   maxLengthCreator,
-//   minLengthCreator,
-// } from "./utils/validators"; //! delete
-// import Input from "./utils/FormsControls";  //! delete
-// const minLengthCreator2 = minLengthCreator(2); //! delete
-const validationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, 'минимальное количество символов: 2')
-    .max(16, 'максимальное количество символов: 16')
-    .matches(
-      /^[A-Za-zА-Яа-яА-Яа-яËё]+$/,
-      'имя может содержать только алфавитные символы',
-    )
-    .required('обязательное поле для заполнения'),
-  // firstName: Yup.number().max(0),
-  lastName: Yup.string()
-    .min(2, 'минимальное количество символов: 2')
-    .max(16, 'максимальное количество символов: 16')
-    .matches(
-      /^[A-Za-zА-Яа-яА-Яа-яËё]+$/,
-      'фамилия может содержать только алфавитные символы',
-    ),
-  phone: Yup.number().min(11, 'указан не полный номер'),
-  email: Yup.string()
-    .email('укажите правильный email')
-    .max(30, 'максимальное количество символов: 30')
-    .required('обязательное поле для заполнения'),
-});
+import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+import style from './Profile.module.css';
+import { validationSchema } from './utils/validationSchema';
 
 class Profile extends Component {
   state = {
@@ -105,19 +73,12 @@ class Profile extends Component {
                   }}
                   validationSchema={validationSchema}
                   onSubmit={values => {
-                    // console.log(22222222, values);
                     this.props.addDataUserOperation({ ...values });
                     // this.changePath();
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
                     <Form className={style.form}>
-                      {/* {console.log(
-                        'values, errors, touched - ',
-                        values,
-                        errors,
-                        touched,
-                      )} */}
                       <label className={style.label}>
                         <span className={style.titleInput}>Имя*</span>
                         <input
@@ -130,9 +91,11 @@ class Profile extends Component {
                           className={
                             style.input +
                             ' ' +
-                            (touched.firstName && errors.firstName
-                              ? style.inputInvalid
-                              : style.inputValid)
+                            (values.firstName.length !== 0 &&
+                              touched.firstName &&
+                              errors.firstName &&
+                              style.inputInvalid)
+                            // : style.inputValid
                           }
                         />
                         {(
@@ -155,9 +118,10 @@ class Profile extends Component {
                             style.input +
                             ' ' +
                             (values.lastName.length !== 0 &&
-                              (touched.lastName && errors.lastName
-                                ? style.inputInvalid
-                                : style.inputValid))
+                              touched.lastName &&
+                              errors.lastName &&
+                              style.inputInvalid)
+                              // : style.inputValid
                           }
                         />
                         {(
@@ -198,9 +162,11 @@ class Profile extends Component {
                           className={
                             style.input +
                             ' ' +
-                            (touched.email && errors.email
-                              ? style.inputInvalid
-                              : style.inputValid)
+                            (values.email.length !== 0 &&
+                              touched.email &&
+                              errors.email &&
+                              style.inputInvalid)
+                              // : style.inputValid
                           }
                         />
                         {(
@@ -217,18 +183,14 @@ class Profile extends Component {
                       > */}
                       <button
                         type="submit"
-                        // onClick={() => {
-                        //   errors.firstName &&
-                        //     funcMessage('Имя должно быть от 2 до 16 букв');
-                        //   errors.lastName &&
-                        //     funcMessage('Фамилия должна быть от 2 до 16 букв');
-                        //   errors.phone && funcMessage('Введите 11 цифр');
-                        //   errors.email &&
-                        //     funcMessage('Введите корректный email');
-                        // }}
                         className={style.btnSaveChange}
+                        onClick={() => {
+                          console.log('this.props.status', this.props);
+                        }}
                       >
-                        Сохранить изменения
+                        {this.props.status === 200
+                          ? 'СОХРАНЕНО!!!'
+                          : 'Сохранить изменения'}
                       </button>
                     </Form>
                   )}
@@ -286,9 +248,12 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             <Card />
           </div>
+
+          {/* ------------- kris ---------- */}
           {this.props.isModalInterview === 0 && (
             <ModalInterview close={() => null} />
           )}
+          {/* ------------------------------ */}
         </div>
       </>
     );
