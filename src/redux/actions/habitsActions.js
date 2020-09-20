@@ -6,8 +6,6 @@ export const getHabits = habits => ({
 });
 
 export const getCurrentHabits = habits => {
-  console.log(habits, 'habitshabitshabits');
-
   return {
     type: GET_CURRENT_HABITS,
     payload: habits,

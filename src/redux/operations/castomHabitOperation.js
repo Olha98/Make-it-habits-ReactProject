@@ -1,6 +1,5 @@
 import actions from '../actions/castomHabitActions';
 import axios from 'axios';
-import { actionsGetUserData } from '../actions/dataUser';
 import { token } from './authOperation';
 import { getHabits } from '../actions/habitsActions';
 // axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com/";
@@ -43,16 +42,6 @@ const removeHabitOperation = habitId => (dispatch, getState) => {
     });
 };
 
-// const removeContact = id => dispatch => {
-//   dispatch(contactsActions.remooveContactRequest());
-//   axios
-//     .delete(`https://bc22hwreact7.firebaseio.com/contacts/${id}.json`)
-//     .then(() => {
-//       dispatch(contactsActions.remooveContactSuccess(id))
-//     })
-//     .catch(error => {
-//       dispatch(contactsActions.remooveContactError(error))
-//     });
-// };
+
 
 export default { addHabitOperation, removeHabitOperation };

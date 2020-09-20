@@ -1,9 +1,7 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React from 'react';
 import imgBak from '../../assests/images/calendar/trash2.png';
 import style from './TimeDoItItem.module.css';
-// import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
-// import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 
 
 import removeHabitOperation from '../../redux/operations/castomHabitOperation';
@@ -11,7 +9,7 @@ import { connect } from 'react-redux';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
-  const [visible, setVisible] = useState("false");
+  // const [visible, setVisible] = useState("false");
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -19,10 +17,10 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
     }
   };
 
-  const ShowClick = (e) => {
+  // const ShowClick = (e) => {
 
-    setVisible("true")
-  };
+  //   setVisible("true")
+  // };
 
   return (
     <>
@@ -31,7 +29,8 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
               onClick={() => this.onStatus(true)}>
               <ButtonOk data-element="svg" />
               </button>} */}
-      <div className={style.containerTimeDoIt} onClick={ShowClick}>
+      <div className={style.containerTimeDoIt}>
+      {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
         <span className={style.spanTimeDoIt}>
           {moment(new Date(currentHabit.planningTime)).format('LT')}
         </span>

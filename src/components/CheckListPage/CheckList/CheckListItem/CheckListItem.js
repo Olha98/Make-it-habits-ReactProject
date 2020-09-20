@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
-import Modal from '../../../ModalBackDrop/ModalBackDrop';
+// import Modal from '../../../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
@@ -74,12 +74,12 @@ class CheckListItem extends Component {
     const updateInfo = { id, status };
 
     // const array = [...this.props.habit.data];
-    const array = [null, null, null];
-    const newArray = array.map((elem, idx) => {
-      console.log('elem', elem);
-    });
-    console.log('array', array);
-    console.log('newArray', newArray);
+    // const array = [null, null, null];
+    // const newArray = array.map(elem => {
+    //   console.log('elem', elem);
+    // });
+    // console.log('array', array);
+    // console.log('newArray', newArray);
 
     //  const newArray;
     // return;
