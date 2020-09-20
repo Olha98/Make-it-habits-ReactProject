@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import subscribeConstants from '../constants/subscribeConstants';
 
 const typeSubscription = (state = 'none', action) => {
@@ -19,14 +19,14 @@ const addCard = (state = [], action) => {
   }
 };
 
-const error = (state = null, action) => {
+const error = (state = '', action) => {
   switch (action.type) {
     case subscribeConstants.CHANGE_TYPE_ERROR:
     case subscribeConstants.ADD_CARD_ERROR:
-      return action.payload;
+      return action.payload.message;
     case subscribeConstants.CHANGE_TYPE_REQUEST:
     case subscribeConstants.ADD_CARD_REQUEST:
-      return null;
+      return '';
     default:
       return state;
   }

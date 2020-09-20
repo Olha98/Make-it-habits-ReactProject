@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';

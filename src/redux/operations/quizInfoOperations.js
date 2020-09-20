@@ -10,6 +10,8 @@ const addInfo = info => async (dispatch, getState) => {
   dispatch(actionsLoader.loaderOn());
   dispatch(quizInfoActions.addInfoRequest());
   try {
+    // const response = await axios.post('/users/updateQuizInfo', info);
+    // console.log('response', response);
     await axios.post('/users/updateQuizInfo', info);
     dispatch(quizInfoActions.addInfoSuccess(info));
   } catch (error) {

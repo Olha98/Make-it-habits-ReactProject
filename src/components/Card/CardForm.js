@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
-import subscribeSelectors from '../../redux/selectors/subscribeSelector';
-import subscribeActions from '../../redux/actions/subscribeActions';
+import { spinnerSelector } from '../../redux/selectors';
+import { subscrActions } from '../../redux/actions';
 import styles from './Card.module.css';
 
 class CardForm extends Component {
@@ -98,11 +98,11 @@ class CardForm extends Component {
 
 const mapStateToProps = state => ({
   // error: subscribeSelectors.getError(state),
-  isLoading: state.loading,
+  isLoading: spinnerSelector.isLoading,
 });
 
 const mapDispatchToProps = {
-  addCard: subscribeActions.addCardSuccess, // если добавят поле на бэке, то взять метод из Operations
+  addCard: subscrActions.addCardSuccess, // если добавят поле на бэке, то взять метод из Operations
 };
 
 export default modalBackDrop(

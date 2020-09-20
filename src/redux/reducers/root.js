@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import spinnerReducers from './spinnerReducers';
 import authReducer from './authReducer';
 import quizReducer from './quizInfoReducer';
+import errorReducer from './errorReducer';
 import subscribeReducer from './subscribeReducer';
 import userReducer from './userReducer';
 import habitsReducer from './habitsReducer';
@@ -21,11 +22,10 @@ const root = combineReducers({
   user: userReducer,
   habits: habitsReducer,
   cigarettes: cigarettesReducer,
-  quizInfo: quizReducer.quizInfo,
-  error: quizReducer.error,
+  quizInfo: quizReducer,
+  error: errorReducer,
   typeSubscription: subscribeReducer.typeSubscription,
   cards: subscribeReducer.addCard,
-
 });
 
 export default root;

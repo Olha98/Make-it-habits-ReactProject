@@ -10,8 +10,6 @@ const logout = () => async dispatch => {
 
     // token.unset();
     dispatch(leftSideBarAction.logoutSuccess());
-
-
   } catch (error) {
     dispatch(leftSideBarAction.logoutError(error.message));
   }
