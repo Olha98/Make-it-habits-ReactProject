@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import spinnerReducers from './spinnerReducers';
+import achievementReducer from './achievementReducer';
 import authReducer from './authReducer';
 import quizReducer from './quizInfoReducer';
 import errorReducer from './errorReducer';
@@ -18,6 +19,7 @@ export const persistConfig = {
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
+  // achievement: achievementReducer,
   auth: persistReducer(persistConfig, authReducer),
   user: userReducer,
   habits: habitsReducer,
