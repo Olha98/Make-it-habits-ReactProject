@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TaskDoItItem from './TaskDiItItem';
 
-const TimeDoIt = ({ userHabits }) => {
+const TimeDoIt = ({ currentHabits }) => {
 
   
   return (
     <ul>
-      {userHabits &&
-        userHabits.map(userHabit => (
-          <TaskDoItItem userHabit={userHabit} key={userHabit._id} />
+      {currentHabits &&
+        currentHabits.map(currentHabit => (
+          <TaskDoItItem currentHabit={currentHabit} key={currentHabit._id} />
         ))}
     </ul>
   );
@@ -17,7 +17,7 @@ const TimeDoIt = ({ userHabits }) => {
 
 const mapStateToProps = function (state) {
   return {
-    userHabits: state.user.habits,
+    currentHabits: state.habits.currentHabits,
   };
 };
 

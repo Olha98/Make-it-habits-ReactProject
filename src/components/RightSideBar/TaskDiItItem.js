@@ -10,7 +10,7 @@ import removeHabitOperation from '../../redux/operations/castomHabitOperation';
 import { connect } from 'react-redux';
 moment.locale('ru');
 
-const TaskDiItItem = ({ userHabit, removeHabit }) => {
+const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   const [visible, setVisible] = useState("false");
 
   const handlClick = e => {
@@ -20,7 +20,7 @@ const TaskDiItItem = ({ userHabit, removeHabit }) => {
   };
 
   const ShowClick = (e) => {
-    console.log(e.target,"target")
+
     setVisible("true")
   };
 
@@ -33,10 +33,10 @@ const TaskDiItItem = ({ userHabit, removeHabit }) => {
               </button>} */}
       <div className={style.containerTimeDoIt} onClick={ShowClick}>
         <span className={style.spanTimeDoIt}>
-          {moment(new Date(userHabit.planningTime)).format('LT')}
+          {moment(new Date(currentHabit.planningTime)).format('LT')}
         </span>
         <li className={style.nameTimeDoIt}>
-          <p className={style.textTimeDoIt}>{userHabit.name}</p>
+          <p className={style.textTimeDoIt}>{currentHabit.name}</p>
         </li>
         <div className={style.imgBoxTimeDoIt}>
           <img
@@ -45,7 +45,7 @@ const TaskDiItItem = ({ userHabit, removeHabit }) => {
             width="15px"
             height="15px"
             className={style.imgTimeDoIt}
-            data-_id={userHabit._id}
+            data-_id={currentHabit._id}
             onClick={handlClick}
           />
         </div>
