@@ -2,13 +2,16 @@ import React from 'react';
 import style from './Achievements.module.css';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
 import achievementAction from '../../redux/actions/achievementAction';
-import { connect } from 'formik';
+import { connect } from 'react-redux';
 
-const Achievements = () => {
+const Achievements = ({
+  smokedCigarettes,
+  quizInfoPerDay,
+  quizInfoPerTime,
+  achievementStatus,
+}) => {
+  achievementStatus({ smokedCigarettes, quizInfoPerDay, quizInfoPerTime });
 
-
-
-  
   return (
     <>
       <AchievementsHeader />
@@ -72,10 +75,18 @@ const Achievements = () => {
   );
 };
 
+const mapStateToProps = state => {
+  return {
+    smokedCigarettes: state.cigarettes.data,
+    quizInfoPerDay: state.quizInfo.cigarettePerDay,
+    quizInfoPerTime: state.quizInfo.cigarettePerTime,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     achievementStatus: data => dispatch(achievementAction(data)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(Achievements);
+export default connect(mapStateToProps, mapDispatchToProps)(Achievements);

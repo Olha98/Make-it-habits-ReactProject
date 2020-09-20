@@ -1,10 +1,16 @@
 import ACHIEVEMENT_SUCCESS from '../constants/achievementConstans';
 
-const quantitySmokedCigarettes = data => {
+const quantitySmokedCigarettes = ({
+  smokedCigarettes,
+  quizInfoPerDay,
+  quizInfoPerTime,
+}) => {
   return {
     type: ACHIEVEMENT_SUCCESS,
     payload: {
-      data,
+      smokedCigarettes,
+      quizInfoPerDay,
+      quizInfoPerTime,
       dateNow: Date.now(),
     },
   };
