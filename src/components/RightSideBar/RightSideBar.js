@@ -67,7 +67,7 @@ class RightSideBar extends Component {
     getData: moment().format('LL').split(' ').slice(0, 2),
     currentDay: '',
   };
-
+  addState = () => {};
 
   render() {
     const { dayWeek, getData } = this.state;
@@ -96,4 +96,4 @@ class RightSideBar extends Component {
   }
 }
 
-export default RightSideBar;
+export default connect(null)(RightSideBar);

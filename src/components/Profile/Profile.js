@@ -41,7 +41,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log('this.props', this.props);
+    // console.log("this.props", this.props);
     // this.setState((prevState) => ({ ...prevState, ...this.props }));
     // this.props.getDataUserOperation();
   }
@@ -72,9 +72,9 @@ class Profile extends Component {
   render() {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
-    console.log('this.props', this.props);
+    // console.log("this.props", this.props);
 
-    console.log('this.props', this.props.firstName);
+    // console.log("this.props", this.props.firstName);
 
     // if (!this.props.firstName) {
     //   return null;
@@ -254,7 +254,10 @@ class Profile extends Component {
             {/* <Card /> */}
           </div>
 
-          {this.state.isShowModal && <ModalInterview close={() => null} />}
+          {/* {this.state.isShowModal && <ModalInterview close={() => null} />} */}
+          {this.props.isModalInterview === 0 && (
+            <ModalInterview close={() => null} />
+          )}
         </div>
       </>
     );
@@ -267,8 +270,8 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: 111111,
-    // isModalInterview: state.user.quizInfo.smokeYears,
+    // isModalInterview: 111111,
+    isModalInterview: state.quizInfo.smokeYears,
   };
 };
 

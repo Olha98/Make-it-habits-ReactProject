@@ -1,26 +1,24 @@
 import { createSelector } from 'reselect';
 
+// const getConstAmountOfCigarettesPerDay = state =>
+//   state.quizInfo.cigarettePerDay;
+
 const getConstAmountOfCigarettesPerDay = state => {
   // console.log('state', state);
-  return state.user?.user?.quizInfo?.cigarettePerDay;
+  return state.quizInfo?.cigarettePerDay;
 };
 const getCigarettePackPrice = state => {
-  return state.user?.user?.quizInfo?.cigarettePackPrice;
+  return state.quizInfo.cigarettePackPrice;
 };
 
-const getCurrentAmountOfCigarettes = state => {
-  return state.user?.user?.cigarettes?.data[
-    state.user.cigarettes.data.length - 1
-  ];
-};
-// state.dayInfo?.data[state.dayInfo.data.length - 1];
+const getCurrentAmountOfCigarettes = state =>
+  state.cigarettes.data[state.cigarettes.data.length - 1];
 
-const getTimeForOneCigarette = state =>
-  state.user?.user?.quizInfo.cigarettePerTime;
+const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
 // ===============habits========
 
-const listOfHabits = state => state.user?.habits;
+const listOfHabits = state => state.habits.allHabits;
 
 const getHabitById = (state, habitId) => {
   const habits = listOfHabits(state);

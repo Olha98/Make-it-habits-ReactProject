@@ -13,19 +13,27 @@ class InnerNavigation extends Component {
     number: 0,
   };
   componentDidMount() {
-    const newNumber = localStorage.getItem('number');
-    // if (newNumber >= 0) {
-    this.setState({
-      isShowNotify: true,
-      number: this.props.number,
-    });
+    const dateInLocalStorage = localStorage.getItem('Date');
+    const differInTime = Date.now() - dateInLocalStorage;
+    if (differInTime < 86400) {
+      console.log('differInTime', differInTime);
+      this.setState({
+        isShowNotify: false,
+        number: 0,
+      });
+    } else {
+      this.setState({
+        isShowNotify: true,
+        number: this.props.number,
+      });
+    }
     // }
     window.addEventListener('click', this.changeNotify);
   }
   changeNotify = e => {
     console.log('e.target', e.target);
     if (e.target.dataset.set === 'notify') {
-      const { isShowNotify } = this.state;
+      //const { isShowNotify } = this.state;
 
       // this.setState({
       //   isShowNotify: false,
