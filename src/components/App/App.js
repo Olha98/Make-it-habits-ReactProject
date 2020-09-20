@@ -9,10 +9,7 @@ import { getGlobalState } from '../../redux/operations/stateOperation';
 import '../../css/vars.module.css';
 import '../../index.module.css';
 
-
 const App = ({ getGlobalState, token }) => {
- 
-
   useEffect(() => {
     getGlobalState();
   }, [token, getGlobalState]);
@@ -20,6 +17,7 @@ const App = ({ getGlobalState, token }) => {
   return (
     <>
       <Suspense fallback={<Spinner />}>
+        {/* {token && <LeftSideBar />} */}
         <Switch>
           {routes.map(route =>
             route.private ? (

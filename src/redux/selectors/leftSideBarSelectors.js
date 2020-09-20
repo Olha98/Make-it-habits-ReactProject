@@ -1,13 +1,18 @@
 import { createSelector } from 'reselect';
 
-const getConstAmountOfCigarettesPerDay = state =>
-  state.quizInfo.cigarettePerDay;
+// const getConstAmountOfCigarettesPerDay = state =>
+//   state.quizInfo.cigarettePerDay;
 
+const getConstAmountOfCigarettesPerDay = state => {
+  // console.log('state', state);
+  return state.quizInfo?.cigarettePerDay;
+};
 const getCigarettePackPrice = state => {
   return state.quizInfo.cigarettePackPrice;
 };
 
-const getCurrentAmountOfCigarettes = state => state.cigarettes;
+const getCurrentAmountOfCigarettes = state =>
+  state.cigarettes.data[state.cigarettes.data.length - 1];
 
 const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 

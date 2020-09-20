@@ -100,7 +100,7 @@ class CheckListItem extends Component {
   }
 
   render() {
-    console.log('this.stateLISTITEM', this.state);
+    // console.log('this.stateLISTITEM', this.state);
     // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
@@ -113,7 +113,7 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        // onClick={e => this.showFullInfo(e)}
+      
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
