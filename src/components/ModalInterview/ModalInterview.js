@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
-import quizInfoOperations from '../../redux/operations/quizInfoOperations';
-import quizInfoSelectors from '../../redux/selectors/quizInfoSelectors';
+import { quizInfoOperations } from '../../redux/operations';
+import { spinnerSelector, errorSelector } from '../../redux/selectors';
 import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
@@ -19,7 +19,7 @@ class ModalInterview extends Component {
     if (this.props.error) {
       return;
     }
-    this.props.close();
+    this.props.closeModal();
   };
 
   handleChange = e => {
@@ -48,7 +48,7 @@ class ModalInterview extends Component {
           </p>
           {error && (
             <h3 className={styles.error}>
-              Извините, произошла ошибка: {error.message}{' '}
+              Извините, произошла ошибка: {error}{' '}
             </h3>
           )}
         </header>
@@ -116,15 +116,15 @@ class ModalInterview extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: quizInfoSelectors.getError(state),
-  isLoading: state.loading,
+  error: errorSelector.getError(state),
+  isLoading: spinnerSelector.isLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
-  onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
-export default modalBackDrop(
-  connect(mapStateToProps, mapDispatchToProps)(ModalInterview),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(modalBackDrop(ModalInterview));

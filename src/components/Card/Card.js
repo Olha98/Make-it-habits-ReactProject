@@ -1,9 +1,11 @@
-import React from "react";
-import style from "./Card.module.css";
-import { ReactComponent as Trash } from "../../assests/images/Card/trash.svg";
-import { ReactComponent as TelegramIcon } from "../../assests/images/Card/telegram.svg";
+import React, { useState } from 'react';
+import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
+import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
+import CardForm from './CardForm';
+import style from './Card.module.css';
 
-function Card() {
+const Card = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
@@ -17,16 +19,18 @@ function Card() {
       </div>
       <div className={style.cardsButtons}>
         <button
-          className={["btnTransparentWhiteBorder", style.buttonAdd].join(" ")}
+          className={['btnTransparentWhiteBorder', style.buttonAdd].join(' ')}
+          onClick={() => setIsShowModal(prev => !prev)}
         >
           + Добавить карту
         </button>
         <button
-          className={["btnTransparentWhiteBorder", style.buttonPay].join(" ")}
+          className={['btnTransparentWhiteBorder', style.buttonPay].join(' ')}
         >
           Оплатить
         </button>
       </div>
+      {isShowModal && <CardForm close={setIsShowModal} />}
       <div className={style.supportContainer}>
         <div className={style.supportPic}>{/* <SupportPic /> */}</div>
         <div className={style.supportInfo}>
@@ -41,6 +45,6 @@ function Card() {
       </div>
     </>
   );
-}
+};
 
 export default Card;

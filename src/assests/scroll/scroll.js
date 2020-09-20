@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { Component } from "react";
-import { Scrollbars } from "react-custom-scrollbars";
+import { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class CustomScrollbars extends Component {
   render() {
@@ -25,7 +25,7 @@ class CustomScrollbars extends Component {
         // autoHeightMax={200}
         // thumbMinSize={30}
         // universal={true}
-        renderThumbVertical={(props) => (
+        renderThumbVertical={props => (
           <div {...props} className="thumb-vertical" />
         )}
         {...this.props}

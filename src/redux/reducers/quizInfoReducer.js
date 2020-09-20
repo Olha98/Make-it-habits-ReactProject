@@ -19,17 +19,18 @@ const quizInfo = (state = { ...initialState }, action) => {
   }
 };
 
-const error = (state = null, action) => {
-  switch (action.type) {
-    case quizInfoConstants.ADD_ERROR:
-    case quizInfoConstants.GET_ERROR:
-      return action.payload;
-    case quizInfoConstants.ADD_REQUEST:
-    case quizInfoConstants.GET_REQUEST:
-      return null;
-    default:
-      return state;
-  }
-};
+// const error = (state = '', action) => {
+//   switch (action.type) {
+//     case quizInfoConstants.ADD_ERROR:
+//     case quizInfoConstants.GET_ERROR:
+//       return action.payload.message;
+//     case quizInfoConstants.ADD_REQUEST:
+//     case quizInfoConstants.GET_REQUEST:
+//       return '';
+//     default:
+//       return state;
+//   }
+// };
 
-export default { quizInfo, error };
+// export default { quizInfo, error };
+export default quizInfo;

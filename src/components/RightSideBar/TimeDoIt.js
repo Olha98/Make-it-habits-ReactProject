@@ -4,10 +4,16 @@ import TaskDoItItem from './TaskDiItItem';
 import moment from 'moment';
 
 const TimeDoIt = ({ currentHabits }) => {
+  // const newCurrent = currentHabits
+  //   .map(item =>
+  //     moment(new Date(item.planningTime).format('LT').replace(/:/g, '')),
+  //   )
+  //   .sort((a, b) => a - b);
+
+  // console.log(newCurrent, 'newCurrent');
 
 
-// const newCurrent = currentHabits.sort( (a, b) => moment(new Date(a.planningTime).format('LT').replace(/:/g, '')) 
-// - moment(new Date(b.planningTime).format('LT').replace(/:/g, '')) 
+
   // for(let currentHabit of currentHabits){
   //   const time = moment(new Date(currentHabit.planningTime)).format('LT').replace(/:/g, '');
   //   // console.log('time', time.replace(/:/g, ''))
@@ -20,20 +26,18 @@ const TimeDoIt = ({ currentHabits }) => {
   //  - b.moment(new Date(planningTime)).format('LT').replace(/:/g, ''));
   // console.log(x,"x")
 
+  //   for (let currentHabit of currentHabits) {
 
-//   for (let currentHabit of currentHabits) {
+  //     dates.push(moment(currentHabit.created));
+  //   }
+  //   dates.sort(function(a,b){
+  //     var da = new Date(a).getTime();
+  //     var db = new Date(b).getTime();
 
-//     dates.push(moment(currentHabit.created));
-//   }
-//   dates.sort(function(a,b){
-//     var da = new Date(a).getTime();
-//     var db = new Date(b).getTime();
-
-//     return da < db ? -1 : da > db ? 1 : 0
-//   });
-// }
-// console.log(dates);
-
+  //     return da < db ? -1 : da > db ? 1 : 0
+  //   });
+  // }
+  // console.log(dates);
 
   // const getNamesSortedByFriendsCount = users => {
 
@@ -41,16 +45,13 @@ const TimeDoIt = ({ currentHabits }) => {
   //     return{
   //       new Date(a.planningTime) - new Date(b.planningTime)
   //     }
-      
+
   //   });
   //   return users.map(elem => elem.name);
-  
+
   // };
-  
+
   // console.log(getNamesSortedByFriendsCount(users));
-
-
-
 
   return (
     <ul>
