@@ -1,21 +1,19 @@
-import { createSelector } from 'reselect';
+import {createSelector} from "reselect"
 
-const getConstAmountOfCigarettesPerDay = state => {
-  // console.log('state', state);
-  return state.user.quizInfo.cigarettePerDay;
-};
+const getConstAmountOfCigarettesPerDay = state =>
+  state.quizInfo.cigarettePerDay;
+
 const getCigarettePackPrice = state => {
-  return state.user.quizInfo.cigarettePackPrice;
+  return state.quizInfo.cigarettePackPrice;
 };
 
-const getCurrentAmountOfCigarettes = state =>
-  state.user.cigarettes.data[state.user.cigarettes.data.length - 1];
+const getCurrentAmountOfCigarettes = state => state.cigarettes;
 
-const getTimeForOneCigarette = state => state.user.quizInfo.cigarettePerTime;
+const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
-// ===============habits=========
+// ===============habits========
 
-const listOfHabits = state => state.user.habits;
+const listOfHabits = state => state.habits.allHabits;
 
 const getHabitById = (state, habitId) => {
   const habits = listOfHabits(state);
@@ -25,16 +23,19 @@ const getHabitById = (state, habitId) => {
 const allNotifications = createSelector([listOfHabits], habits => {
   // console.log('habits', habits);
 
-  return habits.filter(({ data, name }) => {
-    const isAllTrue = data.every(bool => bool);
+  return (
+    habits &&
+    habits.filter(({ data, name }) => {
+      const isAllTrue = data.every(bool => bool);
 
-    if (isAllTrue) {
-      return {
-        [name]: data.name,
-      };
-    }
-    return '';
-  });
+      if (isAllTrue) {
+        return {
+          [name]: data.name,
+        };
+      }
+      return '';
+    })
+  );
 });
 // ===============habits=========
 export default {

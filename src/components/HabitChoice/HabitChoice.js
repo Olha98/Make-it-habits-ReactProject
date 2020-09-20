@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './HabitChoice.module.css';
-import CastomHabit from '../CustomHabit/CastomHabit';
+// import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import CastomHabitV from '../CustomHabitV/CastomHabitV';
 

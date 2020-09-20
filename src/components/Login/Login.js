@@ -10,8 +10,8 @@ import ModalInterview from '../ModalInterview/ModalInterview.js';
 
 class Login extends Component {
   state = {
-    email: '',
-    password: '',
+    email: 'kostya123@gmail.com',
+    password: 'Qwerty123',
     passwordVisible: false,
     // isShovModal: false,
   };

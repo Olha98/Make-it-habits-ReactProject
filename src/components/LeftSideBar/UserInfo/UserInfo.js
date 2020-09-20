@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
-import avatar from '../../../assests/images/LeftSideBar/avatar.png';
+// import avatar from '../../../assests/images/LeftSideBar/avatar.png';
 import style from '../UserInfo/UserInfo.module.css';
 //import authOperations from "../../../redux/operations/authOperation";
 import Axios from 'axios';
@@ -12,7 +12,6 @@ import { NavLink } from 'react-router-dom';
 Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
   render() {
-    // console.log('this.props', this.props);
     const { photo, name, surname, logout } = this.props;
     return (
       <>

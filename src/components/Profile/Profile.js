@@ -10,7 +10,7 @@ import PasswordForm from './PasswordForm';
 import ErrorValidation from './ErrorValidation';
 import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modalMarinaMel
 import style from './Profile.module.css';
-import Card from '../Card/Card';
+// import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
 // import {
 //   requiredField,
@@ -41,7 +41,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    console.log('this.props', this.props);
+    // console.log("this.props", this.props);
     // this.setState((prevState) => ({ ...prevState, ...this.props }));
     // this.props.getDataUserOperation();
   }
@@ -72,9 +72,9 @@ class Profile extends Component {
   render() {
     const { changePassword } = this.state;
     const { firstName, lastName, phone, email, avatar } = this.state;
-    console.log('this.props', this.props);
+    // console.log("this.props", this.props);
 
-    console.log('this.props', this.props.firstName);
+    // console.log("this.props", this.props.firstName);
 
     // if (!this.props.firstName) {
     //   return null;

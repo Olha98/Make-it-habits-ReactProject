@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
-import Modal from '../../../ModalBackDrop/ModalBackDrop';
+// import Modal from '../../../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';

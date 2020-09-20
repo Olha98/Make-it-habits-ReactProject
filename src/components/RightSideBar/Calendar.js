@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
-import RightSideBar from './RightSideBar';
+// import RightSideBar from './RightSideBar';
 registerLocale('ru', ru);
 
 const birthdayStyle = `
