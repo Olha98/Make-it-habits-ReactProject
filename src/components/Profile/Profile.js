@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 // import actionsProfile from "../../redux/actions/actionsProfile";
 import PasswordForm from './PasswordForm';
 import ErrorValidation from './ErrorValidation';
-// import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
 import { avatars } from '../Avatar/dataAvatar';
 import style from './Profile.module.css';
 import Card from '../Card/Card';
@@ -273,8 +273,9 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             <Card />
           </div>
-
-          {/* {this.state.isShowModal && <ModalInterview close={() => null} />} */}
+          {this.props.isModalInterview === 0 && (
+            <ModalInterview close={() => null} />
+          )}
         </div>
       </>
     );
@@ -287,8 +288,7 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    // isModalInterview: 111111,
-    // isModalInterview: state.user.quizInfo.smokeYears,
+    isModalInterview: state.quizInfo.smokeYears,
   };
 };
 
