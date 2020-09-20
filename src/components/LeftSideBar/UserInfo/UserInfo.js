@@ -20,12 +20,12 @@ class UserInfo extends Component {
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
-                //src={avatars.find(item => item.id === this.props.photo).image}
-                src={
-                  photo
-                    ? `${photo} `
-                    : `${`http://localhost:3000/static/media/Avatar-10.04be2625.png`}`
-                }
+                src={avatars.find(item => item.id === this.props.avatar)?.image}
+                // src={
+                //   photo
+                //     ? `${photo} `
+                //     : `${`http://localhost:3000/static/media/Avatar-10.04be2625.png`}`
+                // }
                 alt="avatar"
               />
             </div>
@@ -47,7 +47,7 @@ class UserInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  photo: state.user.avatar,
+  avatar: state.user.avatar,
   name: state.user.firstName,
   surname: state.user.lastName,
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
-import Modal from '../../../ModalBackDrop/ModalBackDrop';
+// import Modal from '../../../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
@@ -74,12 +74,12 @@ class CheckListItem extends Component {
     const updateInfo = { id, status };
 
     // const array = [...this.props.habit.data];
-    const array = [null, null, null];
-    const newArray = array.map((elem, idx) => {
-      console.log('elem', elem);
-    });
-    console.log('array', array);
-    console.log('newArray', newArray);
+    // const array = [null, null, null];
+    // const newArray = array.map(elem => {
+    //   console.log('elem', elem);
+    // });
+    // console.log('array', array);
+    // console.log('newArray', newArray);
 
     //  const newArray;
     // return;
@@ -100,7 +100,7 @@ class CheckListItem extends Component {
   }
 
   render() {
-    console.log('this.stateLISTITEM', this.state);
+    // console.log('this.stateLISTITEM', this.state);
     // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
     const { colors, isShowModal } = this.state;
@@ -113,7 +113,7 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        // onClick={e => this.showFullInfo(e)}
+      
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>

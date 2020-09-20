@@ -15,14 +15,6 @@ import avatar14 from '../../assests/images/avatars/Avatar.png';
 import avatar15 from '../../assests/images/avatars/Avatar-4-1.png';
 import avatar16 from '../../assests/images/avatars/Avatar-default.png';
 
-// function toDataUrl(element) {
-//   return new Promise((resolve) => {
-//     const reader = new FileReader();
-//     reader.onloadend = () => resolve(reader.result);
-//     reader.readAsDataURL(element.files[0]);
-//   });
-// }
-
 export const avatars = [
   { image: avatar1, id: '1' },
   { image: avatar2, id: '2' },
@@ -42,4 +34,77 @@ export const avatars = [
   { image: avatar16, id: '16' },
 ];
 
-// console.log("avatar16", `${avatar16}`);
+// // console.log("avatar16", `${avatar16}`);
+// import { lazy } from 'react';
+
+// export const avatars = [
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-1.png')),
+//     id: '1',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-2.png')),
+//     id: '2',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-3.png')),
+//     id: '3',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-4.png')),
+//     id: '4',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-5.png')),
+//     id: '5',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-6.png')),
+//     id: '6',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-7.png')),
+//     id: '7',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-8.png')),
+//     id: '8',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-9.png')),
+//     id: '9',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-10.png')),
+//     id: '10',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-11.png')),
+//     id: '11',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-12.png')),
+//     id: '12',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-13.png')),
+//     id: '13',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar.png')),
+//     id: '14',
+//   },
+//   {
+//     image: lazy(() => import('../../assests/images/avatars/Avatar-4-1.png')),
+//     id: '15',
+//   },
+//   {
+//     image: lazy(() =>
+//       import('../../assests/images/avatars/Avatar-default.png'),
+//     ),
+//     id: '16',
+//   },
+// ];
+
+// console.log('avatars', avatars);
+// console.log('avatars 111', avatars[0].image);

@@ -31,7 +31,7 @@ class InnerNavigation extends Component {
     window.addEventListener('click', this.changeNotify);
   }
   changeNotify = e => {
-    console.log('e.target', e.target);
+    // console.log('e.target', e.target);
     if (e.target.dataset.set === 'notify') {
       //const { isShowNotify } = this.state;
 
