@@ -2,7 +2,7 @@
 @value main_gradient, main_green,background,green_1,green_2,main_violet, main_pink,main_yellow,main_blue,black_font,grey_font from colors;
 
 .checkListItem {
-  width: 720px;
+  width: 100%;
   border-radius: 10px;
   padding-top: 20px;
   padding-right: 45px;
@@ -112,6 +112,42 @@ progress[value]::-webkit-progress-value {
   margin: 0 auto;
 }
 
+.checkListButtonSubmitDisabled {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  margin-right: 15px;
+  cursor: inherit;
+}
+.checkListButtonSubmitDisabled svg {
+  display: block;
+  stroke: grey_font;
+  margin: 0 auto;
+}
+
+.checkListButtonSubmitDisabledNoHover {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  margin-right: 15px;
+  cursor: inherit;
+}
+
+.checkListButtonSubmitDisabledNoHover svg {
+  display: block;
+  stroke: grey_font;
+  margin: 0 auto;
+}
+
+.checkListButtonSubmitDisabledActive {
+  background: main_green;
+  border: 1px solid main_green;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 15px;
+}
+.checkListButtonSubmitDisabledActive svg {
+  stroke: #fff;
+}
+
 .checkListButtonSubmit:hover,
 .checkListButtonSubmit:focus {
   background: main_green;
@@ -141,6 +177,46 @@ progress[value]::-webkit-progress-value {
 .checkListButtonDelete:hover svg,
 .checkListButtonDelete:focus svg {
   stroke: main_pink;
+}
+
+.disabled:hover {
+  border: 1px solid #e0e0e0;
+}
+
+.checkListButtonDeleteDisabled {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  cursor: inherit;
+}
+
+.checkListButtonDeleteDisabled svg {
+  display: block;
+  stroke: grey_font;
+  margin: 0 auto;
+}
+
+.checkListButtonDeleteDisabledNoHover {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  cursor: inherit;
+}
+
+.checkListButtonDeleteDisabledNoHover svg {
+  display: block;
+  stroke: grey_font;
+  margin: 0 auto;
+}
+
+.checkListButtonDeleteDisabledActive {
+  border: 1px solid main_pink;
+  background-color: #fff;
+  cursor: inherit;
+}
+
+.checkListButtonDeleteDisabled svg {
+  display: block;
+  stroke: main_pink;
+  margin: 0 auto;
 }
 
 .checkListButtonEdit {
