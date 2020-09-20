@@ -20,6 +20,8 @@ class Habits extends Component {
   };
 
   render() {
+    const { habits } = this.props;
+
     return (
       <>
         <section className={style.leftSideBar_habits}>
@@ -30,11 +32,13 @@ class Habits extends Component {
               height: 186,
             }}
           >
-            <ul className={style.leftSideBar_habits__list}>
-              {this.props.habits.map(({ _id }, idx) => (
-                <HabitItem key={_id} id={_id} idx={idx} />
-              ))}
-            </ul>
+            {habits && (
+              <ul className={style.leftSideBar_habits__list}>
+                {habits.map(({ _id }, idx) => (
+                  <HabitItem key={_id} id={_id} idx={idx} />
+                ))}
+              </ul>
+            )}
           </CustomScrollbars>
           <button
             type="button"

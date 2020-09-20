@@ -6,8 +6,6 @@ const ADD_HABIT_STATUS_REQUEST = "@checklist/addHabitStatusRequest";
 const ADD_HABIT_STATUS_SUCCESS = "@checklist/addHabitStatusSuccess";
 const ADD_HABIT_STATUS_ERROR = "@checklist/addHabitStatusError";
 
-const REMOVE_CUSTOM_HABIT = "@customHabit/removeCastomHabit";
-const PATCH_CUSTOM_HABIT = "@customHabit/patchCastomHabit";
 
 export default {
   GET_HABITS_REQUEST,
@@ -17,7 +15,4 @@ export default {
   ADD_HABIT_STATUS_REQUEST,
   ADD_HABIT_STATUS_SUCCESS,
   ADD_HABIT_STATUS_ERROR,
-
-  REMOVE_CUSTOM_HABIT,
-  PATCH_CUSTOM_HABIT,
 };

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import quizInfoConstants from '../constants/quizInfoConstants';
 
 const initialState = {
@@ -13,6 +13,7 @@ const quizInfo = (state = { ...initialState }, action) => {
     case quizInfoConstants.ADD_SUCCESS:
     case quizInfoConstants.GET_SUCCESS:
       return action.payload;
+
     default:
       return state;
   }

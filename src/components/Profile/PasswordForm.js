@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import style from "./Profile.module.css";
-// import { reduxForm, Field} from "redux-form";
-
-import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
-import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
+import React, { Component } from 'react';
+import style from './Profile.module.css';
+import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
+import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
+import operationsProfile from '../../redux/operations/operationsProfile';
+import { connect } from 'react-redux';
 
 class PasswordForm extends Component {
   state = {
@@ -11,23 +11,39 @@ class PasswordForm extends Component {
     passwordNew: false,
     passwordNewRepeat: false,
 
-    typePassword: "password",
-    typeText: "text",
+    typePassword: 'password',
+    typeText: 'text',
 
     passwordFields: false,
 
-    // name: "",
-    // value: "",
+    password: '',
+    confirmPassword: '',
   };
 
-  onEyeIconOldPassword = (name) => {
-    // console.log("name", name);
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.postPasswordOperation({
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+    });
+    // console.log('this.props.postPasswordOperation', {
+    //   password: this.state.password,
+    //   confirmPassword: this.state.confirmPassword,
+    // });
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
   };
 
   render() {
     const {
-      passwordOld,
+      // passwordOld,
       passwordNew,
       passwordNewRepeat,
 
@@ -37,12 +53,12 @@ class PasswordForm extends Component {
 
     return (
       <>
-        <form className={style.form}>
-          <label className={style.label}>
+        <form className={style.form} onSubmit={this.handleSubmit}>
+          {/* <label className={style.label}>
             <span className={style.titleInput}>Текущий пароль</span>
             <div
               className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordOld")}
+              onClick={() => this.onEyeIconOldPassword('passwordOld')}
             >
               {!passwordOld ? <ClosedEye /> : <OpenedEye />}
             </div>
@@ -52,19 +68,20 @@ class PasswordForm extends Component {
               onChange={this.handleChange}
               className={style.input}
             />
-          </label>
+          </label> */}
 
           <label className={style.label}>
             <span className={style.titleInput}>Новый пароль</span>
             <div
               className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordNew")}
+              onClick={() => this.onEyeIconOldPassword('passwordNew')}
             >
               {!passwordNew ? <ClosedEye /> : <OpenedEye />}
             </div>
             <input
               type={!passwordNew ? typePassword : typeText}
-              name="passwordNew"
+              name="password"
+              value={this.state.password}
               onChange={this.handleChange}
               className={style.input}
             />
@@ -74,13 +91,14 @@ class PasswordForm extends Component {
             <span className={style.titleInput}>Повторите пароль</span>
             <div
               className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordNewRepeat")}
+              onClick={() => this.onEyeIconOldPassword('passwordNewRepeat')}
             >
               {!passwordNewRepeat ? <ClosedEye /> : <OpenedEye />}
             </div>
             <input
               type={!passwordNewRepeat ? typePassword : typeText}
-              name="passwordNewRepeat"
+              name="confirmPassword"
+              value={this.state.confirmPassword}
               onChange={this.handleChange}
               className={style.input}
             />
@@ -94,4 +112,9 @@ class PasswordForm extends Component {
     );
   }
 }
-export default PasswordForm;
+
+const mapDispatchToProps = {
+  postPasswordOperation: operationsProfile.postPasswordOperation,
+};
+
+export default connect(null, mapDispatchToProps)(PasswordForm);

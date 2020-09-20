@@ -63,9 +63,9 @@ const DailyResult = ({ close, updateResult, prevData }) => {
 };
 
 const mapStateToProps = state => {
-  // console.log("state", state);
+
   return {
-    prevData: state.user.cigarettes.data,
+    prevData: state.cigarettes.data,
   };
 };
 

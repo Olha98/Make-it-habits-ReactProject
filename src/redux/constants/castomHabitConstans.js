@@ -1,4 +1,9 @@
-const ADD_CUSTOM_HABIT = "@customHabit/addCastomHabit";
 const REMOVE_CUSTOM_HABIT = "@customHabit/removeCastomHabit";
+const PATCH_CUSTOM_HABIT = "@customHabit/patchCastomHabit";
+const ADD_CUSTOM_HABIT = "@customHabit/addCastomHabit";
 
-export default { ADD_CUSTOM_HABIT, REMOVE_CUSTOM_HABIT };
+export default {
+    REMOVE_CUSTOM_HABIT,
+    PATCH_CUSTOM_HABIT,
+    ADD_CUSTOM_HABIT
+};

@@ -20,7 +20,7 @@ const addHabitStatus = updateInfo => dispatch => {
   console.log('updateInfoOPER', updateInfo);
   dispatch(checkListActions.addHabitStatusRequest());
   axios.patch('/habits', updateInfo).then(res => {
-    console.log('res', res);
+    // console.log('res', res);
     //   // dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
   });
   // .catch(error => console.log(error));
