@@ -1,7 +1,6 @@
 @value black_font from '../../css/vars.module.css';
 @value grey_font from '../../css/vars.module.css';
 @value main_green from '../../css/vars.module.css';
-@value main_pink from '../../css/vars.module.css';
 
 .modalInterview {
   position: absolute;
