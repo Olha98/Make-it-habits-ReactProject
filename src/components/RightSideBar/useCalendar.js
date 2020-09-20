@@ -8,6 +8,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
     for (let habit of allHabits) {
       const startPlanningTime = habit.planningTime;
       let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
+      let startPlanningTimeinCalendar = moment(startPlanningTimeinML).format('L');
 
       switch (habit.iteration) {
         case 'onceInTwoDays':

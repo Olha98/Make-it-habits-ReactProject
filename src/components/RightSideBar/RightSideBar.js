@@ -5,7 +5,9 @@ import Calendar from './Calendar';
 import TimeDoItList from './TimeDoIt';
 import moment from 'moment';
 import CustomScrollbars from '../../assests/scroll/scroll';
+
 import 'moment/locale/ru';
+
 
 
 
@@ -20,6 +22,7 @@ class RightSideBar extends Component {
     const { dayWeek, getData } = this.state;
 
     return (
+      <>
       <div className={style.boxRightSideBar}>
         <div className={style.containerRightSideBar}>
           <div className={style.headerRightSideBar}>
@@ -33,12 +36,13 @@ class RightSideBar extends Component {
             <Calendar />
           </div>
           <div className={style.footerRightSideBar}>
-            <CustomScrollbars style={{ width: 370, height: 340, top: 10 }}>
+            <CustomScrollbars style={{ width: 370, height: 340, top: 10}} >
               <TimeDoItList />
             </CustomScrollbars>
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

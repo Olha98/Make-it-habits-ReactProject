@@ -162,8 +162,9 @@ const birthdayStyle = `
    width: 30px;
    height: 30px;
   color: red;
-
   }
+
+
 
   `;
 
