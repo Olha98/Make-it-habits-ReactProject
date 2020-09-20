@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import DatePicker, { registerLocale } from "react-datepicker";
-import ru from "date-fns/locale/ru";
-import RightSideBar from "./RightSideBar";
-registerLocale("ru", ru);
+import React, { useState } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import ru from 'date-fns/locale/ru';
+// import RightSideBar from "./RightSideBar";
+registerLocale('ru', ru);
 
 const birthdayStyle = `
   .react-datepicker__month-container {
@@ -168,23 +168,12 @@ const birthdayStyle = `
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-
-
-
-
-
-
-
-
-
-  
-
   return (
     <>
       <style>{birthdayStyle}</style>
       <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={date => setStartDate(date)}
         locale="ru"
         inline
       />

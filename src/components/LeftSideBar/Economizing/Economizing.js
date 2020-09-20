@@ -67,7 +67,7 @@ const mapStateToProps = state => {
     (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
 
   const totalTime = array1.push(savedTime);
-  console.log('totalTime', totalTime);
+  // console.log('totalTime', totalTime);
   return {
     money: savedMoney.toFixed(2),
     time: totalTime,
