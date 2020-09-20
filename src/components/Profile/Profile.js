@@ -254,7 +254,10 @@ class Profile extends Component {
             {/* <Card /> */}
           </div>
 
-          {this.state.isShowModal && <ModalInterview close={() => null} />}
+          {/* {this.state.isShowModal && <ModalInterview close={() => null} />} */}
+          {this.props.isModalInterview === 0 && (
+            <ModalInterview close={() => null} />
+          )}
         </div>
       </>
     );
@@ -267,8 +270,8 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: 111111,
-    // isModalInterview: state.user.quizInfo.smokeYears,
+    // isModalInterview: 111111,
+    isModalInterview: state.quizInfo.smokeYears,
   };
 };
 
