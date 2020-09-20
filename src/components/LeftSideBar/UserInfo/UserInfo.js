@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
   render() {
-    const { photo, name, surname, logout } = this.props;
+    const { name, surname, logout } = this.props;
     return (
       <>
         <section className={style.leftSideBar_userInfo}>
