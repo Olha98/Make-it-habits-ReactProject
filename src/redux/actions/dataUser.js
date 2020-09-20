@@ -1,7 +1,7 @@
 const getUserData = '@getUserdata/GET';
 
 export const actionsGetUserData = userData => {
-  console.log(userData, 'userDatauserDatauserDatauserDatauserData');
+  // console.log(userData, 'userDatauserDatauserDatauserDatauserData');
 
   return {
     type: getUserData,

@@ -5,7 +5,6 @@ import CheckListItem from './CheckListItem/CheckListItem';
 
 class CheckList extends Component {
   render() {
-
     return (
       <div className={style.checkList}>
         {this.props.habits

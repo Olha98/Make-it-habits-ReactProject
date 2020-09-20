@@ -6,7 +6,7 @@ import TimeDoItList from './TimeDoIt';
 import moment from 'moment';
 import 'moment/locale/ru';
 import CustomScrollbars from '../../assests/scroll/scroll';
-import { getHabitsOperation } from '../../redux/operations/calendarOperations';
+// import { getHabitsOperation } from '../../redux/operations/calendarOperations';
 import { connect } from 'react-redux';
 
 const task = [

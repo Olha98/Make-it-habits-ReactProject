@@ -14,7 +14,6 @@ export const persistConfig = {
   whitelist: ['access_token'],
 };
 
-
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
   auth: persistReducer(persistConfig, authReducer),

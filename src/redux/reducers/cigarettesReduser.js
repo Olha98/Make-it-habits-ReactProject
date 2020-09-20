@@ -1,5 +1,5 @@
 import { GET_CIGARETTES } from '../constants/cigarettesInfoConstants';
-import { GET_STATE_SUCCESS } from '../constants/stateConstants';
+// import { GET_STATE_SUCCESS } from '../constants/stateConstants';
 
 const initialState = {
   startedAt: '',
