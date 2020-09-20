@@ -96,12 +96,23 @@ body {
   padding: 0 20px;
   outline: none;
 }
+
+/* ---- validation ----- */
 .inputInvalid {
   border: 1px solid #fe6083;
 }
 .inputValid {
   border: 1px solid #43d190;
 }
+.errorMessage {
+  position: absolute;
+  top: 48px;
+  left: 130px;
+  font-size: 8px;
+  font-weight: 400;
+  color: #fe6083;
+}
+
 .eyeImage {
   position: absolute;
   right: 20px;

@@ -1,7 +1,7 @@
 import constTypes from '../constants/constProfile';
 
 const initialState = {
-  avatar: '16',
+  avatar: '17',
   firstname: '',
   lastname: '',
   phone: '',

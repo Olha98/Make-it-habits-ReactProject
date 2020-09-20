@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import style from './Profile.module.css';
+import { connect } from 'react-redux';
+import operationsProfile from '../../redux/operations/operationsProfile';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
-import operationsProfile from '../../redux/operations/operationsProfile';
-import { connect } from 'react-redux';
+import style from './Profile.module.css';
 
 class PasswordForm extends Component {
   state = {
@@ -26,10 +26,6 @@ class PasswordForm extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
     });
-    // console.log('this.props.postPasswordOperation', {
-    //   password: this.state.password,
-    //   confirmPassword: this.state.confirmPassword,
-    // });
   };
 
   handleChange = e => {
@@ -43,7 +39,6 @@ class PasswordForm extends Component {
 
   render() {
     const {
-      // passwordOld,
       passwordNew,
       passwordNewRepeat,
 
@@ -54,22 +49,6 @@ class PasswordForm extends Component {
     return (
       <>
         <form className={style.form} onSubmit={this.handleSubmit}>
-          {/* <label className={style.label}>
-            <span className={style.titleInput}>Текущий пароль</span>
-            <div
-              className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword('passwordOld')}
-            >
-              {!passwordOld ? <ClosedEye /> : <OpenedEye />}
-            </div>
-            <input
-              type={!passwordOld ? typePassword : typeText}
-              name="passwordOld"
-              onChange={this.handleChange}
-              className={style.input}
-            />
-          </label> */}
-
           <label className={style.label}>
             <span className={style.titleInput}>Новый пароль</span>
             <div
