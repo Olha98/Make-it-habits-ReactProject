@@ -12,6 +12,12 @@
   box-shadow: 0px 10px 16px rgba(68, 68, 68, 0.04);
 
   position: relative;
+  transition: all 0.2s linear;
+}
+
+.checkListItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 8px 16px rgba(106, 155, 163, 0.3);
 }
 
 .checkListItem:not(:last-child) {

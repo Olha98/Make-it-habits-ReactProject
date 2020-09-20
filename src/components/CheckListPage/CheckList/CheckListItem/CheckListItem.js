@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
 // import Modal from '../../../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
+import addHabitStatus from '../../../../redux/operations/chekListOperation';
+
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
-import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
 import { main_yellow } from '../../../../css/vars.module.css';
 import { connect } from 'react-redux';
@@ -22,14 +23,6 @@ class CheckListItem extends Component {
     checkedStatus: '',
     habitId: '',
   };
-
-  // showFullInfo(e) {
-  //   if (e.target.closest('[data-element="button"]')) {
-  //     this.setState(prevState => ({
-  //       showFullInfo: !prevState.showFullInfo,
-  //     }));
-  //   }
-  // }
 
   componentDidMount() {
     this.setState({
@@ -57,9 +50,6 @@ class CheckListItem extends Component {
   };
 
   onStatus = bool => {
-    // this.setState({
-    //   showFullInfo: true,
-    // });
     this.setState(prev => ({
       showFullInfo: !prev.showFullInfo,
       habitId: this.props.habit._id,
@@ -78,15 +68,6 @@ class CheckListItem extends Component {
       });
     }
 
-    // if (bool) {
-    //   console.log('bool', bool);
-    //   this.setState(prev => ({ showFullInfo: !prev.showFullInfo }));
-    // }
-    // else
-    //   this.setState({
-    //     showFullInfo: false,
-    //   });
-
     let isFirst = true;
 
     const firstNull = this.state.daysProgress.map(elem => {
@@ -100,8 +81,6 @@ class CheckListItem extends Component {
     this.setState({
       daysDone: firstNull.filter(elem => elem === true).length,
       daysPassed: firstNull.filter(elem => elem === false).length,
-      // daysProgress: [...this.props.habit.data],
-      // habitId: this.props.habit._id,
     });
 
     const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
