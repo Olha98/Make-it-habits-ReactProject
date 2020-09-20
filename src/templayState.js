@@ -43,6 +43,45 @@ export default {
   ],
 };
 
+
+const state = {
+  auth:{
+    acces_token: "",
+  }
+
+  user: {
+    avatar: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    registerData: '',
+    cards:[{
+      cards:"",
+      
+    }],
+  },
+
+  habits: [],
+
+ quizInfo: {
+    smokeYears: 0,
+    cigarettePerDay: 0,
+    cigarettePerTime: 0,
+    cigarettePackPrice: 0,
+  },
+
+  cigarettesInfo:{
+  data:[],
+  satartedAt:''
+  },
+
+  error: '',
+  loader: '',
+
+
+}
+
 /*  dev: git checkout -b SBC-03;
 
 SBC-03: git add .

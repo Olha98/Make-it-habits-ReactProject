@@ -1,15 +1,24 @@
-import React from "react";
-import  TaskDoItItem from './TaskDiItItem'
+import React from 'react';
+import { connect } from 'react-redux';
+import TaskDoItItem from './TaskDiItItem';
 
-const TimeDoIt = ({ task }) => {
-	
+const TimeDoIt = ({ currentHabits }) => {
+
+  
   return (
     <ul>
-      {task.map((task) => (
-        <TaskDoItItem task={task} key={task.createAt}/>
-      ))}
+      {currentHabits &&
+        currentHabits.map(currentHabit => (
+          <TaskDoItItem currentHabit={currentHabit} key={currentHabit._id} />
+        ))}
     </ul>
   );
 };
 
-export default TimeDoIt;
+const mapStateToProps = function (state) {
+  return {
+    currentHabits: state.habits.currentHabits,
+  };
+};
+
+export default connect(mapStateToProps)(TimeDoIt);

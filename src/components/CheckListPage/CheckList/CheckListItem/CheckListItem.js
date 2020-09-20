@@ -109,7 +109,6 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-        // onClick={e => this.showFullInfo(e)}
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
