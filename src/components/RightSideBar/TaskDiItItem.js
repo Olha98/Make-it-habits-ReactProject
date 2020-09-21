@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import imgBak from '../../assests/images/calendar/trash2.png';
 import style from './TimeDoItItem.module.css';
 import { ReactComponent as ButtonOk } from '../../assests/images/CheckListPage/button_ok.svg';
@@ -9,7 +9,32 @@ import { connect } from 'react-redux';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
-  const [visible, setVisible] = useState('false');
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (dataNowCalendar === day && arrayDataHebits.includes(dataNowCalendar)) {
+      // console.log('day', day);
+      const index = arrayDataHebits.reduce((acc, date, idx) => {
+        if (date === dataNowCalendar) {
+          acc = idx;
+        }
+        return acc;
+      }, '');
+      // let isFirst = true;
+      const firstNull = dateNull.map((elem, idx) => {
+        if (idx === index) {
+          if (elem) {
+            setVisible(true);
+            return elem;
+          }
+          // return null
+        }
+        return null;
+      });
+
+      console.log('firstNull', firstNull);
+    }
+  }, [visible]);
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -18,21 +43,15 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   };
 
   const dataNow = new Date();
-
+  const day = currentHabit.day;
   const dataNowCalendar = moment(dataNow).format('L');
+
+  console.log(day);
   const arrayDataHebits = currentHabit.arrayDate;
-  // console.log(arrayDataHebits, 'arrayDataHebits');
 
-  for (let arrayDataHebit of arrayDataHebits) {
-    if (arrayDataHebit === dataNowCalendar) {
-      //нужен индекс елемента
-      //смотрит индекс елементов
-    }
-  }
+  const dateNull = currentHabit.data;
 
-  // const ShowClick = (e) => {
-  //   setVisible("true")
-  // };
+  // console.log('arrayDataHebits', arrayDataHebits)
 
   return (
     <>
@@ -48,7 +67,7 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
       <div className={style.containerTimeDoIt}>
         {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
-        <span className={style.spanTimeDoIt}>
+        <span className={style.spanTimeDoIt}
           {moment(new Date(currentHabit.planningTime)).format('LT')}
         </span>
         <li className={style.nameTimeDoIt}>
