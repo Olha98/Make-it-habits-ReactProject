@@ -12,7 +12,7 @@
   text-align: center;
   display: block;
   position: relative;
-  width: 80%;
+  width: 95%;
   margin: 100px auto;
 }
 
@@ -30,7 +30,7 @@
   text-align: center;
   display: block;
   position: relative;
-  letter-spacing: 12px;
+  letter-spacing: 10px;
   font-size: 4em;
   line-height: 80%;
 }
