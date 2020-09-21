@@ -5,60 +5,42 @@ import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import style from './DailyHabit.module.css';
 
 import closeBtn from '../../assests/images/closeBlack.png';
-
-const ciggarettes = [
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-];
+import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
 
 const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const [quantity, setQuantity] = useState(0);
+  const [isAlreadyAdded, setAlreadyAdded] = useState(false);
+
+  const openAlreadyAdded = () => {
+    setAlreadyAdded(true);
+  };
+  const closeAlreadyAdded = () => {
+    setAlreadyAdded(false);
+  };
   const changeQuantity = e => {
     setQuantity(Number(e.target.value));
   };
 
   const submitQuantity = e => {
     e.preventDefault();
-    const date = new Date('2020-09-18T17:09:46.000Z');
+    const date = new Date(startTime);
     const todayDate = Date.now();
     const dateMs = date.getTime();
-    const todayDateHuman = new Date(todayDate);
     const dayPass = Math.round((todayDate - dateMs) / 86400000);
-    console.log('before', ciggarettes);
-    if (!ciggarettes[dayPass - 1]) {
-      ciggarettes[dayPass - 1] = quantity;
-    } else console.log(' you already made a choice r');
-
-    console.log('after', ciggarettes);
-    updateResult({
-      startedAt: startTime,
-      data: [...prevData, quantity],
-    });
-    close();
+    console.log('prevData', prevData);
+    if (!prevData[dayPass - 1]) {
+      prevData[dayPass - 1] = quantity;
+      updateResult({
+        startedAt: startTime,
+        data: prevData,
+      });
+      close();
+    } else openAlreadyAdded();
   };
 
   return (
     <div className={style.dailyHabitWrapper}>
+      {isAlreadyAdded && <AlreadyAdded close={close} />}
       <div>
         <h2 className={style.dailyHabitTitle}>
           Сколько сигарет за сегодня Вы выкурили?
