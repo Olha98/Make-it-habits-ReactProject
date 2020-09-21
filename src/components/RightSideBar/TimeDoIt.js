@@ -9,14 +9,10 @@ const TimeDoIt = ({ currentHabits }) => {
     .map(item => {
       return {
         ...item,
-        timeNow: new Date(item.planningTime).getTime(),
+        timeNow: new Date(item.planningTime).getHours(),
       };
     })
     .sort((a, b) => a.timeNow - b.timeNow);
-
-  console.log(newCurrent, 'newCurrent');
-
- 
 
   return (
     <ul>
