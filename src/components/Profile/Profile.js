@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import InputMask from 'react-input-mask';
 import { Formik, Form } from 'formik';
-import PasswordForm from './PasswordForm';
+import { validationSchema } from './utils/validationSchema';
 import ErrorValidation from './utils/ErrorValidation';
 import funcMessage from './utils/funcMessage';
+import PasswordForm from './PasswordForm';
 import { avatars } from '../Avatar/dataAvatar';
 import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
-import ModalInterview from '../ModalInterview/ModalInterview.js'; //!modal Marina Melihova
+import ModalInterview from '../ModalInterview/ModalInterview.js';
 import style from './Profile.module.css';
-import { validationSchema } from './utils/validationSchema';
+import { compose } from 'redux';
 
 class Profile extends Component {
   state = {
@@ -69,12 +70,20 @@ class Profile extends Component {
                     lastName: this.props.lastName,
                     phone: this.props.phone,
                     email: this.props.email,
-                    avatar: this.props.avatar,
                   }}
                   validationSchema={validationSchema}
                   onSubmit={values => {
-                    this.props.addDataUserOperation({ ...values });
-                    // this.changePath();
+                    const number = values.phone
+                      .split('')
+                      .splice(2)
+                      .filter(symb => symb !== ' ')
+                      .join('');
+                    this.props.addDataUserOperation({
+                      ...values,
+                      phone: number,
+                    });
+                    // console.log('this.props', this.props);
+                    this.props.history.push('/checklist');
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
@@ -133,6 +142,7 @@ class Profile extends Component {
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>Телефон</span>
+
                         <InputMask
                           type="tel"
                           name="phone"
@@ -140,15 +150,35 @@ class Profile extends Component {
                           id="phone"
                           mask="+3\8099 999 99 99"
                           onChange={handleChange}
-                          className={style.input}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            ' ' +
+                            (values.phone
+                              .split('')
+                              .splice(2)
+                              .filter(symb => symb !== ' ' && symb !== '_')
+                              .join('').length > 2 &&
+                              touched.phone &&
+                              errors.phone &&
+                              style.inputInvalid)
+                          }
                           placeholder="+380__ ___ __ __"
                         />
-                        {/* {( */}
-                        <ErrorValidation
-                          touched={touched.phone}
-                          message={errors.phone}
-                        />
-                        {/* // ) && funcMessage(errors.phone)} */}
+                        {
+                          // <ErrorValidation
+                          //   touched={touched.phone}
+                          //   message={errors.phone}
+                          // />
+                          values.phone
+                            .split('')
+                            .splice(2)
+                            .filter(symb => symb !== ' ' && symb !== '_')
+                            .join('').length > 2 &&
+                            touched.phone &&
+                            errors.phone &&
+                            funcMessage('номер телефона введён не полностью')
+                        }
                       </label>
                       <label className={style.label}>
                         <span className={style.titleInput}>E-mail*</span>
@@ -176,18 +206,7 @@ class Profile extends Component {
                           />
                         ) && funcMessage(errors.email)}
                       </label>
-                      {/* <NavLink
-                        exact
-                        to="/checklist"
-                        className={style.linkChenlistSaveChanges}
-                      > */}
-                      <button
-                        type="submit"
-                        className={style.btnSaveChange}
-                        // onClick={() => {
-                        //   console.log('this.props.status', this.props);
-                        // }}
-                      >
+                      <button type="submit" className={style.btnSaveChange}>
                         Сохранить изменения
                       </button>
                     </Form>
@@ -207,14 +226,13 @@ class Profile extends Component {
                   className={style.avatarWrapper}
                   to="/profile/avatar"
                 >
-                  {console.log('this.props.avatar', this.props)}
                   <img
                     src={
                       avatars.find(item => item.id === this.props.avatar)?.image
                     }
                     alt="avatar"
                     width="108"
-                    higth="108"
+                    height="108"
                     className={style.avatar}
                   />
                 </NavLink>
@@ -272,4 +290,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   addDataUserOperation: operationsProfile.addDataUserOperation,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(Profile);

@@ -20,7 +20,6 @@ const addDataUserRequest = user => ({
 });
 
 const addDataUserSuccess = user => {
-  // console.log("user", user);
   return {
     type: constType.ADD_DATA_USER_SUCCESS,
     payload: { ...user },
@@ -38,7 +37,6 @@ const postPasswordRequest = password => ({
 });
 
 const postPasswordSuccess = password => {
-  console.log('passwordAction', password);
   return {
     type: constType.POST_PASSWORD_SUCCESS,
     payload: { ...password },

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Form, Formik } from 'formik';
+import { passwordValidationSchema } from './utils/validationSchema';
+import funcMessage from './utils/funcMessage';
+import ErrorValidation from './utils/ErrorValidation';
 import operationsProfile from '../../redux/operations/operationsProfile';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
 import style from './Profile.module.css';
-import { Form, Formik } from 'formik';
-import { validationSchema } from './utils/validationSchema';
-import funcMessage from './utils/funcMessage';
-import ErrorValidation from './utils/ErrorValidation';
 
 class PasswordForm extends Component {
   state = {
@@ -19,9 +19,6 @@ class PasswordForm extends Component {
     typeText: 'text',
 
     passwordFields: false,
-
-    // password: '',
-    // confirmPassword: '',
   };
 
   // handleSubmit = e => {
@@ -50,26 +47,16 @@ class PasswordForm extends Component {
       typeText,
     } = this.state;
 
-    console.log('this.props', this.props);
-
     return (
       <>
         <Formik
           initialValues={{ password: '', confirmPassword: '' }}
-          validationSchema={validationSchema}
+          validationSchema={passwordValidationSchema}
           onSubmit={values => {
-            console.log('values', values);
             this.props.postPasswordOperation({ ...values });
           }}
         >
-          {({
-            values,
-            errors,
-            touched,
-            // handleSubmit,
-            handleChange,
-            handleBlur,
-          }) => (
+          {({ values, errors, touched, handleChange, handleBlur }) => (
             <Form className={style.form}>
               <label className={style.label}>
                 <span className={style.titleInput}>Новый пароль</span>
@@ -81,17 +68,12 @@ class PasswordForm extends Component {
                 </div>
 
                 <input
-                  // autoComplete="off"
                   type={!passwordNew ? typePassword : typeText}
                   name="password"
                   id="password"
-                  // value={this.state.password}
-                  // onChange={this.handleChange}
-
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  // className={style.input}
                   className={
                     style.input +
                     ' ' +
@@ -109,7 +91,6 @@ class PasswordForm extends Component {
                   />
                 ) && funcMessage(errors.password)}
               </label>
-
               <label className={style.label}>
                 <span className={style.titleInput}>Повторите пароль</span>
                 <div
@@ -119,12 +100,8 @@ class PasswordForm extends Component {
                   {!passwordNewRepeat ? <ClosedEye /> : <OpenedEye />}
                 </div>
                 <input
-                  // autoComplete="off"
                   type={!passwordNewRepeat ? typePassword : typeText}
                   name="confirmPassword"
-                  // value={this.state.confirmPassword}
-                  // onChange={this.handleChange}
-                  // className={style.input}
                   value={values.confirmPassword}
                   id="confirmPassword"
                   onChange={handleChange}
@@ -146,15 +123,15 @@ class PasswordForm extends Component {
                   />
                 ) &&
                   funcMessage(
-                    values.confirmPassword.length > 0 &&
+                    values.confirmPassword.length >= 1 &&
                       values.confirmPassword !== values.password &&
                       'пароли не совпадают',
                   )}
               </label>
-
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
+              <span className={style.errorMessage}>СОХРАНЕНО!</span>
             </Form>
           )}
         </Formik>
