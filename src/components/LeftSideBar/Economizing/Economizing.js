@@ -12,7 +12,7 @@ class Economizing extends Component {
 
     return (
       <>
-        <section className={style.leftSideBar_economizing}>
+        <div className={style.leftSideBar_economizing}>
           <ul className={style.leftSideBar_economizing__list}>
             <li className={style.leftSideBar_economizing__list_item}>
               <p className={style.leftSideBar_economizing__list_item_title}>
@@ -46,7 +46,7 @@ class Economizing extends Component {
               </p>
             </li>
           </ul>
-        </section>
+        </div>
       </>
     );
   }

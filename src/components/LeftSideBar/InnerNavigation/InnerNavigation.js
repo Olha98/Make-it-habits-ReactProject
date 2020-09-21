@@ -15,7 +15,7 @@ class InnerNavigation extends Component {
   componentDidMount() {
     const dateInLocalStorage = localStorage.getItem('Date');
     const differInTime = Date.now() - dateInLocalStorage;
-    if (differInTime < 86400) {
+    if (differInTime < 86400000) {
       // console.log('differInTime', differInTime);
       this.setState({
         isShowNotify: false,

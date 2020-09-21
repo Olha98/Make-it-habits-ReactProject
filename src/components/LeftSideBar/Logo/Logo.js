@@ -20,18 +20,3 @@ export default function Logo() {
     </>
   );
 }
-
-/* <>
-<section className="logo">
-  <div className="leftSideBar-wrapper">
-    <div className="leftSideBar-logo">
-      <img
-        src=""
-        alt="logo"
-        width="146"
-        className="leftSideBar-logo__img"
-      />
-    </div>
-  </div>
-</section>
-</> */
