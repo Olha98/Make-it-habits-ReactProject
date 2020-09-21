@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import styles from './page404.module.css';
 
 const NotFound = () => {
-  document.body.classList.add('wrap404');
+  // document.body.classList.add('wrap404');
   return (
-    <section>
+    <section className={styles.section404}>
       <div id="clouds">
         <div className={[styles.cloud, styles.x1].join(' ')}></div>
         <div className={[styles.cloud, styles.x1_5].join(' ')}></div>
