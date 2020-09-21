@@ -247,9 +247,9 @@ class Profile extends Component {
             {changePassword && <PasswordForm />}
             <Card />
           </div>
+          {/* ------------------------------ */}
 
-          {/* ------------- kris ---------- */}
-          {this.props.isModalInterview === 0 && (
+          {this.props.isModalInterview === '0' && (
             <ModalInterview close={() => null} />
           )}
           {/* ------------------------------ */}
@@ -265,9 +265,6 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-
-    statusError: state.error,
-
     isModalInterview: state.quizInfo.smokeYears,
   };
 };
