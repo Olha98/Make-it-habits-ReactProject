@@ -3,11 +3,35 @@ import { connect } from 'react-redux';
 import updateDailyResul from '../../redux/operations/dailyResultOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import style from './DailyHabit.module.css';
-import moment from 'moment';
-import 'moment/locale/ru';
+
 import closeBtn from '../../assests/images/closeBlack.png';
 
-const DailyResult = ({ close, updateResult, prevData }) => {
+const ciggarettes = [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+];
+
+const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const [quantity, setQuantity] = useState(0);
   const changeQuantity = e => {
     setQuantity(Number(e.target.value));
@@ -15,12 +39,22 @@ const DailyResult = ({ close, updateResult, prevData }) => {
 
   const submitQuantity = e => {
     e.preventDefault();
+    const date = new Date('2020-09-18T17:09:46.000Z');
+    const todayDate = Date.now();
+    const dateMs = date.getTime();
+    const todayDateHuman = new Date(todayDate);
+    const dayPass = Math.round((todayDate - dateMs) / 86400000);
+    console.log('before', ciggarettes);
+    ciggarettes[dayPass - 1] = quantity;
+    console.log('after', ciggarettes);
+
     updateResult({
-      startedAt: moment().format(),
+      startedAt: startTime,
       data: [...prevData, quantity],
     });
     close();
   };
+
   return (
     <div className={style.dailyHabitWrapper}>
       <div>
@@ -63,9 +97,9 @@ const DailyResult = ({ close, updateResult, prevData }) => {
 };
 
 const mapStateToProps = state => {
-
   return {
     prevData: state.cigarettes.data,
+    startTime: state.cigarettes.startedAt,
   };
 };
 
