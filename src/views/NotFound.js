@@ -4,24 +4,25 @@ import { Link } from 'react-router-dom';
 import styles from './page404.module.css';
 
 const NotFound = () => {
+  document.body.classList.add('wrap404');
   return (
-    <section className={styles.wrap}>
+    <section>
       <div id="clouds">
-        <div class="cloud x1"></div>
-        <div class="cloud x1_5"></div>
-        <div class="cloud x2"></div>
-        <div class="cloud x3"></div>
-        <div class="cloud x4"></div>
-        <div class="cloud x5"></div>
+        <div className={[styles.cloud, styles.x1].join(' ')}></div>
+        <div className={[styles.cloud, styles.x1_5].join(' ')}></div>
+        <div className={[styles.cloud, styles.x2].join(' ')}></div>
+        <div className={[styles.cloud, styles.x3].join(' ')}></div>
+        <div className={[styles.cloud, styles.x4].join(' ')}></div>
+        <div className={[styles.cloud, styles.x5].join(' ')}></div>
       </div>
-      <div class="c">
-        <div class="_404">404</div>
+      <div className={styles.c}>
+        <div className={styles._404}>404</div>
         <hr />
-        <div class="_1">СТРАНИЦА</div>
-        <div class="_2">НЕ НАЙДЕНА</div>
-        <p>
-          Вот <Link to="/">ccылка</Link> на главную страницу.
-        </p>
+        <div className={styles._1}>СТРАНИЦА</div>
+        <div className={styles._2}>НЕ&nbsp;&nbsp;НАЙДЕНА</div>
+        <Link to="/" className={styles.btn}>
+          Ccылка на главную
+        </Link>
       </div>
     </section>
   );

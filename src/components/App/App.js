@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
 import PublicRoute from '../CustomRoutes/PublicRoute';
@@ -31,19 +31,6 @@ const App = ({ getGlobalState, token }) => {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-      <button
-        onClick={() => changeStateIsOpen(prev => !prev)}
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '200px',
-          height: '50px',
-          fontSize: '18px',
-        }}
-      >
-        Show Modal
-      </button>
-      {isTestOpen && <ModalInterview close={changeStateIsOpen} />}
     </>
   );
 };
