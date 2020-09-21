@@ -24,7 +24,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             startPlanningTimeinML += 86400000 * 2;
           }
 
-          console.log('arrayHabitsOnceInTwoDays', arrayHabitsOnceInTwoDays);
+          // console.log('arrayHabitsOnceInTwoDays', arrayHabitsOnceInTwoDays);
           for (let arrayHabit of arrayHabitsOnceInTwoDays) {
             if (arrayHabit.includes(calendarActualDay)) {
               currentHabitsTT.push({...habit, day:calendarActualDay});
@@ -67,7 +67,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
 
             console.log(iterationMonWedFri, "iterationMonWedFri");
           for (let iteration of iterationMonWedFri) {
-            console.log(iteration, "iteration!!!!!!!!!!!!!!!!!!!!!");
+            // console.log(iteration, "iteration!!!!!!!!!!!!!!!!!!!!!");
             if (iteration.includes(choseActualWeekDay)) {
 
               currentHabitsTT.push({...habit, day:calendarActualDay});
@@ -84,7 +84,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
     return currentHabitsTT;
   }, [allHabits, calendarActualDay, choseActualWeekDay]);
 
-  console.log('currentHabitsT', currentHabitsT);
+  // console.log('currentHabitsT', currentHabitsT);
 
   return { currentHabitsT };
 };
