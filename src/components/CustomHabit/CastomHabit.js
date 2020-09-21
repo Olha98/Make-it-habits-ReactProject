@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import castomHabitActions from '../../redux/actions/castomHabitActions';
 import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+// import moment from 'moment';
+// import 'moment/locale/ru';
 
 class CastomHabit extends Component {
   state = {
@@ -13,12 +15,28 @@ class CastomHabit extends Component {
     time: '',
   };
 
+  componentDidMount() {
+    if (this.props.chosenHabit) {
+      this.setState({ name: this.props.chosenHabit })
+    }
+    if (this.props.fromCheckList) {
+      console.log('this.props.habit', this.props.habit)
+      this.setState({ name: this.props.habit.name })
+    }
+  }
+
   onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
-    const planningTime = `${date}:${time}`;
-    if (e.target.dataset.save) {
-      // this.props.onAddCustomHabit({ name, planningTime, iteration })
+    const planningTime = `${date}${time}`;
+    let id = "";
+    if (this.props.habit) {
+      id = this.props.habit._id
+    }
+    if (e.target.dataset.save && this.props.fromCheckList) {
+      this.props.requestPatchCustomHabit({ name, id});
+      this.props.closeModal();
+    } else if (e.target.dataset.save) {
       this.props.requestAddCustomHabit({ name, planningTime, iteration });
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
@@ -26,7 +44,7 @@ class CastomHabit extends Component {
     } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
-    }
+    } 
   };
 
   handleChenge = e => {
@@ -43,9 +61,7 @@ class CastomHabit extends Component {
   };
 
   render() {
-    // console.log("this.props.HABIT", this.props);
-    const { name, iteration } = this.props.habit;
-    const date = new Date(this.props.habit.planningTime);
+    const date = new Date(this.props.habit?.planningTime);
     const day = this.editNumber(date.getDate());
     const month = this.editNumber(date.getMonth());
     const year = date.getFullYear();
@@ -54,7 +70,12 @@ class CastomHabit extends Component {
     const planningDate = `${year}-${month}-${day}`;
     const planningHours = `${hour}:${minute}`;
 
-    // console.log("this.props.habit._id", this.props.habit._id);
+    const dateToday = new Date();
+    const dayToday = this.editNumber(dateToday.getDate());
+    const monthToday = this.editNumber(dateToday.getMonth() + 1);
+    const yearToday = dateToday.getFullYear();
+
+    const planningDateToday = `${yearToday}-${monthToday}-${dayToday}`;
 
     return (
       <div className={style.castomHabitContainer}>
@@ -70,7 +91,7 @@ class CastomHabit extends Component {
                 type="text"
                 className={style.castomHabitName}
                 name="name"
-                value={name}
+                value={this.state.name}
                 onChange={this.handleChenge}
               />
             </label>
@@ -80,7 +101,8 @@ class CastomHabit extends Component {
                 type="date"
                 className={style.castomHabitDate}
                 name="date"
-                value={planningDate}
+                value={this.props.fromCheckList && planningDate}
+                min={planningDateToday}
                 onChange={this.handleChenge}
               />
             </label>
@@ -90,7 +112,7 @@ class CastomHabit extends Component {
                 type="time"
                 className={style.castomHabitTime}
                 name="time"
-                value={planningHours}
+                value={this.props.fromCheckList && planningHours}
                 onChange={this.handleChenge}
               />
             </label>
@@ -99,12 +121,10 @@ class CastomHabit extends Component {
               <select
                 className={style.castomHabitSelect}
                 name="iteration"
-                value={iteration}
+                value={this.props.fromCheckList && this.props.habit.iteration}
                 onChange={this.handleChenge}
               >
-                <option value="none" disabled>
-                  выбрать
-                </option>
+                <option value="none">Выбрать</option>
                 <option value="everyday">Ежедневно</option>
                 <option value="onceInTwoDays">Раз в 2 дня</option>
                 <option value="MonWedFri">ПН, СР, ПТ</option>
@@ -112,14 +132,14 @@ class CastomHabit extends Component {
               </select>
             </label>
           </div>
-
+          {this.props.fromCheckList &&
           <button
             onClick={this.onClickSubmit}
             data-delete="delete"
             className={style.castomHabitDelete}
           >
             удалить привычку
-          </button>
+          </button>}
           <div className={style.castomHabitBtnWrapper}>
             <button
               type="submit"
@@ -150,5 +170,6 @@ export default modalBackDrop(
     removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,
     requestRemoveCastomHabit: castomHabitOperation.removeHabitOperation,
+    requestPatchCustomHabit: castomHabitOperation.patchHabitOperation,
   })(CastomHabit),
 );
