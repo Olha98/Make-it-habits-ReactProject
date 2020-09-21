@@ -30,11 +30,11 @@ const addDataUserOperation = user => async dispatch => {
 const postPasswordOperation = password => async dispatch => {
   // const tokenNow = getState().auth.access_token;
   // token.set(tokenNow);
-  // console.log('password', password);
+  console.log('password', password);
   dispatch(actionsLoader.loaderOn());
   try {
     await axios.post('/auth/updatePassword', password);
-    // console.log('dataPassWord', data);
+    console.log('dataPassWord', password);
     dispatch(actionsUser.postPasswordSuccess({ ...password }));
   } catch (error) {
     dispatch(actionsProfile.postPasswordError(error));

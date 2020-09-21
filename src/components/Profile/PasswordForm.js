@@ -58,7 +58,7 @@ class PasswordForm extends Component {
           initialValues={{ password: '', confirmPassword: '' }}
           validationSchema={validationSchema}
           onSubmit={values => {
-            console.log('values', 'hello');
+            console.log('values', values);
             this.props.postPasswordOperation({ ...values });
           }}
         >
@@ -66,11 +66,11 @@ class PasswordForm extends Component {
             values,
             errors,
             touched,
-            handleSubmit,
+            // handleSubmit,
             handleChange,
             handleBlur,
           }) => (
-            <form onSubmit={handleSubmit} className={style.form}>
+            <Form className={style.form}>
               <label className={style.label}>
                 <span className={style.titleInput}>Новый пароль</span>
                 <div
@@ -155,7 +155,7 @@ class PasswordForm extends Component {
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
-            </form>
+            </Form>
           )}
         </Formik>
       </>
