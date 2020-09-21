@@ -7,14 +7,11 @@ import moment from 'moment';
 import CustomScrollbars from '../../assests/scroll/scroll';
 import 'moment/locale/ru';
 
-
-
 class RightSideBar extends Component {
   state = {
     dayWeek: moment().format('dddd'),
     getData: moment().format('LL').split(' ').slice(0, 2),
   };
- 
 
   render() {
     const { dayWeek, getData } = this.state;

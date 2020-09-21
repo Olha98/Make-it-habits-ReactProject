@@ -1,3 +1,3 @@
-const getError = state => state.error;
+const getQuizInfo = state => state.quizInfo;
 
-export default { getError };
+export default { getQuizInfo };

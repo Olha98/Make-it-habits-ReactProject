@@ -7,15 +7,43 @@ class CheckList extends Component {
   render() {
     return (
       <div className={style.checkList}>
-        {this.props.habits
-          ? this.props.habits.map(habit => (
-              <CheckListItem
-                key={habit._id}
-                habit={habit}
-                // onClick={(e) => this.showFullInfo(e)}
-              />
-            ))
-          : 'No habits added'}
+        <div className={style.checkListWrapper}>
+          {this.props.habits
+            ? // this.props.habits.filter(habit => {
+              //     if (habit.efficiency !== 100) {
+              //       return (
+              //         <CheckListItem
+              //           key={habit._id}
+              //           habit={habit}
+              //           // onClick={(e) => this.showFullInfo(e)}
+              //         />
+              //       );
+              //     }
+              //   })
+
+              this.props.habits.map(habit => (
+                <CheckListItem
+                  key={habit._id}
+                  habit={habit}
+                  // onClick={(e) => this.showFullInfo(e)}
+                />
+              ))
+            : 'No habits added'}
+
+          {/* {console.log('this.state', this.state)}
+          {this.props.habits
+            ? this.props.habits.map(
+                habit =>
+                  habit.efficiency !== 100 && (
+                    <CheckListItem
+                      key={habit._id}
+                      habit={habit}
+                      // onClick={(e) => this.showFullInfo(e)}
+                    />
+                  ),
+              )
+            : 'No habits added'} */}
+        </div>
       </div>
     );
   }
@@ -23,7 +51,7 @@ class CheckList extends Component {
 
 const mapStateToProps = state => {
   return {
-    habits: state.habits.allHabits,
+    habits: state.habits.currentHabits,
   };
 };
 
