@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskDoItItem from './TaskDiItItem';
-import moment from 'moment';
+// import moment from 'moment';
 
 const TimeDoIt = ({ currentHabits }) => {
+
   const newCurrent = currentHabits
     .map(item => {
       return {
@@ -13,7 +14,7 @@ const TimeDoIt = ({ currentHabits }) => {
     })
     .sort((a, b) => a.timeNow - b.timeNow);
 
-  // console.log(newCurrent, 'newCurrent');
+  console.log(newCurrent, 'newCurrent');
 
  
 

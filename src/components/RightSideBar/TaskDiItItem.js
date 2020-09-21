@@ -1,15 +1,15 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useState } from 'react';
 import imgBak from '../../assests/images/calendar/trash2.png';
 import style from './TimeDoItItem.module.css';
-
+import { ReactComponent as ButtonOk } from '../../assests/images/CheckListPage/button_ok.svg';
 
 import removeHabitOperation from '../../redux/operations/castomHabitOperation';
 import { connect } from 'react-redux';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
-  // const [visible, setVisible] = useState("false");
+  const [visible, setVisible] = useState("false");
   // console.log(currentHabit, 'currentHabit');
   
   const handlClick = e => {
@@ -25,11 +25,12 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
   return (
     <>
-   {/* {visible && <button
+   {visible && <button
               type="button"
-              onClick={() => this.onStatus(true)}>
+              onClick={() => setVisible(true)}>
               <ButtonOk data-element="svg" />
-              </button>} */}
+              </button>}
+
       <div className={style.containerTimeDoIt}>
       {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
         <span className={style.spanTimeDoIt}>
