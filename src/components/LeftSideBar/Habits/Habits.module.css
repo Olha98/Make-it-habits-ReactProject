@@ -36,4 +36,6 @@
 .leftSideBar_habits__button:hover {
   background: #cbf7e3;
   color: #4f4f4f;
+  transition: all 0.2s linear;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 }

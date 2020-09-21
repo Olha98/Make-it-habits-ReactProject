@@ -24,7 +24,7 @@ class Habits extends Component {
 
     return (
       <>
-        <section className={style.leftSideBar_habits}>
+        <div className={style.leftSideBar_habits}>
           <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
           <CustomScrollbars
             style={{
@@ -48,7 +48,7 @@ class Habits extends Component {
             Добавить привычку +
           </button>
           {this.state.isShowModal && <HabitChoice close={this.openModal} />}
-        </section>
+        </div>
       </>
     );
   }

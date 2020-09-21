@@ -13,7 +13,7 @@ const birthdayStyle = `
 	 display: flex;
 	 flex-direction: column;
 	 width: 374px;
-	 height: 392px;
+	 height: 400px;
    border-radius: 0px;
    border:none;
    border-bottom: 1px solid #d5e1dc;
@@ -64,7 +64,7 @@ const birthdayStyle = `
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  height: 25px;
+  height: 30px;
   margin-top: 18px;
   margin-bottom: 25px;
 

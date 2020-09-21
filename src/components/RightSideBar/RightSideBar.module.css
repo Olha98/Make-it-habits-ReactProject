@@ -6,8 +6,7 @@
   border-left: 1px solid #d5e1dc;
   border-right: 1px solid #d5e1dc;
   border-radius: 0px;
-  font-family: "Rubik";
-  
+  font-family: 'Rubik';
 }
 
 
@@ -53,7 +52,7 @@
 }
 
 .footerRightSideBar {
-  height: 375px;
+  height: 410px;
   background-color: #fff;
   border-bottom: 1px solid #d5e1dc;
   border-radius: 0px;

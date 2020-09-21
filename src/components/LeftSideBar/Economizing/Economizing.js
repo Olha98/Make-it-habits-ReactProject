@@ -5,8 +5,6 @@ import { ReactComponent as Hourglass } from '../../../assests/images/LeftSideBar
 import { connect } from 'react-redux';
 import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 class Economizing extends Component {
-  // console.log(typeof money);
-  // let timestamp =75;
   render() {
     const { money, time } = this.props;
     let hours = Math.floor(time / 60);
@@ -14,13 +12,20 @@ class Economizing extends Component {
 
     return (
       <>
-        <section className={style.leftSideBar_economizing}>
+        <div className={style.leftSideBar_economizing}>
           <ul className={style.leftSideBar_economizing__list}>
             <li className={style.leftSideBar_economizing__list_item}>
               <p className={style.leftSideBar_economizing__list_item_title}>
                 Сэкономленные деньги
               </p>
-              <p className={style.leftSideBar_economizing__list_item_value}>
+
+              <p
+                className={
+                  money >= 0
+                    ? style.leftSideBar_economizing__list_item_value
+                    : style.leftSideBar_economizing__list_item_value_red
+                }
+              >
                 <Wallet className={style.svg} />
                 {money} &#8372;
               </p>
@@ -29,13 +34,19 @@ class Economizing extends Component {
               <p className={style.leftSideBar_economizing__list_item_title}>
                 Сэкономленное время
               </p>
-              <p className={style.leftSideBar_economizing__list_item_value}>
+              <p
+                className={
+                  time > 0
+                    ? style.leftSideBar_economizing__list_item_value
+                    : style.leftSideBar_economizing__list_item_value_red
+                }
+              >
                 <Hourglass className={style.svg} />
                 {hours}ч {minutes} мин
               </p>
             </li>
           </ul>
-        </section>
+        </div>
       </>
     );
   }

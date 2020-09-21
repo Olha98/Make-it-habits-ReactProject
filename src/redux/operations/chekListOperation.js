@@ -1,8 +1,8 @@
 import axios from 'axios';
 import checkListActions from '../actions/checkListActions';
-import { actionsGetUserData } from '../actions/dataUser';
+// import { actionsGetUserData } from '../actions/dataUser';
 import { getHabits } from '../actions/habitsActions';
-import { getUserData } from '../actions/userActions';
+// import { getUserData } from '../actions/userActions';
 // import { token } from './authOperation';
 
 // axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
