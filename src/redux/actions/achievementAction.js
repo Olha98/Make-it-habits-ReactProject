@@ -11,7 +11,7 @@ const quantitySmokedCigarettes = ({
       smokedCigarettes,
       quizInfoPerDay,
       quizInfoPerTime,
-      dateNow: Date.now(),
+      // dateNow: Date.now(),
     },
   };
 };
