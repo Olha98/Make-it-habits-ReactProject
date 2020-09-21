@@ -11,7 +11,8 @@ moment.locale('ru');
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
+  useEffect(()=>{
+
     if (dataNowCalendar === day && arrayDataHebits.includes(dataNowCalendar)) {
       // console.log('day', day);
       const index = arrayDataHebits.reduce((acc, date, idx) => {
@@ -23,18 +24,24 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
       // let isFirst = true;
       const firstNull = dateNull.map((elem, idx) => {
         if (idx === index) {
-          if (elem) {
+  
+          if(elem){
             setVisible(true);
             return elem;
           }
           // return null
+          
         }
-        return null;
+        return null
+  
       });
-
+  
       console.log('firstNull', firstNull);
     }
-  }, [visible]);
+  
+
+  },[visible])
+  
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -53,6 +60,11 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
   // console.log('arrayDataHebits', arrayDataHebits)
 
+ 
+
+
+
+
   return (
     <>
       {visible && (
@@ -67,7 +79,7 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
       <div className={style.containerTimeDoIt}>
         {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
-        <span className={style.spanTimeDoIt}
+        <span className={style.spanTimeDoIt}>
           {moment(new Date(currentHabit.planningTime)).format('LT')}
         </span>
         <li className={style.nameTimeDoIt}>
