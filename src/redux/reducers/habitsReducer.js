@@ -1,5 +1,6 @@
 import { GET_HABITS, GET_CURRENT_HABITS } from '../constants/habitsConstants';
 import { GET_STATE_SUCCESS } from '../constants/stateConstants';
+import castomHabitConstans from '../constants/castomHabitConstans';
 
 const initialState = {
   allHabits: [],
@@ -17,6 +18,15 @@ const habitsReducer = (state = { ...initialState }, action) => {
 
     case GET_CURRENT_HABITS:
       return { ...state, currentHabits: action.payload };
+    
+    case castomHabitConstans.ADD_CUSTOM_HABIT:
+      return {...state, allHabits: [ ...state.allHabits, action.payload]}
+    
+    case castomHabitConstans.REMOVE_CUSTOM_HABIT:
+      return {...state, allHabits: state.allHabits.filter(habit => habit._id !== action.payload)};
+    
+    case castomHabitConstans.PATCH_CUSTOM_HABIT:
+      return { ...state, allHabits: state.allHabits.map(habit => (habit._id === action.payload._id) ? action.payload : habit) };
 
     //  case GET_DONE_HABITS:
     //  return { ...state, doneHabits: action.payload };

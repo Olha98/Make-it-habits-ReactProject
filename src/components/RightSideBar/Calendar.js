@@ -162,8 +162,9 @@ const birthdayStyle = `
    width: 30px;
    height: 30px;
   color: red;
-
   }
+
+
 
   `;
 
@@ -175,6 +176,7 @@ const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [currentHabits, setCurrentHabits] = useState([]);
 
+
   useEffect(() => {
     dispatch(getCurrentHabits(currentHabits));
   }, [dispatch, currentHabits]);
@@ -182,7 +184,8 @@ const Calendar = () => {
   const choseActualWeekDay = moment(startDate)
     .locale('en')
     .format('dddd')
-    .slice(0, 3); //weekday Mon
+    .slice(0, 3);
+//weekday Mon
 
   const calendarActualDay = moment(startDate).format('L');
 
