@@ -14,7 +14,9 @@ class RightSideBar extends Component {
     getData: moment().format('LL').split(' ').slice(0, 2),
   };
 
+
   render() {
+    console.log("ПЕРЕРЕНДЕР ПРАВИЙ БАР")
     const { dayWeek, getData } = this.state;
 
     return (
