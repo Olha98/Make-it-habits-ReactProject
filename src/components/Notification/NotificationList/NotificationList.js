@@ -27,4 +27,5 @@ const mapStateToProps = state => {
   };
 };
 
+//const mapDisp
 export default connect(mapStateToProps)(NotificationList);
