@@ -23,17 +23,21 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             startPlanningTimeinML += 86400000 * 2;
           }
 
-          // console.log('arrayHabitsOnceInTwoDays', arrayHabitsOnceInTwoDays);
+       
           for (let arrayHabit of arrayHabitsOnceInTwoDays) {
             if (arrayHabit.includes(calendarActualDay)) {
+
               currentHabitsTT.push({
                 ...habit,
                 day: calendarActualDay,
-                arrayDate: [...arrayHabitsEveryDay],
+                arrayDate: [...arrayHabitsOnceInTwoDays],
               });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
+
+          // console.log(arrayHabitsOnceInTwoDays, 'arrayHabitsOnceInTwoDays!!!!!!!!!');
+
           break;
 
         case 'everyday':
@@ -56,19 +60,35 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
           break;
 
         case 'TueThuSat':
+          const arrayHabitsTueThuSat = [];
+          let startСalendarActualDayML = new Date(calendarActualDay).getTime();
+          
           const iterationTueThuSat = habit.iteration
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
           for (let iteration of iterationTueThuSat) {
             if (iteration.includes(choseActualWeekDay)) {
+              
               currentHabitsTT.push({ ...habit, day: calendarActualDay });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
+
+          for (let i = 0; i < 21; i++) {
+            arrayHabitsTueThuSat.push(calendarActualDay)
+            startСalendarActualDayML+= 86400000*2
+          }
+
+          
+
+          // console.log(arrayHabitsTueThuSat,"arrayHabitsTueThuSat")
+
           break;
 
         case 'MonWedFri':
+          const arrayHabitsMonWedFri = [];
+
           const iterationMonWedFri = habit.iteration
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');

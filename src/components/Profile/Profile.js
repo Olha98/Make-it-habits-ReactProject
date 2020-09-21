@@ -282,13 +282,14 @@ class Profile extends Component {
   }
 }
 const mapStateToProps = state => {
+ 
   return {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
-    isModalInterview: state.quizInfo.smokeYears,
+    isModalInterview: state.quizInfo.smokeYears, 
   };
 };
 
