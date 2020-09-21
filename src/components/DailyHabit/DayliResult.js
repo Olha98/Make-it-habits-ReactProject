@@ -45,9 +45,11 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
     const todayDateHuman = new Date(todayDate);
     const dayPass = Math.round((todayDate - dateMs) / 86400000);
     console.log('before', ciggarettes);
-    ciggarettes[dayPass - 1] = quantity;
-    console.log('after', ciggarettes);
+    if (!ciggarettes[dayPass - 1]) {
+      ciggarettes[dayPass - 1] = quantity;
+    } else console.log(' you already made a choice r');
 
+    console.log('after', ciggarettes);
     updateResult({
       startedAt: startTime,
       data: [...prevData, quantity],
