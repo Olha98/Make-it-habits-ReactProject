@@ -14,7 +14,9 @@ class RightSideBar extends Component {
     getData: moment().format('LL').split(' ').slice(0, 2),
   };
 
+
   render() {
+
     const { dayWeek, getData } = this.state;
 
     return (
@@ -32,7 +34,7 @@ class RightSideBar extends Component {
             <Calendar />
           </div>
           <div className={style.footerRightSideBar}>
-            <CustomScrollbars style={{ width: 370, height: 340, top: 10}} >
+            <CustomScrollbars style={{  height: 340, top: 10}} >
               <TimeDoItList />
             </CustomScrollbars>
           </div>
