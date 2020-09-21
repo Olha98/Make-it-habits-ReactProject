@@ -110,7 +110,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
     return currentHabitsTT;
   }, [allHabits, calendarActualDay, choseActualWeekDay]);
 
-  console.log('currentHabitsT', currentHabitsT);
+  // console.log('currentHabitsT', currentHabitsT);
 
   return { currentHabitsT };
 };

@@ -16,7 +16,7 @@ class RightSideBar extends Component {
 
 
   render() {
-    console.log("ПЕРЕРЕНДЕР ПРАВИЙ БАР")
+
     const { dayWeek, getData } = this.state;
 
     return (
