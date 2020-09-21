@@ -80,7 +80,7 @@ class Profile extends Component {
                       .join('');
                     this.props.addDataUserOperation({
                       ...values,
-                      phone: number,
+                      phone: `80${number}`,
                     });
                     // console.log('this.props', this.props);
                     this.props.history.push('/checklist');
@@ -156,7 +156,7 @@ class Profile extends Component {
                             ' ' +
                             (values.phone
                               .split('')
-                              .splice(2)
+                              .splice(4)
                               .filter(symb => symb !== ' ' && symb !== '_')
                               .join('').length > 2 &&
                               touched.phone &&
