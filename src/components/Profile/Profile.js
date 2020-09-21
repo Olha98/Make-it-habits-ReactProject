@@ -207,6 +207,7 @@ class Profile extends Component {
                   className={style.avatarWrapper}
                   to="/profile/avatar"
                 >
+                  {console.log('this.props.avatar', this.props)}
                   <img
                     src={
                       avatars.find(item => item.id === this.props.avatar)?.image
