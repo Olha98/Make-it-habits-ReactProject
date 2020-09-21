@@ -21,12 +21,12 @@
   margin-bottom: 30px;
 }
 
-.achievementsPageItem:hover,
+/* .achievementsPageItem:hover,
 .achievementsPageItem:focus {
   transform: scale(1.1);
   background: #43d190;
   outline: 0;
-}
+} */
 
 .achievementsPageText {
   font-weight: 500;
@@ -34,4 +34,10 @@
   line-height: 80px;
   text-align: center;
   color: #ffffff;
+}
+.activeClass {
+  composes: achievementsPageText;
+  background: #43d190;
+  box-shadow: 0px 8px 16px rgba(67, 209, 144, 0.15);
+  border-radius: 10px;
 }

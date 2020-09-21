@@ -19,7 +19,7 @@ export const persistConfig = {
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-  // achievement: achievementReducer,
+  achievement: achievementReducer,
   auth: persistReducer(persistConfig, authReducer),
   user: userReducer,
   habits: habitsReducer,

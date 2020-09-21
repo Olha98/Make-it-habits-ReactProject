@@ -1,23 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import style from './Achievements.module.css';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
 import achievementAction from '../../redux/actions/achievementAction';
 import { connect } from 'react-redux';
 
-const Achievements = ({
-  smokedCigarettes,
-  quizInfoPerDay,
-  quizInfoPerTime,
-  achievementStatus,
-}) => {
-  achievementStatus({ smokedCigarettes, quizInfoPerDay, quizInfoPerTime });
+// const getActiveClass = achievements => {
+//   return achievements.some(
+//     achievement =>
+//       achievement.name === 'oneDayCigaretteRefusal' && achievement.status,
+//   );
+// };
+const Achievements = ({ achievements }) => {
+  // achievementStatus({ smokedCigarettes, quizInfoPerDay, quizInfoPerTime });
 
   return (
     <>
       <AchievementsHeader />
       <ul className={style.achievementsPageList}>
-        <li className={style.achievementsPageItem}>
-          <p className={style.achievementsPageText}>Отказ от 1 сигареты</p>
+        {achievements.map(achievement => (
+          <li key={achievement.name} className={style.achievementsPageItem}>
+            {console.log(achievement.status)}
+            <p
+              className={
+                achievement.status
+                  ? style.activeClass
+                  : style.achievementsPageText
+              }
+            >
+              {achievement.text}
+            </p>
+          </li>
+        ))}
+        {/* <li className={style.achievementsPageItem}>
+          <p
+            className={[
+              style.achievementsPageText,
+              getActiveClass(achievements) ? style.activeClass : '',
+            ].join(' ')}
+          >
+            Отказ от 1 сигареты
+          </p>
         </li>
         <li className={style.achievementsPageItem}>
           <p className={style.achievementsPageText}>Отказ от 3 сигарет</p>
@@ -69,7 +92,7 @@ const Achievements = ({
         </li>
         <li className={style.achievementsPageItem}>
           <p className={style.achievementsPageText}>Сохранил 5 часов</p>
-        </li>
+        </li> */}
       </ul>
     </>
   );
@@ -77,9 +100,10 @@ const Achievements = ({
 
 const mapStateToProps = state => {
   return {
-    smokedCigarettes: state.cigarettes.data,
-    quizInfoPerDay: state.quizInfo.cigarettePerDay,
-    quizInfoPerTime: state.quizInfo.cigarettePerTime,
+    achievements: state.achievement,
+    // smokedCigarettes: state.cigarettes.data,
+    // quizInfoPerDay: state.quizInfo.cigarettePerDay,
+    // quizInfoPerTime: state.quizInfo.cigarettePerTime,
   };
 };
 
