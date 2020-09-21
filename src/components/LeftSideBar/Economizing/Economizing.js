@@ -20,7 +20,14 @@ class Economizing extends Component {
               <p className={style.leftSideBar_economizing__list_item_title}>
                 Сэкономленные деньги
               </p>
-              <p className={style.leftSideBar_economizing__list_item_value}>
+
+              <p
+                className={
+                  money > 0
+                    ? style.leftSideBar_economizing__list_item_value
+                    : style.leftSideBar_economizing__list_item_value_red
+                }
+              >
                 <Wallet className={style.svg} />
                 {money} &#8372;
               </p>
@@ -29,7 +36,13 @@ class Economizing extends Component {
               <p className={style.leftSideBar_economizing__list_item_title}>
                 Сэкономленное время
               </p>
-              <p className={style.leftSideBar_economizing__list_item_value}>
+              <p
+                className={
+                  time > 0
+                    ? style.leftSideBar_economizing__list_item_value
+                    : style.leftSideBar_economizing__list_item_value_red
+                }
+              >
                 <Hourglass className={style.svg} />
                 {hours}ч {minutes} мин
               </p>
