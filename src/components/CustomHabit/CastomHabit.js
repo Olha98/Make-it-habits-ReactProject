@@ -28,7 +28,7 @@ class CastomHabit extends Component {
   onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
-    const planningTime = `${date}${time}`;
+    const planningTime = `${date}:${time}`;
     let id = "";
     if (this.props.habit) {
       id = this.props.habit._id

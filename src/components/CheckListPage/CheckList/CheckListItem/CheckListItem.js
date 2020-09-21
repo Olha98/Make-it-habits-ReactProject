@@ -120,7 +120,7 @@ class CheckListItem extends Component {
     const pushArray = [];
 
     if (arrayDate.includes(currentDay)) {
-      const index = arrayDate.map((date, idx) => {
+      arrayDate.map((date, idx) => {
         console.log('date', date);
         if (date === currentDay) {
           console.log('idx', idx);
