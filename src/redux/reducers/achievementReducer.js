@@ -9,94 +9,94 @@ const initialState = [
   },
 
   {
-    name: 'threeDayCigaretteRefusal',
+    name: 'threeCigaretteRefusal',
     status: false,
     quantityCigarette: 3,
-    text: 'Отказ от 3-х сигарет',
+    text: 'Отказ от 3 сигарет',
   },
 
   {
     name: 'fiveCigaretteRefusal',
     status: false,
     quantityCigarette: 5,
-    text: 'Отказ от 5-ти сигарет',
+    text: 'Отказ от 5 сигарет',
   },
 
   {
     name: 'oneDayCigaretteRefusal',
     status: false,
     quantityDays: 1,
-    text: 'Один день без сигарет',
+    text: 'Не курю 1 день',
   },
 
   {
-    name: 'theeDayCigaretteRefusal',
+    name: 'threeDayCigaretteRefusal',
     status: false,
     quantityDays: 3,
-    text: 'Три день без сигарет',
+    text: 'Не курю 3 дня',
   },
 
   {
     name: 'oneWeekCigaretteRefusal',
     status: false,
     quantityDays: 7,
-    text: 'Одна неделя без сигарет',
+    text: 'Не курю 1 неделю',
   },
 
   {
     name: 'twoWeekCigaretteRefusal',
     status: false,
     quantityDays: 14,
-    text: 'Две недели без сигарет',
+    text: 'Не курю 2 недели',
   },
 
   {
     name: 'oneMonthCigaretteRefusal',
     status: false,
     quantityDays: 30,
-    text: 'Один месяц без сигарет',
+    text: 'Не курю 1 месяц',
   },
 
   {
-    name: 'treeMonthCigaretteRefusal',
+    name: 'threeMonthCigaretteRefusal',
     status: false,
     quantityDays: 90,
-    text: 'Три месяца без сигарет',
+    text: 'Не курю 3 месяца',
   },
 
   {
     name: 'sixMonthCigaretteRefusal',
     status: false,
     quantityDays: 182,
-    text: 'Шесть месяцев без сигарет',
+    text: 'Не курю 6 месяцев',
   },
 
   {
     name: 'oneYearCigaretteRefusal',
     status: false,
     quantityDays: 365,
-    text: 'Один год без сигарет',
+    text: 'Не курю 1 год',
   },
 
   {
     name: 'twoYearCigaretteRefusal',
     status: false,
     quantityDays: 730,
-    text: 'Два года без сигарет',
+    text: '2 года без сигарет',
   },
 
   {
-    name: 'treeYearCigaretteRefusal',
+    name: 'threeYearCigaretteRefusal',
     status: false,
     quantityDays: 1095,
-    text: 'Три года без сигарет',
+    text: '3 года без сигарет',
   },
 
   {
     name: 'fiveYearCigaretteRefusal',
     status: false,
     quantityDays: 1825,
-    text: 'Пять лет без сигарет',
+    text: 'Уже 5. Дай пять!',
   },
 
   {
@@ -123,28 +123,96 @@ const initialState = [
 
 const getAchievements = (state, payload) => {
   let newState = [...state];
-  if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
-    console.log('1 day');
-    newState = newState.map(achievement =>
-      achievement.name === 'oneDayCigaretteRefusal'
-        ? { ...achievement, status: true }
-        : achievement,
-    );
-  }
-  // console.log(payload.quizInfoPerDay);
-  if (
-    payload.smokedCigarettes.data.some(
-      cigarette => cigarette <= Number(payload.quizInfoPerDay) - 5,
-    )
-  ) {
-    console.log('3 day');
-    newState = newState.map(achievement =>
-      achievement.name === 'fiveCigaretteRefusal'
-        ? { ...achievement, status: true }
-        : achievement,
-    );
-  }
-  console.log(newState);
+
+  // ================= CIGARETTES =================
+  // console.log(payload.smokedCigarettes.data);
+  // console.log(Number(payload.quizInfoPerDay));
+  // console.log(payload);
+  payload.smokedCigarettes.data.forEach(element => {
+    console.log(element <= Number(payload.quizInfoPerDay) - 1);
+  });
+  // if (
+  //   payload.smokedCigarettes.data.some(cigarette =>
+  //     // console.log(payload.quizInfoPerDay)
+  //     cigarette
+  //       ? Number(cigarette)
+  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 3,
+  //   )
+  // ) {
+  //   // console.log('1 day');
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'oneCigaretteRefusal'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
+
+  // if (
+  //   payload.smokedCigarettes.data.some(cigarette =>
+  //     // console.log(payload.quizInfoPerDay)
+  //     cigarette !== null
+  //       ? Number(cigarette)
+  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 3,
+  //   )
+  // ) {
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'threeCigaretteRefusal'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
+
+  // if (
+  //   payload.smokedCigarettes.data.some(cigarette =>
+  //     // console.log(payload.quizInfoPerDay)
+  //     cigarette !== null
+  //       ? Number(cigarette)
+  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 5,
+  //   )
+  // ) {
+  //   // console.log('5 day');
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'fiveCigaretteRefusal'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
+
+  // ================= DAYS =================
+
+  // if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
+  //   // console.log('1 day');
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'oneDayCigaretteRefusal'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
+
+  // if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
+  //   // console.log('1 day');
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'threeDayCigaretteRefusal'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
+
+  // ================= HOURS =================
+  // if (
+  //   payload.smokedCigarettes.data.some(
+  //     cigarette =>
+  //       cigarette >=
+  //       Number(payload.quizInfoPerTime) * Number(payload.quizInfoPerDay),
+  //   )
+  // ) {
+  //   // console.log('5 day');
+  //   newState = newState.map(achievement =>
+  //     achievement.name === 'oneHourSave'
+  //       ? { ...achievement, status: true }
+  //       : achievement,
+  //   );
+  // }
   return newState;
 };
 

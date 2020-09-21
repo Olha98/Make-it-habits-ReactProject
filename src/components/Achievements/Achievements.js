@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import style from './Achievements.module.css';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
@@ -20,7 +20,7 @@ const Achievements = ({ achievements }) => {
       <ul className={style.achievementsPageList}>
         {achievements.map(achievement => (
           <li key={achievement.name} className={style.achievementsPageItem}>
-            {console.log(achievement.status)}
+            {/* {console.log(achievement.status)} */}
             <p
               className={
                 achievement.status
