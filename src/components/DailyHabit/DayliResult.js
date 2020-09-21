@@ -3,9 +3,32 @@ import { connect } from 'react-redux';
 import updateDailyResul from '../../redux/operations/dailyResultOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import style from './DailyHabit.module.css';
-
 import closeBtn from '../../assests/images/closeBlack.png';
 import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
+
+// const cigarettes = [
+//   4,
+//   5,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+// ];
 
 const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const [quantity, setQuantity] = useState(0);
