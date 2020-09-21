@@ -3,6 +3,12 @@ import { GET_STATE_SUCCESS } from '../constants/stateConstants';
 
 const initialState = {
   allHabits: [],
+  // allHabitsDates: [
+  //   // (habit: {
+  //   //   id: '',
+  //   //   dates: [],
+  //   // }),
+  // ],
   currentHabits: [],
   doneHabits: [],
 };
