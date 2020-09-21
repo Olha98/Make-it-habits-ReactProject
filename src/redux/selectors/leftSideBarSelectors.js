@@ -17,15 +17,15 @@ const getCurrentAmountOfCigarettes = state =>
 const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
 // ===============habits========
-
 const listOfHabits = state => state.habits.allHabits;
+const listOfHabitsCurrent = state => state.habits.currentHabits;
 
 const getHabitById = (state, habitId) => {
   const habits = listOfHabits(state);
   return habits.find(habit => habit._id === habitId);
 };
 
-const allNotifications = createSelector([listOfHabits], habits => {
+const allNotifications = createSelector([listOfHabitsCurrent], habits => {
   // console.log('habits', habits);
 
   return (
@@ -64,4 +64,5 @@ export default {
   getTimeForOneCigarette,
   listOfHabits,
   getHabitById,
+  listOfHabitsCurrent,
 };
