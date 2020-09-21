@@ -37,14 +37,6 @@ class RightSideBar extends Component {
               </CustomScrollbars>
             </div>
           </div>
-          <div className={style.bodyRightSideBar}>
-            <Calendar />
-          </div>
-          <div className={style.footerRightSideBar}>
-            <CustomScrollbars style={{ height: 340, top: 10 }}>
-              <TimeDoItList />
-            </CustomScrollbars>
-          </div>
         </div>
       </>
     );

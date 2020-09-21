@@ -108,6 +108,7 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonSubmit {
+  composes: checkListButton;
   border: 1px solid #e0e0e0;
   background-color: #fff;
   margin-right: 15px;
@@ -119,11 +120,14 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonSubmitDisabled {
+  composes: checkListButtonSubmit;
+
   border: 1px solid #e0e0e0;
   background-color: #fff;
   margin-right: 15px;
   cursor: inherit;
 }
+
 .checkListButtonSubmitDisabled svg {
   display: block;
   stroke: grey_font;
@@ -131,9 +135,16 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonSubmitDisabledNoHover {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+
   border: 1px solid #e0e0e0;
-  background-color: #fff;
   margin-right: 15px;
+  background-color: #fff;
   cursor: inherit;
 }
 
@@ -144,6 +155,8 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonSubmitDisabledActive {
+  composes: checkListButton;
+
   background: main_green;
   border: 1px solid main_green;
   background-repeat: no-repeat;
@@ -167,6 +180,8 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonDelete {
+  composes: checkListButton;
+
   border: 1px solid #e0e0e0;
   background-color: #fff;
 }
@@ -190,9 +205,11 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonDeleteDisabled {
+  composes: checkListButton;
+
   border: 1px solid #e0e0e0;
   background-color: #fff;
-  cursor: inherit;
+  /* cursor: inherit; */
 }
 
 .checkListButtonDeleteDisabled svg {
@@ -202,6 +219,13 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonDeleteDisabledNoHover {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+
   border: 1px solid #e0e0e0;
   background-color: #fff;
   cursor: inherit;
@@ -214,6 +238,8 @@ progress[value]::-webkit-progress-value {
 }
 
 .checkListButtonDeleteDisabledActive {
+  composes: checkListButtonDeleteDisabled;
+
   border: 1px solid main_pink;
   background-color: #fff;
   cursor: inherit;
