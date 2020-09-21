@@ -34,7 +34,7 @@ const allNotifications = createSelector([listOfHabits], habits => {
       //const isAllTrue = habit.data.every(bool => bool);
 
       if (habit.efficiency === 100) {
-        console.log('data', habit.name);
+        // console.log('data', habit.name);
         return [...habit.name];
       }
       return '';
