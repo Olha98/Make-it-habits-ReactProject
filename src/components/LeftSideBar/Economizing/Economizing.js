@@ -5,8 +5,6 @@ import { ReactComponent as Hourglass } from '../../../assests/images/LeftSideBar
 import { connect } from 'react-redux';
 import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 class Economizing extends Component {
-  // console.log(typeof money);
-  // let timestamp =75;
   render() {
     const { money, time } = this.props;
     let hours = Math.floor(time / 60);
@@ -23,7 +21,7 @@ class Economizing extends Component {
 
               <p
                 className={
-                  money > 0
+                  money >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }
