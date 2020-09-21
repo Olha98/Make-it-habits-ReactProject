@@ -5,6 +5,7 @@ import Spinner from '../Spinner/Spinner';
 import { spinnerSelector } from '../../redux/selectors';
 import { subscrActions } from '../../redux/actions';
 import styles from './Card.module.css';
+import InputMask from 'react-input-mask';
 
 class CardForm extends Component {
   state = {
@@ -48,12 +49,13 @@ class CardForm extends Component {
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label}>
             Номер карты
-            <input
+            <InputMask
               className={styles.input}
               type="number"
               name="number"
-              value={number ? number : ''}
-              placeholder="xxxx-xxxx-xxxx-xxxx"
+              value={number}
+              mask="9999 9999 9999 9999"
+              placeholder="xxxx xxxx xxxx xxxx"
               required
               onChange={this.handleChange}
             />
