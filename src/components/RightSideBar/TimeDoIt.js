@@ -13,7 +13,7 @@ const TimeDoIt = ({ currentHabits }) => {
     })
     .sort((a, b) => a.timeNow - b.timeNow);
 
-  console.log(newCurrent, 'newCurrent');
+  // console.log(newCurrent, 'newCurrent');
 
  
 

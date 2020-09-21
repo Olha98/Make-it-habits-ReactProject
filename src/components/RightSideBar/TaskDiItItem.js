@@ -10,7 +10,7 @@ moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   // const [visible, setVisible] = useState("false");
-  console.log(currentHabit, 'currentHabit');
+  // console.log(currentHabit, 'currentHabit');
   
   const handlClick = e => {
     if (e.target.dataset._id) {

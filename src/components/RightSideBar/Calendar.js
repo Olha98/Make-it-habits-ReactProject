@@ -176,7 +176,6 @@ const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [currentHabits, setCurrentHabits] = useState([]);
 
-  console.log(startDate,"startDate")
 
   useEffect(() => {
     dispatch(getCurrentHabits(currentHabits));

@@ -12,7 +12,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
         'L',
       );
 
-     
       switch (habit.iteration) {
         case 'onceInTwoDays':
           const arrayHabitsOnceInTwoDays = [];
@@ -27,7 +26,11 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
           // console.log('arrayHabitsOnceInTwoDays', arrayHabitsOnceInTwoDays);
           for (let arrayHabit of arrayHabitsOnceInTwoDays) {
             if (arrayHabit.includes(calendarActualDay)) {
-              currentHabitsTT.push({...habit, day:calendarActualDay});
+              currentHabitsTT.push({
+                ...habit,
+                day: calendarActualDay,
+                arrayDate: [...arrayHabitsEveryDay],
+              });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
@@ -41,7 +44,12 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
           }
           for (let arrayHabit of arrayHabitsEveryDay) {
             if (arrayHabit.includes(calendarActualDay)) {
-              currentHabitsTT.push({...habit, day:calendarActualDay});
+              currentHabitsTT.push({
+                ...habit,
+                day: calendarActualDay,
+                arrayDate: [...arrayHabitsEveryDay],
+              });
+              // console.log(arrayHabitsEveryDay, 'arrayHabitsEveryDay!!!!!!!!!');
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
@@ -54,7 +62,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
 
           for (let iteration of iterationTueThuSat) {
             if (iteration.includes(choseActualWeekDay)) {
-              currentHabitsTT.push({...habit, day:calendarActualDay});
+              currentHabitsTT.push({ ...habit, day: calendarActualDay });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
@@ -65,12 +73,10 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
-            console.log(iterationMonWedFri, "iterationMonWedFri");
           for (let iteration of iterationMonWedFri) {
             // console.log(iteration, "iteration!!!!!!!!!!!!!!!!!!!!!");
             if (iteration.includes(choseActualWeekDay)) {
-
-              currentHabitsTT.push({...habit, day:calendarActualDay});
+              currentHabitsTT.push({ ...habit, day: calendarActualDay });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
