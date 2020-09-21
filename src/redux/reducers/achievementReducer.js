@@ -1,3 +1,4 @@
+import { array } from 'yup';
 import ACHIEVEMENT_SUCCESS from '../constants/achievementConstans';
 
 const initialState = [
@@ -125,94 +126,142 @@ const getAchievements = (state, payload) => {
   let newState = [...state];
 
   // ================= CIGARETTES =================
+
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .some(
+        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 1,
+        // console.log('payload.quizInfoPerDay', Number(payload.quizInfoPerDay))
+      )
+  ) {
+    // console.log('1 day');
+    newState = newState.map(achievement =>
+      achievement.name === 'oneCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .some(
+        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 3,
+        // console.log('payload.quizInfoPerDay', Number(payload.quizInfoPerDay))
+      )
+  ) {
+    // console.log('1 day');
+    newState = newState.map(achievement =>
+      achievement.name === 'threeCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .some(
+        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 5,
+        // console.log('payload.quizInfoPerDay', Number(payload.quizInfoPerDay))
+      )
+  ) {
+    // console.log('1 day');
+    newState = newState.map(achievement =>
+      achievement.name === 'fiveCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
   // console.log(payload.smokedCigarettes.data);
   // console.log(Number(payload.quizInfoPerDay));
   // console.log(payload);
-  payload.smokedCigarettes.data.forEach(element => {
-    console.log(element <= Number(payload.quizInfoPerDay) - 1);
-  });
-  // if (
-  //   payload.smokedCigarettes.data.some(cigarette =>
-  //     // console.log(payload.quizInfoPerDay)
-  //     cigarette
-  //       ? Number(cigarette)
-  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 3,
-  //   )
-  // ) {
-  //   // console.log('1 day');
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'oneCigaretteRefusal'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
-
-  // if (
-  //   payload.smokedCigarettes.data.some(cigarette =>
-  //     // console.log(payload.quizInfoPerDay)
-  //     cigarette !== null
-  //       ? Number(cigarette)
-  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 3,
-  //   )
-  // ) {
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'threeCigaretteRefusal'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
-
-  // if (
-  //   payload.smokedCigarettes.data.some(cigarette =>
-  //     // console.log(payload.quizInfoPerDay)
-  //     cigarette !== null
-  //       ? Number(cigarette)
-  //       : Number(payload.quizInfoPerDay) <= Number(payload.quizInfoPerDay) - 5,
-  //   )
-  // ) {
-  //   // console.log('5 day');
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'fiveCigaretteRefusal'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
 
   // ================= DAYS =================
 
-  // if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
-  //   // console.log('1 day');
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'oneDayCigaretteRefusal'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
-
-  // if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
-  //   // console.log('1 day');
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'threeDayCigaretteRefusal'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
+  if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
+    // console.log('1 day');
+    newState = newState.map(achievement =>
+      achievement.name === 'oneDayCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+  // console.log(
+  //   payload.smokedCigarettes.data
+  //     .filter(element => element !== null)
+  //     .filter(element => element === 0),
+  // );
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .filter(element => element === 0).length >= 3
+  ) {
+    // console.log('1 day');
+    newState = newState.map(achievement =>
+      achievement.name === 'threeDayCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .filter(element => element === 0).length >= 7
+  ) {
+    newState = newState.map(achievement =>
+      achievement.name === 'oneWeekCigaretteRefusal'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
 
   // ================= HOURS =================
-  // if (
-  //   payload.smokedCigarettes.data.some(
-  //     cigarette =>
-  //       cigarette >=
-  //       Number(payload.quizInfoPerTime) * Number(payload.quizInfoPerDay),
-  //   )
-  // ) {
-  //   // console.log('5 day');
-  //   newState = newState.map(achievement =>
-  //     achievement.name === 'oneHourSave'
-  //       ? { ...achievement, status: true }
-  //       : achievement,
-  //   );
-  // }
+  console.log(
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .reduce((acc, cigarette) => {
+        acc += Number(payload.quizInfoPerDay) - cigarette;
+        return acc;
+      }, 0) *
+      (payload.quizInfoPerTime / 60),
+  );
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .reduce((acc, cigarette) => {
+        acc += Number(payload.quizInfoPerDay) - cigarette;
+        return acc;
+      }, 0) *
+      (payload.quizInfoPerTime / 60) >=
+    1
+  ) {
+    newState = newState.map(achievement =>
+      achievement.name === 'oneHourSave'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .reduce((acc, cigarette) => {
+        acc += Number(payload.quizInfoPerDay) - cigarette;
+        return acc;
+      }, 0) *
+      (payload.quizInfoPerTime / 60) >=
+    3
+  ) {
+    newState = newState.map(achievement =>
+      achievement.name === 'threeHourSave'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
   return newState;
 };
 
