@@ -6,11 +6,8 @@
   border-left: 1px solid #d5e1dc;
   border-right: 1px solid #d5e1dc;
   border-radius: 0px;
-  font-family: "Rubik";
-  
+  font-family: 'Rubik';
 }
-
-
 
 .headerRightSideBar {
   display: flex;

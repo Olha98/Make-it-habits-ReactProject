@@ -29,7 +29,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
               currentHabitsTT.push({
                 ...habit,
                 day: calendarActualDay,
-                arrayDate: [...arrayHabitsEveryDay],
+                arrayDate: [...arrayHabitsOnceInTwoDays],
               });
               // setCurrentHabits(prevState => [...prevState, habit]);
             }

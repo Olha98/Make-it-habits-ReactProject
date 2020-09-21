@@ -8,7 +8,19 @@ import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckList
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
 
-import { main_yellow } from '../../../../css/vars.module.css';
+import {
+  main_green,
+  main_violet,
+  main_pink,
+  main_yellow,
+  main_blue,
+  green_1,
+  // green_2,
+  // main_gradient,
+  // orange_gradient,
+  // pink_gradient,
+  // violet_gradient,
+} from '../../../../css/vars.module.css';
 import { connect } from 'react-redux';
 
 class CheckListItem extends Component {
@@ -22,6 +34,14 @@ class CheckListItem extends Component {
     habitChecked: false,
     checkedStatus: '',
     habitId: '',
+    color: [
+      main_violet,
+      main_pink,
+      main_green,
+      main_yellow,
+      main_blue,
+      green_1,
+    ],
   };
 
   componentDidMount() {
@@ -30,12 +50,31 @@ class CheckListItem extends Component {
     });
   }
 
-  getRandomColor = () => {
-    const color = Math.floor(Math.random() * 16777215).toString(16);
-    if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
-      return `#${color}`;
-    } else return `${main_yellow}`;
+  //=========================== Color ==========================//
+
+  // getRandomColor = () => {
+  //   const color = Math.floor(Math.random() * 16777215).toString(16);
+  //   if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
+  //     return `#${color}`;
+  //   } else return `${main_yellow}`;
+  // };
+
+  getColor = () => {
+    const { color } = this.state;
+    const { index } = this.props;
+
+    let newColor;
+
+    if (index < color.length) {
+      newColor = color[index];
+    }
+    if (index >= color.length) {
+      newColor = color[index - color.length];
+    }
+    return newColor;
   };
+
+  //=========================== Modal ==========================//
 
   openModal = () => {
     this.setState({
@@ -49,14 +88,14 @@ class CheckListItem extends Component {
     });
   };
 
+  //=========================== OnClick ==========================//
+
   onStatus = bool => {
     this.setState(prev => ({
       showFullInfo: !prev.showFullInfo,
       habitId: this.props.habit._id,
       habitChecked: true,
     }));
-
-    console.log('BEFOREbool', bool);
 
     if (bool) {
       this.setState({
@@ -68,23 +107,46 @@ class CheckListItem extends Component {
       });
     }
 
-    let isFirst = true;
+    console.log('this.props', this.props);
+    const { arrayDate } = this.props.habit;
+    const date = new Date();
+    const currentMonth =
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1;
+    const currentDay = `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
+    console.log('currentDay', currentDay);
 
-    const firstNull = this.state.daysProgress.map(elem => {
-      if (elem === null && isFirst) {
-        isFirst = false;
-        return bool;
-      }
-      return elem;
-    });
+    const pushArray = [];
 
-    this.setState({
-      daysDone: firstNull.filter(elem => elem === true).length,
-      daysPassed: firstNull.filter(elem => elem === false).length,
-    });
+    if (arrayDate.includes(currentDay)) {
+      const index = arrayDate.map((date, idx) => {
+        console.log('date', date);
+        if (date === currentDay) {
+          console.log('idx', idx);
+          pushArray.push(idx);
+        }
+      });
 
-    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
-    this.props.addStatus(updateInfo);
+      console.log('pushArray', pushArray);
+
+      let isFirst = true;
+
+      const firstNull = this.state.daysProgress.map(elem => {
+        if (elem === null && isFirst) {
+          isFirst = false;
+          return bool;
+        }
+        return elem;
+      });
+
+      this.setState({
+        daysDone: firstNull.filter(elem => elem === true).length,
+        daysPassed: firstNull.filter(elem => elem === false).length,
+      });
+      const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
+      this.props.addStatus(updateInfo);
+    }
   };
 
   render() {
@@ -96,13 +158,13 @@ class CheckListItem extends Component {
       habitChecked,
       checkedStatus,
     } = this.state;
-    const color = this.getRandomColor();
+    // const color = this.getRandomColor();
 
     return (
       <div
         data-element="habit"
         style={{
-          borderLeft: `8px solid ${color}`,
+          borderLeft: `8px solid ${this.getColor()}`,
         }}
         className={style.checkListItem}
       >
