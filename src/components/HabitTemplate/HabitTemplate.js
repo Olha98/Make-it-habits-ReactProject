@@ -30,9 +30,9 @@ const HabitTemplate = ({ close }) => {
     setIsShowHabitChoice(true);
   };
 
-  const closeHabitChoice = () => {
-    setIsShowHabitChoice(false);
-  };
+  // const closeHabitChoice = () => {
+  //   setIsShowHabitChoice(false);
+  // };
 
   const [habit, setHabit] = useState('');
   const changeCurrentHabit = habit => {
@@ -71,9 +71,9 @@ const HabitTemplate = ({ close }) => {
           </ul>
         </CustomScrollbars>
         {isShowCustomModal && (
-          <CastomHabit chosenHabit={habit} close={closeModal} />
+          <CastomHabit chosenHabit={habit} close={close} />
         )}
-        {isShowHabitChoice && <HabitChoice close={closeHabitChoice} />}
+        {isShowHabitChoice && <HabitChoice close={close} />}
         <button
           onClick={showHabitChoice}
           className={style.btnTransparentWhiteBorder}

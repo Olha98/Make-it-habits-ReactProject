@@ -10,6 +10,8 @@
   
 }
 
+
+
 .headerRightSideBar {
   display: flex;
   justify-content: center;
@@ -19,6 +21,7 @@
   height: 109px;
   background-color: #fff;
   border-radius: 0px;
+  background-color: white;
 }
 
 .headerRightSideBarBox {
