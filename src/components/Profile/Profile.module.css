@@ -106,9 +106,9 @@ body {
 }
 .errorMessage {
   position: absolute;
-  top: 48px;
+  top: 46px;
   left: 130px;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 400;
   color: #fe6083;
 }

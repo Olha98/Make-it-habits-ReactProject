@@ -11,13 +11,12 @@ const addDataUserOperation = user => async (dispatch, getState) => {
 
   dispatch(actionsLoader.loaderOn());
   try {
-    const data = await axios.patch('/users', user);
+    const { data } = await axios.patch('/users', user);
     // console.log('data-Add', data.status);
     // console.log('data-Add', data.data);
     dispatch(
       getUserData({
-        ...data.data,
-        ...data.status,
+        ...data,
       }),
     );
   } catch (error) {
@@ -31,7 +30,7 @@ const addDataUserOperation = user => async (dispatch, getState) => {
 const postPasswordOperation = password => async (dispatch, getState) => {
   const tokenNow = getState().auth.access_token;
   token.set(tokenNow);
-
+  console.log('password', password);
   dispatch(actionsLoader.loaderOn());
   try {
     await axios.post('/auth/updatePassword', password);

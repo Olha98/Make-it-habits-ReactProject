@@ -121,7 +121,7 @@ class Profile extends Component {
                               touched.lastName &&
                               errors.lastName &&
                               style.inputInvalid)
-                              // : style.inputValid
+                            // : style.inputValid
                           }
                         />
                         {(
@@ -166,7 +166,7 @@ class Profile extends Component {
                               touched.email &&
                               errors.email &&
                               style.inputInvalid)
-                              // : style.inputValid
+                            // : style.inputValid
                           }
                         />
                         {(
@@ -184,13 +184,11 @@ class Profile extends Component {
                       <button
                         type="submit"
                         className={style.btnSaveChange}
-                        onClick={() => {
-                          console.log('this.props.status', this.props);
-                        }}
+                        // onClick={() => {
+                        //   console.log('this.props.status', this.props);
+                        // }}
                       >
-                        {this.props.status === 200
-                          ? 'СОХРАНЕНО!!!'
-                          : 'Сохранить изменения'}
+                        Сохранить изменения
                       </button>
                     </Form>
                   )}
@@ -266,6 +264,9 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
+
+    statusError: state.error,
+
     isModalInterview: state.quizInfo.smokeYears,
   };
 };

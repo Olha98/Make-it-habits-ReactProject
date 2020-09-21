@@ -24,9 +24,10 @@ export const validationSchema = Yup.object().shape({
     .required('введите свой email'),
   password: Yup.string()
     .min(8, 'минимальное количество символов: 8')
+    .max(16, 'максимальное количество символов: 16')
     .matches(
-      /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
-      'пароль должен содежать прописную, заглавную буквы и цифру',
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$/,
+      'пароль должен содежать латинские прописные, заглавные буквы и цифры',
     ),
   // .matches(
   //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])+$/,
@@ -35,5 +36,13 @@ export const validationSchema = Yup.object().shape({
   // .matches(/^(?=.*[0-9])+$/, 'пароль должен содежать цифру'),
   // .upperrcase('uppercase'),
   // .lowercase('lowercase'),
-  // confirmPassword: Yup.string().min(8, 'минимальное количество символов: 8'),
+  confirmPassword: Yup.string()
+    .min(8, 'минимальное количество символов: 8')
+    .max(16, 'максимальное количество символов: 16')
+    .matches(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$/,
+      'пароль должен содежать латинские прописные, заглавные буквы и цифры',
+    ),
 });
+
+//!"password" must has min 8 symbols, max 16 symbols, only digital letters and literal letters

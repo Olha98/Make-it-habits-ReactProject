@@ -38,7 +38,7 @@ const postPasswordRequest = password => ({
 });
 
 const postPasswordSuccess = password => {
-  // console.log("password", password);
+  console.log('passwordAction', password);
   return {
     type: constType.POST_PASSWORD_SUCCESS,
     payload: { ...password },

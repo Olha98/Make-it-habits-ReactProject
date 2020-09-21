@@ -50,20 +50,27 @@ class PasswordForm extends Component {
       typeText,
     } = this.state;
 
+    console.log('this.props', this.props);
+
     return (
       <>
         <Formik
           initialValues={{ password: '', confirmPassword: '' }}
           validationSchema={validationSchema}
           onSubmit={values => {
+            console.log('values', 'hello');
             this.props.postPasswordOperation({ ...values });
-            // if (code === 200) {
-            //   <span className={style.errorMessage}>сохранения изменены!</span>;
-            // }
           }}
         >
-          {({ values, errors, touched, handleChange, handleBlur }) => (
-            <Form className={style.form}>
+          {({
+            values,
+            errors,
+            touched,
+            handleSubmit,
+            handleChange,
+            handleBlur,
+          }) => (
+            <form onSubmit={handleSubmit} className={style.form}>
               <label className={style.label}>
                 <span className={style.titleInput}>Новый пароль</span>
                 <div
@@ -74,10 +81,13 @@ class PasswordForm extends Component {
                 </div>
 
                 <input
+                  // autoComplete="off"
                   type={!passwordNew ? typePassword : typeText}
                   name="password"
+                  id="password"
                   // value={this.state.password}
                   // onChange={this.handleChange}
+
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -109,13 +119,16 @@ class PasswordForm extends Component {
                   {!passwordNewRepeat ? <ClosedEye /> : <OpenedEye />}
                 </div>
                 <input
+                  // autoComplete="off"
                   type={!passwordNewRepeat ? typePassword : typeText}
                   name="confirmPassword"
                   // value={this.state.confirmPassword}
                   // onChange={this.handleChange}
                   // className={style.input}
                   value={values.confirmPassword}
+                  id="confirmPassword"
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   className={
                     style.input +
                     ' ' +
@@ -133,8 +146,8 @@ class PasswordForm extends Component {
                   />
                 ) &&
                   funcMessage(
-                    // errors.confirmPassword,
-                    values.confirmPassword !== values.password &&
+                    values.confirmPassword.length > 0 &&
+                      values.confirmPassword !== values.password &&
                       'пароли не совпадают',
                   )}
               </label>
@@ -142,7 +155,7 @@ class PasswordForm extends Component {
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
-            </Form>
+            </form>
           )}
         </Formik>
       </>
