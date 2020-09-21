@@ -29,7 +29,13 @@ class UserInfo extends Component {
                 alt="avatar"
               />
             </div>
-            <p className={style.leftSideBar_userInfo__name}>
+            <p
+              className={
+                name.length + surname.length >= 23
+                  ? style.leftSideBar_userInfo__name_small_text
+                  : style.leftSideBar_userInfo__name
+              }
+            >
               {name ? `${name} ${surname}` : 'User'}
             </p>
           </NavLink>
