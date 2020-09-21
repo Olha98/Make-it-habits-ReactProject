@@ -4,7 +4,6 @@ import TaskDoItItem from './TaskDiItItem';
 // import moment from 'moment';
 
 const TimeDoIt = ({ currentHabits }) => {
-
   const newCurrent = currentHabits
     .map(item => {
       return {

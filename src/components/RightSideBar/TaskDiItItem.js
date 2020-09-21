@@ -25,11 +25,10 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
   for (let arrayDataHebit of arrayDataHebits) {
     if (arrayDataHebit === dataNowCalendar) {
-//нужен индекс елемента 
-//смотрит индекс елементов
+      //нужен индекс елемента
+      //смотрит индекс елементов
     }
   }
-
 
   // const ShowClick = (e) => {
   //   setVisible("true")

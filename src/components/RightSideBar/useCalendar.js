@@ -60,7 +60,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
         case 'TueThuSat':
           const arrayHabitsTueThuSat = [];
           let startСalendarActualDayML = new Date(calendarActualDay).getTime();
-
           const iterationTueThuSat = habit.iteration
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
@@ -101,6 +100,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .split(' ');
 
           for (let iteration of iterationMonWedFri) {
+            // console.log(iteration, "iteration!!!!!!!!!!!!!!!!!!!!!");
             if (iteration.includes(choseActualWeekDay)) {
               for (let i = 0; i < 21; i++) {
                 if (i % 3 === 2) {
@@ -115,7 +115,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
-              
+
               currentHabitsTT.push({
                 ...habit,
                 day: calendarActualDay,
