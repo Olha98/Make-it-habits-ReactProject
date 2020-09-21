@@ -1,8 +1,8 @@
 /* @import "./index.module.css"; */
-@import "./css/fonts.css";
-@import "./css/normalize.css";
-@import "./css/vars.module.css";
-@import "./index.module.css";
+@import './css/fonts.css';
+@import './css/normalize.css';
+@import './css/vars.module.css';
+@import './index.module.css';
 
 html {
   box-sizing: border-box;
@@ -17,8 +17,8 @@ html {
 }
 
 body {
-  font-family: "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
 }
@@ -30,8 +30,8 @@ img {
 }
 
 .visually-hidden:not(:focus):not(:active),
-input[type="“checkbox”"].visually-hidden,
-input[type="“radio”"].visually-hidden {
+input[type='“checkbox”'].visually-hidden,
+input[type='“radio”'].visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -81,6 +81,10 @@ button:focus {
 
 .thumb-vertical {
   background-color: #43d190;
+  border-radius: 6px;
+}
+.thumb-horizontal {
+  background-color: transparent;
   border-radius: 6px;
 }
 
