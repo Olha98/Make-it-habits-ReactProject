@@ -1,15 +1,15 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useState } from 'react';
 import imgBak from '../../assests/images/calendar/trash2.png';
 import style from './TimeDoItItem.module.css';
-
+import { ReactComponent as ButtonOk } from '../../assests/images/CheckListPage/button_ok.svg';
 
 import removeHabitOperation from '../../redux/operations/castomHabitOperation';
 import { connect } from 'react-redux';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
-  // const [visible, setVisible] = useState("false");
+  const [visible, setVisible] = useState('false');
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -17,20 +17,37 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
     }
   };
 
-  // const ShowClick = (e) => {
+  const dataNow = new Date();
 
+  const dataNowCalendar = moment(dataNow).format('L');
+  const arrayDataHebits = currentHabit.arrayDate;
+  // console.log(arrayDataHebits, 'arrayDataHebits');
+
+  for (let arrayDataHebit of arrayDataHebits) {
+    if (arrayDataHebit === dataNowCalendar) {
+      //нужен индекс елемента
+      //смотрит индекс елементов
+    }
+  }
+
+  // const ShowClick = (e) => {
   //   setVisible("true")
   // };
 
   return (
     <>
-   {/* {visible && <button
-              type="button"
-              onClick={() => this.onStatus(true)}>
-              <ButtonOk data-element="svg" />
-              </button>} */}
+      {visible && (
+        <button
+          className={style.btnCalendar}
+          type="button"
+          onClick={() => setVisible(true)}
+        >
+          <ButtonOk data-element="svg" />
+        </button>
+      )}
+
       <div className={style.containerTimeDoIt}>
-      {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
+        {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
         <span className={style.spanTimeDoIt}>
           {moment(new Date(currentHabit.planningTime)).format('LT')}
         </span>

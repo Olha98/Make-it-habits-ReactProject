@@ -16,7 +16,7 @@ class UserInfo extends Component {
     const { name, surname, logout } = this.props;
     return (
       <>
-        <section className={style.leftSideBar_userInfo}>
+        <div className={style.leftSideBar_userInfo}>
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
@@ -40,7 +40,7 @@ class UserInfo extends Component {
           >
             Выход
           </button>
-        </section>
+        </div>
       </>
     );
   }

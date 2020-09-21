@@ -9,6 +9,9 @@ import routes from '../../routes';
 import { getGlobalState } from '../../redux/operations/stateOperation';
 import '../../css/vars.module.css';
 import '../../index.module.css';
+import LeftSideBar from '../LeftSideBar/LeftSideBar';
+import RightSideBar from '../RightSideBar/RightSideBar';
+import style from '../CustomRoutes/PrivateRoute.module.css'
 
 const App = ({ getGlobalState, token }) => {
   const [isTestOpen, changeStateIsOpen] = useState(false);
@@ -19,7 +22,8 @@ const App = ({ getGlobalState, token }) => {
   return (
     <>
       <Suspense fallback={<Spinner />}>
-        {/* {token && <LeftSideBar />} */}
+       <div className={style.mainContainer}>
+        {token && <LeftSideBar />}
         <Switch>
           {routes.map(route =>
             route.private ? (
@@ -30,6 +34,8 @@ const App = ({ getGlobalState, token }) => {
           )}
           <Route component={NotFound} />
         </Switch>
+        {token &&  <RightSideBar />}
+        </div>
       </Suspense>
     </>
   );

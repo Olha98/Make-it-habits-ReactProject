@@ -13,7 +13,8 @@ const state = {
             // {number: '', timeExpiration: ''},
         ],
         payments: [
-            // {date, amount}
+            // /{date, 
+            // amount}
         ]
     },
     
