@@ -75,7 +75,7 @@ class Profile extends Component {
                   onSubmit={values => {
                     const number = values.phone
                       .split('')
-                      .splice(2)
+                      .splice(4)
                       .filter(symb => symb !== ' ')
                       .join('');
                     this.props.addDataUserOperation({
@@ -172,7 +172,7 @@ class Profile extends Component {
                           // />
                           values.phone
                             .split('')
-                            .splice(2)
+                            .splice(4)
                             .filter(symb => symb !== ' ' && symb !== '_')
                             .join('').length > 2 &&
                             touched.phone &&
@@ -187,7 +187,7 @@ class Profile extends Component {
                           name="email"
                           id="email"
                           value={values.email}
-                          onChange={handleChange}
+                          onChange={() => {}}
                           onBlur={handleBlur}
                           className={
                             style.input +
@@ -262,7 +262,9 @@ class Profile extends Component {
               </div>
             </div>
 
-            {changePassword && <PasswordForm />}
+            {changePassword && (
+              <PasswordForm renderPasswordForm={this.renderPasswordForm} />
+            )}
             <Card />
           </div>
           {/* ------------------------------ */}
