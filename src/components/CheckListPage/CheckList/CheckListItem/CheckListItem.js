@@ -7,12 +7,7 @@ import { ReactComponent as ButtonDelete } from '../../../../assests/images/Check
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
 import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
-import {
-  main_violet,
-  main_pink,
-  main_yellow,
-  main_blue,
-} from '../../../../css/vars.module.css';
+import { main_yellow } from '../../../../css/vars.module.css';
 import { connect } from 'react-redux';
 
 class CheckListItem extends Component {
@@ -20,18 +15,12 @@ class CheckListItem extends Component {
     showFullInfo: false,
     isShowModal: false,
     fromCheckList: true,
-    colors: [
-      main_violet,
-      main_pink,
-      main_yellow,
-      main_blue,
-      'deepskyblue',
-      'lightcoral',
-      'green',
-      'darkorange',
-      'lightseagreen',
-      'violet',
-    ],
+    daysProgress: [],
+    daysDone: '',
+    daysPassed: '',
+    habitChecked: false,
+    checkedStatus: '',
+    habitId: '',
   };
 
   // showFullInfo(e) {
@@ -41,6 +30,19 @@ class CheckListItem extends Component {
   //     }));
   //   }
   // }
+
+  componentDidMount() {
+    this.setState({
+      daysProgress: [...this.props.habit.data],
+    });
+  }
+
+  getRandomColor = () => {
+    const color = Math.floor(Math.random() * 16777215).toString(16);
+    if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
+      return `#${color}`;
+    } else return `${main_yellow}`;
+  };
 
   openModal = () => {
     this.setState({
@@ -55,56 +57,67 @@ class CheckListItem extends Component {
   };
 
   onStatus = bool => {
-    this.setState({
-      showFullInfo: true,
-    });
+    // this.setState({
+    //   showFullInfo: true,
+    // });
+    this.setState(prev => ({
+      showFullInfo: !prev.showFullInfo,
+      habitId: this.props.habit._id,
+      habitChecked: true,
+    }));
+
+    console.log('BEFOREbool', bool);
+
+    if (bool) {
+      this.setState({
+        checkedStatus: true,
+      });
+    } else {
+      this.setState({
+        checkedStatus: false,
+      });
+    }
+
     // if (bool) {
-    //   // console.log('bool', bool);
-    //   // this.setState({
-    //   //   showFullInfo: true,
-    //   // });
+    //   console.log('bool', bool);
+    //   this.setState(prev => ({ showFullInfo: !prev.showFullInfo }));
     // }
     // else
-    // this.setState({
-    //   showFullInfo: false,
-    // });
-    const id = this.props.habit._id;
-    const status = bool;
+    //   this.setState({
+    //     showFullInfo: false,
+    //   });
 
-    const updateInfo = { id, status };
+    let isFirst = true;
 
-    // const array = [...this.props.habit.data];
-    // const array = [null, null, null];
-    // const newArray = array.map(elem => {
-    //   console.log('elem', elem);
-    // });
-    // console.log('array', array);
-    // console.log('newArray', newArray);
+    const firstNull = this.state.daysProgress.map(elem => {
+      if (elem === null && isFirst) {
+        isFirst = false;
+        return bool;
+      }
+      return elem;
+    });
 
-    //  const newArray;
-    // return;
+    this.setState({
+      daysDone: firstNull.filter(elem => elem === true).length,
+      daysPassed: firstNull.filter(elem => elem === false).length,
+      // daysProgress: [...this.props.habit.data],
+      // habitId: this.props.habit._id,
+    });
 
+    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
     this.props.addStatus(updateInfo);
   };
 
-  // getRandomIntInclusive(min, max) {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-  getRandomIntInclusive(max) {
-    max = Math.floor(max);
-
-    return Math.floor(Math.random() * max);
-  }
-
   render() {
-    // console.log('this.stateLISTITEM', this.state);
-    // console.log('this.props.ITEM', this.props.habit._id);
     const { name, efficiency } = this.props.habit;
-    const { colors, isShowModal } = this.state;
-    const color = colors[this.getRandomIntInclusive(colors.length)];
+    const {
+      isShowModal,
+      daysDone,
+      daysPassed,
+      habitChecked,
+      checkedStatus,
+    } = this.state;
+    const color = this.getRandomColor();
 
     return (
       <div
@@ -113,7 +126,6 @@ class CheckListItem extends Component {
           borderLeft: `8px solid ${color}`,
         }}
         className={style.checkListItem}
-      
       >
         <div className={style.checkListItemContentMainWrapper}>
           <div className={style.checkListItemContentWrapper}>
@@ -137,25 +149,50 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
+              disabled={habitChecked}
               // data-element="button"
               // data-status="true"
-              className={[
-                style.checkListButton,
-                style.checkListButtonSubmit,
-              ].join(' ')}
+              className={
+                checkedStatus
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonSubmitDisabled,
+                      style.checkListButtonSubmitDisabledActive,
+                    ].join(' ')
+                  : checkedStatus === false
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonSubmitDisabledNoHover,
+                    ].join(' ')
+                  : [style.checkListButton, style.checkListButtonSubmit].join(
+                      ' ',
+                    )
+              }
               type="button"
               onClick={() => this.onStatus(true)}
             >
               <ButtonOk data-element="svg" />
             </button>
             <button
-              // disabled
+              disabled={habitChecked && checkedStatus}
               // data-element="button"
               // data-status="false"
-              className={[
-                style.checkListButton,
-                style.checkListButtonDelete,
-              ].join(' ')}
+              className={
+                checkedStatus === false
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonDeleteDisabled,
+                      style.checkListButtonDeleteDisabledActive,
+                    ].join(' ')
+                  : checkedStatus
+                  ? [
+                      style.checkListButton,
+                      style.checkListButtonDeleteDisabledNoHover,
+                    ].join(' ')
+                  : [style.checkListButton, style.checkListButtonDelete].join(
+                      ' ',
+                    )
+              }
               type="button"
               onClick={() => this.onStatus(false)}
             >
@@ -170,13 +207,11 @@ class CheckListItem extends Component {
               <ButtonEdit />
             </button>
             {isShowModal && (
-              // <Modal close={this.closeModal}>
               <CastomHabit
                 close={this.closeModal}
                 habit={this.props.habit}
                 fromCheckList={this.state.fromCheckList}
               />
-              // </Modal>
             )}
           </div>
         </div>
@@ -184,11 +219,11 @@ class CheckListItem extends Component {
           <ul className={style.progressDaysContentList}>
             <li className={style.progressDaysContentItem}>
               <p className={style.progressDaysTitle}>К-во выполненных дней</p>
-              <p className={style.fulfiledDays}>5</p>
+              <p className={style.fulfiledDays}>{daysDone}</p>
             </li>
             <li>
               <p className={style.progressDaysTitle}>К-во пропущенных дней</p>
-              <p className={style.missedDays}>2</p>
+              <p className={style.missedDays}>{daysPassed}</p>
             </li>
           </ul>
         ) : (
@@ -198,6 +233,13 @@ class CheckListItem extends Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   // console.log('state', state);
+//   return {
+//     stateHabits: state.habits.allHabits,
+//   };
+// };
 
 const mapDispatchToProps = dispatch => {
   return {

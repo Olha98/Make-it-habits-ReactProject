@@ -5,9 +5,9 @@ import actionsLoader from '../actions/spinnerActions';
 import { token } from './authOperation';
 import { getUserData } from '../actions/userActions';
 
-const addDataUserOperation = user => async (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
-  token.set(tokenNow);
+const addDataUserOperation = user => async dispatch => {
+  // const tokenNow = getState().auth.access_token;
+  // token.set(tokenNow);
 
   dispatch(actionsLoader.loaderOn());
   try {
@@ -27,10 +27,10 @@ const addDataUserOperation = user => async (dispatch, getState) => {
   }
 };
 
-const postPasswordOperation = password => async (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
-  token.set(tokenNow);
-  console.log('password', password);
+const postPasswordOperation = password => async dispatch => {
+  // const tokenNow = getState().auth.access_token;
+  // token.set(tokenNow);
+  // console.log('password', password);
   dispatch(actionsLoader.loaderOn());
   try {
     await axios.post('/auth/updatePassword', password);
