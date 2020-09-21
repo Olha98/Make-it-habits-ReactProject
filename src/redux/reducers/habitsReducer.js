@@ -24,15 +24,25 @@ const habitsReducer = (state = { ...initialState }, action) => {
 
     case GET_CURRENT_HABITS:
       return { ...state, currentHabits: action.payload };
-    
+
     case castomHabitConstans.ADD_CUSTOM_HABIT:
-      return {...state, allHabits: [ ...state.allHabits, action.payload]}
-    
+      return { ...state, allHabits: [...state.allHabits, action.payload] };
+
     case castomHabitConstans.REMOVE_CUSTOM_HABIT:
-      return {...state, allHabits: state.allHabits.filter(habit => habit._id !== action.payload)};
-    
+      return {
+        ...state,
+        allHabits: state.allHabits.filter(
+          habit => habit._id !== action.payload,
+        ),
+      };
+
     case castomHabitConstans.PATCH_CUSTOM_HABIT:
-      return { ...state, allHabits: state.allHabits.map(habit => (habit._id === action.payload._id) ? action.payload : habit) };
+      return {
+        ...state,
+        allHabits: state.allHabits.map(habit =>
+          habit._id === action.payload._id ? action.payload : habit,
+        ),
+      };
 
     default:
       return state;

@@ -26,6 +26,14 @@
   font-size: 18px;
   line-height: 21px;
 }
+.leftSideBar_economizing__list_item_value_red {
+  font-family: Rubik;
+  background-repeat: no-repeat;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: red;
+}
 .svg {
   margin-right: 10px;
   margin-bottom: -3px;

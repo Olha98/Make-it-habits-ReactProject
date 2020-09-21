@@ -41,6 +41,13 @@
   border-radius: 5px;
   border: none;
   outline: none;
+  transition: all 0.2s linear;
+}
+.leftSideBar_userInfo__button:hover {
+  background: linear-gradient(222.27deg, #cbf7e3 3.75%, #7cf7a3 94.69%);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+  color: #4f4f4f;
+  outline: none;
 }
 .leftSideBar_userInfo__link {
   display: flex;

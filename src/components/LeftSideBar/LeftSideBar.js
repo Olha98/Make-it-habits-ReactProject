@@ -29,7 +29,4 @@ class LeftSideBar extends Component {
   }
 }
 
-// export default connect(null, {
-//   getUserInfo: leftSideBarOperations.getCurrentUser,
-// })(LeftSideBar);
 export default connect(null)(LeftSideBar);

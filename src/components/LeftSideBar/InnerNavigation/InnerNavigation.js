@@ -15,11 +15,11 @@ class InnerNavigation extends Component {
   componentDidMount() {
     const dateInLocalStorage = localStorage.getItem('Date');
     const differInTime = Date.now() - dateInLocalStorage;
-    if (differInTime < 86400) {
+    if (differInTime < 86400000) {
       // console.log('differInTime', differInTime);
       this.setState({
         isShowNotify: false,
-        number: 0,
+        // number: 0,
       });
     } else {
       this.setState({
@@ -31,14 +31,7 @@ class InnerNavigation extends Component {
     window.addEventListener('click', this.changeNotify);
   }
   changeNotify = e => {
-    // console.log('e.target', e.target);
     if (e.target.dataset.set === 'notify') {
-      //const { isShowNotify } = this.state;
-
-      // this.setState({
-      //   isShowNotify: false,
-      //   number: this.props.number,
-      // });
       localStorage.setItem('isShowNotify', false);
       localStorage.setItem('number', 0);
       localStorage.setItem('Date', Date.now());
@@ -54,7 +47,7 @@ class InnerNavigation extends Component {
   render() {
     return (
       <div>
-        <section className={style.leftSideBar_innerNavigation}>
+        <div className={style.leftSideBar_innerNavigation}>
           <ul className={style.leftSideBar_innerNavigation__list}>
             <li className={style.leftSideBar_innerNavigation__list_item}>
               <NavLink
@@ -102,7 +95,7 @@ class InnerNavigation extends Component {
                   <Bell data-set="notify" />
                 </div>
               </NavLink>
-              {this.state.isShowNotify && (
+              {this.state.isShowNotify && this.state.number !== 0 && (
                 <div
                   className={
                     style.leftSideBar_innerNavigation__list_item_link_notify
@@ -113,7 +106,7 @@ class InnerNavigation extends Component {
               )}
             </li>
           </ul>
-        </section>
+        </div>
       </div>
     );
   }
