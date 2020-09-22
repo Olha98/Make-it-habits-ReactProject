@@ -1,3 +1,6 @@
+@value colors: '../../css/vars.module.css';
+@value main_gradient, main_green,background,green_1,green_2,main_violet, main_pink,main_yellow,main_blue,black_font,grey_font from colors;
+
 .containerTimeDoIt {
   display: flex;
   flex-direction: row;
@@ -6,7 +9,6 @@
   font-size: 14px;
   line-height: 17px;
   margin-left: 10px;
-  padding-top: 15px;
 }
 
 .nameTimeDoIt {
@@ -15,7 +17,6 @@
   padding-left: 10px;
   width: 100%;
 }
-
 
 .imgBoxTimeDoIt {
   display: flex;
@@ -28,7 +29,16 @@
   font-style: normal;
   font-weight: normal;
   display: flex;
-  /* padding: 10px; */
+  align-items: flex-end;
+}
+
+.textThrow {
+  text-decoration: line-through;
+  color: #bdbdbd;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: normal;
+  display: flex;
   align-items: flex-end;
 }
 .dotter {
@@ -48,4 +58,28 @@
   color: #43d190;
   font-weight: 500;
   margin-left: 15px;
+}
+
+.btnCalendar {
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 20px;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background: main_green;
+  border: 1px solid main_green;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 5px;
+  cursor: inherit;
+}
+
+.btnCalendar svg {
+  width: 14px;
+  display: block;
+  stroke: #fff;
+  margin: 0 auto;
 }
