@@ -16,8 +16,9 @@ const addInfo = info => async (dispatch, getState) => {
     dispatch(quizInfoActions.addInfoSuccess(info));
   } catch (error) {
     dispatch(quizInfoActions.addInfoError(error));
+  } finally {
+    dispatch(actionsLoader.loaderOff());
   }
-  dispatch(actionsLoader.loaderOff());
 };
 
 export default { addInfo };
