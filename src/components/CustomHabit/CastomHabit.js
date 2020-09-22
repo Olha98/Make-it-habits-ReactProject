@@ -23,6 +23,9 @@ class CastomHabit extends Component {
       console.log('this.props.habit', this.props.habit);
       this.setState({ name: this.props.habit.name });
     }
+    if (this.props.habitNameFromCong) {
+      this.setState({ name: this.props.habitNameFromCong });
+    }
   }
 
   onClickSubmit = e => {
