@@ -43,7 +43,7 @@ class CastomHabit extends Component {
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
-    } else if (e.target.dataset.delete) {
+    } else if (e.target.dataset.delete || e.target.nodeName === "IMG") {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
     } 
