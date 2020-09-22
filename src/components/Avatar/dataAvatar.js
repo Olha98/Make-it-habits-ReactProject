@@ -14,6 +14,7 @@ import avatar13 from '../../assests/images/avatars/Avatar-13.png';
 import avatar14 from '../../assests/images/avatars/Avatar.png';
 import avatar15 from '../../assests/images/avatars/Avatar-4-1.png';
 import avatar16 from '../../assests/images/avatars/Avatar-default.png';
+import avatar17 from '../../assests/images/avatars/Avatar-no-gender.png';
 
 export const avatars = [
   { image: avatar1, id: '1' },
@@ -32,6 +33,7 @@ export const avatars = [
   { image: avatar14, id: '14' },
   { image: avatar15, id: '15' },
   { image: avatar16, id: '16' },
+  { image: avatar17, id: '17' },
 ];
 
 // // console.log("avatar16", `${avatar16}`);

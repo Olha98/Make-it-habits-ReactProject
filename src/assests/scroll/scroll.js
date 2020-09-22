@@ -15,7 +15,9 @@ class CustomScrollbars extends Component {
         // renderView={this.renderView}
         // renderTrackHorizontal={this.renderTrackHorizontal}
         // renderTrackVertical={this.renderTrackVertical}
-        // renderThumbHorizontal={this.renderThumbHorizontal}
+        renderThumbHorizontal={props => (
+          <div {...props} className="thumb-horizontal" />
+        )}
         // renderThumbVertical={this.renderThumbVertical}
         // autoHide
         // autoHideTimeout={1000}

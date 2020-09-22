@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { avatars } from '../../Avatar/dataAvatar';
 import { connect } from 'react-redux';
 //import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
-//import avatar from '../../../assests/images/LeftSideBar/avatar.png';
+import ava from '../../../assests/images/LeftSideBar/avatar.png';
 import style from '../UserInfo/UserInfo.module.css';
 //import authOperations from "../../../redux/operations/authOperation";
 import Axios from 'axios';
@@ -16,11 +16,15 @@ class UserInfo extends Component {
     const { name, surname, logout } = this.props;
     return (
       <>
-        <section className={style.leftSideBar_userInfo}>
+        <div className={style.leftSideBar_userInfo}>
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
-                src={avatars.find(item => item.id === this.props.avatar)?.image}
+                src={
+                  !this.props.avatar
+                    ? avatars[16].image
+                    : avatars.find(item => item.id === this.props.avatar)?.image
+                }
                 // src={
                 //   photo
                 //     ? `${photo} `
@@ -29,7 +33,13 @@ class UserInfo extends Component {
                 alt="avatar"
               />
             </div>
-            <p className={style.leftSideBar_userInfo__name}>
+            <p
+              className={
+                name.length + surname.length >= 23
+                  ? style.leftSideBar_userInfo__name_small_text
+                  : style.leftSideBar_userInfo__name
+              }
+            >
               {name ? `${name} ${surname}` : 'User'}
             </p>
           </NavLink>
@@ -40,7 +50,7 @@ class UserInfo extends Component {
           >
             Выход
           </button>
-        </section>
+        </div>
       </>
     );
   }
