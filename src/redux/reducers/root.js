@@ -1,45 +1,33 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import habitReducer from './checkListReducers';
 import spinnerReducers from './spinnerReducers';
+import achievementReducer from './achievementReducer';
 import authReducer from './authReducer';
-import dayInfoReducer from './dailyCiggaretsReduces';
-import dataUser from '../actions/dataUser';
-import dataUserReducer from './reducersProfile';
 import quizReducer from './quizInfoReducer';
+import errorReducer from './errorReducer';
+import subscribeReducer from './subscribeReducer';
+import userReducer from './userReducer';
+import habitsReducer from './habitsReducer';
+import cigarettesReducer from './cigarettesReduser';
 
 export const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['access_token', 'email'],
-};
-
-export const persistUserConfig = {
-  key: 'user',
-  storage,
-  blacklist: ['id'],
+  whitelist: ['access_token'],
 };
 
 const root = combineReducers({
   loading: spinnerReducers.loadingReducer,
-
+  achievement: achievementReducer,
   auth: persistReducer(persistConfig, authReducer),
-
-  user: persistReducer(persistUserConfig, dataUser),
-  // user: persistReducer(persistUserConfig, dataUserReducer),
-  quizInfo: quizReducer.quizInfo,
-  error: quizReducer.error,
-
-  quizInfo: () => ({
-    smokeYears: 0,
-    cigarettePerDay: 0,
-    cigarettePerTime: 0,
-    cigarettePackPrice: 0,
-  }),
-  dayInfo: dayInfoReducer,
-
-  habits: habitReducer,
+  user: userReducer,
+  habits: habitsReducer,
+  cigarettes: cigarettesReducer,
+  quizInfo: quizReducer,
+  error: errorReducer,
+  typeSubscription: subscribeReducer.typeSubscription,
+  cards: subscribeReducer.addCard,
 });
 
 export default root;

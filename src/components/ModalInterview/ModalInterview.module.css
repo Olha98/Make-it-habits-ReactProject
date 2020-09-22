@@ -1,7 +1,5 @@
-@value black_font from '../../css/vars.module.css';
-@value grey_font from '../../css/vars.module.css';
-@value main_green from '../../css/vars.module.css';
-@value main_pink from '../../css/vars.module.css';
+@value styles: '../../css/vars.module.css';
+@value main_green, black_font, grey_font from styles;
 
 .modalInterview {
   position: absolute;
@@ -18,7 +16,7 @@
 }
 
 .sectionHeader {
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   text-align: center;
 }
 
@@ -35,6 +33,12 @@
   line-height: 28px;
 }
 
+.error {
+  color: red;
+  font-weight: 500;
+  font-size: 18px;
+}
+
 .label {
   margin-bottom: 20px;
   display: flex;
@@ -47,6 +51,11 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputFields {
   display: flex;
   flex-direction: column;
   width: 567px;
@@ -72,7 +81,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -87,15 +96,19 @@ input[type="number"] {
   display: block;
   margin: 0 auto;
   background: main_green;
-  border: 2px solid main_green;
+  border: 2px solid transparent;
   border-radius: 5px;
   color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 250ms linear;
   cursor: pointer;
 }
 
 .button:hover,
 .button:focus {
-  background: main_pink;
-  border: 2px solid main_pink;
+  color: main_green;
+  border: 2px solid main_green;
+  background: transparent;
   outline: 0;
 }

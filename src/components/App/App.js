@@ -1,52 +1,50 @@
-import React, { Suspense, useState } from 'react';
-import { Switch } from 'react-router-dom';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
 import PublicRoute from '../CustomRoutes/PublicRoute';
+import Spinner from '../Spinner/Spinner';
+import NotFound from '../../views/NotFound';
 import routes from '../../routes';
+import { getGlobalState } from '../../redux/operations/stateOperation';
 import '../../css/vars.module.css';
 import '../../index.module.css';
-import Spinner from '../Spinner/Spinner';
-import DailyResult from '../DailyHabit/DayliResult';
-import ModalInterview from '../ModalInterview/ModalInterview';
-import Congratulations from '../Congratulations/Congratulations';
-import CastomHabit from '../CustomHabit/CastomHabit';
-// import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
+import LeftSideBar from '../LeftSideBar/LeftSideBar';
+import RightSideBar from '../RightSideBar/RightSideBar';
+import style from '../CustomRoutes/PrivateRoute.module.css';
 
-const App = () => {
+const App = ({ getGlobalState, token }) => {
   const [isTestOpen, changeStateIsOpen] = useState(false);
+  useEffect(() => {
+    getGlobalState();
+  }, [token, getGlobalState]);
+
   return (
     <>
       <Suspense fallback={<Spinner />}>
-        <Switch>
-          {routes.map(route =>
-            route.private ? (
-              <PrivateRoute key={route.label} {...route} />
-            ) : (
-              <PublicRoute key={route.label} {...route} />
-            ),
-          )}
-        </Switch>
+        <div className={style.mainContainer}>
+          {token && <LeftSideBar />}
+          <Switch>
+            {routes.map(route =>
+              route.private ? (
+                <PrivateRoute key={route.label} {...route} />
+              ) : (
+                <PublicRoute key={route.label} {...route} />
+              ),
+            )}
+            <Route component={NotFound} />
+          </Switch>
+          {token && <RightSideBar />}
+        </div>
       </Suspense>
-      {/* <button
-        onClick={() => changeStateIsOpen(prev => !prev)}
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '200px',
-          height: '50px',
-          fontSize: '18px',
-        }}
-      >
-        Show Modal
-      </button>
-      {isTestOpen && <ModalInterview close={changeStateIsOpen} />} */}
-
-      <button onClick={() => changeStateIsOpen(prev => !prev)}>
-        OpenModal
-      </button>
-      {isTestOpen && <Congratulations close={changeStateIsOpen} />}
     </>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    token: state.auth.access_token,
+  };
+};
+
+export default connect(mapStateToProps, { getGlobalState })(App);

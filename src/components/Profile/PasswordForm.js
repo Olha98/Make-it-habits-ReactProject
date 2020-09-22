@@ -1,9 +1,13 @@
-import React, { Component } from "react";
-import style from "./Profile.module.css";
-// import { reduxForm, Field} from "redux-form";
-
-import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
-import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Form, Formik } from 'formik';
+import { passwordValidationSchema } from './utils/validationSchema';
+import funcMessage from './utils/funcMessage';
+import ErrorValidation from './utils/ErrorValidation';
+import operationsProfile from '../../redux/operations/operationsProfile';
+import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
+import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
+import style from './Profile.module.css';
 
 class PasswordForm extends Component {
   state = {
@@ -11,87 +15,140 @@ class PasswordForm extends Component {
     passwordNew: false,
     passwordNewRepeat: false,
 
-    typePassword: "password",
-    typeText: "text",
+    typePassword: 'password',
+    typeText: 'text',
 
     passwordFields: false,
 
-    // name: "",
-    // value: "",
+    changePassword: this.props.changePassword,
   };
 
-  onEyeIconOldPassword = (name) => {
-    // console.log("name", name);
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   this.props.postPasswordOperation({
+  //     password: this.state.password,
+  //     confirmPassword: this.state.confirmPassword,
+  //   });
+  // };
+
+  // handleChange = e => {
+  //   const { name, value } = e.target;
+  //   this.setState({ [name]: value });
+  // };
+
+  onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
   };
 
   render() {
     const {
-      passwordOld,
       passwordNew,
       passwordNewRepeat,
 
       typePassword,
       typeText,
     } = this.state;
-
+    console.log('this.props.changePassword', this.props.changePassword);
+    // const {changePassword}=this.props;
     return (
       <>
-        <form className={style.form}>
-          <label className={style.label}>
-            <span className={style.titleInput}>Текущий пароль</span>
-            <div
-              className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordOld")}
-            >
-              {!passwordOld ? <ClosedEye /> : <OpenedEye />}
-            </div>
-            <input
-              type={!passwordOld ? typePassword : typeText}
-              name="passwordOld"
-              onChange={this.handleChange}
-              className={style.input}
-            />
-          </label>
+        <Formik
+          initialValues={{ password: '', confirmPassword: '' }}
+          validationSchema={passwordValidationSchema}
+          onSubmit={values => {
+            this.props.postPasswordOperation({ ...values });
+            this.props.renderPasswordForm();
+            // this.setState(prevState => ({
+            //   changePassword: !prevState.this.props.changePassword,
+            // }));
+          }}
+        >
+          {({ values, errors, touched, handleChange, handleBlur }) => (
+            <Form className={style.form}>
+              <label className={style.label}>
+                <span className={style.titleInput}>Новый пароль</span>
+                <div
+                  className={style.eyeImage}
+                  onClick={() => this.onEyeIconOldPassword('passwordNew')}
+                >
+                  {!passwordNew ? <ClosedEye /> : <OpenedEye />}
+                </div>
 
-          <label className={style.label}>
-            <span className={style.titleInput}>Новый пароль</span>
-            <div
-              className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordNew")}
-            >
-              {!passwordNew ? <ClosedEye /> : <OpenedEye />}
-            </div>
-            <input
-              type={!passwordNew ? typePassword : typeText}
-              name="passwordNew"
-              onChange={this.handleChange}
-              className={style.input}
-            />
-          </label>
-
-          <label className={style.label}>
-            <span className={style.titleInput}>Повторите пароль</span>
-            <div
-              className={style.eyeImage}
-              onClick={() => this.onEyeIconOldPassword("passwordNewRepeat")}
-            >
-              {!passwordNewRepeat ? <ClosedEye /> : <OpenedEye />}
-            </div>
-            <input
-              type={!passwordNewRepeat ? typePassword : typeText}
-              name="passwordNewRepeat"
-              onChange={this.handleChange}
-              className={style.input}
-            />
-          </label>
-
-          <button type="submit" className={style.btnSaveChange}>
-            Сохранить пароль
-          </button>
-        </form>
+                <input
+                  type={!passwordNew ? typePassword : typeText}
+                  name="password"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    style.input +
+                    ' ' +
+                    (values.password.length !== 0 &&
+                      touched.password &&
+                      errors.password &&
+                      style.inputInvalid)
+                    // : style.inputValid
+                  }
+                />
+                {(
+                  <ErrorValidation
+                    touched={touched.password}
+                    message={errors.password}
+                  />
+                ) && funcMessage(errors.password)}
+              </label>
+              <label className={style.label}>
+                <span className={style.titleInput}>Повторите пароль</span>
+                <div
+                  className={style.eyeImage}
+                  onClick={() => this.onEyeIconOldPassword('passwordNewRepeat')}
+                >
+                  {!passwordNewRepeat ? <ClosedEye /> : <OpenedEye />}
+                </div>
+                <input
+                  type={!passwordNewRepeat ? typePassword : typeText}
+                  name="confirmPassword"
+                  value={values.confirmPassword}
+                  id="confirmPassword"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    style.input +
+                    ' ' +
+                    (values.confirmPassword.length !== 0 &&
+                      touched.confirmPassword &&
+                      errors.confirmPassword &&
+                      style.inputInvalid)
+                    // : style.inputValid
+                  }
+                />
+                {(
+                  <ErrorValidation
+                    touched={touched.confirmPassword}
+                    message={errors.confirmPassword}
+                  />
+                ) &&
+                  funcMessage(
+                    values.confirmPassword.length >= 1 &&
+                      values.confirmPassword !== values.password &&
+                      'пароли не совпадают',
+                  )}
+              </label>
+              <button type="submit" className={style.btnSaveChange}>
+                Сохранить пароль
+              </button>
+              <span className={style.errorMessage}>СОХРАНЕНО!</span>
+            </Form>
+          )}
+        </Formik>
       </>
     );
   }
 }
-export default PasswordForm;
+
+const mapDispatchToProps = {
+  postPasswordOperation: operationsProfile.postPasswordOperation,
+};
+
+export default connect(null, mapDispatchToProps)(PasswordForm);

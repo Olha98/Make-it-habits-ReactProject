@@ -1,17 +1,19 @@
 import axios from 'axios';
-import { connect } from 'react-redux';
+import { getCigarettes } from '../actions/cigarettesActions';
 import dailyResultAction from '../actions/dailyResultAction';
-import { token } from './leftSideBarOperations';
-axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
+import { token } from './authOperation';
 
-const updateDailyResul = update => dispatch => {
+
+const updateDailyResul = update => (dispatch, getState) => {
+  const tokenNow = getState().auth.access_token;
+  token.set(tokenNow);
+
   dispatch(dailyResultAction.updateCiggaretsRequest());
-  // axios.defaults.headers.common.Authorization = token;
+
   axios
     .post('/users/updateCigarettes', update)
     .then(res => {
-      console.log('dailyResult', res);
-      dispatch(dailyResultAction.updateCiggaretsSuccess(update));
+      dispatch(getCigarettes({ ...res.data }));
     })
     .catch(err => {
       dispatch(dailyResultAction.updateCiggaretsError(err));

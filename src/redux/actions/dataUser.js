@@ -1,11 +1,28 @@
-const getUserData = "@getUserdata/GET";
+const getUserData = '@getUserdata/GET';
 
- export const actionsGetUserData = (userData) => ({
-  type: getUserData,
-  payload: { ...userData },
-});
+export const actionsGetUserData = userData => {
+  // console.log(userData, 'userDatauserDatauserDatauserDatauserData');
 
-export default (state = {}, action) => {
+  return {
+    type: getUserData,
+    payload: userData,
+  };
+};
+
+const initialState = {
+  user: null,
+  // {
+  //   quizInfo: {
+  //     cigarettePerDay: 0,
+  //     cigarettePerTime: 0,
+  //     cigarettePackPrice: 0,
+  //   },
+  // habits: [],
+  //},
+  habits: null,
+};
+
+export default (state = { ...initialState }, action) => {
   switch (action.type) {
     case getUserData:
       return { ...state, ...action.payload };

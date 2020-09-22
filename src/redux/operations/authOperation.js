@@ -1,11 +1,9 @@
 import axios from 'axios';
 import authAction from '../actions/authAction';
-import { actionsGetUserData } from '../actions/dataUser';
-import userActions from '../actions/actionsProfile';
 
 axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 
-const token = {
+export const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = token;
   },
@@ -33,30 +31,11 @@ const userLogin = credentials => dispatch => {
     .post('/auth/login', credentials)
     .then(res => {
       token.set(res.data.access_token);
-      dispatch(authAction.loginSucces(res.data));
-
-      axios.get('/habits').then(res => {
-        dispatch(
-          actionsGetUserData({ ...res.data.user, habits: res.data.habits }),
-        );
-      });
+      dispatch(authAction.loginSuccess(res.data));
     })
     .catch(err => {
       dispatch(authAction.loginError(err));
     });
 };
 
-const userLogOut = () => dispatch => {
-  dispatch(authAction.logOutRequest());
-  axios
-    .post('/users/logout')
-    .then(() => {
-      token.unSet();
-      dispatch(authAction.logOutSuccess());
-    })
-    .catch(err => {
-      dispatch(authAction.logOutError(err));
-    });
-};
-
-export default { token, userRegistration, userLogin, userLogOut };
+export default { token, userRegistration, userLogin };
