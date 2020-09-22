@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import castomHabitActions from '../../redux/actions/castomHabitActions';
 import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import imgBak from '../../assests/images/calendar/trash2.png';
+
 // import moment from 'moment';
 // import 'moment/locale/ru';
 
@@ -28,7 +30,7 @@ class CastomHabit extends Component {
   onClickSubmit = e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
-    const planningTime = `${date}${time}`;
+    const planningTime = `${date}:${time}`;
     let id = "";
     if (this.props.habit) {
       id = this.props.habit._id
@@ -133,13 +135,22 @@ class CastomHabit extends Component {
             </label>
           </div>
           {this.props.fromCheckList &&
+            <div className={style.btnWrapper}>
+            <img
+              src={imgBak}
+              alt="task"
+              width="15px"
+              height="15px"
+              className={style.imgTrashCan}
+            />
           <button
             onClick={this.onClickSubmit}
             data-delete="delete"
             className={style.castomHabitDelete}
           >
-            удалить привычку
-          </button>}
+              удалить привычку
+          </button>
+          </div>}
           <div className={style.castomHabitBtnWrapper}>
             <button
               type="submit"

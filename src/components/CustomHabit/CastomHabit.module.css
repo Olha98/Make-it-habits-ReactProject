@@ -95,24 +95,41 @@
 }
 
 .castomHabitDelete {
-  font-family: Rubik;
-  font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 17px;
-  width: 200px;
-  height: 20px;
+  cursor: pointer;
+
+  /* line-height: 17px; */
+  /* width: 200px;
+  height: 20px; */
   border: none;
   background: #ffffff;
   display: block;
   margin: 0 auto;
   margin-bottom: 40px;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
+}
+
+.imgTrashCan{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+}
+
+.btnWrapper {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+    width: 160px;
+    margin: 0 auto;
+    cursor: pointer;
+
 }
 
 .castomHabitBtnWrapper {
   display: flex;
   justify-content: center;
+
 }
 
 .castomHabitCancelBtn {
@@ -150,8 +167,8 @@
     outline: 0;
   }
 
-  .castomHabitDelete {
+  /* .castomHabitDelete {
         width: 220px;
     height: 44px;
     border: 2px solid #43d190;
-  }
+  } */
