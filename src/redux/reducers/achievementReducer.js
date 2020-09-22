@@ -347,7 +347,7 @@ const getAchievements = (state, payload) => {
         return acc;
       }, 0) *
       (payload.quizInfoPerTime / 60) >=
-    3
+    5
   ) {
     newState = newState.map(achievement =>
       achievement.name === 'fiveHourSave'
