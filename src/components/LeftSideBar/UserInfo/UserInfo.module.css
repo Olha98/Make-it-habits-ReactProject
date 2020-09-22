@@ -1,6 +1,7 @@
 .leftSideBar_userInfo {
+  /* position: relative; */
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 65px 25px;
+  padding: 25px 17px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,9 +22,22 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
 }
 .leftSideBar_userInfo__name {
+  /* position: absolute;
+  top: 122px;
+  left: 96px; */
+
   font-family: Rubik;
   font-weight: 500;
   font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 7px;
+}
+.leftSideBar_userInfo__name_small_text {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 18px;
   line-height: 31px;
   text-align: center;
   text-transform: capitalize;

@@ -8,42 +8,42 @@ import { connect } from 'react-redux';
 import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 class InnerNavigation extends Component {
-  state = {
-    isShowNotify: false,
-    number: 0,
-  };
-  componentDidMount() {
-    const dateInLocalStorage = localStorage.getItem('Date');
-    const differInTime = Date.now() - dateInLocalStorage;
-    if (differInTime < 86400000) {
-      // console.log('differInTime', differInTime);
-      this.setState({
-        isShowNotify: false,
-        // number: 0,
-      });
-    } else {
-      this.setState({
-        isShowNotify: true,
-        number: this.props.number,
-      });
-    }
-    // }
-    window.addEventListener('click', this.changeNotify);
-  }
-  changeNotify = e => {
-    if (e.target.dataset.set === 'notify') {
-      localStorage.setItem('isShowNotify', false);
-      localStorage.setItem('number', 0);
-      localStorage.setItem('Date', Date.now());
-      this.setState({
-        isShowNotify: false,
-        number: 0,
-      });
-    }
-  };
-  componentWillUnmount() {
-    window.removeEventListener('click', this.changeNotify);
-  }
+  // state = {
+  //   isShowNotify: false,
+  //   number: 0,
+  // };
+  // componentDidMount() {
+  //   //const dateInLocalStorage = localStorage.getItem('Date');
+  //   // const differInTime = Date.now() - dateInLocalStorage;
+  //   // if (differInTime < 86400000) {
+  //   //   // console.log('differInTime', differInTime);
+  //   //   this.setState({
+  //   //     isShowNotify: false,
+  //   //     // number: 0,
+  //   //   });
+  //   // } else {
+  //   this.setState({
+  //     isShowNotify: true,
+  //     number: this.props.number,
+  //   });
+  //   //}
+  //   // }
+  //   window.addEventListener('click', this.changeNotify);
+  // }
+  // changeNotify = e => {
+  //   if (e.target.dataset.set === 'notify') {
+  //     localStorage.setItem('isShowNotify', false);
+  //     localStorage.setItem('number', 0);
+  //     localStorage.setItem('Date', Date.now());
+  //     this.setState({
+  //       isShowNotify: false,
+  //       number: 0,
+  //     });
+  //   }
+  // };
+  // componentWillUnmount() {
+  //   window.removeEventListener('click', this.changeNotify);
+  // }
   render() {
     return (
       <div>
@@ -95,15 +95,24 @@ class InnerNavigation extends Component {
                   <Bell data-set="notify" />
                 </div>
               </NavLink>
-              {this.state.isShowNotify && this.state.number !== 0 && (
+              {/* { */}
+              {/* this.state.isShowNotify &&
+                 this.props.number && this.props.number !== 0 && ( */}
+              {this.props.number > 0 && (
                 <div
                   className={
                     style.leftSideBar_innerNavigation__list_item_link_notify
                   }
                 >
-                  {this.state.number && <span>{this.state.number}</span>}
+                  <span>{this.props.number}</span>
+                  {/* ) : ( */}
+                  {/* <span></span> */}
+
+                  {/* } */}
                 </div>
               )}
+              {/* ) */}
+              {/* } */}
             </li>
           </ul>
         </div>
