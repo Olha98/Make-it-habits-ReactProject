@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { spinnerSelector } from '../../../redux/selectors';
+import Spinner from '../../Spinner/Spinner';
 import style from './CheckList.module.css';
 import CheckListItem from './CheckListItem/CheckListItem';
 
@@ -8,41 +10,12 @@ class CheckList extends Component {
     return (
       <div className={style.checkList}>
         <div className={style.checkListWrapper}>
+          {this.props.isLoading && <Spinner />}
           {this.props.habits
-            ? // this.props.habits.filter(habit => {
-              //     if (habit.efficiency !== 100) {
-              //       return (
-              //         <CheckListItem
-              //           key={habit._id}
-              //           habit={habit}
-              //           // onClick={(e) => this.showFullInfo(e)}
-              //         />
-              //       );
-              //     }
-              //   })
-
-              this.props.habits.map(habit => (
-                <CheckListItem
-                  key={habit._id}
-                  habit={habit}
-                  // onClick={(e) => this.showFullInfo(e)}
-                />
+            ? this.props.habits.map((habit, index) => (
+                <CheckListItem key={habit._id} habit={habit} index={index} />
               ))
             : 'No habits added'}
-
-          {/* {console.log('this.state', this.state)}
-          {this.props.habits
-            ? this.props.habits.map(
-                habit =>
-                  habit.efficiency !== 100 && (
-                    <CheckListItem
-                      key={habit._id}
-                      habit={habit}
-                      // onClick={(e) => this.showFullInfo(e)}
-                    />
-                  ),
-              )
-            : 'No habits added'} */}
         </div>
       </div>
     );
@@ -52,6 +25,7 @@ class CheckList extends Component {
 const mapStateToProps = state => {
   return {
     habits: state.habits.currentHabits,
+    isLoading: spinnerSelector.isLoading(state),
   };
 };
 
