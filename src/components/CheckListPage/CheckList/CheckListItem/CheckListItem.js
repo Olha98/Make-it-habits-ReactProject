@@ -21,7 +21,8 @@ import Congratulations from '../../../Congratulations/Congratulations';
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
-    isShowModal: false,
+    isCustomModal: false,
+    isCongratulationsModal: false,
     fromCheckList: true,
     daysProgress: [],
     daysDone: '',
@@ -30,6 +31,7 @@ class CheckListItem extends Component {
     checkedStatus: '',
     habitId: '',
     isCurrentDay: '',
+    dayEfficiency: 0,
     color: [
       main_violet,
       main_pink,
@@ -76,13 +78,25 @@ class CheckListItem extends Component {
 
   openModal = () => {
     this.setState({
-      isShowModal: true,
+      isCustomModal: true,
     });
   };
 
   closeModal = () => {
     this.setState({
-      isShowModal: false,
+      isCustomModal: false,
+    });
+  };
+
+  openCongratulationModal = () => {
+    this.setState({
+      isCongratulationsModal: true,
+    });
+  };
+
+  closeCongratulationModal = () => {
+    this.setState({
+      isCongratulationsModal: false,
     });
   };
 
@@ -146,7 +160,8 @@ class CheckListItem extends Component {
   render() {
     const { name, efficiency, day } = this.props.habit;
     const {
-      isShowModal,
+      isCustomModal,
+      isCongratulationsModal,
       daysDone,
       daysPassed,
       habitChecked,
@@ -207,16 +222,21 @@ class CheckListItem extends Component {
               type="button"
               // onClick={() => currentDay === day && this.onStatus(true, day)}
               onClick={() => {
-                this.setState({ isCurrentDay: day });
+                this.setState({
+                  isCurrentDay: day,
+                  // dayEfficiency: this.props.habit.efficiency,
+                });
                 currentDay === day && this.onStatus(true);
 
                 console.log('object', this.props.habit.efficiency);
-                this.props.habit.efficiency === 100 ?? this.openModal();
+                this.props.habit.efficiency === 100 &&
+                  console.log('hellocherpoberi');
+                // this.openCongratulationModal();
               }}
             >
               <ButtonOk data-element="svg" />
             </button>
-            {isShowModal && (
+            {isCongratulationsModal && (
               <Congratulations
                 close={this.closeModal}
                 habit={this.props.habit}
@@ -252,7 +272,7 @@ class CheckListItem extends Component {
             >
               <ButtonEdit />
             </button>
-            {isShowModal && (
+            {isCustomModal && (
               <CastomHabit
                 close={this.closeModal}
                 habit={this.props.habit}
@@ -280,12 +300,12 @@ class CheckListItem extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   // console.log('state', state);
-//   return {
-//     stateHabits: state.habits.allHabits,
-//   };
-// };
+const mapStateToProps = state => {
+  // console.log('state', state);
+  return {
+    currentHabits: state.habits.currentHabits,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -293,4 +313,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CheckListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckListItem);
