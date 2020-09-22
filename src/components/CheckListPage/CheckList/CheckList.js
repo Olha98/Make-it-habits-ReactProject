@@ -12,8 +12,8 @@ class CheckList extends Component {
         <div className={style.checkListWrapper}>
           {this.props.isLoading && <Spinner />}
           {this.props.habits
-            ? this.props.habits.map(habit => (
-                <CheckListItem key={habit._id} habit={habit} />
+            ? this.props.habits.map((habit, index) => (
+                <CheckListItem key={habit._id} habit={habit} index={index} />
               ))
             : 'No habits added'}
         </div>

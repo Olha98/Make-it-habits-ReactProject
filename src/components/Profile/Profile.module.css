@@ -96,12 +96,23 @@ body {
   padding: 0 20px;
   outline: none;
 }
+
+/* ---- validation ----- */
 .inputInvalid {
   border: 1px solid #fe6083;
 }
 .inputValid {
   border: 1px solid #43d190;
 }
+.errorMessage {
+  position: absolute;
+  top: 46px;
+  left: 130px;
+  font-size: 9px;
+  font-weight: 400;
+  color: #fe6083;
+}
+
 .eyeImage {
   position: absolute;
   right: 20px;
@@ -181,6 +192,12 @@ body {
   cursor: pointer;
 }
 
+.btnSaveChange:hover,
+.btnSaveChange:focus {
+  background: rgba(67, 209, 144, 0.7);
+  border: 2px solid rgba(67, 209, 144, 0.7);
+}
+
 .button,
 .buttonChangePassword {
   font-style: normal;
@@ -200,3 +217,10 @@ body {
   margin: 0 auto;
   cursor: pointer;
 }
+
+/* .buttonChangePassword:hover,
+.buttonChangePassword:focus {
+  background: rgba(67, 209, 144, 0.7);
+  border: 2px solid rgba(67, 209, 144, 0.7);
+  color: #ffffff;
+} */

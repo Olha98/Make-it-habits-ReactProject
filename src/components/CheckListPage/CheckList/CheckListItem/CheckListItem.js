@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
-// import Modal from '../../../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
+import {
+  main_green,
+  main_violet,
+  main_pink,
+  main_yellow,
+  main_blue,
+  green_1,
+} from '../../../../css/vars.module.css';
 
-import { main_yellow } from '../../../../css/vars.module.css';
 import { connect } from 'react-redux';
+import Congratulations from '../../../Congratulations/Congratulations';
 
 class CheckListItem extends Component {
   state = {
@@ -22,6 +29,15 @@ class CheckListItem extends Component {
     habitChecked: false,
     checkedStatus: '',
     habitId: '',
+    isCurrentDay: '',
+    color: [
+      main_violet,
+      main_pink,
+      main_green,
+      main_yellow,
+      main_blue,
+      green_1,
+    ],
   };
 
   componentDidMount() {
@@ -30,12 +46,33 @@ class CheckListItem extends Component {
     });
   }
 
-  getRandomColor = () => {
-    const color = Math.floor(Math.random() * 16777215).toString(16);
-    if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
-      return `#${color}`;
-    } else return `${main_yellow}`;
+  //=========================== CurrentDate ==========================//
+
+  //=========================== Color ==========================//
+
+  // getRandomColor = () => {
+  //   const color = Math.floor(Math.random() * 16777215).toString(16);
+  //   if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
+  //     return `#${color}`;
+  //   } else return `${main_yellow}`;
+  // };
+
+  getColor = () => {
+    const { color } = this.state;
+    const { index } = this.props;
+
+    let newColor;
+
+    if (index < color.length) {
+      newColor = color[index];
+    }
+    if (index >= color.length) {
+      newColor = color[index - color.length];
+    }
+    return newColor;
   };
+
+  //=========================== Modal ==========================//
 
   openModal = () => {
     this.setState({
@@ -49,14 +86,14 @@ class CheckListItem extends Component {
     });
   };
 
+  //=========================== OnClick ==========================//
+
   onStatus = bool => {
     this.setState(prev => ({
       showFullInfo: !prev.showFullInfo,
       habitId: this.props.habit._id,
       habitChecked: true,
     }));
-
-    console.log('BEFOREbool', bool);
 
     if (bool) {
       this.setState({
@@ -68,27 +105,46 @@ class CheckListItem extends Component {
       });
     }
 
-    let isFirst = true;
+    const { arrayDate, day } = this.props.habit;
 
-    const firstNull = this.state.daysProgress.map(elem => {
-      if (elem === null && isFirst) {
-        isFirst = false;
-        return bool;
-      }
-      return elem;
-    });
+    const date = new Date();
+    const currentMonth =
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1;
+    const currentDay = `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
+    // const currentDay = `24.09.2020`;
 
-    this.setState({
-      daysDone: firstNull.filter(elem => elem === true).length,
-      daysPassed: firstNull.filter(elem => elem === false).length,
-    });
+    if (currentDay === day && arrayDate.includes(currentDay)) {
+      const index = arrayDate.reduce((acc, date, idx) => {
+        if (date === currentDay) {
+          acc = idx;
+        }
+        return acc;
+      }, '');
 
-    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
-    this.props.addStatus(updateInfo);
+      // let isFirst = true;
+
+      const firstNull = this.state.daysProgress.map((elem, idx) => {
+        if (idx === index) {
+          // isFirst = false;
+          return bool;
+        }
+        return elem;
+      });
+
+      this.setState({
+        daysDone: firstNull.filter(elem => elem === true).length,
+        daysPassed: firstNull.filter(elem => elem === false).length,
+      });
+
+      const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
+      this.props.addStatus(updateInfo);
+    }
   };
 
   render() {
-    const { name, efficiency } = this.props.habit;
+    const { name, efficiency, day } = this.props.habit;
     const {
       isShowModal,
       daysDone,
@@ -96,13 +152,20 @@ class CheckListItem extends Component {
       habitChecked,
       checkedStatus,
     } = this.state;
-    const color = this.getRandomColor();
+    // const color = this.getRandomColor();
+
+    const date = new Date();
+    const currentMonth =
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1;
+    const currentDay = `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
 
     return (
       <div
         data-element="habit"
         style={{
-          borderLeft: `8px solid ${color}`,
+          borderLeft: `8px solid ${this.getColor()}`,
         }}
         className={style.checkListItem}
       >
@@ -128,52 +191,56 @@ class CheckListItem extends Component {
           </div>
           <div className={style.checkListButtons}>
             <button
-              disabled={habitChecked}
+              // disabled={habitChecked}
+              disabled={habitChecked && currentDay !== day}
               // data-element="button"
               // data-status="true"
               className={
-                checkedStatus
-                  ? [
-                      style.checkListButton,
-                      style.checkListButtonSubmitDisabled,
-                      style.checkListButtonSubmitDisabledActive,
-                    ].join(' ')
+                currentDay !== day
+                  ? style.checkListButtonSubmitDisabledNoHover
+                  : checkedStatus
+                  ? style.checkListButtonSubmitDisabledActive
                   : checkedStatus === false
-                  ? [
-                      style.checkListButton,
-                      style.checkListButtonSubmitDisabledNoHover,
-                    ].join(' ')
-                  : [style.checkListButton, style.checkListButtonSubmit].join(
-                      ' ',
-                    )
+                  ? style.checkListButtonSubmitDisabled
+                  : style.checkListButtonSubmit
               }
               type="button"
-              onClick={() => this.onStatus(true)}
+              // onClick={() => currentDay === day && this.onStatus(true, day)}
+              onClick={() => {
+                this.setState({ isCurrentDay: day });
+                currentDay === day && this.onStatus(true);
+
+                console.log('object', this.props.habit.efficiency);
+                this.props.habit.efficiency === 100 ?? this.openModal();
+              }}
             >
               <ButtonOk data-element="svg" />
             </button>
+            {isShowModal && (
+              <Congratulations
+                close={this.closeModal}
+                habit={this.props.habit}
+                fromCheckList={this.state.fromCheckList}
+              />
+            )}
             <button
-              disabled={habitChecked && checkedStatus}
+              // disabled={habitChecked && checkedStatus}
+              disabled={habitChecked && currentDay !== day}
               // data-element="button"
               // data-status="false"
+
               className={
-                checkedStatus === false
-                  ? [
-                      style.checkListButton,
-                      style.checkListButtonDeleteDisabled,
-                      style.checkListButtonDeleteDisabledActive,
-                    ].join(' ')
-                  : checkedStatus
-                  ? [
-                      style.checkListButton,
-                      style.checkListButtonDeleteDisabledNoHover,
-                    ].join(' ')
-                  : [style.checkListButton, style.checkListButtonDelete].join(
-                      ' ',
-                    )
+                currentDay !== day
+                  ? style.checkListButtonDeleteDisabledNoHover
+                  : checkedStatus === false
+                  ? style.checkListButtonDeleteDisabledActive
+                  : style.checkListButtonDelete
               }
               type="button"
-              onClick={() => this.onStatus(false)}
+              onClick={() => {
+                this.setState({ isCurrentDay: day });
+                currentDay === day && this.onStatus(false);
+              }}
             >
               <ButtonDelete data-element="svg" />
             </button>

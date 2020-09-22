@@ -9,8 +9,6 @@
   font-family: 'Rubik';
 }
 
-
-
 .headerRightSideBar {
   display: flex;
   justify-content: center;
@@ -52,9 +50,10 @@
 }
 
 .footerRightSideBar {
-  height: 410px;
+  height: 390px;
   background-color: #fff;
   border-bottom: 1px solid #d5e1dc;
   border-radius: 0px;
   padding: 10px;
+  padding-top: 25px;
 }
