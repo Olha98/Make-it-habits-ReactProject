@@ -20,7 +20,11 @@ class UserInfo extends Component {
           <NavLink to="/profile" className={style.leftSideBar_userInfo__link}>
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
-                src={avatars.find(item => item.id === this.props.avatar)?.image}
+                src={
+                  !this.props.avatar
+                    ? avatars[16].image
+                    : avatars.find(item => item.id === this.props.avatar)?.image
+                }
                 // src={
                 //   photo
                 //     ? `${photo} `
