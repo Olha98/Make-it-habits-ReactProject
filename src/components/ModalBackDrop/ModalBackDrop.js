@@ -1,21 +1,23 @@
-import React, { Component } from "react";
-import style from "./ModalBackDrop.module.css";
+import React, { Component } from 'react';
+import style from './ModalBackDrop.module.css';
+import { CSSTransition } from 'react-transition-group';
+import modalTransition from './modalTransition.module.css';
 
-const modalBackDrop = (WrappedComponent) => {
+const modalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends Component {
     state = {
       isOpen: false,
     };
     componentDidMount() {
       this.setState({ isOpen: true });
-      window.addEventListener("keydown", this.closeModalKeydown);
-      document.addEventListener("click", this.closeModalOverlay);
+      window.addEventListener('keydown', this.closeModalKeydown);
+      document.addEventListener('click', this.closeModalOverlay);
       document.body.style.overflow = 'hidden';
     }
-    
+
     componentWillUnmount() {
-      window.removeEventListener("keydown", this.closeModalKeydown);
-      document.removeEventListener("click", this.closeModalOverlay);
+      window.removeEventListener('keydown', this.closeModalKeydown);
+      document.removeEventListener('click', this.closeModalOverlay);
       document.body.style.overflow = 'auto';
     }
 
@@ -24,25 +26,30 @@ const modalBackDrop = (WrappedComponent) => {
       this.props.close();
     };
 
-    closeModalKeydown = (e) => {
-      if (e.code === "Escape") {
+    closeModalKeydown = e => {
+      if (e.code === 'Escape') {
         this.closeModal();
       } else return;
     };
 
-    closeModalOverlay = (e) => {
-      if (e.target.dataset.type === "modal") {
+    closeModalOverlay = e => {
+      if (e.target.dataset.type === 'modal') {
         this.closeModal();
       } else return;
     };
 
     render() {
       return (
-        this.state.isOpen && (
-          <div data-type="modal" className={style.overlay}>
+        <div data-type="modal" className={style.overlay}>
+          <CSSTransition
+            in={this.state.isOpen}
+            timeout={1000}
+            classNames={modalTransition}
+            unmountOnExit
+          >
             <WrappedComponent {...this.props} closeModal={this.closeModal} />
-          </div>
-        )
+          </CSSTransition>
+        </div>
       );
     }
   };
