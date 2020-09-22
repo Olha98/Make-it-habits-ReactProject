@@ -54,56 +54,58 @@ class ModalInterview extends Component {
         </header>
         {isLoading && <Spinner />}
         <form className={styles.form} onSubmit={this.handleSubmit}>
-          <label className={styles.label}>
-            Сколько лет Вы курите?
-            <input
-              className={styles.input}
-              type="number"
-              name="smokeYears"
-              value={smokeYears ? smokeYears : ''}
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько сигарет скуриваете в день?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePerDay"
-              value={cigarettePerDay ? cigarettePerDay : ''}
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько вемени у Вас уходит
-            <br />
-            на 1 сигарету?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePerTime"
-              value={cigarettePerTime ? cigarettePerTime : ''}
-              required
-              placeholder="__ мин"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько стоит одна пачка сигарет?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePackPrice"
-              value={cigarettePackPrice ? cigarettePackPrice : ''}
-              required
-              placeholder="__.__ грн"
-              onChange={this.handleChange}
-            />
-          </label>
+          <div className={styles.inputFields}>
+            <label className={styles.label}>
+              Сколько лет Вы курите?
+              <input
+                className={styles.input}
+                type="number"
+                name="smokeYears"
+                value={smokeYears ? smokeYears : ''}
+                required
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько сигарет скуриваете в день?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePerDay"
+                value={cigarettePerDay ? cigarettePerDay : ''}
+                required
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько вемени у Вас уходит
+              <br />
+              на 1 сигарету?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePerTime"
+                value={cigarettePerTime ? cigarettePerTime : ''}
+                required
+                placeholder="__ мин"
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько стоит одна пачка сигарет?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePackPrice"
+                value={cigarettePackPrice ? cigarettePackPrice : ''}
+                required
+                placeholder="__.__ грн"
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
           <button
-            className="btnTransparentWhiteBorder"
+            className={styles.button}
             type="submit"
             style={{ margin: '0 auto' }}
           >

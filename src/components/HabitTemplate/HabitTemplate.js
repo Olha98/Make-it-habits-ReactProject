@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './HabitTemplate.module.css';
 import CustomScrollbars from '../../assests/scroll/scroll';
-import Modal from '../ModalBackDrop/ModalBackDrop';
+// import Modal from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import HabitChoice from '../HabitChoice/HabitChoice';
@@ -70,9 +70,7 @@ const HabitTemplate = ({ close }) => {
             ))}
           </ul>
         </CustomScrollbars>
-        {isShowCustomModal && (
-          <CastomHabit chosenHabit={habit} close={close} />
-        )}
+        {isShowCustomModal && <CastomHabit chosenHabit={habit} close={close} />}
         {isShowHabitChoice && <HabitChoice close={close} />}
         <button
           onClick={showHabitChoice}

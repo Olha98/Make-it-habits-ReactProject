@@ -8,14 +8,12 @@ function CheckListPage() {
   return (
     <div className={style.checkListPageContainer}>
       <CheckListHeader />
-      {/* <div className={style.checkListPageScrollWrapper}> */}
       <CustomScrollbars
         style={{ height: `calc( 100vh - 110px)` }}
         className={style.checkListPageScrollWrapper}
       >
         <CheckList />
       </CustomScrollbars>
-      {/* </div> */}
     </div>
   );
 }
