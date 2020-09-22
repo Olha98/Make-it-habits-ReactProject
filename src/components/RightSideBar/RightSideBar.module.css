@@ -9,8 +9,6 @@
   font-family: 'Rubik';
 }
 
-
-
 .headerRightSideBar {
   display: flex;
   justify-content: center;
@@ -57,4 +55,5 @@
   border-bottom: 1px solid #d5e1dc;
   border-radius: 0px;
   padding: 10px;
+  padding-top: 25px;
 }
