@@ -13,6 +13,7 @@ class CheckList extends Component {
           {this.props.isLoading && <Spinner />}
           {this.props.habits
             ? this.props.habits.map((habit, index) => (
+                // habit.efficiency !== 100 &&
                 <CheckListItem key={habit._id} habit={habit} index={index} />
               ))
             : 'No habits added'}

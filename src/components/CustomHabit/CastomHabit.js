@@ -102,7 +102,7 @@ class CastomHabit extends Component {
                 className={style.castomHabitDate}
                 name="date"
                 value={this.props.fromCheckList && planningDate}
-                // min={planningDateToday}
+                min={planningDateToday}
                 onChange={this.handleChenge}
               />
             </label>

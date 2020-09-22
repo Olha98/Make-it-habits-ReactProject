@@ -297,7 +297,7 @@ class Profile extends Component {
               <Card />
             </div>
             {/* ------------------------------ */}
-            {this.props.isModalInterview === '0' && (
+            {this.props.isModalInterview === 0 && (
               <ModalInterview close={() => null} />
             )}
             {/* ------------------------------ */}
