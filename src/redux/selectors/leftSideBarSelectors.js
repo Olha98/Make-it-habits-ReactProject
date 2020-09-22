@@ -11,8 +11,13 @@ const getCigarettePackPrice = state => {
   return state.quizInfo.cigarettePackPrice;
 };
 
-const getCurrentAmountOfCigarettes = state =>
-  state.cigarettes.data[state.cigarettes.data.length - 1];
+// const getCurrentAmountOfCigarettes = state =>
+//   state.cigarettes.data[state.cigarettes.data.length - 1];
+const getCurrentAmountOfCigarettes = state => {
+  const cig = state.cigarettes.data.filter(el => el !== null);
+  return cig[cig.length - 1];
+  //console.log('cig', cig[cig.length - 1]);
+};
 
 const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
