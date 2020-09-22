@@ -11,10 +11,14 @@ moment.locale('ru');
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   const [visible, setVisible] = useState(false);
 
-  useEffect(()=>{
+  const dataNow = new Date();
+  const day = currentHabit.day;
+  const dataNowCalendar = moment(dataNow).format('L');
+  const arrayDataHebits = currentHabit.arrayDate;
+  const dateNull = currentHabit.data;
 
+  useEffect(() => {
     if (dataNowCalendar === day && arrayDataHebits.includes(dataNowCalendar)) {
-
       const index = arrayDataHebits.reduce((acc, date, idx) => {
         if (date === dataNowCalendar) {
           acc = idx;
@@ -22,26 +26,19 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
         return acc;
       }, '');
 
-      const firstNull = dateNull.map((elem, idx) => {
+      dateNull.map((elem, idx) => {
         if (idx === index) {
-  
-          if(elem){
+          if (elem) {
             setVisible(true);
             return elem;
           }
-      
-          
         }
-        return null
-  
+        return null;
       });
-  
-      console.log('firstNull', firstNull);
-    }
-  
 
-  },[visible])
-  
+   
+    }
+  }, [visible, setVisible, currentHabit]);
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -49,44 +46,30 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
     }
   };
 
-  const dataNow = new Date();
-  const day = currentHabit.day;
-  const dataNowCalendar = moment(dataNow).format('L');
-
-  console.log(day);
-  const arrayDataHebits = currentHabit.arrayDate;
-
-  const dateNull = currentHabit.data;
-
-  // console.log('arrayDataHebits', arrayDataHebits)
-
- 
-
-
-
 
   return (
     <>
-
       <div className={style.containerTimeDoIt}>
-      {visible ? 
-    
-      
-        <button
-          className={style.btnCalendar}
-          type="button"
-          onClick={() => setVisible(true)}
-        >
-          <ButtonOk data-element="svg" />
-        </button>
-        : <span className={style.spanTimeDoIt}>
-        {moment(new Date(currentHabit.planningTime)).format('LT')}
-         </span>
-         
-      }
-       
+        {visible ? (
+          <button
+            className={style.btnCalendar}
+            type="button"
+            onClick={() => setVisible(true)}
+          >
+            <ButtonOk data-element="svg" />
+          </button>
+        ) : (
+          <span className={style.spanTimeDoIt}>
+            {moment(new Date(currentHabit.planningTime)).format('LT')}
+          </span>
+        )}
+
         <li className={style.nameTimeDoIt}>
-          <p className={style.textTimeDoIt}>{currentHabit.name}</p>
+          {visible ? (
+            <p className={style.textThrow}>{currentHabit.name}</p>
+          ) : (
+            <p className={style.textTimeDoIt}>{currentHabit.name}</p>
+          )}
         </li>
         <div className={style.imgBoxTimeDoIt}>
           <img
