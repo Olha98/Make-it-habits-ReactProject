@@ -46,22 +46,6 @@ class Profile extends Component {
   //   console.log("this.props", this.props);
   //   console.log("this.state", this.state);
   // };
-
-  // aaa = () => {
-  //   return (
-  //     style.input +
-  //     ' ' +
-  //     (values.phone
-  //       .split('')
-  //       .splice(4)
-  //       .filter(symb => symb !== ' ' && symb !== '_')
-  //       .join('').length > 0 &&
-  //       touched.phone &&
-  //       errors.phone &&
-  //       style.inputInvalid)
-  //   );
-  // };
-
   render() {
     const { changePassword } = this.state;
 
@@ -190,25 +174,14 @@ class Profile extends Component {
                             }
                             placeholder="+380__ ___ __ __"
                           />
-                          {
-                            // (values.phone
-                            //   .split('')
-                            //   .splice(4)
-                            //   .filter(symb => symb !== ' ' && symb !== '_')
-                            //   .join('').length =
-                            //   0 &&
-                            //   funcMessage(
-                            //     'номер телефона введён не полностью',
-                            //   )),
-                            values.phone
-                              .split('')
-                              .splice(4)
-                              .filter(symb => symb !== ' ' && symb !== '_')
-                              .join('').length > 0 &&
-                              touched.phone &&
-                              errors.phone &&
-                              funcMessage('номер телефона введён не полностью')
-                          }
+                          {values.phone
+                            .split('')
+                            .splice(4)
+                            .filter(symb => symb !== ' ' && symb !== '_')
+                            .join('').length > 0 &&
+                            touched.phone &&
+                            errors.phone &&
+                            funcMessage('номер телефона введён не полностью')}
                         </label>
                         <label className={style.label}>
                           <span className={style.titleInput}>E-mail*</span>
@@ -297,7 +270,7 @@ class Profile extends Component {
               <Card />
             </div>
             {/* ------------------------------ */}
-            {this.props.isModalInterview === 0 && (
+            {this.props.isModalInterview === '0' && (
               <ModalInterview close={() => null} />
             )}
             {/* ------------------------------ */}
