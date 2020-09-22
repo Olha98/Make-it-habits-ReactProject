@@ -48,6 +48,12 @@ class CheckListItem extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.habit.efficiency !== this.props.habit.efficiency) {
+      this.props.habit.efficiency === 100 && this.openCongratulationModal();
+    }
+  }
+
   //=========================== CurrentDate ==========================//
 
   //=========================== Color ==========================//
