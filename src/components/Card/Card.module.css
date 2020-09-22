@@ -171,10 +171,10 @@
 }
 
 .title {
+  margin-bottom: 15px;
   color: black_font;
   font-size: 26px;
   font-weight: 500;
-  line-height: 31px;
 }
 
 .error {
@@ -197,7 +197,13 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 567px;
+}
+
+.inputFields {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
 }
 
 .input {
@@ -235,15 +241,19 @@ input[type='number'] {
   display: block;
   margin: 0 auto;
   background: main_green;
-  border: 2px solid main_green;
+  border: 2px solid transparent;
   border-radius: 5px;
   color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 250ms linear;
   cursor: pointer;
 }
 
 .button:hover,
 .button:focus {
-  background: main_pink;
-  border: 2px solid main_pink;
+  color: main_green;
+  border: 2px solid main_green;
+  background: transparent;
   outline: 0;
 }
