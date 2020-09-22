@@ -176,7 +176,6 @@ const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [currentHabits, setCurrentHabits] = useState([]);
 
-
   useEffect(() => {
     dispatch(getCurrentHabits(currentHabits));
   }, [dispatch, currentHabits]);
@@ -185,7 +184,7 @@ const Calendar = () => {
     .locale('en')
     .format('dddd')
     .slice(0, 3);
-//weekday Mon
+  //weekday Mon
 
   const calendarActualDay = moment(startDate).format('L');
 
@@ -207,6 +206,8 @@ const Calendar = () => {
         onChange={date => setStartDate(date)}
         locale="ru"
         inline
+        minDate={new Date()}
+        showDisabledMonthNavigation
       />
     </>
   );
