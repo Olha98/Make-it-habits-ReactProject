@@ -5,7 +5,7 @@ import Modal from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
-const Congratulations = () => {
+const Congratulations = ({ fromCheckList, habitName }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const showModal = () => {
     setIsShowModal(true);
@@ -44,7 +44,13 @@ const Congratulations = () => {
         </div>
       </div>
 
-      {isShowModal && <CastomHabit closeModal={closeModal} />}
+      {isShowModal && (
+        <CastomHabit
+          fromCheckListFromCong={fromCheckList}
+          habitNameFromCong={habitName}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };
