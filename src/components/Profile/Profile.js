@@ -27,9 +27,7 @@ class Profile extends Component {
     }));
   };
 
-  changePath = () => {
-    //
-  };
+
 
   // handleInputChange = (e) => {
   //   const { name, value } = e.target;
@@ -92,12 +90,14 @@ class Profile extends Component {
                       email: this.props.email,
                     }}
                     validationSchema={validationSchema}
-                    onSubmit={values => {
+                    onSubmit={
+                      values => {
                       const number = values.phone
                         .split('')
                         .splice(4)
                         .filter(symb => symb !== ' ')
                         .join('');
+
                       this.props.addDataUserOperation({
                         ...values,
                         phone: `80${number}`,
@@ -297,9 +297,9 @@ class Profile extends Component {
               <Card />
             </div>
             {/* ------------------------------ */}
-            {this.props.isModalInterview === 0 && (
+            {/* {this.props.isModalInterview === 0 && (
               <ModalInterview close={() => null} />
-            )}
+            )} */}
             {/* ------------------------------ */}
           </CustomScrollbars>
         </div>
