@@ -194,8 +194,8 @@ class CheckListItem extends Component {
 
         {isCongratulationsModal && (
           <Congratulations
-            close={this.closeModal}
-            habit={this.props.habit}
+            close={this.closeCongratulationModal}
+            habitName={this.props.habit.name}
             fromCheckList={this.state.fromCheckList}
           />
         )}
