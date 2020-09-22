@@ -2,17 +2,34 @@ import React, { useState } from 'react';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
+import {
+  subscrSelectors,
+  errorSelector,
+  spinnerSelector,
+} from '../../redux/selectors';
 import style from './Card.module.css';
+import { connect } from 'react-redux';
 
-const Card = () => {
+const Card = ({ cards }) => {
   const [isShowModal, setIsShowModal] = useState(false);
+  let number, month, year;
+  if (cards.length) {
+    number = cards[0].number;
+    const timeExpiration = new Date(cards[0].timeExpiration);
+    month = timeExpiration.getMonth();
+    year = timeExpiration.getFullYear();
+  }
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
       <div className={style.card}>
         <p className={style.cardName}>Моя карта</p>
-        <p className={style.cardNumber}>4213 3535 5631 0991</p>
-        <p className={style.cardExpireDate}>Истекает 31.07.2024</p>
+        <p className={style.cardNumber}>
+          {cards.length ? number : 'xxxx xxxx xxxx xxxx'}
+        </p>
+        <p className={style.cardExpireDate}>
+          Истекает {cards.length ? `${month} / ${year}` : ''}
+        </p>
         <button className={style.cardDeleteButton}>
           <Trash className={style.trashIcon} />
         </button>
@@ -47,4 +64,10 @@ const Card = () => {
   );
 };
 
-export default Card;
+const mapStateToProps = state => ({
+  cards: subscrSelectors.getCards(state),
+  isLoading: spinnerSelector.isLoading(state),
+  error: errorSelector.getError(state),
+});
+
+export default connect(mapStateToProps)(Card);

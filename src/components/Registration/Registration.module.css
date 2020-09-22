@@ -3,7 +3,7 @@
   z-index: 1;
   background: #f6f6f6;
   width: 1035px;
-  height: 900px;
+  height: 100vh;
   right: 0;
   top: 0;
 }
@@ -32,7 +32,7 @@
 }
 
 .RegistrationHi {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
@@ -44,7 +44,7 @@
 .RegistrationTxt {
   width: 405px;
   margin: 0 auto;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -67,7 +67,7 @@
   box-sizing: border-box;
   border-radius: 5px;
   padding: 10px;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -92,7 +92,7 @@
 }
 
 .RegistrationInputTxt {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -114,7 +114,7 @@
 }
 
 .RegistrationButtonTxt {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

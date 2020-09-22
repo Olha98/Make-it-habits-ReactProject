@@ -19,6 +19,8 @@ class PasswordForm extends Component {
     typeText: 'text',
 
     passwordFields: false,
+
+    changePassword: this.props.changePassword,
   };
 
   // handleSubmit = e => {
@@ -46,7 +48,8 @@ class PasswordForm extends Component {
       typePassword,
       typeText,
     } = this.state;
-
+    console.log('this.props.changePassword', this.props.changePassword);
+    // const {changePassword}=this.props;
     return (
       <>
         <Formik
@@ -54,6 +57,10 @@ class PasswordForm extends Component {
           validationSchema={passwordValidationSchema}
           onSubmit={values => {
             this.props.postPasswordOperation({ ...values });
+            this.props.renderPasswordForm();
+            // this.setState(prevState => ({
+            //   changePassword: !prevState.this.props.changePassword,
+            // }));
           }}
         >
           {({ values, errors, touched, handleChange, handleBlur }) => (

@@ -34,8 +34,9 @@ const addCard = card => async (dispatch, getState) => {
     dispatch(subscribeActions.addCardSuccess(card));
   } catch (error) {
     dispatch(subscribeActions.addCardError(error));
+  } finally {
+    dispatch(actionsLoader.loaderOff());
   }
-  dispatch(actionsLoader.loaderOff());
 };
 
 export default { changeType, addCard };

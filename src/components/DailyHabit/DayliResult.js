@@ -7,8 +7,8 @@ import closeBtn from '../../assests/images/closeBlack.png';
 import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
 
 // const cigarettes = [
-//   4,
-//   5,
+//   null,
+//   null,
 //   null,
 //   null,
 //   null,
@@ -37,9 +37,9 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const openAlreadyAdded = () => {
     setAlreadyAdded(true);
   };
-  const closeAlreadyAdded = () => {
-    setAlreadyAdded(false);
-  };
+  // const closeAlreadyAdded = () => {
+  //   setAlreadyAdded(false);
+  // };
   const changeQuantity = e => {
     setQuantity(Number(e.target.value));
   };
@@ -47,18 +47,24 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const submitQuantity = e => {
     e.preventDefault();
     const date = new Date(startTime);
+    // const date = new Date(startTime);
     const todayDate = Date.now();
     const dateMs = date.getTime();
     const dayPass = Math.round((todayDate - dateMs) / 86400000);
-    console.log('prevData', prevData);
-    if (!prevData[dayPass - 1]) {
-      prevData[dayPass - 1] = quantity;
+    console.log('prevData', dayPass);
+    if (!prevData[dayPass]) {
+      prevData[dayPass] = quantity;
       updateResult({
         startedAt: startTime,
         data: prevData,
       });
       close();
     } else openAlreadyAdded();
+
+    // updateResult({
+    //   startedAt: '2020-09-18T11:06:17.000Z',
+    //   data: cigarettes,
+    // });
   };
 
   return (
