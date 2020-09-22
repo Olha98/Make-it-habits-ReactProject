@@ -21,9 +21,9 @@ class UserInfo extends Component {
             <div className={style.leftSideBar_userInfo__avatar}>
               <img
                 src={
-                  avatars.find(item => item.id === this.props.avatar)?.image
-                    ? avatars.find(item => item.id === this.props.avatar)?.image
-                    : ava
+                  !this.props.avatar
+                    ? avatars[16].image
+                    : avatars.find(item => item.id === this.props.avatar)?.image
                 }
                 // src={
                 //   photo
