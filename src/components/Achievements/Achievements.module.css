@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   padding: 60px;
+  width: 842px;
+  height: 100vh;
 }
 
 .achievementsPageItem {
@@ -17,16 +19,9 @@
   margin-right: 30px;
 }
 
-.achievementsPageItem:not(:nth-last-child(-n + 3)) {
+.achievementsPageItem:not(:nth-last-child(-n + 2)) {
   margin-bottom: 30px;
 }
-
-/* .achievementsPageItem:hover,
-.achievementsPageItem:focus {
-  transform: scale(1.1);
-  background: #43d190;
-  outline: 0;
-} */
 
 .achievementsPageText {
   font-weight: 500;
@@ -36,8 +31,6 @@
   color: #ffffff;
 }
 .activeClass {
-  composes: achievementsPageText;
+  composes: achievementsPageItem;
   background: #43d190;
-  box-shadow: 0px 8px 16px rgba(67, 209, 144, 0.15);
-  border-radius: 10px;
 }
