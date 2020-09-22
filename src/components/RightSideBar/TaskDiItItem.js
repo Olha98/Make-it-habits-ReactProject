@@ -14,14 +14,14 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
   useEffect(()=>{
 
     if (dataNowCalendar === day && arrayDataHebits.includes(dataNowCalendar)) {
-      // console.log('day', day);
+
       const index = arrayDataHebits.reduce((acc, date, idx) => {
         if (date === dataNowCalendar) {
           acc = idx;
         }
         return acc;
       }, '');
-      // let isFirst = true;
+
       const firstNull = dateNull.map((elem, idx) => {
         if (idx === index) {
   
@@ -29,7 +29,7 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
             setVisible(true);
             return elem;
           }
-          // return null
+      
           
         }
         return null
@@ -67,7 +67,11 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
 
   return (
     <>
-      {visible && (
+
+      <div className={style.containerTimeDoIt}>
+      {visible ? 
+    
+      
         <button
           className={style.btnCalendar}
           type="button"
@@ -75,13 +79,12 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
         >
           <ButtonOk data-element="svg" />
         </button>
-      )}
-
-      <div className={style.containerTimeDoIt}>
-        {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
-        <span className={style.spanTimeDoIt}>
-          {moment(new Date(currentHabit.planningTime)).format('LT')}
-        </span>
+        : <span className={style.spanTimeDoIt}>
+        {moment(new Date(currentHabit.planningTime)).format('LT')}
+         </span>
+         
+      }
+       
         <li className={style.nameTimeDoIt}>
           <p className={style.textTimeDoIt}>{currentHabit.name}</p>
         </li>
