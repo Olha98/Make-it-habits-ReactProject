@@ -17,11 +17,11 @@ class CastomHabit extends Component {
 
   componentDidMount() {
     if (this.props.chosenHabit) {
-      this.setState({ name: this.props.chosenHabit })
+      this.setState({ name: this.props.chosenHabit });
     }
     if (this.props.fromCheckList) {
-      console.log('this.props.habit', this.props.habit)
-      this.setState({ name: this.props.habit.name })
+      console.log('this.props.habit', this.props.habit);
+      this.setState({ name: this.props.habit.name });
     }
   }
 
@@ -29,12 +29,12 @@ class CastomHabit extends Component {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
-    let id = "";
+    let id = '';
     if (this.props.habit) {
-      id = this.props.habit._id
+      id = this.props.habit._id;
     }
     if (e.target.dataset.save && this.props.fromCheckList) {
-      this.props.requestPatchCustomHabit({ name, id});
+      this.props.requestPatchCustomHabit({ name, id });
       this.props.closeModal();
     } else if (e.target.dataset.save) {
       this.props.requestAddCustomHabit({ name, planningTime, iteration });
@@ -44,7 +44,7 @@ class CastomHabit extends Component {
     } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
-    } 
+    }
   };
 
   handleChenge = e => {
@@ -132,14 +132,15 @@ class CastomHabit extends Component {
               </select>
             </label>
           </div>
-          {this.props.fromCheckList &&
-          <button
-            onClick={this.onClickSubmit}
-            data-delete="delete"
-            className={style.castomHabitDelete}
-          >
-            удалить привычку
-          </button>}
+          {this.props.fromCheckList && (
+            <button
+              onClick={this.onClickSubmit}
+              data-delete="delete"
+              className={style.castomHabitDelete}
+            >
+              удалить привычку
+            </button>
+          )}
           <div className={style.castomHabitBtnWrapper}>
             <button
               type="submit"
