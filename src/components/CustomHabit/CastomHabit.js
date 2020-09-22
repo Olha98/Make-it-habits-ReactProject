@@ -22,8 +22,10 @@ class CastomHabit extends Component {
       this.setState({ name: this.props.chosenHabit })
     }
     if (this.props.fromCheckList) {
-      console.log('this.props.habit', this.props.habit)
       this.setState({ name: this.props.habit.name })
+    }
+    if (this.props.habitNameFromCong) {
+      this.setState({ name: this.props.habitNameFromCong })
     }
   }
 
@@ -43,7 +45,7 @@ class CastomHabit extends Component {
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
-    } else if (e.target.dataset.delete || e.target.nodeName === "IMG") {
+    } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
     } 
