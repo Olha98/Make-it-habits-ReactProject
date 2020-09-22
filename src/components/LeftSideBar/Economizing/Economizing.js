@@ -36,7 +36,7 @@ class Economizing extends Component {
               </p>
               <p
                 className={
-                  time > 0
+                  time >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }

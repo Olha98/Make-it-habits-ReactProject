@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import imgBak from '../../assests/images/calendar/trash2.png';
 import style from './TimeDoItItem.module.css';
 import { ReactComponent as ButtonOk } from '../../assests/images/CheckListPage/button_ok.svg';
@@ -9,7 +9,36 @@ import { connect } from 'react-redux';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {
-  const [visible, setVisible] = useState('false');
+  const [visible, setVisible] = useState(false);
+
+  const dataNow = new Date();
+  const day = currentHabit.day;
+  const dataNowCalendar = moment(dataNow).format('L');
+  const arrayDataHebits = currentHabit.arrayDate;
+  const dateNull = currentHabit.data;
+
+  useEffect(() => {
+    if (dataNowCalendar === day && arrayDataHebits.includes(dataNowCalendar)) {
+      const index = arrayDataHebits.reduce((acc, date, idx) => {
+        if (date === dataNowCalendar) {
+          acc = idx;
+        }
+        return acc;
+      }, '');
+
+      dateNull.map((elem, idx) => {
+        if (idx === index) {
+          if (elem) {
+            setVisible(true);
+            return elem;
+          }
+        }
+        return null;
+      });
+
+   
+    }
+  }, [visible, setVisible, currentHabit]);
 
   const handlClick = e => {
     if (e.target.dataset._id) {
@@ -17,42 +46,30 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
     }
   };
 
-  const dataNow = new Date();
-
-  const dataNowCalendar = moment(dataNow).format('L');
-  const arrayDataHebits = currentHabit.arrayDate;
-  // console.log(arrayDataHebits, 'arrayDataHebits');
-
-  for (let arrayDataHebit of arrayDataHebits) {
-    if (arrayDataHebit === dataNowCalendar) {
-      //нужен индекс елемента
-      //смотрит индекс елементов
-    }
-  }
-
-  // const ShowClick = (e) => {
-  //   setVisible("true")
-  // };
 
   return (
     <>
-      {visible && (
-        <button
-          className={style.btnCalendar}
-          type="button"
-          onClick={() => setVisible(true)}
-        >
-          <ButtonOk data-element="svg" />
-        </button>
-      )}
-
       <div className={style.containerTimeDoIt}>
-        {/* <div className={style.containerTimeDoIt} onClick={ShowClick}> */}
-        <span className={style.spanTimeDoIt}>
-          {moment(new Date(currentHabit.planningTime)).format('LT')}
-        </span>
+        {visible ? (
+          <button
+            className={style.btnCalendar}
+            type="button"
+            onClick={() => setVisible(true)}
+          >
+            <ButtonOk data-element="svg" />
+          </button>
+        ) : (
+          <span className={style.spanTimeDoIt}>
+            {moment(new Date(currentHabit.planningTime)).format('LT')}
+          </span>
+        )}
+
         <li className={style.nameTimeDoIt}>
-          <p className={style.textTimeDoIt}>{currentHabit.name}</p>
+          {visible ? (
+            <p className={style.textThrow}>{currentHabit.name}</p>
+          ) : (
+            <p className={style.textTimeDoIt}>{currentHabit.name}</p>
+          )}
         </li>
         <div className={style.imgBoxTimeDoIt}>
           <img

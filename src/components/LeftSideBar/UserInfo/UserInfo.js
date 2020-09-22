@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { avatars } from '../../Avatar/dataAvatar';
 import { connect } from 'react-redux';
 //import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
-//import avatar from '../../../assests/images/LeftSideBar/avatar.png';
+import ava from '../../../assests/images/LeftSideBar/avatar.png';
 import style from '../UserInfo/UserInfo.module.css';
 //import authOperations from "../../../redux/operations/authOperation";
 import Axios from 'axios';
@@ -33,7 +33,13 @@ class UserInfo extends Component {
                 alt="avatar"
               />
             </div>
-            <p className={style.leftSideBar_userInfo__name}>
+            <p
+              className={
+                name.length + surname.length >= 23
+                  ? style.leftSideBar_userInfo__name_small_text
+                  : style.leftSideBar_userInfo__name
+              }
+            >
               {name ? `${name} ${surname}` : 'User'}
             </p>
           </NavLink>
