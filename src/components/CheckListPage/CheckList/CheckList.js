@@ -9,6 +9,16 @@ import style from './CheckList.module.css';
 import CheckListItem from './CheckListItem/CheckListItem';
 
 class CheckList extends Component {
+  state = {
+    isNew: false,
+  };
+
+  componentDidMount() {
+    this.setState({
+      isNew: true,
+    });
+  }
+
   render() {
     return (
       <div className={style.checkList}>
@@ -19,7 +29,7 @@ class CheckList extends Component {
                 // habit.efficiency !== 100 &&
                 <CSSTransition
                   key={habit._id}
-                  in={true}
+                  in={this.props.isNew}
                   timeout={500}
                   classNames={styles}
                   unmountOnExit
