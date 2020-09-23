@@ -1,6 +1,6 @@
 .leftSideBar_economizing {
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 15px 20px;
+  padding: 25px 50px 20px;
 }
 
 .leftSideBar_economizing__list_item_title {
@@ -25,6 +25,14 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
+}
+.leftSideBar_economizing__list_item_value_red {
+  font-family: Rubik;
+  background-repeat: no-repeat;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: red;
 }
 .svg {
   margin-right: 10px;

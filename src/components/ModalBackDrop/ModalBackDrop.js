@@ -21,21 +21,21 @@ const modalBackDrop = WrappedComponent => {
       document.body.style.overflow = 'auto';
     }
 
-    closeModal = async () => {
-      await this.setState({ isOpen: false });
+    closeModal = () => {
+      // await this.setState({ isOpen: false });
       this.props.close();
     };
 
     closeModalKeydown = e => {
       if (e.code === 'Escape') {
         this.closeModal();
-      } else return;
+      }
     };
 
     closeModalOverlay = e => {
       if (e.target.dataset.type === 'modal') {
         this.closeModal();
-      } else return;
+      }
     };
 
     render() {
@@ -43,7 +43,7 @@ const modalBackDrop = WrappedComponent => {
         <div data-type="modal" className={style.overlay}>
           <CSSTransition
             in={this.state.isOpen}
-            timeout={1000}
+            timeout={300}
             classNames={modalTransition}
             unmountOnExit
           >

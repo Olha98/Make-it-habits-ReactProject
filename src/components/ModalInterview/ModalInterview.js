@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
-import quizInfoOperations from '../../redux/operations/quizInfoOperations';
-import quizInfoSelectors from '../../redux/selectors/quizInfoSelectors';
+import { quizInfoOperations } from '../../redux/operations';
+import { spinnerSelector, errorSelector } from '../../redux/selectors';
 import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
@@ -19,7 +19,7 @@ class ModalInterview extends Component {
     if (this.props.error) {
       return;
     }
-    this.props.close();
+    this.props.closeModal();
   };
 
   handleChange = e => {
@@ -48,62 +48,64 @@ class ModalInterview extends Component {
           </p>
           {error && (
             <h3 className={styles.error}>
-              Извините, произошла ошибка: {error.message}{' '}
+              Извините, произошла ошибка: {error}{' '}
             </h3>
           )}
         </header>
         {isLoading && <Spinner />}
         <form className={styles.form} onSubmit={this.handleSubmit}>
-          <label className={styles.label}>
-            Сколько лет Вы курите?
-            <input
-              className={styles.input}
-              type="number"
-              name="smokeYears"
-              value={smokeYears ? smokeYears : ''}
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько сигарет скуриваете в день?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePerDay"
-              value={cigarettePerDay ? cigarettePerDay : ''}
-              required
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько вемени у Вас уходит
-            <br />
-            на 1 сигарету?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePerTime"
-              value={cigarettePerTime ? cigarettePerTime : ''}
-              required
-              placeholder="__ мин"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className={styles.label}>
-            Сколько стоит одна пачка сигарет?
-            <input
-              className={styles.input}
-              type="number"
-              name="cigarettePackPrice"
-              value={cigarettePackPrice ? cigarettePackPrice : ''}
-              required
-              placeholder="__.__ грн"
-              onChange={this.handleChange}
-            />
-          </label>
+          <div className={styles.inputFields}>
+            <label className={styles.label}>
+              Сколько лет Вы курите?
+              <input
+                className={styles.input}
+                type="number"
+                name="smokeYears"
+                value={smokeYears ? smokeYears : ''}
+                required
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько сигарет скуриваете в день?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePerDay"
+                value={cigarettePerDay ? cigarettePerDay : ''}
+                required
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько вемени у Вас уходит
+              <br />
+              на 1 сигарету?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePerTime"
+                value={cigarettePerTime ? cigarettePerTime : ''}
+                required
+                placeholder="__ мин"
+                onChange={this.handleChange}
+              />
+            </label>
+            <label className={styles.label}>
+              Сколько стоит одна пачка сигарет?
+              <input
+                className={styles.input}
+                type="number"
+                name="cigarettePackPrice"
+                value={cigarettePackPrice ? cigarettePackPrice : ''}
+                required
+                placeholder="__.__ грн"
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
           <button
-            className="btnTransparentWhiteBorder"
+            className={styles.button}
             type="submit"
             style={{ margin: '0 auto' }}
           >
@@ -116,15 +118,15 @@ class ModalInterview extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: quizInfoSelectors.getError(state),
-  isLoading: state.loading,
+  error: errorSelector.getError(state),
+  isLoading: spinnerSelector.isLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
-  onGetInfo: () => dispatch(quizInfoOperations.fetchInfo()),
 });
 
-export default modalBackDrop(
-  connect(mapStateToProps, mapDispatchToProps)(ModalInterview),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(modalBackDrop(ModalInterview));

@@ -20,21 +20,34 @@ class Habits extends Component {
   };
 
   render() {
+    const { habits } = this.props;
+
     return (
       <>
-        <section className={style.leftSideBar_habits}>
-          <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
+        <div className={style.leftSideBar_habits}>
+          {this.props.habits.length > 0 ? (
+            <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
+          ) : (
+            <>
+              <blockquote className={style.leftSideBar_habits_title}>
+                ―Побороть дурные привычки легче сегодня, чем завтра.
+              </blockquote>
+              <p>~ Конфуций</p>
+            </>
+          )}
           <CustomScrollbars
             style={{
               width: 270,
               height: 186,
             }}
           >
-            <ul className={style.leftSideBar_habits__list}>
-              {this.props.habits.map(({ _id }, idx) => (
-                <HabitItem key={_id} id={_id} idx={idx} />
-              ))}
-            </ul>
+            {habits && (
+              <ul className={style.leftSideBar_habits__list}>
+                {habits.map(({ _id }, idx) => (
+                  <HabitItem key={_id} id={_id} idx={idx} />
+                ))}
+              </ul>
+            )}
           </CustomScrollbars>
           <button
             type="button"
@@ -44,7 +57,7 @@ class Habits extends Component {
             Добавить привычку +
           </button>
           {this.state.isShowModal && <HabitChoice close={this.openModal} />}
-        </section>
+        </div>
       </>
     );
   }

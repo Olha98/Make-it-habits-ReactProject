@@ -15,4 +15,4 @@ const dayInfoReducer = (state = initialState, action) => {
   }
 };
 
-export default dayInfoReducer;
+export default dayInfoReducer
