@@ -27,15 +27,16 @@ class CheckList extends Component {
           {this.props.habits
             ? this.props.habits.reverse().map((habit, index) => (
                 // habit.efficiency !== 100 &&
-                <CSSTransition
-                  key={habit._id}
-                  in={this.props.isNew}
-                  timeout={500}
-                  classNames={styles}
-                  unmountOnExit
-                >
+                // <CSSTransition
+                //   key={habit._id}
+                //   in={this.props.isNew}
+                //   timeout={500}
+                //   classNames={styles}
+                //   unmountOnExit
+                // >
+                
                   <CheckListItem key={habit._id} habit={habit} index={index} />
-                </CSSTransition>
+                // </CSSTransition>
               ))
             : 'No habits added'}
         </div>
