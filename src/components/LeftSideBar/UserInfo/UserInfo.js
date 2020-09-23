@@ -2,16 +2,32 @@ import React, { Component } from 'react';
 import { avatars } from '../../Avatar/dataAvatar';
 import { connect } from 'react-redux';
 //import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
-import ava from '../../../assests/images/LeftSideBar/avatar.png';
+//import ava from '../../../assests/images/LeftSideBar/avatar.png';
 import style from '../UserInfo/UserInfo.module.css';
 //import authOperations from "../../../redux/operations/authOperation";
 import Axios from 'axios';
 // { render } from "@testing-library/react";
 import authAction from '../../../redux/actions/authAction';
 import { NavLink } from 'react-router-dom';
+import AdditionalText from '../AdditionalText/AdditionalText';
+//import { CSSTransition } from 'react-transition-group';
 
 Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
+  state = {
+    isRotate: false,
+  };
+  componentDidMount(prevProps) {
+    this.setState({
+      isRotate: true,
+    });
+    // this.props.avatar && this.props.avatar !== prevProps && this.change();
+  }
+  // change = () => {
+  //   this.setState({
+  //     isRotate: true,
+  //   });
+  // };
   render() {
     const { name, surname, logout } = this.props;
     return (
@@ -33,15 +49,28 @@ class UserInfo extends Component {
                 alt="avatar"
               />
             </div>
-            <p
+            {name ? (
+              <p
+                className={
+                  name.length + surname.length >= 23
+                    ? style.leftSideBar_userInfo__name_small_text
+                    : style.leftSideBar_userInfo__name
+                }
+              >
+                {name} {surname}
+              </p>
+            ) : (
+              <AdditionalText />
+            )}
+            {/* <p
               className={
                 name.length + surname.length >= 23
                   ? style.leftSideBar_userInfo__name_small_text
                   : style.leftSideBar_userInfo__name
               }
             >
-              {name ? `${name} ${surname}` : 'User'}
-            </p>
+              {name ? `${name} ${surname}` : <AdditionalText />}
+            </p> */}
           </NavLink>
           <button
             type="button"

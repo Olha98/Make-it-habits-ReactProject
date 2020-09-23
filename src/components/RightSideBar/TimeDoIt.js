@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskDoItItem from './TaskDiItItem';
-// import moment from 'moment';
+
 
 const TimeDoIt = ({ currentHabits }) => {
   const newCurrent = currentHabits
@@ -17,7 +17,7 @@ const TimeDoIt = ({ currentHabits }) => {
     <ul>
       {newCurrent &&
         newCurrent.map(currentHabit => (
-          <TaskDoItItem currentHabit={currentHabit} key={currentHabit._id} />
+          <TaskDoItItem currentHabit={currentHabit} key={currentHabit._id}/>
         ))}
     </ul>
   );
