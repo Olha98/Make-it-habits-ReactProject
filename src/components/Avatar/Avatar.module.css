@@ -1,48 +1,20 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+body {
+  background-color: #f6f6f6;
 }
-
-html {
-  box-sizing: border-box;
-  font-size: 0;
-}
-
-ul,
-ol {
-  list-style: none;
-  font-size: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0;
-  padding: 0;
-}
-
-/* ------------ */
 
 .container {
   width: 842px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .wrapperHeader {
-  border: 1px solid #f6f6f6;
+  border-bottom: 1px solid #d5e1dc;
+  background-color: #ffffff;
+  height: 110px;
   padding: 40px 62px;
 }
 
 .title {
-  font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
@@ -51,7 +23,6 @@ img {
 }
 
 .wrapperMain {
-  background-color: #f6f6f6;
   height: 100%;
   padding: 62px 62px 0 62px;
 }
@@ -73,9 +44,15 @@ img {
 .item:not(:nth-child(4n)) {
   margin-right: 30px;
 }
-.item:not(:last-child) {
+/* .item:not(:last-child) {
   margin-bottom: 30px;
 }
 .item:last-child {
+  margin-bottom: 10px;
+} */
+.item:not(:nth-last-child(-n + 4)) {
+  margin-bottom: 30px;
+}
+.item:nth-last-child(-n + 4) {
   margin-bottom: 10px;
 }

@@ -1,160 +1,329 @@
-import React, { Component } from "react";
-import style from "./CheckListItem.module.css";
-import Modal from "../../../ModalBackDrop/ModalBackDrop";
-import CastomHabit from "../../../CustomHabit/CastomHabit";
-import { ReactComponent as ButtonOk } from "../../../../assests/images/CheckListPage/button_ok.svg";
-import { ReactComponent as ButtonDelete } from "../../../../assests/images/CheckListPage/button_delete.svg";
-import { ReactComponent as ButtonEdit } from "../../../../assests/images/CheckListPage/button_edit.svg";
+import React, { Component } from 'react';
+import style from './CheckListItem.module.css';
+import CastomHabit from '../../../CustomHabit/CastomHabit';
+import addHabitStatus from '../../../../redux/operations/chekListOperation';
 
+import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
+import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
+import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
 import {
+  main_green,
   main_violet,
   main_pink,
   main_yellow,
   main_blue,
-} from "../../../../css/vars.module.css";
+  green_1,
+} from '../../../../css/vars.module.css';
+
+import { connect } from 'react-redux';
+import Congratulations from '../../../Congratulations/Congratulations';
 
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
-    isShowModal: false,
-    colors: [
+    isCustomModal: false,
+    isCongratulationsModal: false,
+    fromCheckList: true,
+    daysProgress: [],
+    daysDone: '',
+    daysPassed: '',
+    habitChecked: false,
+    checkedStatus: '',
+    habitId: '',
+    isCurrentDay: '',
+    dayEfficiency: 0,
+    color: [
       main_violet,
       main_pink,
+      main_green,
       main_yellow,
       main_blue,
-      "deepskyblue",
-      "lightcoral",
-      "green",
-      "darkorange",
-      "lightseagreen",
-      "violet",
+      green_1,
     ],
   };
 
-  showFullInfo(e) {
-    if (e.target.closest('[data-element="button"]')) {
-      this.setState((prevState) => ({
-        showFullInfo: !prevState.showFullInfo,
-      }));
+  componentDidMount() {
+    this.setState({
+      daysProgress: [...this.props.habit.data],
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.habit.efficiency !== this.props.habit.efficiency) {
+      this.props.habit.efficiency === 100 && this.openCongratulationModal();
     }
   }
 
+  //=========================== CurrentDate ==========================//
+
+  //=========================== Color ==========================//
+
+  // getRandomColor = () => {
+  //   const color = Math.floor(Math.random() * 16777215).toString(16);
+  //   if ((color !== '000000' || color !== 'ffffff') && color.length === 6) {
+  //     return `#${color}`;
+  //   } else return `${main_yellow}`;
+  // };
+
+  getColor = () => {
+    const { color } = this.state;
+    const { index } = this.props;
+
+    let newColor;
+
+    if (index < color.length) {
+      newColor = color[index];
+    }
+    if (index >= color.length) {
+      newColor = color[index - color.length];
+    }
+    return newColor;
+  };
+
+  //=========================== Modal ==========================//
+
   openModal = () => {
     this.setState({
-      isShowModal: true,
+      isCustomModal: true,
     });
   };
 
   closeModal = () => {
     this.setState({
-      isShowModal: false,
+      isCustomModal: false,
     });
   };
 
-  // getRandomIntInclusive(min, max) {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
+  openCongratulationModal = () => {
+    this.setState({
+      isCongratulationsModal: true,
+    });
+  };
 
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-  getRandomIntInclusive(max) {
-    max = Math.floor(max);
+  closeCongratulationModal = () => {
+    this.setState({
+      isCongratulationsModal: false,
+    });
+  };
 
-    return Math.floor(Math.random() * max);
-  }
+  //=========================== OnClick ==========================//
+
+  onStatus = bool => {
+    this.setState(prev => ({
+      showFullInfo: !prev.showFullInfo,
+      habitId: this.props.habit._id,
+      habitChecked: true,
+    }));
+
+    if (bool) {
+      this.setState({
+        checkedStatus: true,
+      });
+    } else {
+      this.setState({
+        checkedStatus: false,
+      });
+    }
+
+    const { arrayDate, day } = this.props.habit;
+
+    const date = new Date();
+    const currentMonth =
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1;
+    const currentDay = `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
+    // const currentDay = `24.09.2020`;
+
+    if (currentDay === day && arrayDate.includes(currentDay)) {
+      const index = arrayDate.reduce((acc, date, idx) => {
+        if (date === currentDay) {
+          acc = idx;
+        }
+        return acc;
+      }, '');
+
+      // let isFirst = true;
+
+      const firstNull = this.state.daysProgress.map((elem, idx) => {
+        if (idx === index) {
+          // isFirst = false;
+          return bool;
+        }
+        return elem;
+      });
+
+      this.setState({
+        daysDone: firstNull.filter(elem => elem === true).length,
+        daysPassed: firstNull.filter(elem => elem === false).length,
+      });
+
+      const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
+      this.props.addStatus(updateInfo);
+    }
+  };
 
   render() {
-    console.log("this.props", this.props);
-    const { name, efficiency } = this.props.habit;
-    const { colors, isShowModal } = this.state;
-    const color = colors[this.getRandomIntInclusive(colors.length)];
+    const { name, efficiency, day } = this.props.habit;
+    const {
+      isCustomModal,
+      isCongratulationsModal,
+      daysDone,
+      daysPassed,
+      habitChecked,
+      checkedStatus,
+    } = this.state;
+    // const color = this.getRandomColor();
+
+    const date = new Date();
+    const currentMonth =
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1;
+    const currentDay = `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
 
     return (
-      <div
-        data-element="habit"
-        style={{
-          borderLeft: `8px solid ${color}`,
-        }}
-        className={style.checkListItem}
-        onClick={(e) => this.showFullInfo(e)}
-      >
-        <div className={style.checkListItemContentMainWrapper}>
-          <div className={style.checkListItemContentWrapper}>
-            <div className={style.checkListItemContent}>
-              <label className={style.checkListItemProgressLabel}>
-                <span>{name}</span>
-                <progress
-                  className={style.checkListItemProgress}
-                  id="file"
-                  max="100"
-                  value={efficiency}
-                >
-                  70%
-                </progress>
-              </label>
-              <p className={style.checkListItemProgressValue}>{efficiency}%</p>
-            </div>
-            <p className={style.checkListItemProgressComment}>
-              Прогресс привития привычки
-            </p>
-          </div>
-          <div className={style.checkListButtons}>
-            <button
-              data-element="button"
-              className={[
-                style.checkListButton,
-                style.checkListButtonSubmit,
-              ].join(" ")}
-              type="button"
-            >
-              <ButtonOk data-element="svg" />
-            </button>
-            <button
-              disabled
-              data-element="button"
-              className={[
-                style.checkListButton,
-                style.checkListButtonDelete,
-              ].join(" ")}
-              type="button"
-            >
-              <ButtonDelete data-element="svg" />
-            </button>
-            <button
-              data-element="button_edit"
-              className={style.checkListButtonEdit}
-              type="button"
-              onClick={this.openModal}
-            >
-              <ButtonEdit />
-            </button>
-            {isShowModal && (
-              <Modal closeModal={this.closeModal}>
-                <CastomHabit
-                  closeModal={this.closeModal}
-                  habit={this.props.habit}
-                />
-              </Modal>
-            )}
-          </div>
-        </div>
-        {this.state.showFullInfo ? (
-          <ul className={style.progressDaysContentList}>
-            <li className={style.progressDaysContentItem}>
-              <p className={style.progressDaysTitle}>К-во выполненных дней</p>
-              <p className={style.fulfiledDays}>5</p>
-            </li>
-            <li>
-              <p className={style.progressDaysTitle}>К-во пропущенных дней</p>
-              <p className={style.missedDays}>2</p>
-            </li>
-          </ul>
-        ) : (
-          ""
+      <>
+        {isCustomModal && (
+          <CastomHabit
+            close={this.closeModal}
+            habit={this.props.habit}
+            fromCheckList={this.state.fromCheckList}
+          />
         )}
-      </div>
+
+        {isCongratulationsModal && (
+          <Congratulations
+            close={this.closeCongratulationModal}
+            habitName={this.props.habit.name}
+            fromCheckList={this.state.fromCheckList}
+          />
+        )}
+
+        <div
+          data-element="habit"
+          style={{
+            borderLeft: `8px solid ${this.getColor()}`,
+          }}
+          className={style.checkListItem}
+        >
+          <div className={style.checkListItemContentMainWrapper}>
+            <div className={style.checkListItemContentWrapper}>
+              <div className={style.checkListItemContent}>
+                <label className={style.checkListItemProgressLabel}>
+                  <span>{name}</span>
+                  <progress
+                    className={style.checkListItemProgress}
+                    id="file"
+                    max="100"
+                    value={efficiency}
+                  >
+                    70%
+                  </progress>
+                </label>
+                <p className={style.checkListItemProgressValue}>
+                  {efficiency}%
+                </p>
+              </div>
+              <p className={style.checkListItemProgressComment}>
+                Прогресс привития привычки
+              </p>
+            </div>
+            <div className={style.checkListButtons}>
+              <button
+                // disabled={habitChecked}
+                disabled={habitChecked && currentDay !== day}
+                // data-element="button"
+                // data-status="true"
+                className={
+                  currentDay !== day
+                    ? style.checkListButtonSubmitDisabledNoHover
+                    : checkedStatus
+                    ? style.checkListButtonSubmitDisabledActive
+                    : checkedStatus === false
+                    ? style.checkListButtonSubmitDisabled
+                    : style.checkListButtonSubmit
+                }
+                type="button"
+                // onClick={() => currentDay === day && this.onStatus(true, day)}
+                onClick={() => {
+                  this.setState({
+                    isCurrentDay: day,
+                    // dayEfficiency: this.props.habit.efficiency,
+                  });
+                  currentDay === day && this.onStatus(true);
+
+                  console.log('object', this.props.habit.efficiency);
+                  this.props.habit.efficiency === 100 &&
+                    console.log('hellocherpoberi');
+                  // this.openCongratulationModal();
+                }}
+              >
+                <ButtonOk data-element="svg" />
+              </button>
+
+              <button
+                // disabled={habitChecked && checkedStatus}
+                disabled={habitChecked && currentDay !== day}
+                // data-element="button"
+                // data-status="false"
+
+                className={
+                  currentDay !== day
+                    ? style.checkListButtonDeleteDisabledNoHover
+                    : checkedStatus === false
+                    ? style.checkListButtonDeleteDisabledActive
+                    : style.checkListButtonDelete
+                }
+                type="button"
+                onClick={() => {
+                  this.setState({ isCurrentDay: day });
+                  currentDay === day && this.onStatus(false);
+                }}
+              >
+                <ButtonDelete data-element="svg" />
+              </button>
+              <button
+                data-element="button_edit"
+                className={style.checkListButtonEdit}
+                type="button"
+                onClick={this.openModal}
+              >
+                <ButtonEdit />
+              </button>
+            </div>
+          </div>
+          {this.state.showFullInfo ? (
+            <ul className={style.progressDaysContentList}>
+              <li className={style.progressDaysContentItem}>
+                <p className={style.progressDaysTitle}>К-во выполненных дней</p>
+                <p className={style.fulfiledDays}>{daysDone}</p>
+              </li>
+              <li>
+                <p className={style.progressDaysTitle}>К-во пропущенных дней</p>
+                <p className={style.missedDays}>{daysPassed}</p>
+              </li>
+            </ul>
+          ) : (
+            ''
+          )}
+        </div>
+      </>
     );
   }
 }
 
-export default CheckListItem;
+const mapStateToProps = state => {
+  // console.log('state', state);
+  return {
+    currentHabits: state.habits.currentHabits,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addStatus: updateInfo => dispatch(addHabitStatus(updateInfo)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckListItem);

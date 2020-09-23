@@ -1,0 +1,114 @@
+@value styles: '../../css/vars.module.css';
+@value main_green, black_font, grey_font from styles;
+
+.modalInterview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  width: 785px;
+  padding: 60px;
+  font-family: Rubik;
+  background: #ffffff;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+}
+
+.sectionHeader {
+  /* margin-bottom: 40px; */
+  text-align: center;
+}
+
+.title {
+  color: black_font;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 31px;
+}
+
+.description {
+  color: grey_font;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.error {
+  color: red;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.label {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label:last-of-type {
+  margin-bottom: 80px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputFields {
+  display: flex;
+  flex-direction: column;
+  width: 567px;
+}
+
+.input {
+  width: 220px;
+  height: 44px;
+  padding: 20px;
+  color: black_font;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.input:focus {
+  border: 1px solid black_font;
+  outline: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+::placeholder {
+  font-size: 18px;
+  color: grey_font;
+}
+
+.button {
+  width: 220px;
+  height: 44px;
+  display: block;
+  margin: 0 auto;
+  background: main_green;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 250ms linear;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: main_green;
+  border: 2px solid main_green;
+  background: transparent;
+  outline: 0;
+}

@@ -1,17 +1,18 @@
-import customHabitConstans from "../constants/castomHabitConstans";
+// import customHabitConstans from "../constants/castomHabitConstans";
 
-const habitReducer = (state = [], action) => {
-  switch (action.type) {
-    case customHabitConstans.ADD_CUSTOM_HABIT:
-      return [...state, action.payload];
+// const habitReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case customHabitConstans.ADD_CUSTOM_HABIT:
+//       return [...state, action.payload];
     
-    case customHabitConstans.REMOVE_CUSTOM_HABIT:
-      return (state, action) => state.filter(habit => habit.id !== action.payload);
+//     case customHabitConstans.REMOVE_CUSTOM_HABIT:
+//       return state.filter(habit => habit.habitId !== action.payload);
 
 
-    default:
-      return state;
-  }
-};
 
-export default habitReducer;
+//     default:
+//       return state;
+//   }
+// };
+
+// export default habitReducer;

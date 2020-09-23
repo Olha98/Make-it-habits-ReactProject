@@ -1,6 +1,7 @@
 .leftSideBar_userInfo {
+  /* position: relative; */
   border-bottom: 1px solid #d5e1dc;
-  padding: 25px 65px 25px;
+  padding: 25px 17px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +14,6 @@
   height: 94px;
   /* margin-left: auto;
   margin-right: auto; */
-  background-color: rgb(139, 36, 36);
 }
 .leftSideBar_userInfo__avatar img {
   border-radius: 50%;
@@ -22,9 +22,22 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
 }
 .leftSideBar_userInfo__name {
+  /* position: absolute;
+  top: 122px;
+  left: 96px; */
+
   font-family: Rubik;
   font-weight: 500;
   font-size: 26px;
+  line-height: 31px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 7px;
+}
+.leftSideBar_userInfo__name_small_text {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 18px;
   line-height: 31px;
   text-align: center;
   text-transform: capitalize;
@@ -42,8 +55,24 @@
   border-radius: 5px;
   border: none;
   outline: none;
+  transition: all 0.2s linear;
 }
 .leftSideBar_userInfo__button:hover {
-  background: #cbf7e3;
-  color: #333333;
+  background: linear-gradient(222.27deg, #cbf7e3 3.75%, #7cf7a3 94.69%);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+  color: #4f4f4f;
+  outline: none;
 }
+.leftSideBar_userInfo__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #4f4f4f;
+}
+.leftSideBar_userInfo__link:hover {
+  text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+/* .leftSideBar_userInfo__link :hover .leftSideBar_userInfo__avatar {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+} */

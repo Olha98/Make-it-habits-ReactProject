@@ -1,58 +1,53 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import InputMask from "react-input-mask";
-
-import actionsProfile from "../../redux/actions/actionsProfile";
-import PasswordForm from "./PasswordForm";
-
-import style from "./Profile.module.css";
-// import {
-//   requiredField,
-//   maxLengthCreator,
-//   minLengthCreator,
-// } from "./utils/validators"; //! delete
-// import Input from "./utils/FormsControls";  //! delete
-// const minLengthCreator2 = minLengthCreator(2); //! delete
+import React, { Component } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import InputMask from 'react-input-mask';
+import { Formik, Form } from 'formik';
+import { validationSchema } from './utils/validationSchema';
+import ErrorValidation from './utils/ErrorValidation';
+import funcMessage from './utils/funcMessage';
+import PasswordForm from './PasswordForm';
+import { avatars } from '../Avatar/dataAvatar';
+import Card from '../Card/Card';
+import operationsProfile from '../../redux/operations/operationsProfile';
+import ModalInterview from '../ModalInterview/ModalInterview.js';
+import style from './Profile.module.css';
+import { compose } from 'redux';
+import CustomScrollbars from '../../assests/scroll/scroll';
 
 class Profile extends Component {
   state = {
     changePassword: false,
-
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    avatar: "",
+    isShowModal: this.props.isModalInterview === 0,
   };
-  componentDidMount() {
-    this.setState((prevState) => ({ ...prevState, ...this.props }));
-  }
+
   renderPasswordForm = () => {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       changePassword: !prevState.changePassword,
     }));
   };
 
-  // ------------------
+  // handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   this.setState({ [name]: value });
+  // };
 
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
-    console.log("e.target", e.target);
-    this.setState({ [name]: value });
-  };
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  // const { name, value } = e.target;
+  // this.setState({ [name]: value });
+  // const { firstName, lastName, phone, email, avatar } = this.state;
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // const { name, value } = e.target;
-    // this.setState({ [name]: value });
-    // const { firstname, lastname, phone, email, avatar } = this.state;
-    this.props.addDataUserOperation({ ...this.state });
-  };
-
+  // this.props.addDataUserOperation({ ...this.state });
+  //   console.log("this.props", this.props);
+  //   console.log("this.state", this.state);
+  // };
   render() {
     const { changePassword } = this.state;
-    const { firstname, lastname, phone, email, avatar } = this.state;
+
+    if (!this.props.email) {
+      return null;
+    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
 
     return (
       <>
@@ -60,138 +55,244 @@ class Profile extends Component {
           <div className={style.wrapperHeader}>
             <h2 className={style.title}>Личный кабинет</h2>
           </div>
+          <CustomScrollbars
+            style={{ height: `calc( 100vh - 110px)` }}
+            className={style.checkListPageScrollWrapper}
+          >
+            <div className={style.wrapperMain}>
+              <h3 className={style.titleInfo}>Личная информация</h3>
 
-          <div className={style.wrapperMain}>
-            <h3 className={style.titleInfo}>Личная информация</h3>
+              <div className={style.wrapperForm}>
+                <div className={style.wrapperFirstColumn}>
+                  <Formik
+                    initialValues={{
+                      firstName: this.props.firstName,
+                      lastName: this.props.lastName,
+                      phone: this.props.phone,
+                      email: this.props.email,
+                    }}
+                    validationSchema={validationSchema}
+                    onSubmit={
+                      values => {
+                      const number = values.phone
+                        .split('')
+                        .splice(2)
+                        .filter(symb => symb !== ' ')
+                        .join('');
 
-            <div className={style.wrapperForm}>
-              <div className={style.wrapperFirstColumn}>
-                <form onSubmit={this.handleSubmit} className={style.form}>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Имя</span>
-                    <input
-                      type="text"
-                      name="firstname"
-                      value={firstname}
-                      // validate={[requiredField, minLengthCreator2]}
-                      // component={input}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Фамилия</span>
-                    <input
-                      type="text"
-                      name="lastname"
-                      value={lastname}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>Телефон</span>
-                    {/* <input
-                      type="tel"
-                      name="phone"
-                      defaultValue={phone}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    /> */}
-                    <InputMask
-                      type="tel"
-                      name="phone"
-                      defaultValue={phone}
-                      // {...phone}
-                      mask="+3\8099 999 99 99"
-                      maskChar="_"
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                      placeholder="+380__ ___ __ __"
-                    />
-                  </label>
-                  <label className={style.label}>
-                    <span className={style.titleInput}>E-mail</span>
-                    <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      // defaultValue={email}
-                      onChange={this.handleInputChange}
-                      className={style.input}
-                    />
-                  </label>
-                  <button
-                    type="submit"
-                    onClick={this.handleSubmit}
-                    className={style.btnSaveChange}
+                      this.props.addDataUserOperation({
+                        ...values,
+                        phone: `80${number}`,
+                      });
+                      this.props.history.push('/checklist');
+                    }}
                   >
-                    Сохранить изменения
+                    {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleBlur,
+                    }) => (
+                      <Form className={style.form}>
+                        <label className={style.label}>
+                          <span className={style.titleInput}>Имя*</span>
+                          <input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            value={values.firstName}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={
+                              style.input +
+                              ' ' +
+                              (values.firstName.length !== 0 &&
+                                touched.firstName &&
+                                errors.firstName &&
+                                style.inputInvalid)
+                              // : style.inputValid
+                            }
+                          />
+                          {(
+                            <ErrorValidation
+                              touched={touched.firstName}
+                              message={errors.firstName}
+                            />
+                          ) && funcMessage(errors.firstName)}
+                        </label>
+                        <label className={style.label}>
+                          <span className={style.titleInput}>Фамилия</span>
+                          <input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            value={values.lastName}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={
+                              style.input +
+                              ' ' +
+                              (values.lastName.length !== 0 &&
+                                touched.lastName &&
+                                errors.lastName &&
+                                style.inputInvalid)
+                              // : style.inputValid
+                            }
+                          />
+                          {(
+                            <ErrorValidation
+                              touched={touched.lastName}
+                              message={errors.lastName}
+                            />
+                          ) && funcMessage(errors.lastName)}
+                        </label>
+                        <label className={style.label}>
+                          <span className={style.titleInput}>Телефон</span>
+
+                          <InputMask
+                            type="tel"
+                            name="phone"
+                            defaultValue={values.phone}
+                            id="phone"
+                            mask="+3\8099 999 99 99"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={
+                              style.input +
+                              ' ' +
+                              (values.phone
+                                .split('')
+                                .splice(4)
+                                .filter(symb => symb !== ' ' && symb !== '_')
+                                .join('').length > 0 &&
+                                touched.phone &&
+                                errors.phone &&
+                                style.inputInvalid)
+                            }
+                            placeholder="+380__ ___ __ __"
+                          />
+                          {values.phone
+                            .split('')
+                            .splice(4)
+                            .filter(symb => symb !== ' ' && symb !== '_')
+                            .join('').length > 0 &&
+                            touched.phone &&
+                            errors.phone &&
+                            funcMessage('номер телефона введён не полностью')}
+                        </label>
+                        <label className={style.label}>
+                          <span className={style.titleInput}>E-mail*</span>
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={values.email}
+                            onChange={() => {}}
+                            onBlur={handleBlur}
+                            className={
+                              style.input +
+                              ' ' +
+                              (values.email.length !== 0 &&
+                                touched.email &&
+                                errors.email &&
+                                style.inputInvalid)
+                              // : style.inputValid
+                            }
+                          />
+                          {(
+                            <ErrorValidation
+                              touched={touched.email}
+                              message={errors.email}
+                            />
+                          ) && funcMessage(errors.email)}
+                        </label>
+                        <button type="submit" className={style.btnSaveChange}>
+                          Сохранить изменения
+                        </button>
+                      </Form>
+                    )}
+                  </Formik>
+                  <button
+                    onClick={this.renderPasswordForm}
+                    className={style.buttonChangePassword}
+                  >
+                    Изменить пароль
                   </button>
-                </form>
-                <button
-                  onClick={this.renderPasswordForm}
-                  className={style.buttonChangePassword}
-                >
-                  Изменить пароль
-                </button>
-              </div>
-
-              <div className={style.wrapperSecondColumn}>
-                <NavLink
-                  exact
-                  className={style.avatarWrapper}
-                  to="/profile/avatar"
-                >
-                  <img
-                    src={avatar}
-                    alt="avatar"
-                    width="108"
-                    higth="108"
-                    className={style.avatar}
-                  />
-                </NavLink>
-                <NavLink
-                  exact
-                  className={style.editAvatar}
-                  to="/profile/avatar"
-                >
-                  Выбрать другой аватар
-                </NavLink>
-                <div className={style.subscription}>
-                  <span className={style.subscriptionName}>Basic</span>
                 </div>
-                <button
-                  type="submit"
-                  onSubmit={this.handleSubmit}
-                  className={style.button}
-                >
-                  Изменить подписку
-                </button>
-              </div>
-            </div>
 
-            {changePassword && <PasswordForm />}
-          </div>
+                <div className={style.wrapperSecondColumn}>
+                  <NavLink
+                    exact
+                    className={style.avatarWrapper}
+                    to="/profile/avatar"
+                  >
+                    <img
+                      src={
+                        !this.props.avatar
+                          ? avatars[16].image
+                          : avatars.find(item => item.id === this.props.avatar)
+                              ?.image
+                      }
+                      alt="avatar"
+                      width="108"
+                      height="108"
+                      className={style.avatar}
+                    />
+                  </NavLink>
+                  <NavLink
+                    exact
+                    className={style.editAvatar}
+                    to="/profile/avatar"
+                  >
+                    Выбрать другой аватар
+                  </NavLink>
+                  <div className={style.subscription}>
+                    <span className={style.subscriptionName}>Basic</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.props.history.push('/subscriptions');
+                    }}
+                    className={style.button}
+                  >
+                    Изменить подписку
+                  </button>
+                </div>
+              </div>
+
+              {changePassword && (
+                <PasswordForm renderPasswordForm={this.renderPasswordForm} />
+              )}
+              <Card />
+            </div>
+            {/* ------------------------------ */}
+            {/* {this.props.isModalInterview === 0 && (
+              <ModalInterview close={() => null} />
+            )} */}
+            {/* ------------------------------ */}
+          </CustomScrollbars>
         </div>
       </>
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    firstname: state.user.firstname,
-    lastname: state.user.lastname,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
+    isModalInterview: state.quizInfo.smokeYears,
   };
 };
 
 const mapDispatchToProps = {
-  addDataUserOperation: actionsProfile.addDataUserSuccess,
-
-  // addDataUserOperation: operationsProfile.addDataUserSuccess,
-  // getDataUserOperation: operationsProfile.getDataUserSuccess,
+  addDataUserOperation: operationsProfile.addDataUserOperation,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(Profile);

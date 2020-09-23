@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import DatePicker, { registerLocale } from "react-datepicker";
-import ru from "date-fns/locale/ru";
-registerLocale("ru", ru);
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentHabits } from '../../redux/actions/habitsActions';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import ru from 'date-fns/locale/ru';
+import moment from 'moment';
+import useCalendar from './useCalendar';
+registerLocale('ru', ru);
 
 const birthdayStyle = `
   .react-datepicker__month-container {
@@ -9,7 +13,7 @@ const birthdayStyle = `
 	 display: flex;
 	 flex-direction: column;
 	 width: 374px;
-	 height: 392px;
+	 height: 400px;
    border-radius: 0px;
    border:none;
    border-bottom: 1px solid #d5e1dc;
@@ -60,7 +64,7 @@ const birthdayStyle = `
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  height: 25px;
+  height: 30px;
   margin-top: 18px;
   margin-bottom: 25px;
 
@@ -141,39 +145,69 @@ const birthdayStyle = `
 	font-size: 14px;
 	line-height: 17px;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
+
   }
 
   .react-datepicker__navigation--next{
-	  margin-top: 20px;
+    margin-top: 20px;
   }
+
+ 
 
   .react-datepicker__navigation--next::after{
    contant:"";
    position: absolute;
    transform: rotate(-135deg);
    width: 30px;
-    height: 30px;
-    color: red;
- 
-
+   height: 30px;
+  color: red;
   }
+
+
 
   `;
 
 const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const dispatch = useDispatch();
 
+  const allHabits = useSelector(state => state.habits.allHabits);
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [currentHabits, setCurrentHabits] = useState([]);
+
+  useEffect(() => {
+    dispatch(getCurrentHabits(currentHabits));
+  }, [dispatch, currentHabits]);
+
+  const choseActualWeekDay = moment(startDate)
+    .locale('en')
+    .format('dddd')
+    .slice(0, 3);
+  //weekday Mon
+
+  const calendarActualDay = moment(startDate).format('L');
+
+  const { currentHabitsT } = useCalendar({
+    allHabits,
+    calendarActualDay,
+    choseActualWeekDay,
+  });
+
+  useEffect(() => {
+    setCurrentHabits(currentHabitsT);
+  }, [currentHabitsT]);
 
   return (
     <>
       <style>{birthdayStyle}</style>
       <DatePicker
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={date => setStartDate(date)}
         locale="ru"
         inline
-        // filterDate={isWeekday}
+        minDate={new Date()}
+        showDisabledMonthNavigation
       />
     </>
   );

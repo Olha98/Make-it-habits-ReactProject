@@ -1,36 +1,53 @@
-import React, { Component } from "react";
-import styles from "./Login.module.css";
-import { connect } from "react-redux";
-import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
-import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
-import authOperation from "../../redux/operations/authOperation";
+import React, { Component } from 'react';
+import styles from './Login.module.css';
+import { connect } from 'react-redux';
+import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabitblack.svg';
+import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
+import authOperation from '../../redux/operations/authOperation';
+import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
+import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
 
 class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    email: 'kostya123@gmail.com',
+    password: 'Qwerty123',
+    passwordVisible: false,
+    // isShovModal: false,
   };
 
-  handleEmail = (e) => {
+  // toggleModal = () => {
+  //   this.setState(prevState => {
+  //     return { isShovModal: !prevState.isShovModal };
+  //   });
+  // };
+
+  onEyeIconOldPassword = name => {
+    this.setState({ [name]: !this.state[name] });
+  };
+
+  handleEmail = e => {
     this.setState({ email: e.target.value });
   };
 
-  handlePassword = (e) => {
+  handlePassword = e => {
     this.setState({ password: e.target.value });
   };
 
-  hendleSubmit = (e) => {
+  hendleSubmit = e => {
     e.preventDefault();
-    console.log(this.state, "this");
+    // console.log(this.state, "this");
     const { email, password } = this.state;
     let OneUser = { email, password };
-    console.log(OneUser, "login");
+    // console.log(OneUser, "login");
     this.props.onLogin(OneUser);
-    this.setState({ email: "", password: "" });
+    this.setState({ email: '', password: '' });
+    // this.toggleModal();
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, passwordVisible } = this.state;
+    // const {isOpen}=this.state;
+    const { btnClose } = this.props;
 
     return (
       <div className={styles.Login}>
@@ -52,7 +69,7 @@ class Login extends Component {
             <input
               className={styles.LoginInput}
               value={email}
-              onChange={(e) => this.handleEmail(e)}
+              onChange={e => this.handleEmail(e)}
               type="email"
               placeholder="Введите свой E-mail"
               name="email"
@@ -60,14 +77,23 @@ class Login extends Component {
           </div>
           <div className={styles.LoginInputForm}>
             <p className={styles.LoginInputTxt}>Пароль</p>
-            <input
-              className={styles.LoginInput}
-              value={password}
-              onChange={(e) => this.handlePassword(e)}
-              type="password"
-              placeholder="Введите пароль"
-              name="password"
-            />
+            <label className={styles.LoginPassword}>
+              <div
+                onClick={() => this.onEyeIconOldPassword('passwordVisible')}
+                className={styles.LoginPasswordBtn}
+              >
+                {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
+              </div>
+
+              <input
+                className={styles.LoginInput}
+                value={password}
+                onChange={e => this.handlePassword(e)}
+                type={!passwordVisible ? 'password' : 'text'}
+                placeholder="Введите пароль"
+                name="password"
+              />
+            </label>
           </div>
           <div className={styles.LoginButtonBlock}>
             <button className={styles.LoginButton}>
@@ -76,14 +102,17 @@ class Login extends Component {
           </div>
         </form>
         <div className={styles.LoginButtonBlock}>
-          <button className={styles.LoginButton}>
+          <button className={styles.LoginButton} onClick={btnClose}>
             <p className={styles.LoginButtonTxt}>Регистрация</p>
           </button>
         </div>
+        {/* {this.state.isShovModal && <ModalInterview close={this.toggleModal} />} */}
       </div>
     );
   }
 }
-const mapDispachToProps = { onLogin: authOperation.userLogin };
+const mapDispachToProps = {
+  onLogin: authOperation.userLogin,
+};
 
 export default connect(null, mapDispachToProps)(Login);

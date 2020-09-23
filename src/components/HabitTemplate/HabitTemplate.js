@@ -1,71 +1,89 @@
-import React from "react";
-import style from "./HabitTemplate.module.css";
+import React, { useState } from 'react';
+import style from './HabitTemplate.module.css';
+import CustomScrollbars from '../../assests/scroll/scroll';
+// import Modal from '../ModalBackDrop/ModalBackDrop';
+import CastomHabit from '../CustomHabit/CastomHabit';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import HabitChoice from '../HabitChoice/HabitChoice';
+import closeBtn from '../../assests/images/closeBlack.png';
 
-// import { Scrollbars } from "react-custom-scrollbars";
-import CustomScrollbars from "../../assests/scroll/scroll";
+const templateHabits = [
+  'Начинать утро с 10-15 минутной зарядки',
+  'Планировать свой день.',
+  'Вставать на 30 мин раньшьше обычного .',
+  'Читать минимум 30 мин в день',
+  'Замена выкуриной сигареты половинкой киви.',
+  '5 минутная зарядка для глаз (обед).',
+  'Принять контрасный душ.',
+  '5 минут отдыха после 25 концентрации.',
+  'Выходить на 15 минут раньше от времени',
+  'Раз в неделлю проводить медитацию.',
+  'Попробывать что то новое .',
+  'Начинать робочий день с подготовки стола',
+];
 
-// class App extends Component {
-//   render() {
-//     return (
-// <Scrollbars style={{ width: 500, height: 300 }}>
-//   <p>Some great content...</p>
-// </Scrollbars>
-//     );
-//   }
-// }
+const HabitTemplate = ({ close }) => {
+  const [isShowCustomModal, setIsShowCustomModal] = useState(false);
+  const [isShowHabitChoice, setIsShowHabitChoice] = useState(false);
 
-const HabitTemplate = () => {
+  const showHabitChoice = () => {
+    setIsShowHabitChoice(true);
+  };
+
+  // const closeHabitChoice = () => {
+  //   setIsShowHabitChoice(false);
+  // };
+
+  const [habit, setHabit] = useState('');
+  const changeCurrentHabit = habit => {
+    setHabit(habit);
+  };
+  const chooseHabit = habit => {
+    showModal();
+    changeCurrentHabit(habit);
+  };
+  const showModal = () => {
+    setIsShowCustomModal(true);
+  };
+  const closeModal = () => {
+    setIsShowCustomModal(false);
+  };
   return (
-    <div className={style.habbitTemplateWrapper}>
-      <h2 className={style.habitTemplateTitle}>Шаблонные привычки</h2>
-      <CustomScrollbars style={{ width: 440, height: 300 }}>
-        <ul className={style.habitTemplateList}>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Распланировать свой день
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Встать на 30 мин раньше обычного
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Заменить сигарету половинкой киви
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Начать утро с 10-15 минутной зарядки
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Читать минимум 30 мин
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Делать 20 отжиманий день
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Бегать 4 км по утрам
-            </a>
-          </li>
-          <li className={style.habitTemplateItem}>
-            <a className={style.habitTemplateItemLink} href="home">
-              Медитировать 15 минут в день
-            </a>
-          </li>
-        </ul>
-      </CustomScrollbars>
-
-      <button className={style.btnTransparentWhiteBorder}>Назад</button>
-    </div>
+    <>
+      <div className={style.habbitTemplateWrapper}>
+        <h2 className={style.habitTemplateTitle}>Шаблонные привычки</h2>
+        <CustomScrollbars style={{ width: 440, height: 300 }}>
+          <ul className={style.habitTemplateList}>
+            {templateHabits.map(habit => (
+              <li
+                key={habit}
+                className={style.habitTemplateItem}
+                data-value={habit}
+              >
+                <button
+                  onClick={() => chooseHabit(habit)}
+                  className={style.habitTemplateItemLink}
+                >
+                  {habit}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </CustomScrollbars>
+        {isShowCustomModal && <CastomHabit chosenHabit={habit} close={close} />}
+        {isShowHabitChoice && <HabitChoice close={close} />}
+        <button
+          onClick={showHabitChoice}
+          className={style.btnTransparentWhiteBorder}
+        >
+          Назад
+        </button>
+        <div onClick={() => close()} className={style.closeBtnWrapper}>
+          <img width="16" height="16" alt="closeBtn" src={closeBtn} />
+        </div>
+      </div>
+    </>
   );
 };
 
-export default HabitTemplate;
+export default modalBackDrop(HabitTemplate);

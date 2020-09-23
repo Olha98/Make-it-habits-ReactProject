@@ -1,28 +1,21 @@
-import axios from "axios";
-import checkListActions from "../actions/checkListActions";
+import axios from 'axios';
+import checkListActions from '../actions/checkListActions';
+// import { actionsGetUserData } from '../actions/dataUser';
+import { getHabits } from '../actions/habitsActions';
+// import { getUserData } from '../actions/userActions';
 
-// axios.defaults.baseURL = "https://make-it-habit-api.herokuapp.com";
-
-const getHabitsOperation = () => (dispatch) => {
-  console.log("hellooo from operation");
-  dispatch(checkListActions.getHabitsRequest());
+const addHabitStatus = updateInfo => dispatch => {
+  dispatch(checkListActions.addHabitStatusRequest());
   axios
-    .get("https://make-it-habit-api.herokuapp.com/habits")
-    .then((responce) => {
-      console.log(responce, "responce");
-      dispatch(checkListActions.getHabitsSuccess(responce.data.habits));
+    .patch('/habits', updateInfo)
+    .then(res => {
+      // console.log('resCHECKoper', res);
+      axios
+        .get('/habits')
+        .then(res => dispatch(getHabits([...res.data.habits])));
+      //   // dispatch(checkListActions.addHabitStatusSuccess(res.data.habits));
     })
-    .catch((error) => console.log(error));
+    .catch(error => console.log(error));
 };
 
-// const getHabitsOperation = () = (dispatch) => {
-//     dispatch(actions.getHabitsRequest())
-//     axios.get("/habits")
-//         .then(res => {
-//             console.log('res', res)
-//             dispatch(actions.getHabitsSuccess([...res]))
-//             .catch(error=>console.log('ERROR', error))
-//         })
-// }
-
-export default { getHabitsOperation };
+export default addHabitStatus;

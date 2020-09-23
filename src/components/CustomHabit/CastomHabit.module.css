@@ -39,18 +39,24 @@
 } */
 
 .castomHabitLableWrapper {
-    display: flex;
-    flex-direction: column; 
-    width: 647px;
-height: 276px;
-margin: 0 auto;
-
+  display: flex;
+  flex-direction: column;
+  width: 647px;
+  height: 276px;
+  margin: 0 auto;
 }
 
-.castomHabitLabel{
-    margin-bottom: 20px;
+.castomHabitLabel {
+  position: relative;
+  margin-bottom: 20px;
 }
-
+.errorMassege{
+  position: absolute;
+  font-size: 9px;
+  color: red;
+  top: 46px;
+  left: 230px;
+}
 .castomHabitName {
   width: 425px;
   height: 44px;
@@ -58,7 +64,8 @@ margin: 0 auto;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 145px;
+  margin-left: 135px;
+  padding: 10px 20px;
 }
 
 .castomHabitDate {
@@ -68,7 +75,8 @@ margin: 0 auto;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 126px;
+  margin-left: 116px;
+  padding: 10px 20px;
 }
 
 .castomHabitTime {
@@ -78,7 +86,8 @@ margin: 0 auto;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 168px;
+  margin-left: 160px;
+  padding: 10px 20px;
 }
 
 .castomHabitSelect {
@@ -88,41 +97,57 @@ margin: 0 auto;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 125px;
+  margin-left: 114px;
+  padding: 10px 20px;
 }
 
 .castomHabitDelete {
-  font-family: Rubik;
-  font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 17px;
-  width: 200px;
-  height: 20px;
+  cursor: pointer;
+
+  /* line-height: 17px; */
+  /* width: 200px;
+  height: 20px; */
   border: none;
   background: #ffffff;
   display: block;
   margin: 0 auto;
   margin-bottom: 40px;
-  /* background-image: url(../../assets/images/CastomHabit/bin.svg); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
+}
+
+.imgTrashCan{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+}
+
+.btnWrapper {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+    width: 160px;
+    margin: 0 auto;
+    cursor: pointer;
+
 }
 
 .castomHabitBtnWrapper {
   display: flex;
   justify-content: center;
+
 }
 
-
-.castomHabitCancelBtn{
-    width: 220px;
-    height: 44px;
-    background: #ffffff;
-    border: 2px solid #43d190;
-    border-radius: 5px;
-    color: #43d190;
-    display: block;
-    margin-right: 15px;
+.castomHabitCancelBtn {
+  width: 220px;
+  height: 44px;
+  background: #ffffff;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #43d190;
+  display: block;
+  margin-right: 15px;
 }
 
 .castomHabitCancelBtn:hover,
@@ -133,14 +158,13 @@ margin: 0 auto;
 }
 
 .castomHabitSaveBtn {
-    width: 220px;
-    height: 44px;
-    background: #43d190;
-    border: 2px solid #43d190;
-    border-radius: 5px;
-    color: #ffffff;
-    display: block;
-    margin-bottom: 118px;
+  width: 220px;
+  height: 44px;
+  background: #43d190;
+  border: 2px solid #43d190;
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
 }
 
 .castomHabitSaveBtn:hover,
@@ -149,3 +173,9 @@ margin: 0 auto;
     background-color: #ffffff;
     outline: 0;
   }
+
+  /* .castomHabitDelete {
+        width: 220px;
+    height: 44px;
+    border: 2px solid #43d190;
+  } */

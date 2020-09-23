@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import Home from "../components/Home/Home";
-import Login from "../components/Login/Login";
-import Regictration from "../components/Registration/Registration";
-
+import React, { Component } from 'react';
+import Home from '../components/Home/Home';
+import Login from '../components/Login/Login';
+import Regictration from '../components/Registration/Registration';
+import { CSSTransition } from 'react-transition-group';
+import transitionHome from './transitionHome.module.css';
+import transitionLogin from './transitionLogin.module.css';
 class HomePage extends Component {
   state = {
     openLogin: false,
@@ -10,14 +12,23 @@ class HomePage extends Component {
   };
 
   loginFunk = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return { openLogin: !prevState.openLogin };
     });
   };
 
   registrationFunk = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return { openRegistration: !prevState.openRegistration };
+    });
+  };
+
+  btnClose = () => {
+    this.setState(prevState => {
+      return {
+        openLogin: !prevState.openLogin,
+        openRegistration: !prevState.openRegistration,
+      };
     });
   };
 
@@ -25,9 +36,25 @@ class HomePage extends Component {
     const { openLogin, openRegistration } = this.state;
     return (
       <>
-        {openLogin && <Login />}
+        <CSSTransition
+          in={openLogin}
+          timeout={1000}
+          classNames={transitionLogin}
+          unmountOnExit
+        >
+          <Login btnClose={this.btnClose} isOpen={openLogin} />
+        </CSSTransition>
+
         <Home onLogin={this.loginFunk} onRegistration={this.registrationFunk} />
-        {openRegistration && <Regictration />}
+
+        <CSSTransition
+          in={openRegistration}
+          timeout={1000}
+          classNames={transitionHome}
+          unmountOnExit
+        >
+          <Regictration btnClose={this.btnClose} />
+        </CSSTransition>
       </>
     );
   }

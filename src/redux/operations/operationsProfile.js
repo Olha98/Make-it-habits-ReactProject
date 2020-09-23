@@ -1,50 +1,42 @@
-import axios from "axios";
-import actionsUser from "../actions/actionsProfile";
-import actionsLoader from "../actions/spinnerActions";
+import axios from 'axios';
+import actionsProfile from '../actions/actionsProfile';
+import actionsUser from '../actions/actionsProfile';
+import actionsLoader from '../actions/spinnerActions';
+// import { token } from './authOperation';
+import { getUserData } from '../actions/userActions';
 
-axios.defaults.headers.common.Authorization =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNWYzOTk2YzEyMDY3MDAxN2Q5NDA1OSIsImlhdCI6MTYwMDA4MjEwNSwiZXhwIjoxNjAwNjg2OTA1fQ.ZJ6D6WOT-ym-ZjcodwuDzzkAkr21qv-MwQVGLef5fcs";
+const addDataUserOperation = user => async dispatch => {
+  // const tokenNow = getState().auth.access_token;
+  // token.set(tokenNow);
+  // console.log('11111 user', user);
 
-const addDataUserOperation = (user) => (dispatch) => {
   dispatch(actionsLoader.loaderOn());
   try {
-    const result = axios.post(
-      "https://make-it-habit-api.herokuapp.com/habits",
-      user
-    );
+    const { data } = await axios.patch('/users', user);
     dispatch(
-      actionsUser.addDataUserSuccess({
-        ...user,
-        id: result.user.id,
-      })
+      getUserData({
+        ...data,
+      }),
     );
   } catch (error) {
-    console.log("error-add", error);
     dispatch(actionsUser.addDataUserError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
   }
 };
 
-const getDataUserOperation = (user) => (dispatch) => {
+const postPasswordOperation = password => async dispatch => {
+  // const tokenNow = getState().auth.access_token;
+  // token.set(tokenNow);
   dispatch(actionsLoader.loaderOn());
   try {
-    const result = axios.post(
-      "https://make-it-habit-api.herokuapp.com/habits",
-      user
-    );
-    dispatch(
-      actionsUser.addDataUserSuccess({
-        ...user,
-        id: result.user.id,
-      })
-    );
+    await axios.post('/auth/updatePassword', password);
+    dispatch(actionsUser.postPasswordSuccess({ ...password }));
   } catch (error) {
-    console.log("error-add", error);
-    dispatch(actionsUser.getDataUserError(error));
+    dispatch(actionsProfile.postPasswordError(error));
   } finally {
     dispatch(actionsLoader.loaderOff());
   }
 };
 
-export default { addDataUserOperation, getDataUserOperation };
+export default { addDataUserOperation, postPasswordOperation };

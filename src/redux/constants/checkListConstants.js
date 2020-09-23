@@ -6,6 +6,7 @@ const ADD_HABIT_STATUS_REQUEST = "@checklist/addHabitStatusRequest";
 const ADD_HABIT_STATUS_SUCCESS = "@checklist/addHabitStatusSuccess";
 const ADD_HABIT_STATUS_ERROR = "@checklist/addHabitStatusError";
 
+
 export default {
   GET_HABITS_REQUEST,
   GET_HABITS_SUCCESS,
