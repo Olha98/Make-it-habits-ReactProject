@@ -47,9 +47,16 @@
 }
 
 .castomHabitLabel {
+  position: relative;
   margin-bottom: 20px;
 }
-
+.errorMassege{
+  position: absolute;
+  font-size: 9px;
+  color: red;
+  top: 46px;
+  left: 230px;
+}
 .castomHabitName {
   width: 425px;
   height: 44px;
@@ -57,7 +64,7 @@
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 145px;
+  margin-left: 135px;
   padding: 10px 20px;
 }
 
@@ -68,7 +75,7 @@
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 126px;
+  margin-left: 116px;
   padding: 10px 20px;
 }
 
@@ -79,7 +86,7 @@
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 168px;
+  margin-left: 160px;
   padding: 10px 20px;
 }
 
@@ -90,7 +97,7 @@
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-left: 125px;
+  margin-left: 114px;
   padding: 10px 20px;
 }
 
