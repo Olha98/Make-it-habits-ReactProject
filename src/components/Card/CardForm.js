@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import InputMask from 'react-input-mask';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
 import { errorSelector, spinnerSelector } from '../../redux/selectors';
-import { subscrActions } from '../../redux/actions';
+import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
-import InputMask from 'react-input-mask';
 
 class CardForm extends Component {
   state = {
@@ -21,18 +21,13 @@ class CardForm extends Component {
   };
 
   handleKeyDown = e => {
-    const { timeExpiration } = this.state;
-    console.log('timeExpiration', timeExpiration);
     const digit = e.key;
-    if (!/^\d+$/.test(Number(digit))) {
+    if (!/^\d+$/.test(digit)) {
       return;
     }
 
     const { name, value } = e.target;
     const input = e.target;
-
-    // let val = value.replace(/_/g, '');
-    // val = val.replace(/ \/ /g, '');
     let val;
     if (isNaN(parseInt(value, 10))) {
       val = '';
@@ -40,46 +35,51 @@ class CardForm extends Component {
       val = value[0];
     } else {
       val = value;
-      console.log('val = value');
     }
-
     val += digit;
-    console.log('val', val);
     let newVal;
-    if (/^\d$/.test(Number(val)) && val !== '0' && val !== '1') {
+    if (/^\d$/.test(val) && val !== '0' && val !== '1') {
       e.preventDefault();
       newVal = `0${val} / `;
-      input.setRangeText(newVal, 0, 5, 'end');
-      // input.setSelectionRange(5, 5);
-    } else if (/^\d\d$/.test(Number(val))) {
-      console.log('two digits');
+      this.setState({ [name]: newVal }, () => {
+        setTimeout(function () {
+          input.setSelectionRange(5, 5);
+        }, 150);
+      });
+    } else if (/^\d\d$/.test(val)) {
       e.preventDefault();
       const m1 = parseInt(val[0], 10);
       const m2 = parseInt(val[1], 10);
       if (m2 > 2 && m1 !== 0) {
         newVal = `0${m1} / ${m2}`;
-        input.setRangeText(newVal, 0, 6, 'end');
+        this.setState({ [name]: newVal }, () => {
+          setTimeout(function () {
+            input.setSelectionRange(6, 6);
+          }, 150);
+        });
+        // input.setRangeText(newVal, 0, 6, 'end');
       } else {
-        input.setSelectionRange(5, 5);
         newVal = `${val} / `;
-        input.setRangeText(newVal, 0, 5, 'end');
+        this.setState({ [name]: newVal }, () => {
+          setTimeout(() => {
+            input.setSelectionRange(5, 5);
+          }, 150);
+        });
       }
     }
   };
 
   handleSubmit = async e => {
     e.preventDefault();
-    let { number, timeExpiration, message } = this.state;
+    let { number, timeExpiration } = this.state;
     let cardNumber = number.replace(/ /g, '');
     cardNumber = parseInt(cardNumber);
     const strNumber = cardNumber.toString();
     let [month, year] = timeExpiration.split('/');
-    // console.log('month, year as strings:', month, year);
     if (month) month = month.replace(/_/g, '');
     if (year) year = year.replace(/_/g, '');
     month = parseInt(month);
     year = parseInt(year);
-    // console.log('month, year, strNumber', month, year, strNumber);
     if (strNumber.length < 16) {
       this.setState({
         message: 'Введите все 16 цифр номера карты, пожалуйста',
@@ -96,9 +96,8 @@ class CardForm extends Component {
       this.setState({
         message: '',
       });
-      const time = new Date(`${month}-1-${year}`);
-      // console.log('time', time);
-      await this.props.addCard({ number, timeExpiration: time });
+      // const time = new Date(`${month}-1-20${year}`);
+      await this.props.addCard({ number, timeExpiration });
       if (this.props.error) {
         return;
       }
@@ -107,7 +106,7 @@ class CardForm extends Component {
   };
 
   render() {
-    // console.log('RENDER');
+    console.log('RENDER');
     const { number, timeExpiration, message } = this.state;
     const { isLoading, error } = this.props;
 
@@ -147,7 +146,7 @@ class CardForm extends Component {
                 mask="99 / 99"
                 placeholder="ММ / ГГ"
                 onChange={this.handleChange}
-                // onKeyDown={this.handleKeyDown}
+                onKeyDown={this.handleKeyDown}
               />
             </label>
           </div>
@@ -170,7 +169,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addCard: subscrActions.addCardSuccess, // если добавят поле на бэке, то взять метод из Operations
+  addCard: cardsOperations.addCard,
 };
 
 export default modalBackDrop(

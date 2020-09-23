@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Spinner from '../../Spinner/Spinner';
 import modalBackDrop from '../../ModalBackDrop/ModalBackDrop';
 import {
@@ -8,7 +8,7 @@ import {
   subscrSelectors,
 } from '../../../redux/selectors';
 import { subscrOperations } from '../../../redux/operations';
-// import { subscrActions } from '../../../redux/actions';
+import { errorActions } from '../../../redux/actions';
 import style from './Subscriptions.module.css';
 
 const delay = ms =>
@@ -21,14 +21,21 @@ const delay = ms =>
 
 const types = ['Noob', 'Basic', 'Standart', 'Premium', 'Ultra'];
 
-const ChoiceType = ({ changeType, isLoading, closeModal, error }) => {
-  const onChoiceType = async e => {
+const ChoiceType = props => {
+  const { changeType, isLoading, error } = props;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => dispatch(errorActions.hideError());
+  }, []);
+
+  const onSelectType = async e => {
     const type = e.target.dataset.type;
     changeType({ typeSubscription: type }).then(response => {
       if (response.status >= 400) {
         return;
       }
-      closeModal();
+      props.closeModal();
     });
   };
 
@@ -44,7 +51,7 @@ const ChoiceType = ({ changeType, isLoading, closeModal, error }) => {
         {types.map(type => (
           <li key={type} className={style.choiceTypeItem} data-value={type}>
             <button
-              onClick={onChoiceType}
+              onClick={onSelectType}
               className={style['subscriptionsItemTitle' + type]}
               data-type={type}
             >
@@ -70,6 +77,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeType: type => dispatch(subscrOperations.changeType(type)),
+  hideError: () => dispatch(errorActions.hideError),
 });
 
 export default connect(

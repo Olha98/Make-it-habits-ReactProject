@@ -1,13 +1,6 @@
 @value styles: '../css/vars.module.css';
 @value main_green from styles;
 
-:global(.wrap404) {
-  background: main_green;
-  color: #fff;
-  max-height: 700px;
-  overflow: hidden;
-}
-
 .section404 {
   position: absolute;
   z-index: 100;
@@ -86,19 +79,19 @@
   width: 60%;
 }
 
-hr {
+._hr {
   padding: 0;
   border: none;
   border-top: 5px solid #fff;
   color: #fff;
   text-align: center;
-  margin: 0px auto;
+  margin: 0px auto 15px;
   width: 420px;
   height: 10px;
   z-index: -10;
 }
 
-hr:after {
+._hr:after {
   content: '\2022';
   display: inline-block;
   position: relative;
