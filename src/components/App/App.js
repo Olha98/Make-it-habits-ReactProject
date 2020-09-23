@@ -33,6 +33,7 @@ const App = ({ getGlobalState, token }) => {
               ),
             )}
             <Route component={NotFound} />
+
           </Switch>
           {token && <RightSideBar />}
         </div>
