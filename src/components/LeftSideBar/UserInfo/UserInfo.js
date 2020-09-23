@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { avatars } from '../../Avatar/dataAvatar';
 import { connect } from 'react-redux';
 //import leftSideBarOperations from "../../../redux/operations/leftSideBarOperations";
-import ava from '../../../assests/images/LeftSideBar/avatar.png';
+//import ava from '../../../assests/images/LeftSideBar/avatar.png';
 import style from '../UserInfo/UserInfo.module.css';
 //import authOperations from "../../../redux/operations/authOperation";
 import Axios from 'axios';
 // { render } from "@testing-library/react";
 import authAction from '../../../redux/actions/authAction';
 import { NavLink } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import AdditionalText from '../AdditionalText/AdditionalText';
+//import { CSSTransition } from 'react-transition-group';
 
 Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
@@ -55,7 +56,7 @@ class UserInfo extends Component {
                   : style.leftSideBar_userInfo__name
               }
             >
-              {name ? `${name} ${surname}` : 'User'}
+              {name ? `${name} ${surname}` : <AdditionalText />}
             </p>
           </NavLink>
           <button
