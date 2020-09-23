@@ -92,17 +92,16 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
-          console.log(arrayHabitsMonWedFri, 'arrayHabitsMonWedFri');
-          console.log(
-            arrayHabitsMonWedFri.length - 1,
-            'arrayHabitsMonWedFri.length',
-          );
-          console.log(startPlanningTimeinML);
+          // console.log(arrayHabitsMonWedFri, 'arrayHabitsMonWedFri');
 
-          if (
-            arrayHabitsMonWedFri.length - 1 <
-            moment(startPlanningTimeinML).format('L')
-          ) {
+          const maxData = new Date(
+            arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
+          );
+          
+          console.log(maxData);
+          console.log(calendarActualDay);
+
+          if (maxData >= new Date(calendarActualDay)) {
             return;
           }
 
@@ -121,7 +120,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
-              console.log(arrayHabitsMonWedFri, 'arrayHabitsMonWedFri');
+
               currentHabitsTT.push({
                 ...habit,
                 day: calendarActualDay,
