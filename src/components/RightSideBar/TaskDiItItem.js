@@ -36,11 +36,12 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
           }
          
         }
-        setVisible(false);
-        return elem;
+      
       });
     }
-  }, [visible, setVisible, currentHabit]);
+  }, [visible, setVisible, currentHabit, removeHabit]);
+
+  console.log(currentHabit)
 
 
 
