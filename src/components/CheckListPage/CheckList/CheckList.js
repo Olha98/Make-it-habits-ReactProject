@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { spinnerSelector } from '../../../redux/selectors';
+import { CSSTransition } from 'react-transition-group';
+
 import Spinner from '../../Spinner/Spinner';
 import style from './CheckList.module.css';
 import CheckListItem from './CheckListItem/CheckListItem';
@@ -12,9 +14,11 @@ class CheckList extends Component {
         <div className={style.checkListWrapper}>
           {this.props.isLoading && <Spinner />}
           {this.props.habits
-            ? this.props.habits.map((habit, index) => (
+            ? this.props.habits.reverse().map((habit, index) => (
                 // habit.efficiency !== 100 &&
-                <CheckListItem key={habit._id} habit={habit} index={index} />
+                <CSSTransition in={true} timeout={200} classNames="my-node">
+                  <CheckListItem key={habit._id} habit={habit} index={index} />
+                </CSSTransition>
               ))
             : 'No habits added'}
         </div>

@@ -27,8 +27,9 @@ class CheckListItem extends Component {
     daysProgress: [],
     daysDone: '',
     daysPassed: '',
-    habitChecked: false,
+    // habitChecked: false,
     checkedStatus: '',
+    isFailed: false,
     habitId: '',
     isCurrentDay: '',
     dayEfficiency: 0,
@@ -122,6 +123,7 @@ class CheckListItem extends Component {
     } else {
       this.setState({
         checkedStatus: false,
+        // habitChecked: true,
       });
     }
 
@@ -199,6 +201,8 @@ class CheckListItem extends Component {
             fromCheckList={this.state.fromCheckList}
           />
         )}
+
+        {checkedStatus === false && console.log('fail')}
 
         <div
           data-element="habit"
