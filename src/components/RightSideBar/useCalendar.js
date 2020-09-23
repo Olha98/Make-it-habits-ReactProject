@@ -7,10 +7,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
 
     for (let habit of allHabits) {
       const startPlanningTime = habit.planningTime;
-      let startPlanningTimeinML = new Date(startPlanningTime).getTime(); // 1498555006770
-      // let startPlanningTimeinCalendar = moment(startPlanningTimeinML).format(
-      //   'L',
-      // );
+      let startPlanningTimeinML = new Date(startPlanningTime).getTime();
 
       switch (habit.iteration) {
         case 'onceInTwoDays':
@@ -51,8 +48,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                 day: calendarActualDay,
                 arrayDate: [...arrayHabitsEveryDay],
               });
-              // console.log(arrayHabitsEveryDay, 'arrayHabitsEveryDay!!!!!!!!!');
-              // setCurrentHabits(prevState => [...prevState, habit]);
             }
           }
           break;
@@ -88,8 +83,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             }
           }
 
-          // console.log(arrayHabitsTueThuSat, 'arrayHabitsTueThuSat');
-
           break;
 
         case 'MonWedFri':
@@ -99,8 +92,21 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
+          console.log(arrayHabitsMonWedFri, 'arrayHabitsMonWedFri');
+          console.log(
+            arrayHabitsMonWedFri.length - 1,
+            'arrayHabitsMonWedFri.length',
+          );
+          console.log(startPlanningTimeinML);
+
+          if (
+            arrayHabitsMonWedFri.length - 1 <
+            moment(startPlanningTimeinML).format('L')
+          ) {
+            return;
+          }
+
           for (let iteration of iterationMonWedFri) {
-            // console.log(iteration, "iteration!!!!!!!!!!!!!!!!!!!!!");
             if (iteration.includes(choseActualWeekDay)) {
               for (let i = 0; i < 21; i++) {
                 if (i % 3 === 2) {
@@ -115,7 +121,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
-
+              console.log(arrayHabitsMonWedFri, 'arrayHabitsMonWedFri');
               currentHabitsTT.push({
                 ...habit,
                 day: calendarActualDay,
@@ -134,7 +140,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
     return currentHabitsTT;
   }, [allHabits, calendarActualDay, choseActualWeekDay]);
 
-  // console.log('currentHabitsT', currentHabitsT);
+  console.log('currentHabitsT', currentHabitsT);
 
   return { currentHabitsT };
 };
