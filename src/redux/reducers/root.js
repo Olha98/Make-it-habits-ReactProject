@@ -6,7 +6,6 @@ import achievementReducer from './achievementReducer';
 import authReducer from './authReducer';
 import quizReducer from './quizInfoReducer';
 import errorReducer from './errorReducer';
-import subscribeReducer from './subscribeReducer';
 import userReducer from './userReducer';
 import habitsReducer from './habitsReducer';
 import cigarettesReducer from './cigarettesReduser';
@@ -26,7 +25,6 @@ const root = combineReducers({
   cigarettes: cigarettesReducer,
   quizInfo: quizReducer,
   error: errorReducer,
-  typeSubscription: subscribeReducer.typeSubscription,
 });
 
 export default root;
