@@ -27,10 +27,6 @@ class Profile extends Component {
     }));
   };
 
-  changePath = () => {
-    //
-  };
-
   // handleInputChange = (e) => {
   //   const { name, value } = e.target;
   //   this.setState({ [name]: value });
@@ -79,7 +75,7 @@ class Profile extends Component {
                     onSubmit={values => {
                       const number = values.phone
                         .split('')
-                        .splice(4)
+                        .splice(2)
                         .filter(symb => symb !== ' ')
                         .join('');
                       this.props.addDataUserOperation({
@@ -150,7 +146,7 @@ class Profile extends Component {
                           ) && funcMessage(errors.lastName)}
                         </label>
                         <label className={style.label}>
-                          <span className={style.titleInput}>Телефон*</span>
+                          <span className={style.titleInput}>Телефон</span>
 
                           <InputMask
                             type="tel"
