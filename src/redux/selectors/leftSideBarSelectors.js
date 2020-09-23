@@ -15,7 +15,7 @@ const getCigarettePackPrice = state => {
 //   state.cigarettes.data[state.cigarettes.data.length - 1];
 const getCurrentAmountOfCigarettes = state => {
   const cig = state.cigarettes.data.filter(el => el !== null);
-  console.log('object', cig[cig.length - 1]);
+
   return cig[cig.length - 1];
   //console.log('cig', cig[cig.length - 1]);
 };

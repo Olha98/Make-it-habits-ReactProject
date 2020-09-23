@@ -49,7 +49,20 @@ class UserInfo extends Component {
                 alt="avatar"
               />
             </div>
-            <p
+            {name ? (
+              <p
+                className={
+                  name.length + surname.length >= 23
+                    ? style.leftSideBar_userInfo__name_small_text
+                    : style.leftSideBar_userInfo__name
+                }
+              >
+                {name} {surname}
+              </p>
+            ) : (
+              <AdditionalText />
+            )}
+            {/* <p
               className={
                 name.length + surname.length >= 23
                   ? style.leftSideBar_userInfo__name_small_text
@@ -57,7 +70,7 @@ class UserInfo extends Component {
               }
             >
               {name ? `${name} ${surname}` : <AdditionalText />}
-            </p>
+            </p> */}
           </NavLink>
           <button
             type="button"

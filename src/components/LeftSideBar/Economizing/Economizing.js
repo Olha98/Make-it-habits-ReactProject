@@ -5,12 +5,12 @@ import { ReactComponent as Hourglass } from '../../../assests/images/LeftSideBar
 import { connect } from 'react-redux';
 import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 class Economizing extends Component {
-  state = {
-    money: 0,
-    time: 0,
-  };
+  // state = {
+  //   money: 0,
+  //   time: 0,
+  // };
   render() {
-    const { money, time } = this.props;
+    const { time } = this.props;
     let hours = Math.floor(time / 60);
     let minutes = time - hours * 60;
 

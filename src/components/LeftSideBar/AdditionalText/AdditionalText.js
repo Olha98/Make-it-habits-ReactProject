@@ -1,9 +1,10 @@
 import React from 'react';
+import style from '../AdditionalText/AdditionalText.module.css';
 
 export default function AdditionalText() {
   return (
     <>
-      <p style={{ color: '#b4b7bec5' }}>Имя Фамилия</p>
+      <p className={style.additionalText}>Имя Фамилия</p>
     </>
   );
 }
