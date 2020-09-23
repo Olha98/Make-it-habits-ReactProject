@@ -15,6 +15,7 @@ class CastomHabit extends Component {
     date: '',
     iteration: '',
     time: '',
+    isSubmit: false,
   };
 
   componentDidMount() {
@@ -22,10 +23,10 @@ class CastomHabit extends Component {
       this.setState({ name: this.props.chosenHabit });
     }
     if (this.props.fromCheckList) {
-      this.setState({ name: this.props.habit.name })
+      this.setState({ name: this.props.habit.name });
     }
     if (this.props.habitNameFromCong) {
-      this.setState({ name: this.props.habitNameFromCong })
+      this.setState({ name: this.props.habitNameFromCong });
     }
     if (this.props.habitNameFromCong) {
       this.setState({ name: this.props.habitNameFromCong });
@@ -43,15 +44,17 @@ class CastomHabit extends Component {
     if (e.target.dataset.save && this.props.fromCheckList) {
       this.props.requestPatchCustomHabit({ name, id });
       this.props.closeModal();
-    } else if (e.target.dataset.save) {
-      this.props.requestAddCustomHabit({ name, planningTime, iteration });
-      this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
-    }
+    } else if (e.target.dataset.save && name, date, time, iteration) {
+      this.props.requestAddCustomHabit({ name, planningTime, iteration });
+      this.props.closeModal();
+    } else if (e.target.dataset.save && !name, !date, !time, !iteration) {
+      this.setState({ isSubmit: true })
+    } 
   };
 
   handleChenge = e => {
@@ -93,7 +96,7 @@ class CastomHabit extends Component {
         <form onSubmit={this.handleSubmit} className={style.castomHabitForm}>
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
-              Название
+              Название*
               <input
                 type="text"
                 className={style.castomHabitName}
@@ -101,9 +104,14 @@ class CastomHabit extends Component {
                 value={this.state.name}
                 onChange={this.handleChenge}
               />
+              {!this.state.name && this.state.isSubmit && (
+                <span className={style.errorMassege}>
+                  обязательное поле для заполнения
+                </span>
+              )}
             </label>
             <label className={style.castomHabitLabel}>
-              Дата старта
+              Дата старта*
               <input
                 type="date"
                 className={style.castomHabitDate}
@@ -112,9 +120,14 @@ class CastomHabit extends Component {
                 min={planningDateToday}
                 onChange={this.handleChenge}
               />
+              {!this.state.date && this.state.isSubmit && (
+                <span className={style.errorMassege}>
+                  обязательное поле для заполнения
+                </span>
+              )}
             </label>
             <label className={style.castomHabitLabel}>
-              Время
+              Время*
               <input
                 type="time"
                 className={style.castomHabitTime}
@@ -122,9 +135,14 @@ class CastomHabit extends Component {
                 value={this.props.fromCheckList && planningHours}
                 onChange={this.handleChenge}
               />
+              {!this.state.time && this.state.isSubmit && (
+                <span className={style.errorMassege}>
+                  обязательное поле для заполнения
+                </span>
+              )}
             </label>
             <label className={style.castomHabitLabel}>
-              Повторение
+              Повторение*
               <select
                 className={style.castomHabitSelect}
                 name="iteration"
@@ -137,25 +155,31 @@ class CastomHabit extends Component {
                 <option value="MonWedFri">ПН, СР, ПТ</option>
                 <option value="TueThuSat">ВТ, ЧТ, СБ</option>
               </select>
+              {!this.state.iteration && this.state.isSubmit && (
+                <span className={style.errorMassege}>
+                  обязательное поле для заполнения
+                </span>
+              )}
             </label>
           </div>
-          {this.props.fromCheckList &&
+          {this.props.fromCheckList && (
             <div className={style.btnWrapper}>
-            <img
-              src={imgBak}
-              alt="task"
-              width="15px"
-              height="15px"
-              className={style.imgTrashCan}
-            />
-          <button
-            onClick={this.onClickSubmit}
-            data-delete="delete"
-            className={style.castomHabitDelete}
-          >
-              удалить привычку
-          </button>
-          </div>}
+              <img
+                src={imgBak}
+                alt="task"
+                width="15px"
+                height="15px"
+                className={style.imgTrashCan}
+              />
+              <button
+                onClick={this.onClickSubmit}
+                data-delete="delete"
+                className={style.castomHabitDelete}
+              >
+                удалить привычку
+              </button>
+            </div>
+          )}
           <div className={style.castomHabitBtnWrapper}>
             <button
               type="submit"
