@@ -11,7 +11,6 @@ import CheckListItem from './CheckListItem/CheckListItem';
 class CheckList extends Component {
   state = {
     isNew: false,
-    reverseHabits: [],
   };
 
   componentDidMount() {
