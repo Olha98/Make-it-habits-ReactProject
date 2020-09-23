@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import style from './ModalBackDrop.module.css';
+import { CSSTransition } from 'react-transition-group';
+import modalTransition from './modalTransition.module.css';
 
 const modalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends Component {
-    // state = {
-    //   isOpen: false,
-    // };
+    state = {
+      isOpen: false,
+    };
     componentDidMount() {
-      // this.setState({ isOpen: true });
+      this.setState({ isOpen: true });
       window.addEventListener('keydown', this.closeModalKeydown);
       document.addEventListener('click', this.closeModalOverlay);
       document.body.style.overflow = 'hidden';
@@ -25,7 +27,6 @@ const modalBackDrop = WrappedComponent => {
     };
 
     closeModalKeydown = e => {
-      // console.log(11111111);
       if (e.code === 'Escape') {
         this.closeModal();
       }
@@ -39,11 +40,16 @@ const modalBackDrop = WrappedComponent => {
 
     render() {
       return (
-        // this.state.isOpen && (
         <div data-type="modal" className={style.overlay}>
-          <WrappedComponent {...this.props} closeModal={this.closeModal} />
+          <CSSTransition
+            in={this.state.isOpen}
+            timeout={300}
+            classNames={modalTransition}
+            unmountOnExit
+          >
+            <WrappedComponent {...this.props} closeModal={this.closeModal} />
+          </CSSTransition>
         </div>
-        // )
       );
     }
   };
