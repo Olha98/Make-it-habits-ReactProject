@@ -13,15 +13,15 @@ class InnerNavigation extends Component {
   //   number: 0,
   // };
   // componentDidMount() {
-  //   //const dateInLocalStorage = localStorage.getItem('Date');
-  //   // const differInTime = Date.now() - dateInLocalStorage;
-  //   // if (differInTime < 86400000) {
-  //   //   // console.log('differInTime', differInTime);
-  //   //   this.setState({
-  //   //     isShowNotify: false,
-  //   //     // number: 0,
-  //   //   });
-  //   // } else {
+  //const dateInLocalStorage = localStorage.getItem('Date');
+  // const differInTime = Date.now() - dateInLocalStorage;
+  // if (differInTime < 86400000) {
+  // console.log('differInTime', differInTime);
+  //   this.setState({
+  //     isShowNotify: false,
+  // number: 0,
+  //   });
+  // } else {
   //   this.setState({
   //     isShowNotify: true,
   //     number: this.props.number,

@@ -49,6 +49,7 @@ class Habits extends Component {
               </ul>
             )}
           </CustomScrollbars>
+
           <button
             type="button"
             onClick={this.openModal}
@@ -56,6 +57,7 @@ class Habits extends Component {
           >
             Добавить привычку +
           </button>
+
           {this.state.isShowModal && <HabitChoice close={this.openModal} />}
         </div>
       </>
