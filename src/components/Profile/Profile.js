@@ -72,16 +72,24 @@ class Profile extends Component {
                   }}
                   validationSchema={validationSchema}
                   onSubmit={values => {
-                    const number = values.phone
+                    const numb = values.phone
                       .split('')
-                      .splice(2)
-                      .filter(symb => symb !== ' ')
+                      .filter(symb => symb !== ' ');
+
+                    const number = numb
+                      .splice(numb[0] === '+' && numb[1] === '3' && 2)
                       .join('');
                     this.props.addDataUserOperation({
                       ...values,
-                      phone: `80${number}`,
+                      phone:
+                        number[0] === 8 &&
+                        number[1] === 0 &&
+                        number[2] === 8 &&
+                        number[3] === 0
+                          ? number.slice(2)
+                          : number,
                     });
-                    this.props.history.push('/checklist');
+                    // this.props.history.push('/checklist');
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
