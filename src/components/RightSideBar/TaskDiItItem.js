@@ -36,10 +36,9 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
           }
          
         }
-        return null;
+        setVisible(false);
+        return elem;
       });
-
-   
     }
   }, [visible, setVisible, currentHabit]);
 
@@ -50,7 +49,6 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
       removeHabit(e.target.dataset._id);
     }
   };
-
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './CheckListItem.module.css';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import addHabitStatus from '../../../../redux/operations/chekListOperation';
+import HabitFailed from '../../../habitFailed/HabitFailed';
 
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
@@ -29,6 +30,7 @@ class CheckListItem extends Component {
     daysPassed: '',
     habitChecked: false,
     checkedStatus: '',
+    isFailed: false,
     habitId: '',
     isCurrentDay: '',
     dayEfficiency: 0,
@@ -106,6 +108,12 @@ class CheckListItem extends Component {
     });
   };
 
+  closeFailModal = () => {
+    this.setState({
+      isFailed: false,
+    });
+  };
+
   //=========================== OnClick ==========================//
 
   onStatus = bool => {
@@ -122,6 +130,7 @@ class CheckListItem extends Component {
     } else {
       this.setState({
         checkedStatus: false,
+        isFailed: true,
       });
     }
 
@@ -172,6 +181,7 @@ class CheckListItem extends Component {
       daysPassed,
       habitChecked,
       checkedStatus,
+      isFailed,
     } = this.state;
     // const color = this.getRandomColor();
 
@@ -195,6 +205,14 @@ class CheckListItem extends Component {
         {isCongratulationsModal && (
           <Congratulations
             close={this.closeCongratulationModal}
+            habitName={this.props.habit.name}
+            fromCheckList={this.state.fromCheckList}
+          />
+        )}
+
+        {isFailed && (
+          <HabitFailed
+            close={this.closeFailModal}
             habitName={this.props.habit.name}
             fromCheckList={this.state.fromCheckList}
           />

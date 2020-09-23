@@ -8,6 +8,7 @@ import { getUserData } from '../actions/userActions';
 const addDataUserOperation = user => async dispatch => {
   // const tokenNow = getState().auth.access_token;
   // token.set(tokenNow);
+  // console.log('11111 user', user);
 
   dispatch(actionsLoader.loaderOn());
   try {

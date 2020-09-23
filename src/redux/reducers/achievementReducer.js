@@ -103,6 +103,12 @@ const initialState = [
     status: false,
     text: 'Сохранил 5 часов',
   },
+
+  {
+    name: 'tenHourSave',
+    status: false,
+    text: 'Сохранил 10 часов',
+  },
 ];
 
 const getAchievements = (state, payload) => {
@@ -351,6 +357,23 @@ const getAchievements = (state, payload) => {
   ) {
     newState = newState.map(achievement =>
       achievement.name === 'fiveHourSave'
+        ? { ...achievement, status: true }
+        : achievement,
+    );
+  }
+
+  if (
+    payload.smokedCigarettes.data
+      .filter(element => element !== null)
+      .reduce((acc, cigarette) => {
+        acc += Number(payload.quizInfoPerDay) - cigarette;
+        return acc;
+      }, 0) *
+      (payload.quizInfoPerTime / 60) >=
+    5
+  ) {
+    newState = newState.map(achievement =>
+      achievement.name === 'tenHourSave'
         ? { ...achievement, status: true }
         : achievement,
     );

@@ -17,21 +17,23 @@ const Achievements = ({ achievements }) => {
   return (
     <>
       <AchievementsHeader />
-      <ul className={style.achievementsPageList}>
-        {achievements.map(achievement => (
-          <li
-            key={achievement.name}
-            className={
-              achievement.status
-                ? style.activeClass
-                : style.achievementsPageItem
-            }
-          >
-            {/* {console.log(achievement.status)} */}
-            <p className={style.achievementsPageText}>{achievement.text}</p>
-          </li>
-        ))}
-      </ul>
+      <div className={style.achievementsContainer}>
+        <ul className={style.achievementsPageList}>
+          {achievements.map(achievement => (
+            <li
+              key={achievement.name}
+              className={
+                achievement.status
+                  ? style.activeClass
+                  : style.achievementsPageItem
+              }
+            >
+              {/* {console.log(achievement.status)} */}
+              <p className={style.achievementsPageText}>{achievement.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
