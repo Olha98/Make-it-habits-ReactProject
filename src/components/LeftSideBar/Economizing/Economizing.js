@@ -5,6 +5,10 @@ import { ReactComponent as Hourglass } from '../../../assests/images/LeftSideBar
 import { connect } from 'react-redux';
 import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 class Economizing extends Component {
+  state = {
+    money: 0,
+    time: 0,
+  };
   render() {
     const { money, time } = this.props;
     let hours = Math.floor(time / 60);
@@ -21,13 +25,13 @@ class Economizing extends Component {
 
               <p
                 className={
-                  money >= 0
+                  this.props.money >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }
               >
                 <Wallet className={style.svg} />
-                {money} &#8372;
+                {this.props.money} &#8372;
               </p>
             </li>
             <li className={style.leftSideBar_economizing__list_item}>
@@ -36,7 +40,7 @@ class Economizing extends Component {
               </p>
               <p
                 className={
-                  time >= 0
+                  this.props.time >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }
@@ -70,12 +74,17 @@ const mapStateToProps = state => {
   //const array1 = [];
   const numberOfCigarettsInPack = 20;
   const priceForOneCigarettes = packPrice / numberOfCigarettsInPack;
+  let savedMoney, savedTime;
+  if (!userSelectors.getCurrentAmountOfCigarettes(state)) {
+    savedMoney = 0;
+    savedTime = 0;
+  } else {
+    savedMoney =
+      (cigarettesPerDay - currentAmountOfCigarettes) * priceForOneCigarettes;
 
-  const savedMoney =
-    (cigarettesPerDay - currentAmountOfCigarettes) * priceForOneCigarettes;
-
-  const savedTime =
-    (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
+    savedTime =
+      (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
+  }
 
   // const totalTime = array1.push(savedTime);
   // console.log('totalTime', totalTime);
