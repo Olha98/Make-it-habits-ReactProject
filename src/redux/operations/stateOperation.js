@@ -5,7 +5,6 @@ import { quizInfoActions, spinnerActions } from '../actions';
 import actionsState from '../actions/stateActions';
 import { getUserData } from '../actions/userActions';
 import achievementAction from '../actions/achievementAction';
-
 import { authSelector } from '../selectors';
 import { token } from './authOperation';
 

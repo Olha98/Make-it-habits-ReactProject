@@ -25,12 +25,8 @@ const ChoiceType = props => {
   const { changeType, isLoading, error } = props;
   const dispatch = useDispatch();
 
-  function handleClose() {
-    dispatch({ type: 'HIDE_ERROR' });
-  }
-
   useEffect(() => {
-    return () => handleClose();
+    return () => dispatch(errorActions.hideError());
   }, []);
 
   const onSelectType = async e => {

@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { cardsActions, spinnerActions } from '../actions';
 import { getUserData } from '../actions/userActions';
+import { authSelector } from '../selectors';
 import { token } from './authOperation';
 
 const addCard = card => async (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
+  const tokenNow = authSelector.isAuthenticated(getState());
   token.set(tokenNow);
 
   dispatch(spinnerActions.loaderOn());

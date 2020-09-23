@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { subscrActions, spinnerActions } from '../actions';
+import { authSelector } from '../selectors';
 import { token } from './authOperation';
 
 const changeType = typeSubscription => async (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
+  const tokenNow = authSelector.isAuthenticated(getState());
   token.set(tokenNow);
   let data;
   dispatch(spinnerActions.loaderOn());
