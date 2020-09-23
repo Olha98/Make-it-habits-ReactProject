@@ -1,16 +1,16 @@
-const ADD_REQUEST = '@quizInfo/addRequest';
-const ADD_SUCCESS = '@quizInfo/addSuccess';
-const ADD_ERROR = '@quizInfo/addError';
+const ADD_INFO_REQUEST = '@quizInfo/addRequest';
+const ADD_INFO_SUCCESS = '@quizInfo/addSuccess';
+const ADD_INFO_ERROR = '@quizInfo/addError';
 
-const GET_REQUEST = '@quizInfo/getRequest';
-const GET_SUCCESS = '@quizInfo/getSuccess';
-const GET_ERROR = '@quizInfo/getError';
+const GET_INFO_REQUEST = '@quizInfo/getRequest';
+const GET_INFO_SUCCESS = '@quizInfo/getSuccess';
+const GET_INFO_ERROR = '@quizInfo/getError';
 
 export default {
-  ADD_REQUEST,
-  ADD_SUCCESS,
-  ADD_ERROR,
-  GET_REQUEST,
-  GET_SUCCESS,
-  GET_ERROR,
+  ADD_INFO_REQUEST,
+  ADD_INFO_SUCCESS,
+  ADD_INFO_ERROR,
+  GET_INFO_REQUEST,
+  GET_INFO_SUCCESS,
+  GET_INFO_ERROR,
 };

@@ -25,7 +25,6 @@ const root = combineReducers({
   quizInfo: quizReducer,
   error: errorReducer,
   typeSubscription: subscribeReducer.typeSubscription,
-  cards: subscribeReducer.addCard,
 });
 
 export default root;

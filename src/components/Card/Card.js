@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
 import {
-  subscrSelectors,
+  cardsSelectors,
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
+import { subscrOperations } from '../../redux/operations';
 import style from './Card.module.css';
-import { connect } from 'react-redux';
 
 const Card = ({ cards }) => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -65,7 +66,7 @@ const Card = ({ cards }) => {
 };
 
 const mapStateToProps = state => ({
-  cards: subscrSelectors.getCards(state),
+  cards: cardsSelectors.getCards(state),
   isLoading: spinnerSelector.isLoading(state),
   error: errorSelector.getError(state),
 });

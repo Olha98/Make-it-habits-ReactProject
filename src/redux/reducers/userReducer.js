@@ -9,6 +9,7 @@ const initialState = {
   phone: '',
   cards: [],
   payments: [],
+  subscription: '',
 };
 
 export default (state = { ...initialState }, action) => {
@@ -21,9 +22,12 @@ export default (state = { ...initialState }, action) => {
         registerData,
         avatar,
         phone,
-        cards = [],
-        payments = [],
+        subscription,
       } = action.payload;
+
+      const cards = action.payload.payments; // временно перепутаны поля на бэкенде
+      // поле платежей на бэкенде ещё не добавлено
+      // const payments = action.payload.cards;
       return {
         ...state,
         firstName,
@@ -33,7 +37,8 @@ export default (state = { ...initialState }, action) => {
         avatar,
         phone,
         cards,
-        payments,
+        // payments,
+        subscription,
       };
 
     default:
