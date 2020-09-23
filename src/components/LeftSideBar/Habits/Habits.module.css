@@ -17,8 +17,26 @@
   color: #4f4f4f;
   align-self: flex-start;
 }
+.leftSideBar_habits_title_qoute {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 20px;
+  width: 270px;
+  /* margin-left: 65px; */
+  color: #4f4f4f;
+  align-self: center;
+}
 .leftSideBar_habits__list {
   margin-bottom: 20px;
+}
+/* ======================== */
+.containerTwo {
+  text-align: center;
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .leftSideBar_habits__button {
@@ -28,11 +46,24 @@
   line-height: 40px;
   text-decoration: none;
   background: #43d190;
+  /* background: linear-gradient(45deg, #25e1b2, #40e495, #30dd8a, #156e43); */
   border-radius: 5px;
   color: white;
   border: none;
   margin-top: 20px;
+  background-size: 300% 100%;
+  background-image: linear-gradient(
+    to right,
+    #25e1c2,
+    #40e495,
+    #30dd8a,
+    #2bb673
+  );
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+  /* background-position: 100% 0; */
+  transition: all 0.4s ease-in-out;
 }
+
 .leftSideBar_habits__button:hover {
   background: #cbf7e3;
   color: #4f4f4f;
