@@ -29,7 +29,7 @@ class Habits extends Component {
             <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
           ) : (
             <>
-              <blockquote className={style.leftSideBar_habits_title}>
+              <blockquote className={style.leftSideBar_habits_title_qoute}>
                 ―Побороть дурные привычки легче сегодня, чем завтра.
               </blockquote>
               <p>~ Конфуций</p>

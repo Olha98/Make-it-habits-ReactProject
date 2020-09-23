@@ -17,6 +17,16 @@
   color: #4f4f4f;
   align-self: flex-start;
 }
+.leftSideBar_habits_title_qoute {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 20px;
+  width: 270px;
+  /* margin-left: 65px; */
+  color: #4f4f4f;
+  align-self: center;
+}
 .leftSideBar_habits__list {
   margin-bottom: 20px;
 }

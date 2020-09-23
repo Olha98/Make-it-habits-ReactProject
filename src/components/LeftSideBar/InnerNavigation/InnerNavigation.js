@@ -46,7 +46,7 @@ class InnerNavigation extends Component {
   // }
   render() {
     return (
-      <div>
+      <nav>
         <div className={style.leftSideBar_innerNavigation}>
           <ul className={style.leftSideBar_innerNavigation__list}>
             <li className={style.leftSideBar_innerNavigation__list_item}>
@@ -116,7 +116,7 @@ class InnerNavigation extends Component {
             </li>
           </ul>
         </div>
-      </div>
+      </nav>
     );
   }
 }

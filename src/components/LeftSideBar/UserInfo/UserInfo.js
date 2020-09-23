@@ -9,9 +9,24 @@ import Axios from 'axios';
 // { render } from "@testing-library/react";
 import authAction from '../../../redux/actions/authAction';
 import { NavLink } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 Axios.defaults.baseURL = 'https://make-it-habit-api.herokuapp.com';
 class UserInfo extends Component {
+  state = {
+    isRotate: false,
+  };
+  componentDidMount(prevProps) {
+    this.setState({
+      isRotate: true,
+    });
+    // this.props.avatar && this.props.avatar !== prevProps && this.change();
+  }
+  // change = () => {
+  //   this.setState({
+  //     isRotate: true,
+  //   });
+  // };
   render() {
     const { name, surname, logout } = this.props;
     return (
