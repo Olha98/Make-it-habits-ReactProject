@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { spinnerSelector } from '../../../redux/selectors';
 import { CSSTransition } from 'react-transition-group';
+import styles from './CheckListTransition.module.css';
 
 import Spinner from '../../Spinner/Spinner';
 import style from './CheckList.module.css';
@@ -16,7 +17,13 @@ class CheckList extends Component {
           {this.props.habits
             ? this.props.habits.reverse().map((habit, index) => (
                 // habit.efficiency !== 100 &&
-                <CSSTransition in={true} timeout={200} classNames="my-node">
+                <CSSTransition
+                  key={habit._id}
+                  in={true}
+                  timeout={500}
+                  classNames={styles}
+                  unmountOnExit
+                >
                   <CheckListItem key={habit._id} habit={habit} index={index} />
                 </CSSTransition>
               ))

@@ -15,14 +15,6 @@
   transition: all 0.2s linear;
 }
 
-.my-node-enter {
-  opacity: 0;
-}
-.my-node-enter-active {
-  opacity: 1;
-  transition: opacity 200ms;
-}
-
 .checkListItem:hover {
   transform: scale(1.02);
   box-shadow: 0px 8px 16px rgba(106, 155, 163, 0.3);
