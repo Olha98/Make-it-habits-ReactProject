@@ -43,7 +43,7 @@ const modalBackDrop = WrappedComponent => {
         <div data-type="modal" className={style.overlay}>
           <CSSTransition
             in={this.state.isOpen}
-            timeout={300}
+            timeout={250}
             classNames={modalTransition}
             unmountOnExit
           >

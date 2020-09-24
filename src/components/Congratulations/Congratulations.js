@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import style from './Congratulations.module.css';
 import congratsPhoto from '../../assests/images/congratulations//Ресурс 1 1.png';
-import Modal from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
@@ -10,9 +9,9 @@ const Congratulations = ({ fromCheckList, habitName, close }) => {
   const showModal = () => {
     setIsShowModal(true);
   };
-  const closeModal = () => {
-    setIsShowModal(false);
-  };
+  // const closeModal = () => {
+  //   setIsShowModal(false);
+  // };
   return (
     <>
       <div id="home" className={style.congratulationWrapper}>

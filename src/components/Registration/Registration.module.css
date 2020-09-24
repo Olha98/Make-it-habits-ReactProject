@@ -71,6 +71,7 @@
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+  outline: none;
 }
 
 .RegistrationInputForm {
@@ -134,4 +135,21 @@
 .RegistrationButtonBlock {
   display: flex;
   justify-content: center;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 46px;
+  left: 130px;
+  font-size: 9px;
+  font-weight: 400;
+  color: #fe6083;
+}
+
+.RegistrationInput:valid {
+  border: 2px solid #43d190;
+}
+
+.RegistrationInput:invalid {
+  border: 2px solid #fe6083;
 }

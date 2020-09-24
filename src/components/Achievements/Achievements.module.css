@@ -1,13 +1,14 @@
 .achievementsContainer {
   display: flex;
   width: 842px;
-  height: 810px;
+  height: 100vh;
   padding: 40px;
   background-color: #f6f6f6;
 }
 .achievementsPageList {
   display: flex;
   flex-wrap: wrap;
+  height: 750px;
   justify-content: flex-start;
   align-content: space-between;
 }
