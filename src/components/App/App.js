@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
@@ -12,10 +12,9 @@ import '../../index.module.css';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import RightSideBar from '../RightSideBar/RightSideBar';
 import style from '../CustomRoutes/PrivateRoute.module.css';
-import ModalInterview from '../ModalInterview/ModalInterview';
 
 const App = ({ getGlobalState, token }) => {
-  const [isTestOpen, changeStateIsOpen] = useState(false);
+  
   useEffect(() => {
     getGlobalState();
   }, [token, getGlobalState]);
@@ -38,20 +37,6 @@ const App = ({ getGlobalState, token }) => {
           {token && <RightSideBar />}
         </div>
       </Suspense>
-
-      <button
-        onClick={() => changeStateIsOpen(prev => !prev)}
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '200px',
-          height: '50px',
-          fontSize: '18px',
-        }}
-      >
-        Show Modal
-      </button>
-      {isTestOpen && <ModalInterview close={changeStateIsOpen} />}
     </>
   );
 };
