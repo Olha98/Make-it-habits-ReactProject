@@ -83,7 +83,7 @@ class Login extends Component {
                 placeholder="Введите пароль"
                 name="password"
                 required
-                minlength="6"
+                minLength="6"
               />
             </label>
           </div>

@@ -82,7 +82,7 @@ class Registration extends Component {
                 placeholder="Придумайте пароль"
                 name="password"
                 required
-                minlength="6"
+                minLength="6"
               />
             </label>
           </div>
