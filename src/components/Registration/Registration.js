@@ -88,7 +88,9 @@ class Registration extends Component {
           </div>
           <div className={styles.RegistrationButtonBlock}>
             <button className={styles.RegistrationButton}>
-              <p className={styles.RegistrationButtonTxt}>Регистрация</p>
+              <p className={styles.RegistrationButtonTxt} onClick={btnClose}>
+                Регистрация
+              </p>
             </button>
           </div>
         </form>
