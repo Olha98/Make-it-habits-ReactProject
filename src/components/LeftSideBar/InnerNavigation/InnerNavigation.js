@@ -96,21 +96,22 @@ class InnerNavigation extends Component {
                 </div>
               </NavLink>
               {this.state.isShowNotify &&
-                this.state.number &&
-                this.state.number !== 0 && (
-                  <div
-                    className={
-                      style.leftSideBar_innerNavigation__list_item_link_notify
-                    }
-                  >
+              this.state.number &&
+              this.state.number !== 0 ? (
+                <div
+                  className={
+                    style.leftSideBar_innerNavigation__list_item_link_notify
+                  }
+                >
+                  {this.state.number > 0 ? (
                     <span>{this.state.number}</span>
-                    {/* ) : ( 
-                  <span></span>
-
-                   } */}
-                  </div>
-                )}
-              ) }
+                  ) : (
+                    ''
+                  )}
+                </div>
+              ) : (
+                ''
+              )}
             </li>
           </ul>
         </div>
