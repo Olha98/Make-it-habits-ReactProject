@@ -1,34 +1,37 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
 import {
-  subscrSelectors,
+  cardsSelectors,
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
+import { subscrOperations } from '../../redux/operations';
 import style from './Card.module.css';
-import { connect } from 'react-redux';
 
 const Card = ({ cards }) => {
   const [isShowModal, setIsShowModal] = useState(false);
-  let number, month, year;
-  if (cards.length) {
-    number = cards[0].number;
-    const timeExpiration = new Date(cards[0].timeExpiration);
-    month = timeExpiration.getMonth();
-    year = timeExpiration.getFullYear();
+  // let number, month, year;
+  if (!cards.length) {
+    cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
   }
+  const { number, timeExpiration } = cards[0];
+  // number = cards[0].number;
+  // const timeExpiration = new Date(cards[0].timeExpiration);
+  // month = timeExpiration.getMonth();
+  // year = timeExpiration.getFullYear();
+
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
       <div className={style.card}>
         <p className={style.cardName}>Моя карта</p>
-        <p className={style.cardNumber}>
-          {cards.length ? number : 'xxxx xxxx xxxx xxxx'}
-        </p>
+        <p className={style.cardNumber}>{number}</p>
         <p className={style.cardExpireDate}>
-          Истекает {cards.length ? `${month} / ${year}` : ''}
+          Истекает {timeExpiration}
+          {/* Истекает {cards.length ? `${month} / ${year}` : ''} */}
         </p>
         <button className={style.cardDeleteButton}>
           <Trash className={style.trashIcon} />
@@ -65,7 +68,7 @@ const Card = ({ cards }) => {
 };
 
 const mapStateToProps = state => ({
-  cards: subscrSelectors.getCards(state),
+  cards: cardsSelectors.getCards(state),
   isLoading: spinnerSelector.isLoading(state),
   error: errorSelector.getError(state),
 });

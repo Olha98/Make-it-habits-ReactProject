@@ -28,17 +28,21 @@ class Habits extends Component {
           {this.props.habits.length > 0 ? (
             <h3 className={style.leftSideBar_habits_title}>Привычки</h3>
           ) : (
-            <>
-              <blockquote className={style.leftSideBar_habits_title}>
-                ―Побороть дурные привычки легче сегодня, чем завтра.
-              </blockquote>
-              <p>~ Конфуций</p>
-            </>
+            <div
+              className={style.leftSideBar_habits_title_qoute_wrapper_position}
+            >
+              <div className={style.leftSideBar_habits_title_qoute_wrapper}>
+                <blockquote className={style.leftSideBar_habits_title_qoute}>
+                  ―Побороть дурные привычки легче сегодня, чем завтра.
+                </blockquote>
+                <p>~ Конфуций</p>
+              </div>
+            </div>
           )}
           <CustomScrollbars
             style={{
               width: 270,
-              height: 186,
+              height: 202,
             }}
           >
             {habits && (
@@ -49,6 +53,7 @@ class Habits extends Component {
               </ul>
             )}
           </CustomScrollbars>
+
           <button
             type="button"
             onClick={this.openModal}
@@ -56,6 +61,7 @@ class Habits extends Component {
           >
             Добавить привычку +
           </button>
+
           {this.state.isShowModal && <HabitChoice close={this.openModal} />}
         </div>
       </>

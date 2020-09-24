@@ -1,37 +1,43 @@
+.achievementsContainer {
+  display: flex;
+  width: 842px;
+  height: 100vh;
+  padding: 40px;
+  background-color: #f6f6f6;
+}
 .achievementsPageList {
   display: flex;
   flex-wrap: wrap;
-  padding: 40px;
-  width: 842px;
-  height: 800px;
+  height: 750px;
+  justify-content: flex-start;
+  align-content: space-between;
 }
 
 .achievementsPageItem {
   width: 220px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 80px;
+  height: auto;
+  line-height: 20px;
   background: #e0e0e0;
   box-shadow: 0px 8px 16px rgba(67, 209, 144, 0.15);
   border-radius: 10px;
   transition: all 0.5s linear;
+  margin-left: 11px;
 }
 
 .achievementsPageItem:not(:nth-child(3n)) {
   margin-right: 30px;
 }
 
-.achievementsPageItem:not(:nth-last-child(-n + 2)) {
-  /* margin-bottom: 30px; */
-}
-
 .achievementsPageText {
   font-weight: 500;
   font-size: 18px;
-  /* line-height: 80px; */
   text-align: center;
   color: #ffffff;
+  width: inherit;
+  padding: 30px 20px;
+  word-wrap: break-word;
 }
 .activeClass {
   composes: achievementsPageItem;
