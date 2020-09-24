@@ -4,11 +4,54 @@ import { ReactComponent as Wallet } from '../../../assests/images/LeftSideBar/wa
 import { ReactComponent as Hourglass } from '../../../assests/images/LeftSideBar/hourglass.svg';
 import { connect } from 'react-redux';
 import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
+
+// const checkDayToday = () => {
+//   const date = new Date();
+//   console.log('date', date);
+//   const todayDate = Date.now();
+//   console.log('todayDate', todayDate);
+
+//   const dateMs = date.getTime();
+//   console.log('dateMs', dateMs);
+//   const dayPass = Math.round((todayDate - dateMs) / 86400000);
+//   return console.log('dayPass', dayPass);
+// };
+
+//console.log('checkDayToday', checkDayToday());
 class Economizing extends Component {
-  // state = {
-  //   money: 0,
-  //   time: 0,
-  // };
+  state = {
+    money: this.props.money,
+    time: this.props.time,
+    data: 0,
+    startedAt: 0,
+    quantity: 0,
+  };
+
+  checkDayToday = () => {
+    const date = new Date(this.props.startTime);
+    console.log('date', date);
+    const todayDate = Date.now();
+    console.log('todayDate', todayDate);
+
+    const dateMs = date.getTime();
+    console.log('dateMs', dateMs);
+    const dayPass = Math.round((todayDate - dateMs) / 86400000);
+    console.log('dayPass', dayPass);
+    if (!this.props.prevData[dayPass]) {
+      this.setState({
+        quantity: this.props.prevData[dayPass],
+        startedAt: this.props.startTime,
+        data: this.props.prevData,
+        money: 0,
+        time: 0,
+      });
+    } else {
+      this.setState({
+        money: this.props.money,
+        time: this.props.time,
+      });
+    }
+  };
   render() {
     const { time } = this.props;
     let hours = Math.floor(time / 60);
@@ -91,6 +134,8 @@ const mapStateToProps = state => {
   return {
     money: savedMoney.toFixed(2),
     time: savedTime,
+    startTime: state.cigarettes.startedAt,
+    prevData: state.cigarettes.data,
   };
 };
 export default connect(mapStateToProps)(Economizing);
