@@ -5,7 +5,6 @@ import HabitItem from '../HabitItem/HabitItem';
 import style from './Habits.module.css';
 
 import CustomScrollbars from '../../../assests/scroll/scroll';
-//import Modal from "../../ModalBackDrop/ModalBackDrop";
 
 import '../../../main.css';
 import HabitChoice from '../../HabitChoice/HabitChoice';
@@ -39,21 +38,23 @@ class Habits extends Component {
               </div>
             </div>
           )}
-          <CustomScrollbars
-            style={{
-              width: 270,
-              // height: 202,
-              height: 360,
-            }}
-          >
-            {habits && (
-              <ul className={style.leftSideBar_habits__list}>
-                {habits.map(({ _id }, idx) => (
-                  <HabitItem key={_id} id={_id} idx={idx} />
-                ))}
-              </ul>
-            )}
-          </CustomScrollbars>
+          {this.props.habits.length > 0 && (
+            <CustomScrollbars
+              style={{
+                width: 270,
+                // height: 202,
+                height: 360,
+              }}
+            >
+              {habits && (
+                <ul className={style.leftSideBar_habits__list}>
+                  {habits.map(({ _id }, idx) => (
+                    <HabitItem key={_id} id={_id} idx={idx} />
+                  ))}
+                </ul>
+              )}
+            </CustomScrollbars>
+          )}
 
           <button
             type="button"
