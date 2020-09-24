@@ -14,6 +14,7 @@ import RightSideBar from '../RightSideBar/RightSideBar';
 import style from '../CustomRoutes/PrivateRoute.module.css';
 
 const App = ({ getGlobalState, token }) => {
+  
   useEffect(() => {
     getGlobalState();
   }, [token, getGlobalState]);

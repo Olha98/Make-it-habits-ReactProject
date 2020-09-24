@@ -1,3 +1,6 @@
+@value style: '../../css/vars.module.css';
+@value main_green, main_gradient, orange_gradient, pink_gradient, violet_gradient from style;
+
 body {
   background-color: #f6f6f6;
 }
@@ -102,7 +105,7 @@ body {
   border: 1px solid #fe6083;
 }
 .inputValid {
-  border: 1px solid #43d190;
+  border: 1px solid main_green;
 }
 .errorMessage {
   position: absolute;
@@ -112,7 +115,7 @@ body {
   font-weight: 400;
   color: #fe6083;
 }
-
+/* ------------------------- */
 .eyeImage {
   position: absolute;
   right: 20px;
@@ -156,27 +159,49 @@ body {
   margin-bottom: 20px;
   cursor: pointer;
 }
-
+/* ------- subscription ------- */
 .subscription {
-  width: 52px;
+  min-width: 52px;
   height: 20px;
   color: #ffffff;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  background: linear-gradient(222.27deg, #2eebda 3.75%, #7cf7a3 94.69%);
   border-radius: 5px;
-
+  padding: 2px 6px;
   margin-bottom: 15px;
 }
 .subscriptionName {
   display: flex;
   justify-content: center;
 }
+
+.subscriptionFree {
+  background-color: #e0e0e0;
+}
+.subscriptionNoob {
+  background-color: main_green;
+}
+.subscriptionBasic {
+  background: main_gradient;
+}
+.subscriptionStandart {
+  background: orange_gradient;
+}
+.subscriptionPremium {
+  background: pink_gradient;
+}
+.subscriptionUltra {
+  background: violet_gradient;
+}
+
 .linkChenlistSaveChanges {
   /* margin: 0 auto; */
 }
+
+/* ----------------- */
+
 .btnSaveChange {
   width: 220px;
   font-style: normal;
@@ -205,9 +230,9 @@ body {
   font-size: 16px;
 
   background: #ffffff;
-  border: 2px solid #43d190;
+  border: 2px solid main_green;
   border-radius: 5px;
-  color: #43d190;
+  color: main_green;
   line-height: 42px;
   width: 220px;
   cursor: pointer;
