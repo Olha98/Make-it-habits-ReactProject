@@ -1,7 +1,14 @@
 .leftSideBar {
-  min-width: 378px;
+  /* min-width: 378px;
   max-width: 25vh;
-  height: 900px;
+  height: 900px; */
+  /* width: 25%;*/
+  height: 100vh;
+  /* width: calc (100vw - 27%); */
+  /* float: right;  */
+  width: 378px;
+  
+  top: 0;
 }
 .leftSideBar_container {
   margin: 0 auto;

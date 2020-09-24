@@ -56,4 +56,5 @@
   border-radius: 0px;
   padding: 10px;
   padding-top: 25px;
+  height: calc(100vh - 500px);
 }
