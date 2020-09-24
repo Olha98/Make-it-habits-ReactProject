@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import castomHabitActions from '../../redux/actions/castomHabitActions';
 import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
-import imgBak from '../../assests/images/calendar/trash2.png';
-
-// import moment from 'moment';
-// import 'moment/locale/ru';
+// import imgBak from '../../assests/images/calendar/trash2.png';
+import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 
 class CastomHabit extends Component {
   state = {
@@ -164,18 +162,20 @@ class CastomHabit extends Component {
           </div>
           {this.props.fromCheckList && (
             <div className={style.btnWrapper}>
-              <img
+              {/* <img
                 src={imgBak}
                 alt="task"
                 width="15px"
                 height="15px"
                 className={style.imgTrashCan}
-              />
+              /> */}
+              
               <button
                 onClick={this.onClickSubmit}
                 data-delete="delete"
                 className={style.castomHabitDelete}
               >
+                <Trash className={style.imgTrashCan}/>
                 удалить привычку
               </button>
             </div>
