@@ -106,7 +106,6 @@ class CardForm extends Component {
   };
 
   render() {
-    console.log('RENDER');
     const { number, timeExpiration, message } = this.state;
     const { isLoading, error } = this.props;
 

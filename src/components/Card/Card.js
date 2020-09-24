@@ -3,39 +3,42 @@ import { connect } from 'react-redux';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
+import CardList from './CardList';
 import {
   cardsSelectors,
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
-import { subscrOperations } from '../../redux/operations';
 import style from './Card.module.css';
 
 const Card = ({ cards }) => {
   const [isShowModal, setIsShowModal] = useState(false);
-  // let number, month, year;
-  if (!cards.length) {
-    cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
+  let number, timeExpiration;
+  if (cards.length > 0) {
+    // cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
+    number = cards[0].number;
+    timeExpiration = cards[0].timeExpiration;
+    // const timeExpiration = new Date(cards[0].timeExpiration);
+    // month = timeExpiration.getMonth();
+    // year = timeExpiration.getFullYear();
   }
-  const { number, timeExpiration } = cards[0];
-  // number = cards[0].number;
-  // const timeExpiration = new Date(cards[0].timeExpiration);
-  // month = timeExpiration.getMonth();
-  // year = timeExpiration.getFullYear();
-
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
-      <div className={style.card}>
-        <p className={style.cardName}>Моя карта</p>
-        <p className={style.cardNumber}>{number}</p>
-        <p className={style.cardExpireDate}>
-          Истекает {timeExpiration}
-          {/* Истекает {cards.length ? `${month} / ${year}` : ''} */}
-        </p>
-        <button className={style.cardDeleteButton}>
-          <Trash className={style.trashIcon} />
-        </button>
+      <div className={style.cards}>
+        <div className={style.cardFirst}>
+          <p className={style.cardName}>Моя карта</p>
+          <p className={style.cardNumber}>
+            {cards.length ? `${number}` : 'xxxx xxxx xxxx xxxx'}
+          </p>
+          <p className={style.cardExpireDate}>
+            Истекает {cards.length ? `${timeExpiration}` : ''}
+          </p>
+          <button className={style.cardDeleteButton}>
+            <Trash className={style.trashIcon} />
+          </button>
+        </div>
+        {cards.length > 1 && <CardList />}
       </div>
       <div className={style.cardsButtons}>
         <button

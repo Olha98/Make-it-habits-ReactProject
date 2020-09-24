@@ -14,6 +14,20 @@ const addCardError = error => ({
   payload: error,
 });
 
+const getCardRequest = () => ({
+  type: cardsConstants.GET_CARD_REQUEST,
+});
+
+const getCardSuccess = id => ({
+  type: cardsConstants.GET_CARD_SUCCESS,
+  payload: id,
+});
+
+const getCardError = error => ({
+  type: cardsConstants.GET_CARD_ERROR,
+  payload: error,
+});
+
 const removeCardRequest = () => ({
   type: cardsConstants.REMOVE_CARD_REQUEST,
 });
@@ -32,6 +46,9 @@ export default {
   addCardRequest,
   addCardSuccess,
   addCardError,
+  getCardRequest,
+  getCardSuccess,
+  getCardError,
   removeCardRequest,
   removeCardSuccess,
   removeCardError,
