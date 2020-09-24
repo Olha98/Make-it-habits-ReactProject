@@ -1,4 +1,5 @@
 import ACHIEVEMENT_SUCCESS from '../constants/achievementConstans';
+import constants from '../constants/authConstans';
 
 const initialState = [
   {
@@ -385,8 +386,9 @@ const achievementsReducer = (state = [...initialState], { type, payload }) => {
   switch (type) {
     case ACHIEVEMENT_SUCCESS:
       // console.log(payload);
-
       return getAchievements(state, payload);
+    case constants.LOGOUT:
+      return initialState;
 
     default:
       return state;
