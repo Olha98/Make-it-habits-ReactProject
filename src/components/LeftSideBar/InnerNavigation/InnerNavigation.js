@@ -8,20 +8,46 @@ import { connect } from 'react-redux';
 import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 class InnerNavigation extends Component {
-  state = {
-    isShowNotify: true,
-    number: 0,
-  };
-  componentDidMount() {
-    this.setState({
-      isShowNotify: true,
-      number: this.props.number,
-    });
-  }
+  // state = {
+  //   isShowNotify: false,
+  //   number: 0,
+  // };
+  // componentDidMount() {
+  //const dateInLocalStorage = localStorage.getItem('Date');
+  // const differInTime = Date.now() - dateInLocalStorage;
+  // if (differInTime < 86400000) {
+  // console.log('differInTime', differInTime);
+  //   this.setState({
+  //     isShowNotify: false,
+  // number: 0,
+  //   });
+  // } else {
+  //   this.setState({
+  //     isShowNotify: true,
+  //     number: this.props.number,
+  //   });
+  //   //}
+  //   // }
+  //   window.addEventListener('click', this.changeNotify);
+  // }
+  // changeNotify = e => {
+  //   if (e.target.dataset.set === 'notify') {
+  //     localStorage.setItem('isShowNotify', false);
+  //     localStorage.setItem('number', 0);
+  //     localStorage.setItem('Date', Date.now());
+  //     this.setState({
+  //       isShowNotify: false,
+  //       number: 0,
+  //     });
+  //   }
+  // };
+  // componentWillUnmount() {
+  //   window.removeEventListener('click', this.changeNotify);
+  // }
   render() {
     return (
-      <div>
-        <section className={style.leftSideBar_innerNavigation}>
+      <nav>
+        <div className={style.leftSideBar_innerNavigation}>
           <ul className={style.leftSideBar_innerNavigation__list}>
             <li className={style.leftSideBar_innerNavigation__list_item}>
               <NavLink
@@ -50,33 +76,47 @@ class InnerNavigation extends Component {
               </NavLink>
             </li>
             <li
+              data-set="notify"
               onClick={this.changeNotify}
               className={style.leftSideBar_innerNavigation__list_item}
             >
               <NavLink
+                data-set="notify"
                 to="/notifications"
                 className={style.leftSideBar_innerNavigation__list_item_link}
                 activeClassName={
                   style.leftSideBar_innerNavigation__list_item_link_active
                 }
               >
-                <div className={style.leftSideBar_innerNavigation__green}>
-                  <Bell />
+                <div
+                  data-set="notify"
+                  className={style.leftSideBar_innerNavigation__green}
+                >
+                  <Bell data-set="notify" />
                 </div>
               </NavLink>
-              {/* {this.state.isShowNotify && ( */}
-              <div
-                className={
-                  style.leftSideBar_innerNavigation__list_item_link_notify
-                }
-              >
-                {this.props.number && <span>{this.props.number}</span>}
-              </div>
-              {/* )} */}
+              {/* { */}
+              {/* this.state.isShowNotify &&
+                 this.props.number && this.props.number !== 0 && ( */}
+              {this.props.number > 0 && (
+                <div
+                  className={
+                    style.leftSideBar_innerNavigation__list_item_link_notify
+                  }
+                >
+                  <span>{this.props.number}</span>
+                  {/* ) : ( */}
+                  {/* <span></span> */}
+
+                  {/* } */}
+                </div>
+              )}
+              {/* ) */}
+              {/* } */}
             </li>
           </ul>
-        </section>
-      </div>
+        </div>
+      </nav>
     );
   }
 }

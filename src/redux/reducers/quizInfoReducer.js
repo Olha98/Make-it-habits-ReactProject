@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux';
-import quizInfoConstants from '../constants/quizInfoConstants';
+import { quizInfoConstants } from '../constants';
 
 const initialState = {
   smokeYears: 0,
@@ -10,8 +9,8 @@ const initialState = {
 
 const quizInfo = (state = { ...initialState }, action) => {
   switch (action.type) {
-    case quizInfoConstants.ADD_SUCCESS:
-    case quizInfoConstants.GET_SUCCESS:
+    case quizInfoConstants.ADD_INFO_SUCCESS:
+    case quizInfoConstants.GET_INFO_SUCCESS:
       return action.payload;
 
     default:
@@ -19,17 +18,4 @@ const quizInfo = (state = { ...initialState }, action) => {
   }
 };
 
-const error = (state = null, action) => {
-  switch (action.type) {
-    case quizInfoConstants.ADD_ERROR:
-    case quizInfoConstants.GET_ERROR:
-      return action.payload;
-    case quizInfoConstants.ADD_REQUEST:
-    case quizInfoConstants.GET_REQUEST:
-      return null;
-    default:
-      return state;
-  }
-};
-
-export default { quizInfo, error };
+export default quizInfo;

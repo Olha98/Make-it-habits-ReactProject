@@ -6,21 +6,13 @@ import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.s
 import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
-import ModalInterview from '../ModalInterview/ModalInterview.js';
 
 class Login extends Component {
   state = {
     email: 'kostya123@gmail.com',
     password: 'Qwerty123',
     passwordVisible: false,
-    // isShovModal: false,
   };
-
-  // toggleModal = () => {
-  //   this.setState(prevState => {
-  //     return { isShovModal: !prevState.isShovModal };
-  //   });
-  // };
 
   onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
@@ -36,17 +28,14 @@ class Login extends Component {
 
   hendleSubmit = e => {
     e.preventDefault();
-    // console.log(this.state, "this");
     const { email, password } = this.state;
     let OneUser = { email, password };
-    // console.log(OneUser, "login");
     this.props.onLogin(OneUser);
     this.setState({ email: '', password: '' });
-    // this.toggleModal();
   };
 
   render() {
-    const { email, password, passwordVisible, isOpen } = this.state;
+    const { email, password, passwordVisible } = this.state;
     const { btnClose } = this.props;
 
     return (
@@ -73,6 +62,7 @@ class Login extends Component {
               type="email"
               placeholder="Введите свой E-mail"
               name="email"
+              required
             />
           </div>
           <div className={styles.LoginInputForm}>
@@ -92,6 +82,8 @@ class Login extends Component {
                 type={!passwordVisible ? 'password' : 'text'}
                 placeholder="Введите пароль"
                 name="password"
+                required
+                minlength="6"
               />
             </label>
           </div>
@@ -106,7 +98,6 @@ class Login extends Component {
             <p className={styles.LoginButtonTxt}>Регистрация</p>
           </button>
         </div>
-        {/* {this.state.isShovModal && <ModalInterview close={this.toggleModal} />} */}
       </div>
     );
   }

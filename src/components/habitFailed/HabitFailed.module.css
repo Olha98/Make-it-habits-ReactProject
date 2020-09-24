@@ -1,0 +1,57 @@
+.congratulationWrapper {
+  width: 784px;
+  height: 580px;
+  background-color: #fe6083;
+  border-radius: 10px;
+
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imgWrapper {
+  background-color: #fe6083;
+}
+.img {
+  border-radius: 10px;
+}
+
+.description {
+  color: #ffffff;
+}
+
+.congratulationTitle {
+  color: #ffffff;
+  text-align: center;
+  line-height: 31px;
+  font-size: 26px;
+  padding-bottom: 8px;
+}
+
+.congratsBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 455px;
+}
+
+.buttonTransparent {
+  width: 220px;
+  height: 44px;
+  left: 792px;
+  top: 616px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  color: #ffffff;
+  display: block;
+  margin: 0 auto;
+}
+.buttonTransparent:hover,
+.buttonTransparent:focus {
+  background-color: #ffffff;
+  color: #fe6083;
+  outline: 0;
+}

@@ -3,26 +3,73 @@ import { connect } from 'react-redux';
 import updateDailyResul from '../../redux/operations/dailyResultOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import style from './DailyHabit.module.css';
-import moment from 'moment';
-import 'moment/locale/ru';
 import closeBtn from '../../assests/images/closeBlack.png';
+import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
 
-const DailyResult = ({ close, updateResult, prevData }) => {
+// const cigarettes = [
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+//   null,
+// ];
+
+const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const [quantity, setQuantity] = useState(0);
+  const [isAlreadyAdded, setAlreadyAdded] = useState(false);
+
+  const openAlreadyAdded = () => {
+    setAlreadyAdded(true);
+  };
+  // const closeAlreadyAdded = () => {
+  //   setAlreadyAdded(false);
+  // };
   const changeQuantity = e => {
     setQuantity(Number(e.target.value));
   };
 
   const submitQuantity = e => {
     e.preventDefault();
-    updateResult({
-      startedAt: moment().format(),
-      data: [...prevData, quantity],
-    });
-    close();
+    const date = new Date(startTime);
+    // const date = new Date(startTime);
+    const todayDate = Date.now();
+    const dateMs = date.getTime();
+    const dayPass = Math.round((todayDate - dateMs) / 86400000);
+    console.log('prevData', dayPass);
+    if (!prevData[dayPass]) {
+      prevData[dayPass] = quantity;
+      updateResult({
+        startedAt: startTime,
+        data: prevData,
+      });
+      close();
+    } else openAlreadyAdded();
+
+    // updateResult({
+    //   startedAt: '2020-09-18T11:06:17.000Z',
+    //   data: cigarettes,
+    // });
   };
+
   return (
     <div className={style.dailyHabitWrapper}>
+      {isAlreadyAdded && <AlreadyAdded close={close} />}
       <div>
         <h2 className={style.dailyHabitTitle}>
           Сколько сигарет за сегодня Вы выкурили?
@@ -63,9 +110,9 @@ const DailyResult = ({ close, updateResult, prevData }) => {
 };
 
 const mapStateToProps = state => {
-
   return {
     prevData: state.cigarettes.data,
+    startTime: state.cigarettes.startedAt,
   };
 };
 
