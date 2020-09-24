@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Spinner from '../../Spinner/Spinner';
 import modalBackDrop from '../../ModalBackDrop/ModalBackDrop';
@@ -11,13 +11,13 @@ import { subscrOperations } from '../../../redux/operations';
 import { errorActions } from '../../../redux/actions';
 import style from './Subscriptions.module.css';
 
-const delay = ms =>
-  new Promise(resolve =>
-    setTimeout(() => {
-      resolve('');
-      console.log('delay');
-    }, ms),
-  );
+// const delay = ms =>
+//   new Promise(resolve =>
+//     setTimeout(() => {
+//       resolve('');
+//       console.log('delay');
+//     }, ms),
+//   );
 
 const types = ['Noob', 'Basic', 'Standart', 'Premium', 'Ultra'];
 

@@ -1,8 +1,4 @@
 .habitChoiceContainer {
-  /* position: absolute; */
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   width: 784px;
   height: 580px;
   background: #ffffff;
@@ -42,6 +38,7 @@
   display: block;
   margin: 0 auto;
   margin-bottom: 30px;
+  transition: all 200ms linear;
 }
 
 .habitChoiceTemplateBtn:hover,
@@ -62,6 +59,7 @@
   display: block;
   margin: 0 auto;
   margin-bottom: 118px;
+  transition: all 200ms linear;
 }
 
 .habitChoiceOwnBtn:hover,
@@ -80,6 +78,7 @@
   color: #43d190;
   display: block;
   margin: 0 auto;
+  transition: all 200ms linear;
 }
 
 .habitChoiceCancelBtn:hover,

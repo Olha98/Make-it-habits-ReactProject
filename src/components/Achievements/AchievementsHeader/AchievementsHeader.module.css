@@ -3,16 +3,17 @@
   width: 842px;
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
   align-items: center;
   padding: 0 62px 0 79px;
-  border-bottom: 1px solid #D5E1DC;
+  border-bottom: 1px solid #d5e1dc;
 }
 
 .achievementsHeaderTitle {
   font-weight: 500;
   font-size: 26px;
   line-height: 31px;
-   color: #4F4F4F;
+  color: #4f4f4f;
 }
 
 .achievementsHeaderCount {

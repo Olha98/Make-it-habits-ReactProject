@@ -1,4 +1,3 @@
-import { array } from 'yup';
 import ACHIEVEMENT_SUCCESS from '../constants/achievementConstans';
 
 const initialState = [
