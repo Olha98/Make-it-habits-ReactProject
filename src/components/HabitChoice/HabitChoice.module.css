@@ -43,12 +43,10 @@
 
 .habitChoiceTemplateBtn:hover,
 .habitChoiceTemplateBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
-    outline: 0;
-  }
-
-
+  color: #43d190;
+  background-color: #ffffff;
+  outline: 0;
+}
 
 .habitChoiceOwnBtn {
   padding: 12px 22px;
@@ -66,10 +64,10 @@
 
 .habitChoiceOwnBtn:hover,
 .habitChoiceOwnBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
-    outline: 0;
-  }
+  color: #43d190;
+  background-color: #ffffff;
+  outline: 0;
+}
 
 .habitChoiceCancelBtn {
   width: 220px;
