@@ -41,7 +41,6 @@ const TaskDiItItem = ({ currentHabit, removeHabit }) => {
     }
   }, [visible, setVisible, currentHabit, removeHabit]);
 
-  console.log(currentHabit)
 
 
 

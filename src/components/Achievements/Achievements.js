@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 // };
 const Achievements = ({ achievements }) => {
   // achievementStatus({ smokedCigarettes, quizInfoPerDay, quizInfoPerTime });
-
+  console.log(achievements);
   return (
     <>
       <AchievementsHeader />

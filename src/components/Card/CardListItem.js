@@ -5,7 +5,7 @@ import { cardsSelectors } from '../../redux/selectors';
 import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
 
-const colors = ['#b469fa', '#F8C102', '#7CF7A3', '#FE6083', '#655DE6'];
+const colors = ['#b469fa', '#F8C102', '#43D190', '#FE6083', '#795548'];
 
 const CardListItem = ({ number, timeExpiration, index, onRemove, id }) => {
   return (

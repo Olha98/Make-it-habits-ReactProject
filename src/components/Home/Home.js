@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Home.module.css";
-import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabit.svg";
-import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
+import React from 'react';
+import styles from './Home.module.css';
+import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabit.svg';
+import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
 
 const HomePage = ({ onLogin, onRegistration }) => {
   return (
@@ -36,7 +36,7 @@ const HomePage = ({ onLogin, onRegistration }) => {
                 <p className={styles.HomeEnterTxt}>Вход</p>
               </button>
               <button onClick={onRegistration} className={styles.HomeButton}>
-                <p className={styles.HomeEnterTxt}>Регистация</p>
+                <p className={styles.HomeEnterTxt}>Регистрация</p>
               </button>
             </div>
           </div>

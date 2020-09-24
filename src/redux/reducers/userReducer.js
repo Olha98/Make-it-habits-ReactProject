@@ -1,5 +1,6 @@
 import { GET_USER_DATA } from '../constants/userConstants';
 import { cardsConstants } from '../constants';
+import authConstans from '../constants/authConstans';
 
 const initialState = {
   firstName: '',
@@ -50,6 +51,7 @@ const userReducer = (state = { ...initialState }, action) => {
         // payments,
         subscription,
       };
+
     case cardsConstants.ADD_CARD_SUCCESS:
       const countCards = state.cards.length;
       const newId = state.cards[countCards - 1] + 1;
@@ -58,6 +60,10 @@ const userReducer = (state = { ...initialState }, action) => {
     case cardsConstants.REMOVE_CARD_SUCCESS:
       const newCards = state.cards.filter(item => item.id !== action.payload);
       return { ...state, cards: newCards };
+
+    case authConstans.LOGOUT:
+      return initialState;
+
     default:
       return state;
   }

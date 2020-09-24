@@ -184,7 +184,7 @@ const Calendar = () => {
     .locale('en')
     .format('dddd')
     .slice(0, 3);
-  //weekday Mon
+
 
   const calendarActualDay = moment(startDate).format('L');
 
