@@ -83,9 +83,20 @@ const mapStateToProps = state => {
       (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
   }
 
+  const arrayOfCig = userSelectors.allCigarettes(state);
+
+  const amountOfDayCheked = arrayOfCig.length; //7
+
+  let result = arrayOfCig.reduce(function (sum, elem) {
+    //31
+    return sum + (cigarettesPerDay - elem);
+  }, 0);
+  const savedTotalTime = result * timeForOneCigarette;
+  const savedMoneyTotal = result * priceForOneCigarettes;
+
   return {
-    money: savedMoney.toFixed(2),
-    time: savedTime,
+    money: savedMoneyTotal.toFixed(2),
+    time: savedTotalTime,
   };
 };
 export default connect(mapStateToProps)(Economizing);

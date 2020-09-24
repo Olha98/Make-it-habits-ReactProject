@@ -19,7 +19,11 @@ const getCurrentAmountOfCigarettes = state => {
   return cig[cig.length - 1];
   //console.log('cig', cig[cig.length - 1]);
 };
+const allCigarettes = state => {
+  const cig = state.cigarettes.data.filter(el => el !== null);
 
+  return cig;
+};
 const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
 // ===============habits========
@@ -63,6 +67,7 @@ const allNotifications = createSelector([listOfHabitsCurrent], habits => {
 });
 // ===============habits=========
 export default {
+  allCigarettes,
   allNotifications,
   getConstAmountOfCigarettesPerDay,
   getCigarettePackPrice,

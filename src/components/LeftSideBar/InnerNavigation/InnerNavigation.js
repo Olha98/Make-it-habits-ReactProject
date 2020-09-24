@@ -8,15 +8,49 @@ import { connect } from 'react-redux';
 import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 class InnerNavigation extends Component {
-  initialState = {
+  state = {
     isShowNotify: true,
-    number: 0,
+    number: this.props.number,
     today: 0,
   };
-  state = {
-    ...this.initialState,
-  };
 
+  componentDidMount() {
+    console.log('this.state', this.state);
+    const date = new Date();
+    const dayToday = date.getDate();
+    // if (
+    localStorage.getItem('date') &&
+      dayToday !== localStorage.getItem('date') &&
+      // ) {
+      this.setState({
+        isShowNotify: true,
+        number: this.props.number,
+        today: 0,
+      });
+    // } else {
+    //   this.setState({
+    //     isShowNotify: false,
+    //     number: 0,
+    //     today: dayToday,
+    //   });
+    // }
+    window.addEventListener('click', this.changeNotify);
+  }
+  changeNotify = e => {
+    const date = new Date();
+    const dayToday = date.getDate();
+    console.log('dayToday', dayToday);
+
+    if (e.target.dataset.set === 'notify') {
+      this.setState({
+        isShowNotify: false,
+        number: 0,
+        today: dayToday,
+      });
+      localStorage.setItem('date', dayToday);
+      console.log('dayToday', dayToday);
+    }
+  };
   componentWillUnmount() {
     window.removeEventListener('click', this.changeNotify);
   }
@@ -71,13 +105,13 @@ class InnerNavigation extends Component {
                   <Bell data-set="notify" />
                 </div>
               </NavLink>
-              {this.state.isShowNotify && this.state.number !== 0 && (
+              {this.state.isShowNotify && this.props.number > 0 && (
                 <div
                   className={
                     style.leftSideBar_innerNavigation__list_item_link_notify
                   }
                 >
-                  <span>{this.state.number}</span>
+                  <span>{this.props.number}</span>
                 </div>
               )}
             </li>
