@@ -14,6 +14,7 @@ import ModalInterview from '../ModalInterview/ModalInterview.js';
 import style from './Profile.module.css';
 import { compose } from 'redux';
 import CustomScrollbars from '../../assests/scroll/scroll';
+// import { subscrSelectors } from '../../redux/selectors';
 
 class Profile extends Component {
   state = {
@@ -44,11 +45,11 @@ class Profile extends Component {
   // };
   render() {
     const { changePassword } = this.state;
-
+    const { subscription } = this.props;
     if (!this.props.email) {
       return null;
     } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
-
+    console.log('this.props.subscription', this.props.subscription);
     return (
       <>
         <div className={style.wrapperHeader}>
@@ -246,8 +247,31 @@ class Profile extends Component {
                 >
                   Выбрать другой аватар
                 </NavLink>
-                <div className={style.subscription}>
-                  <span className={style.subscriptionName}>Basic</span>
+                <div
+                  className={
+                    style.subscription +
+                    ' ' +
+                    (!subscription && style.subscriptionFree) +
+                    ' ' +
+                    (subscription === 'Basic' &&
+                      style.subscriptionBasic) +
+                    ' ' +
+                    (subscription === 'Noob' &&
+                      style.subscriptionNoob) +
+                    ' ' +
+                    (subscription === 'Standart' &&
+                      style.subscriptionStandart) +
+                    ' ' +
+                    (subscription === 'Premium' &&
+                      style.subscriptionPremium) +
+                    ' ' +
+                    (subscription === 'Ultra' &&
+                      style.subscriptionUltra)
+                  }
+                >
+                  <span className={style.subscriptionName}>
+                    {!subscription ? 'Free' : subscription}
+                  </span>
                 </div>
                 <button
                   type="button"
@@ -283,13 +307,16 @@ const mapStateToProps = state => {
     phone: state.user.phone,
     email: state.user.email,
     avatar: state.user.avatar,
+    subscription: state.user.subscription,
+
     isModalInterview: state.quizInfo.smokeYears,
   };
 };
-
 const mapDispatchToProps = {
   addDataUserOperation: operationsProfile.addDataUserOperation,
+  // typeSubscr: subscrSelectors.getTypeSubscription,
 };
+
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),

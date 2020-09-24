@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import Card from '../../Card/Card';
 import ChoiceType from './ChoiceType';
 // import { ReactComponent as SupportPic } from "../../../assests/images/Subscriptions/support-pic.svg";
+import { errorActions } from '../../../redux/actions';
+import { errorSelector } from '../../../redux/selectors';
 import style from './Subscriptions.module.css';
 
-function Subscriptions() {
+function Subscriptions(props) {
   const [isShowModal, setIsShowModal] = useState(false);
-
+  const dispatch = useDispatch();
+  const close = () => {
+    setIsShowModal(prev => !prev);
+    props.error && dispatch(errorActions.hideError());
+  };
   return (
     <div className={style.subscriptionsContainer}>
       <section className={style.subscriptionsSectionTypes}>
@@ -76,7 +83,7 @@ function Subscriptions() {
         >
           Изменить подписку
         </button>
-        {isShowModal && <ChoiceType close={setIsShowModal} />}
+        {isShowModal && <ChoiceType close={close} />}
       </section>
       <section className={style.subscriptionsSectionCards}>
         <Card />
@@ -85,4 +92,8 @@ function Subscriptions() {
   );
 }
 
-export default Subscriptions;
+const mapStateToProps = state => ({
+  error: errorSelector.getError(state),
+});
+
+export default connect(mapStateToProps)(Subscriptions);

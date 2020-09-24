@@ -4,9 +4,9 @@ const changeTypeRequest = () => ({
   type: subscrConstants.CHANGE_TYPE_REQUEST,
 });
 
-const changeTypeSuccess = typeSuscription => ({
+const changeTypeSuccess = plan => ({
   type: subscrConstants.CHANGE_TYPE_SUCCESS,
-  payload: typeSuscription,
+  payload: plan,
 });
 
 const changeTypeError = error => ({
@@ -18,9 +18,8 @@ const cancelTypeRequest = () => ({
   type: subscrConstants.CANCEL_TYPE_REQUEST,
 });
 
-const cancelTypeSuccess = card => ({
+const cancelTypeSuccess = () => ({
   type: subscrConstants.CANCEL_TYPE_SUCCESS,
-  payload: card,
 });
 
 const cancelTypeError = error => ({
