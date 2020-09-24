@@ -8,7 +8,7 @@ import {
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
-import { subscrOperations } from '../../redux/operations';
+
 import style from './Card.module.css';
 
 const Card = ({ cards }) => {
