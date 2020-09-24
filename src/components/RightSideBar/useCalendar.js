@@ -88,7 +88,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
-          console.log(calendarActualDay, 'calendarActualDay');
 
           let maxData = [];
           for (let iteration of iterationMonWedFri) {
@@ -103,6 +102,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   maxData = new Date(
                     arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
                   );
+               
                 } else {
                   arrayHabitsMonWedFri.push(
                     moment(startPlanningTimeinML).format('L'),
@@ -121,7 +121,6 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
           }
 
           break;
-
         default:
           break;
       }
