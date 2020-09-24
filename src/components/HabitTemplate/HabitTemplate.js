@@ -45,9 +45,9 @@ const HabitTemplate = ({ close }) => {
   const showModal = () => {
     setIsShowCustomModal(true);
   };
-  const closeModal = () => {
-    setIsShowCustomModal(false);
-  };
+  // const closeModal = () => {
+  //   setIsShowCustomModal(false);
+  // };
   return (
     <>
       <div className={style.habbitTemplateWrapper}>
