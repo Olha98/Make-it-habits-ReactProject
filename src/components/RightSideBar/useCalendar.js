@@ -87,16 +87,14 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
-          const maxData = new Date(
-            arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
-          );
-          // console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
+          
+          console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
           // console.log(maxData, "maxData")
-          // console.log(calendarActualDay,"calendarActualDay")
+          console.log(calendarActualDay,"calendarActualDay")
 
-          if (maxData >= new Date(calendarActualDay)) {
-            return;
-          }
+          // if (maxData >= new Date(calendarActualDay)) {
+          //   return;
+          // }
 
           for (let iteration of iterationMonWedFri) {
             if (iteration.includes(choseActualWeekDay)) {
@@ -106,6 +104,12 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                     moment(startPlanningTimeinML).format('L'),
                   );
                   startPlanningTimeinML += 86400000 * 3;
+
+                  let maxData = new Date(
+                    arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
+                  );
+                  console.log(maxData, "maxData")
+                  console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
                 } else {
                   arrayHabitsMonWedFri.push(
                     moment(startPlanningTimeinML).format('L'),
@@ -113,6 +117,7 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
+    
 
               currentHabitsTT.push({
                 ...habit,
@@ -122,7 +127,10 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             }
           }
 
+    
           break;
+
+
 
         default:
           break;
