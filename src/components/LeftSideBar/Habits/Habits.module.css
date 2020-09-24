@@ -1,4 +1,5 @@
 .leftSideBar_habits {
+  position: relative;
   border-bottom: 1px solid #d5e1dc;
   padding: 25px 0 25px;
   display: flex;
@@ -16,6 +17,18 @@
   margin-left: 65px;
   color: #4f4f4f;
   align-self: flex-start;
+}
+.leftSideBar_habits_title_qoute_wrapper_position {
+  width: 30px;
+  height: 40px;
+}
+.leftSideBar_habits_title_qoute_wrapper {
+  position: absolute;
+  top: 29px;
+  left: 51px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .leftSideBar_habits_title_qoute {
   font-weight: 500;
