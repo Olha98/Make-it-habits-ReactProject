@@ -89,7 +89,7 @@ class Profile extends Component {
                           ? number.slice(2)
                           : number,
                     });
-                    // this.props.history.push('/checklist');
+                    this.props.history.push('/checklist');
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
