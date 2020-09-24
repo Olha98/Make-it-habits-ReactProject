@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 541px);
+  height: calc(100vh - 545px);
   min-height: 378px;
   /* width: 100%; */
 }
@@ -20,6 +20,7 @@
   color: #4f4f4f;
   align-self: flex-start;
 }
+
 .leftSideBar_habits_title_qoute_wrapper_position {
   display: inline-block;
   width: 30px;
