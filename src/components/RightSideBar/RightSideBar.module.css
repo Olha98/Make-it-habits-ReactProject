@@ -1,7 +1,6 @@
 .containerRightSideBar {
   display: flex;
   width: 378px;
-  position: sticky;
   flex-direction: column;
   justify-content: flex-end;
   border-left: 1px solid #d5e1dc;
@@ -57,5 +56,5 @@
   border-radius: 0px;
   padding: 10px;
   padding-top: 25px;
-  /* height: calc(100Vh - 450px); */
+  height: calc(100vh - 500px);
 }
