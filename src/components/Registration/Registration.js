@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import styles from "./Registration.module.css";
-import { connect } from "react-redux";
-import { ReactComponent as Logo } from "../../assests/images/Home/logo/MakeitHabitblack.svg";
-import { ReactComponent as Svg } from "../../assests/images/Home/logo/Subtract.svg";
-import authOperation from "../../redux/operations/authOperation";
-import { ReactComponent as OpenedEye } from "../../assests/images/profile/openedEye.svg";
-import { ReactComponent as ClosedEye } from "../../assests/images/profile/closedEye.svg";
+import React, { Component } from 'react';
+import styles from './Registration.module.css';
+import { connect } from 'react-redux';
+import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabitblack.svg';
+import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
+import authOperation from '../../redux/operations/authOperation';
+import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
+import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
 
 class Registration extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     passwordVisible: false,
   };
 
-  onEyeIconOldPassword = (name) => {
+  onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
   };
 
-  handleEmail = (e) => {
+  handleEmail = e => {
     this.setState({ email: e.target.value });
   };
 
-  handlePassword = (e) => {
+  handlePassword = e => {
     this.setState({ password: e.target.value });
   };
 
-  hendleSubmit = (e) => {
+  hendleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
     let NewUser = { email, password };
     this.props.onReegistration(NewUser);
-    this.setState({ login: "", email: "", password: "" });
+    this.setState({ login: '', email: '', password: '' });
   };
 
   render() {
@@ -57,17 +57,18 @@ class Registration extends Component {
             <input
               className={styles.RegistrationInput}
               value={email}
-              onChange={(e) => this.handleEmail(e)}
+              onChange={e => this.handleEmail(e)}
               type="email"
               placeholder="Введите свой E-mail"
               name="email"
+              required
             />
           </div>
           <div className={styles.RegistrationInputForm}>
             <p className={styles.RegistrationInputTxt}>Пароль</p>
             <label className={styles.RegistrationPassword}>
               <div
-                onClick={() => this.onEyeIconOldPassword("passwordVisible")}
+                onClick={() => this.onEyeIconOldPassword('passwordVisible')}
                 className={styles.RegistrationPasswordBtn}
               >
                 {!passwordVisible ? <ClosedEye /> : <OpenedEye />}
@@ -76,16 +77,20 @@ class Registration extends Component {
               <input
                 className={styles.RegistrationInput}
                 value={password}
-                onChange={(e) => this.handlePassword(e)}
-                type={!passwordVisible ? "password" : "text"}
+                onChange={e => this.handlePassword(e)}
+                type={!passwordVisible ? 'password' : 'text'}
                 placeholder="Придумайте пароль"
                 name="password"
+                required
+                minlength="6"
               />
             </label>
           </div>
           <div className={styles.RegistrationButtonBlock}>
             <button className={styles.RegistrationButton}>
-              <p className={styles.RegistrationButtonTxt}>Регистрация</p>
+              <p className={styles.RegistrationButtonTxt} onClick={btnClose}>
+                Регистрация
+              </p>
             </button>
           </div>
         </form>

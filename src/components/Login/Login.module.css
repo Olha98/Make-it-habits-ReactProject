@@ -32,7 +32,7 @@
 }
 
 .LoginHi {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
@@ -44,7 +44,7 @@
 .LoginTxt {
   width: 405px;
   margin: 0 auto;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -67,10 +67,11 @@
   box-sizing: border-box;
   border-radius: 5px;
   padding: 10px;
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+  outline: none;
 }
 
 .LoginInputForm {
@@ -114,7 +115,7 @@
 }
 
 .LoginButtonTxt {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -134,4 +135,12 @@
 .LoginButtonBlock {
   display: flex;
   justify-content: center;
+}
+
+.LoginInput:valid {
+  border: 2px solid #43d190;
+}
+
+.LoginInput:invalid {
+  border: 2px solid #fe6083;
 }

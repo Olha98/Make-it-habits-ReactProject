@@ -13,13 +13,16 @@ class HomePage extends Component {
 
   loginFunk = () => {
     this.setState(prevState => {
-      return { openLogin: !prevState.openLogin };
+      return { openLogin: !prevState.openLogin, openRegistration: false };
     });
   };
 
   registrationFunk = () => {
     this.setState(prevState => {
-      return { openRegistration: !prevState.openRegistration };
+      return {
+        openRegistration: !prevState.openRegistration,
+        openLogin: false,
+      };
     });
   };
 
