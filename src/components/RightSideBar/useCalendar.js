@@ -90,6 +90,10 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
           const maxData = new Date(
             arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
           );
+          // console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
+          // console.log(maxData, "maxData")
+          // console.log(calendarActualDay,"calendarActualDay")
+
           if (maxData >= new Date(calendarActualDay)) {
             return;
           }
