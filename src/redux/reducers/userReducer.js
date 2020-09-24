@@ -1,4 +1,5 @@
 import { GET_USER_DATA } from '../constants/userConstants';
+import authConstans from '../constants/authConstans';
 
 const initialState = {
   firstName: '',
@@ -40,6 +41,9 @@ export default (state = { ...initialState }, action) => {
         // payments,
         subscription,
       };
+
+    case authConstans.LOGOUT:
+      return initialState;
 
     default:
       return state;
