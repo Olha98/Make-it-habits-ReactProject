@@ -5,7 +5,7 @@ import { quizInfoActions, spinnerActions } from '../actions';
 import actionsState from '../actions/stateActions';
 import { getUserData } from '../actions/userActions';
 import achievementAction from '../actions/achievementAction';
-import { authSelector } from '../selectors';
+import { authSelector, cardsSelectors } from '../selectors';
 import { token } from './authOperation';
 
 export const getGlobalState = () => (dispatch, getState) => {
@@ -13,12 +13,19 @@ export const getGlobalState = () => (dispatch, getState) => {
   if (!tokenNow) return;
 
   token.set(tokenNow);
+
+  const cards = cardsSelectors.getCards(getState());
+
   dispatch(spinnerActions.loaderOn());
   dispatch(actionsState.getAllStateRequest());
   axios
     .get('https://make-it-habit-api.herokuapp.com/habits')
     .then(res => {
-      dispatch(getUserData({ ...res.data.user }));
+      if (cards.length === 0) {
+        dispatch(getUserData({ ...res.data.user }));
+      } else {
+        dispatch(getUserData({ ...res.data.user, cards }));
+      }
       dispatch(getHabits([...res.data.habits]));
       dispatch(getCigarettes({ ...res.data.user.cigarettes }));
       dispatch(quizInfoActions.getInfoSuccess({ ...res.data.user.quizInfo }));
