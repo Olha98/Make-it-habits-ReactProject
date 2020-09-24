@@ -69,12 +69,13 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
-
-              currentHabitsTT.push({
-                ...habit,
-                day: calendarActualDay,
-                arrayDate: [...arrayHabitsTueThuSat],
-              });
+              if (maxData <= new Date(calendarActualDay)) {
+                currentHabitsTT.push({
+                  ...habit,
+                  day: calendarActualDay,
+                  arrayDate: [...arrayHabitsTueThuSat],
+                });
+              }
             }
           }
 
@@ -87,15 +88,9 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
             .replace(/^(.{3})(.{3})(.*)$/, '$1 $2 $3')
             .split(' ');
 
-          
-          console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
-          // console.log(maxData, "maxData")
-          console.log(calendarActualDay,"calendarActualDay")
+          console.log(calendarActualDay, 'calendarActualDay');
 
-          // if (maxData >= new Date(calendarActualDay)) {
-          //   return;
-          // }
-
+          let maxData = [];
           for (let iteration of iterationMonWedFri) {
             if (iteration.includes(choseActualWeekDay)) {
               for (let i = 0; i < 21; i++) {
@@ -105,11 +100,9 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   );
                   startPlanningTimeinML += 86400000 * 3;
 
-                  let maxData = new Date(
+                  maxData = new Date(
                     arrayHabitsMonWedFri[arrayHabitsMonWedFri.length - 1],
                   );
-                  console.log(maxData, "maxData")
-                  console.log(arrayHabitsMonWedFri, "arrayHabitsMonWedFri")
                 } else {
                   arrayHabitsMonWedFri.push(
                     moment(startPlanningTimeinML).format('L'),
@@ -117,20 +110,17 @@ const useCalendar = ({ allHabits, calendarActualDay, choseActualWeekDay }) => {
                   startPlanningTimeinML += 86400000 * 2;
                 }
               }
-    
-
-              currentHabitsTT.push({
-                ...habit,
-                day: calendarActualDay,
-                arrayDate: [...arrayHabitsMonWedFri],
-              });
+              if (maxData <= new Date(calendarActualDay)) {
+                currentHabitsTT.push({
+                  ...habit,
+                  day: calendarActualDay,
+                  arrayDate: [...arrayHabitsMonWedFri],
+                });
+              }
             }
           }
 
-    
           break;
-
-
 
         default:
           break;
