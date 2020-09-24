@@ -4,6 +4,7 @@ import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
 import { quizInfoOperations } from '../../redux/operations';
 import { spinnerSelector, errorSelector } from '../../redux/selectors';
+import { errorActions } from '../../redux/actions';
 import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
@@ -26,6 +27,10 @@ class ModalInterview extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
+
+  componentWillUnmount() {
+    this.props.handleClose();
+  }
 
   render() {
     const {
@@ -124,6 +129,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
+  handleClose: () => dispatch(errorActions.hideError),
 });
 
 export default connect(

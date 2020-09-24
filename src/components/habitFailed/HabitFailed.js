@@ -9,6 +9,7 @@ const HabitFailed = ({ close, habitName, fromCheckList }) => {
   const showModal = () => {
     setIsShowModal(true);
   };
+
   const closeModal = () => {
     setIsShowModal(false);
   };

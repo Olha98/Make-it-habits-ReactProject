@@ -17,7 +17,7 @@ const NotFound = () => {
       </div>
       <div className={styles.c}>
         <div className={styles._404}>404</div>
-        <hr />
+        <hr className={styles._hr} />
         <div className={styles._1}>СТРАНИЦА</div>
         <div className={styles._2}>НЕ&nbsp;&nbsp;НАЙДЕНА</div>
         <Link to="/" className={styles.btn}>
