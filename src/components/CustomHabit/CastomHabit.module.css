@@ -181,6 +181,7 @@ fill: red;
   color: #43d190;
   display: block;
   margin-right: 15px;
+  transition: all 200ms linear;
 }
 
 .castomHabitCancelBtn:hover,
@@ -193,17 +194,18 @@ fill: red;
 .castomHabitSaveBtn {
   width: 220px;
   height: 44px;
-  background: #43d190;
+  background: #ffffff;
   border: 2px solid #43d190;
   border-radius: 5px;
-  color: #ffffff;
+  color: #43d190;
   display: block;
+  transition: all 200ms linear;
 }
 
 .castomHabitSaveBtn:hover,
 .castomHabitSaveBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
+  background-color: #43d190;
+  color: #ffffff;
     outline: 0;
   }
 
