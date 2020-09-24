@@ -19,41 +19,41 @@ import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 //console.log('checkDayToday', checkDayToday());
 class Economizing extends Component {
-  state = {
-    money: this.props.money,
-    time: this.props.time,
-    data: 0,
-    startedAt: 0,
-    quantity: 0,
-  };
+  // state = {
+  //   money: this.props.money,
+  //   time: this.props.time,
+  //   data: 0,
+  //   startedAt: 0,
+  //   quantity: 0,
+  // };
 
-  checkDayToday = () => {
-    const date = new Date(this.props.startTime);
-    console.log('date', date);
-    const todayDate = Date.now();
-    console.log('todayDate', todayDate);
+  // checkDayToday = () => {
+  //   const date = new Date(this.props.startTime);
+  //   console.log('date', date);
+  //   const todayDate = Date.now();
+  //   console.log('todayDate', todayDate);
 
-    const dateMs = date.getTime();
-    console.log('dateMs', dateMs);
-    const dayPass = Math.round((todayDate - dateMs) / 86400000);
-    console.log('dayPass', dayPass);
-    if (!this.props.prevData[dayPass]) {
-      this.setState({
-        quantity: this.props.prevData[dayPass],
-        startedAt: this.props.startTime,
-        data: this.props.prevData,
-        money: 0,
-        time: 0,
-      });
-    } else {
-      this.setState({
-        money: this.props.money,
-        time: this.props.time,
-      });
-    }
-  };
+  //   const dateMs = date.getTime();
+  //   console.log('dateMs', dateMs);
+  //   const dayPass = Math.round((todayDate - dateMs) / 86400000);
+  //   console.log('dayPass', dayPass);
+  //   if (!this.props.prevData[dayPass]) {
+  //     this.setState({
+  //       quantity: this.props.prevData[dayPass],
+  //       startedAt: this.props.startTime,
+  //       data: this.props.prevData,
+  //       money: 0,
+  //       time: 0,
+  //     });
+  //   } else {
+  //     this.setState({
+  //       money: this.props.money,
+  //       time: this.props.time,
+  //     });
+  //   }
+  // };
   render() {
-    const { time } = this.props;
+    const { money, time } = this.props;
     let hours = Math.floor(time / 60);
     let minutes = time - hours * 60;
 
@@ -68,13 +68,13 @@ class Economizing extends Component {
 
               <p
                 className={
-                  this.props.money >= 0
+                  money >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }
               >
                 <Wallet className={style.svg} />
-                {this.props.money} &#8372;
+                {money} &#8372;
               </p>
             </li>
             <li className={style.leftSideBar_economizing__list_item}>
@@ -83,7 +83,7 @@ class Economizing extends Component {
               </p>
               <p
                 className={
-                  this.props.time >= 0
+                  time >= 0
                     ? style.leftSideBar_economizing__list_item_value
                     : style.leftSideBar_economizing__list_item_value_red
                 }
