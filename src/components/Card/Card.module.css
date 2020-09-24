@@ -152,10 +152,6 @@
 @value main_green from '../../css/vars.module.css';
 
 .modalCardForm {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 90%;
   width: 785px;
   padding: 60px;
