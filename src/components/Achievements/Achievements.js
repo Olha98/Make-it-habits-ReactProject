@@ -21,13 +21,9 @@ const Achievements = ({
 }) => {
   // console.log(achievements);
 
-  console.log('ghi', smokedCigarettes, quizInfoPerDay, quizInfoPerTime);
+  // console.log('ghi', smokedCigarettes, quizInfoPerDay, quizInfoPerTime);
 
   useEffect(() => {
-    if (smokedCigarettes.data === []) {
-      smokedCigarettes.data.push(null);
-    }
-
     achievementAction({
       smokedCigarettes,
       quizInfoPerDay,
@@ -63,7 +59,7 @@ const mapStateToProps = state => {
   // console.log(state);
   return {
     achievements: state.achievement,
-    smokedCigarettes: state.cigarettes.data,
+    smokedCigarettes: state.cigarettes,
     quizInfoPerDay: state.quizInfo.cigarettePerDay,
     quizInfoPerTime: state.quizInfo.cigarettePerTime,
   };
