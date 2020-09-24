@@ -1,4 +1,5 @@
 import { quizInfoConstants } from '../constants';
+import constants from '../constants/authConstans';
 
 const initialState = {
   smokeYears: 0,
@@ -12,6 +13,9 @@ const quizInfo = (state = { ...initialState }, action) => {
     case quizInfoConstants.ADD_INFO_SUCCESS:
     case quizInfoConstants.GET_INFO_SUCCESS:
       return action.payload;
+
+    case constants.LOGOUT:
+      return initialState;
 
     default:
       return state;
