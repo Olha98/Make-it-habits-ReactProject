@@ -1,8 +1,8 @@
 .habitChoiceContainer {
-  position: absolute;
-  top: 50%;
+  /* position: absolute; */
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   width: 784px;
   height: 580px;
   background: #ffffff;
@@ -46,12 +46,10 @@
 
 .habitChoiceTemplateBtn:hover,
 .habitChoiceTemplateBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
-    outline: 0;
-  }
-
-
+  color: #43d190;
+  background-color: #ffffff;
+  outline: 0;
+}
 
 .habitChoiceOwnBtn {
   padding: 12px 22px;
@@ -68,10 +66,10 @@
 
 .habitChoiceOwnBtn:hover,
 .habitChoiceOwnBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
-    outline: 0;
-  }
+  color: #43d190;
+  background-color: #ffffff;
+  outline: 0;
+}
 
 .habitChoiceCancelBtn {
   width: 220px;

@@ -1,10 +1,10 @@
 /* @import "../../assests/images/CastomHabit/bin.svg"; */
 
 .castomHabitContainer {
-  position: absolute;
-  top: 50%;
+  /* position: absolute; */
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   width: 784px;
   height: 580px;
   background: #ffffff;
@@ -50,7 +50,7 @@
   position: relative;
   margin-bottom: 20px;
 }
-.errorMassege{
+.errorMassege {
   position: absolute;
   font-size: 9px;
   color: red;
@@ -117,7 +117,7 @@
   /* background-repeat: no-repeat; */
 }
 
-.imgTrashCan{
+.imgTrashCan {
   position: absolute;
   width: 15px;
   height: 15px;
@@ -127,16 +127,14 @@
   position: relative;
   display: flex;
   align-items: baseline;
-    width: 160px;
-    margin: 0 auto;
-    cursor: pointer;
-
+  width: 160px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .castomHabitBtnWrapper {
   display: flex;
   justify-content: center;
-
 }
 
 .castomHabitCancelBtn {
@@ -169,12 +167,12 @@
 
 .castomHabitSaveBtn:hover,
 .castomHabitSaveBtn:focus {
-    color: #43d190;
-    background-color: #ffffff;
-    outline: 0;
-  }
+  color: #43d190;
+  background-color: #ffffff;
+  outline: 0;
+}
 
-  /* .castomHabitDelete {
+/* .castomHabitDelete {
         width: 220px;
     height: 44px;
     border: 2px solid #43d190;
