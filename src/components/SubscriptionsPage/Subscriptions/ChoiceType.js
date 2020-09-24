@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import Spinner from '../../Spinner/Spinner';
 import modalBackDrop from '../../ModalBackDrop/ModalBackDrop';
 import {
@@ -8,35 +8,27 @@ import {
   subscrSelectors,
 } from '../../../redux/selectors';
 import { subscrOperations } from '../../../redux/operations';
-import { errorActions } from '../../../redux/actions';
+// import { errorActions } from '../../../redux/actions';
 import style from './Subscriptions.module.css';
-
-// const delay = ms =>
-//   new Promise(resolve =>
-//     setTimeout(() => {
-//       resolve('');
-//       console.log('delay');
-//     }, ms),
-//   );
 
 const types = ['Noob', 'Basic', 'Standart', 'Premium', 'Ultra'];
 
 const ChoiceType = props => {
   const { changeType, isLoading, error } = props;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    return () => dispatch(errorActions.hideError());
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   return () => dispatch(errorActions.hideError());
+  //   };
+  // }, []);
 
   const onSelectType = async e => {
-    const type = e.target.dataset.type;
-    changeType({ typeSubscription: type }).then(response => {
-      if (response.status >= 400) {
-        return;
-      }
-      props.closeModal();
-    });
+    const request = { plan: e.target.dataset.type };
+    const response = await changeType(request);
+    // console.log('response', response);
+    if (response.status >= 400) {
+      return;
+    }
+    props.closeModal();
   };
 
   return (
@@ -71,13 +63,11 @@ const mapStateToProps = state => ({
 });
 
 // const mapDispatchToProps = {
-//   // changeType: subscrActions.changeTypeSuccess, // если добавят поле на бэке, то взять метод из Operations
 //   changeType: subscrOperations.changeType,
 // };
 
 const mapDispatchToProps = dispatch => ({
   changeType: type => dispatch(subscrOperations.changeType(type)),
-  hideError: () => dispatch(errorActions.hideError),
 });
 
 export default connect(

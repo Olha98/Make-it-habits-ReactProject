@@ -4,21 +4,21 @@ import { getUserData } from '../actions/userActions';
 import { authSelector } from '../selectors';
 import { token } from './authOperation';
 
-const changeType = typeSubscription => async (dispatch, getState) => {
+const changeType = request => async (dispatch, getState) => {
   const tokenNow = authSelector.isAuthenticated(getState());
   token.set(tokenNow);
   let data;
   dispatch(spinnerActions.loaderOn());
   dispatch(subscrActions.changeTypeRequest());
   try {
-    data = await axios.post('/users/updateSubscription', typeSubscription);
+    data = await axios.post('/users/updateSubscription', request);
     dispatch(
       getUserData({
         ...getState().user,
-        subscription: typeSubscription,
+        subscription: request.plan,
       }),
     );
-    // dispatch(subscrActions.changeTypeSuccess(typeSubscription));
+    dispatch(subscrActions.changeTypeSuccess(request));
   } catch (error) {
     dispatch(subscrActions.changeTypeError(error));
     // console.dir(error);

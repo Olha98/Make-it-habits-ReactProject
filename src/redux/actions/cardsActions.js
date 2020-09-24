@@ -14,6 +14,20 @@ const addCardError = error => ({
   payload: error,
 });
 
+const getCardRequest = () => ({
+  type: cardsConstants.GET_CARD_REQUEST,
+});
+
+const getCardSuccess = id => ({
+  type: cardsConstants.GET_CARD_SUCCESS,
+  payload: id,
+});
+
+const getCardError = error => ({
+  type: cardsConstants.GET_CARD_ERROR,
+  payload: error,
+});
+
 const removeCardRequest = () => ({
   type: cardsConstants.REMOVE_CARD_REQUEST,
 });
@@ -28,11 +42,31 @@ const removeCardError = error => ({
   payload: error,
 });
 
+const addPaymentRequest = () => ({
+  type: cardsConstants.ADD_PAYMENT_REQUEST,
+});
+
+const addPaymentSuccess = card => ({
+  type: cardsConstants.ADD_PAYMENT_SUCCESS,
+  payload: card,
+});
+
+const addPaymentError = error => ({
+  type: cardsConstants.ADD_PAYMENT_ERROR,
+  payload: error,
+});
+
 export default {
   addCardRequest,
   addCardSuccess,
   addCardError,
+  getCardRequest,
+  getCardSuccess,
+  getCardError,
   removeCardRequest,
   removeCardSuccess,
   removeCardError,
+  addPaymentRequest,
+  addPaymentSuccess,
+  addPaymentError,
 };
