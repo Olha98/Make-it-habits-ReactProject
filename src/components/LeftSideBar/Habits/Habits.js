@@ -42,7 +42,8 @@ class Habits extends Component {
           <CustomScrollbars
             style={{
               width: 270,
-              height: 202,
+              // height: 202,
+              height: 360,
             }}
           >
             {habits && (
