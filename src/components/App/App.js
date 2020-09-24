@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PrivateRoute from '../CustomRoutes/PrivateRoute';
@@ -14,7 +14,6 @@ import RightSideBar from '../RightSideBar/RightSideBar';
 import style from '../CustomRoutes/PrivateRoute.module.css';
 
 const App = ({ getGlobalState, token }) => {
-  const [isTestOpen, changeStateIsOpen] = useState(false);
   useEffect(() => {
     getGlobalState();
   }, [token, getGlobalState]);
@@ -33,7 +32,6 @@ const App = ({ getGlobalState, token }) => {
               ),
             )}
             <Route component={NotFound} />
-
           </Switch>
           {token && <RightSideBar />}
         </div>

@@ -5,7 +5,6 @@ import HabitItem from '../HabitItem/HabitItem';
 import style from './Habits.module.css';
 
 import CustomScrollbars from '../../../assests/scroll/scroll';
-//import Modal from "../../ModalBackDrop/ModalBackDrop";
 
 import '../../../main.css';
 import HabitChoice from '../../HabitChoice/HabitChoice';
