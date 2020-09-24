@@ -3,10 +3,10 @@
   width: 842px;
   display: flex;
   justify-content: space-between;
+  background-color: #fff;
   align-items: center;
   padding: 0 62px 0 79px;
   border-bottom: 1px solid #d5e1dc;
-  background-color: #fff;
 }
 
 .achievementsHeaderTitle {

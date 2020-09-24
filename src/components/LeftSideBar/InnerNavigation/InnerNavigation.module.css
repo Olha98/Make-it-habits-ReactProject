@@ -25,8 +25,17 @@
   .leftSideBar_innerNavigation__green {
   background-color: #333333;
 }
+.leftSideBar_innerNavigation__list_item_link:focus
+  .leftSideBar_innerNavigation__green {
+  background-color: #333333;
+  outline: none;
+}
 .leftSideBar_innerNavigation__list_item_link:hover {
   background-color: #cbf7e3;
+}
+.leftSideBar_innerNavigation__list_item_link:focus {
+  background-color: #cbf7e3;
+  outline: none;
 }
 
 .leftSideBar_innerNavigation__green {
@@ -39,6 +48,9 @@
 .leftSideBar_innerNavigation__green:hover {
   background-color: #333333;
 }
+.leftSideBar_innerNavigation__green:focus {
+  outline: none;
+}
 
 .leftSideBar_innerNavigation__list_item_link_notify {
   width: 16px;
@@ -47,15 +59,12 @@
   background-color: #fc675e;
   color: white;
   text-align: center;
-  /* font-size: 7px;
-  font-weight: bold;
-  line-height: 16px; */
   position: absolute;
   top: 9px;
   right: 14px;
   font-weight: 500;
   font-size: 11px;
-  /* line-height: 13px; */
+
   display: flex;
   justify-content: center;
   align-items: center;

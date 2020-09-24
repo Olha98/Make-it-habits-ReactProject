@@ -27,10 +27,6 @@ class Profile extends Component {
     }));
   };
 
-  changePath = () => {
-    //
-  };
-
   // handleInputChange = (e) => {
   //   const { name, value } = e.target;
   //   this.setState({ [name]: value });
@@ -46,22 +42,6 @@ class Profile extends Component {
   //   console.log("this.props", this.props);
   //   console.log("this.state", this.state);
   // };
-
-  // aaa = () => {
-  //   return (
-  //     style.input +
-  //     ' ' +
-  //     (values.phone
-  //       .split('')
-  //       .splice(4)
-  //       .filter(symb => symb !== ' ' && symb !== '_')
-  //       .join('').length > 0 &&
-  //       touched.phone &&
-  //       errors.phone &&
-  //       style.inputInvalid)
-  //   );
-  // };
-
   render() {
     const { changePassword } = this.state;
 
@@ -71,238 +51,227 @@ class Profile extends Component {
 
     return (
       <>
-        <div className={style.container}>
-          <div className={style.wrapperHeader}>
-            <h2 className={style.title}>Личный кабинет</h2>
-          </div>
-          <CustomScrollbars
-            style={{ height: `calc( 100vh - 110px)` }}
-            className={style.checkListPageScrollWrapper}
-          >
-            <div className={style.wrapperMain}>
-              <h3 className={style.titleInfo}>Личная информация</h3>
+        <div className={style.wrapperHeader}>
+          <h2 className={style.title}>Личный кабинет</h2>
+        </div>
+        <CustomScrollbars
+          style={{ height: `calc( 100vh - 110px)` }}
+          className={style.checkListPageScrollWrapper}
+        >
+          <div className={style.wrapperMain}>
+            <h3 className={style.titleInfo}>Личная информация</h3>
 
-              <div className={style.wrapperForm}>
-                <div className={style.wrapperFirstColumn}>
-                  <Formik
-                    initialValues={{
-                      firstName: this.props.firstName,
-                      lastName: this.props.lastName,
-                      phone: this.props.phone,
-                      email: this.props.email,
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={values => {
-                      const number = values.phone
-                        .split('')
-                        .splice(4)
-                        .filter(symb => symb !== ' ')
-                        .join('');
-                      this.props.addDataUserOperation({
-                        ...values,
-                        phone: `80${number}`,
-                      });
-                      this.props.history.push('/checklist');
-                    }}
-                  >
-                    {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleBlur,
-                    }) => (
-                      <Form className={style.form}>
-                        <label className={style.label}>
-                          <span className={style.titleInput}>Имя*</span>
-                          <input
-                            type="text"
-                            name="firstName"
-                            id="firstName"
-                            value={values.firstName}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={
-                              style.input +
-                              ' ' +
-                              (values.firstName.length !== 0 &&
-                                touched.firstName &&
-                                errors.firstName &&
-                                style.inputInvalid)
-                              // : style.inputValid
-                            }
-                          />
-                          {(
-                            <ErrorValidation
-                              touched={touched.firstName}
-                              message={errors.firstName}
-                            />
-                          ) && funcMessage(errors.firstName)}
-                        </label>
-                        <label className={style.label}>
-                          <span className={style.titleInput}>Фамилия</span>
-                          <input
-                            type="text"
-                            name="lastName"
-                            id="lastName"
-                            value={values.lastName}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={
-                              style.input +
-                              ' ' +
-                              (values.lastName.length !== 0 &&
-                                touched.lastName &&
-                                errors.lastName &&
-                                style.inputInvalid)
-                              // : style.inputValid
-                            }
-                          />
-                          {(
-                            <ErrorValidation
-                              touched={touched.lastName}
-                              message={errors.lastName}
-                            />
-                          ) && funcMessage(errors.lastName)}
-                        </label>
-                        <label className={style.label}>
-                          <span className={style.titleInput}>Телефон*</span>
+            <div className={style.wrapperForm}>
+              <div className={style.wrapperFirstColumn}>
+                <Formik
+                  initialValues={{
+                    firstName: this.props.firstName,
+                    lastName: this.props.lastName,
+                    phone: this.props.phone,
+                    email: this.props.email,
+                  }}
+                  validationSchema={validationSchema}
+                  onSubmit={values => {
+                    const numb = values.phone
+                      .split('')
+                      .filter(symb => symb !== ' ');
 
-                          <InputMask
-                            type="tel"
-                            name="phone"
-                            defaultValue={values.phone}
-                            id="phone"
-                            mask="+3\8099 999 99 99"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            className={
-                              style.input +
-                              ' ' +
-                              (values.phone
-                                .split('')
-                                .splice(4)
-                                .filter(symb => symb !== ' ' && symb !== '_')
-                                .join('').length > 0 &&
-                                touched.phone &&
-                                errors.phone &&
-                                style.inputInvalid)
-                            }
-                            placeholder="+380__ ___ __ __"
+                    const number = numb
+                      .splice(numb[0] === '+' && numb[1] === '3' && 2)
+                      .join('');
+                    this.props.addDataUserOperation({
+                      ...values,
+                      phone:
+                        number[0] === 8 &&
+                        number[1] === 0 &&
+                        number[2] === 8 &&
+                        number[3] === 0
+                          ? number.slice(2)
+                          : number,
+                    });
+                    this.props.history.push('/checklist');
+                  }}
+                >
+                  {({ values, errors, touched, handleChange, handleBlur }) => (
+                    <Form className={style.form}>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Имя*</span>
+                        <input
+                          type="text"
+                          name="firstName"
+                          id="firstName"
+                          value={values.firstName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            ' ' +
+                            (values.firstName.length !== 0 &&
+                              touched.firstName &&
+                              errors.firstName &&
+                              style.inputInvalid)
+                            // : style.inputValid
+                          }
+                        />
+                        {(
+                          <ErrorValidation
+                            touched={touched.firstName}
+                            message={errors.firstName}
                           />
-                          {
-                            // (values.phone
-                            //   .split('')
-                            //   .splice(4)
-                            //   .filter(symb => symb !== ' ' && symb !== '_')
-                            //   .join('').length =
-                            //   0 &&
-                            //   funcMessage(
-                            //     'номер телефона введён не полностью',
-                            //   )),
-                            values.phone
+                        ) && funcMessage(errors.firstName)}
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Фамилия</span>
+                        <input
+                          type="text"
+                          name="lastName"
+                          id="lastName"
+                          value={values.lastName}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            ' ' +
+                            (values.lastName.length !== 0 &&
+                              touched.lastName &&
+                              errors.lastName &&
+                              style.inputInvalid)
+                            // : style.inputValid
+                          }
+                        />
+                        {(
+                          <ErrorValidation
+                            touched={touched.lastName}
+                            message={errors.lastName}
+                          />
+                        ) && funcMessage(errors.lastName)}
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>Телефон</span>
+
+                        <InputMask
+                          type="tel"
+                          name="phone"
+                          defaultValue={values.phone}
+                          id="phone"
+                          mask="+3\8099 999 99 99"
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            ' ' +
+                            (values.phone
                               .split('')
                               .splice(4)
                               .filter(symb => symb !== ' ' && symb !== '_')
                               .join('').length > 0 &&
                               touched.phone &&
                               errors.phone &&
-                              funcMessage('номер телефона введён не полностью')
+                              style.inputInvalid)
                           }
-                        </label>
-                        <label className={style.label}>
-                          <span className={style.titleInput}>E-mail*</span>
-                          <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={values.email}
-                            onChange={() => {}}
-                            onBlur={handleBlur}
-                            className={
-                              style.input +
-                              ' ' +
-                              (values.email.length !== 0 &&
-                                touched.email &&
-                                errors.email &&
-                                style.inputInvalid)
-                              // : style.inputValid
-                            }
+                          placeholder="+380__ ___ __ __"
+                        />
+                        {values.phone
+                          .split('')
+                          .splice(4)
+                          .filter(symb => symb !== ' ' && symb !== '_')
+                          .join('').length > 0 &&
+                          touched.phone &&
+                          errors.phone &&
+                          funcMessage('номер телефона введён не полностью')}
+                      </label>
+                      <label className={style.label}>
+                        <span className={style.titleInput}>E-mail*</span>
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          value={values.email}
+                          onChange={() => {}}
+                          onBlur={handleBlur}
+                          className={
+                            style.input +
+                            ' ' +
+                            (values.email.length !== 0 &&
+                              touched.email &&
+                              errors.email &&
+                              style.inputInvalid)
+                            // : style.inputValid
+                          }
+                        />
+                        {(
+                          <ErrorValidation
+                            touched={touched.email}
+                            message={errors.email}
                           />
-                          {(
-                            <ErrorValidation
-                              touched={touched.email}
-                              message={errors.email}
-                            />
-                          ) && funcMessage(errors.email)}
-                        </label>
-                        <button type="submit" className={style.btnSaveChange}>
-                          Сохранить изменения
-                        </button>
-                      </Form>
-                    )}
-                  </Formik>
-                  <button
-                    onClick={this.renderPasswordForm}
-                    className={style.buttonChangePassword}
-                  >
-                    Изменить пароль
-                  </button>
-                </div>
-
-                <div className={style.wrapperSecondColumn}>
-                  <NavLink
-                    exact
-                    className={style.avatarWrapper}
-                    to="/profile/avatar"
-                  >
-                    <img
-                      src={
-                        !this.props.avatar
-                          ? avatars[16].image
-                          : avatars.find(item => item.id === this.props.avatar)
-                              ?.image
-                      }
-                      alt="avatar"
-                      width="108"
-                      height="108"
-                      className={style.avatar}
-                    />
-                  </NavLink>
-                  <NavLink
-                    exact
-                    className={style.editAvatar}
-                    to="/profile/avatar"
-                  >
-                    Выбрать другой аватар
-                  </NavLink>
-                  <div className={style.subscription}>
-                    <span className={style.subscriptionName}>Basic</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      this.props.history.push('/subscriptions');
-                    }}
-                    className={style.button}
-                  >
-                    Изменить подписку
-                  </button>
-                </div>
+                        ) && funcMessage(errors.email)}
+                      </label>
+                      <button type="submit" className={style.btnSaveChange}>
+                        Сохранить изменения
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
+                <button
+                  onClick={this.renderPasswordForm}
+                  className={style.buttonChangePassword}
+                >
+                  Изменить пароль
+                </button>
               </div>
 
-              {changePassword && (
-                <PasswordForm renderPasswordForm={this.renderPasswordForm} />
-              )}
-              <Card />
+              <div className={style.wrapperSecondColumn}>
+                <NavLink
+                  exact
+                  className={style.avatarWrapper}
+                  to="/profile/avatar"
+                >
+                  <img
+                    src={
+                      !this.props.avatar
+                        ? avatars[16].image
+                        : avatars.find(item => item.id === this.props.avatar)
+                            ?.image
+                    }
+                    alt="avatar"
+                    width="108"
+                    height="108"
+                    className={style.avatar}
+                  />
+                </NavLink>
+                <NavLink
+                  exact
+                  className={style.editAvatar}
+                  to="/profile/avatar"
+                >
+                  Выбрать другой аватар
+                </NavLink>
+                <div className={style.subscription}>
+                  <span className={style.subscriptionName}>Basic</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    this.props.history.push('/subscriptions');
+                  }}
+                  className={style.button}
+                >
+                  Изменить подписку
+                </button>
+              </div>
             </div>
-            {/* ------------------------------ */}
-            {this.props.isModalInterview === 0 && (
-              <ModalInterview close={() => null} />
+
+            {changePassword && (
+              <PasswordForm renderPasswordForm={this.renderPasswordForm} />
             )}
-            {/* ------------------------------ */}
-          </CustomScrollbars>
-        </div>
+            <Card />
+          </div>
+          {/* ------------------------------ */}
+          {this.props.isModalInterview === 0 && (
+            <ModalInterview close={() => null} />
+          )}
+          {/* ------------------------------ */}
+        </CustomScrollbars>
       </>
     );
   }
