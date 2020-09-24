@@ -271,7 +271,7 @@ class CheckListItem extends Component {
                   });
                   currentDay === day && this.onStatus(true);
 
-                  console.log('object', this.props.habit.efficiency);
+                  // console.log('object', this.props.habit.efficiency);
                   this.props.habit.efficiency === 100 &&
                     console.log('hellocherpoberi');
                   // this.openCongratulationModal();
