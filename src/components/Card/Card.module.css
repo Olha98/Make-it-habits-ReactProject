@@ -79,7 +79,7 @@
   align-items: center;
 }
 
-.modalCardForm {
+.modalForm {
   max-width: 90%;
   width: 785px;
   padding: 60px;
@@ -139,7 +139,17 @@
   border-radius: 5px;
 }
 
-.input:focus {
+.select {
+  width: 220px;
+  height: 44px;
+  padding: 0 10px;
+  color: black_font;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.input:focus,
+.select:focus {
   border: 1px solid black_font;
   outline: 0;
 }

@@ -35,4 +35,20 @@ const removeCard = id => async (dispatch, getState) => {
   }
 };
 
-export default { addCard, removeCard };
+const addPayment = payment => (dispatch, getState) => {
+  const tokenNow = authSelector.isAuthenticated(getState());
+  token.set(tokenNow);
+
+  dispatch(spinnerActions.loaderOn());
+  dispatch(cardsActions.addPaymentRequest);
+  try {
+    // await axios.post('/users/addPayment', payment);
+    dispatch(cardsActions.addPaymentSuccess(payment));
+  } catch (error) {
+    dispatch(cardsActions.addPaymentError(error));
+  } finally {
+    dispatch(spinnerActions.loaderOff());
+  }
+};
+
+export default { addCard, removeCard, addPayment };

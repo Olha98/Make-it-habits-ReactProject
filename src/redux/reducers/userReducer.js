@@ -60,6 +60,9 @@ const userReducer = (state = { ...initialState }, action) => {
     case cardsConstants.REMOVE_CARD_SUCCESS:
       const newCards = state.cards.filter(item => item.id !== action.payload);
       return { ...state, cards: newCards };
+    case cardsConstants.ADD_PAYMENT_SUCCESS:
+      const newPayments = [...state.payments, action.payload];
+      return { ...state, payments: newPayments };
 
     case authConstans.LOGOUT:
       return initialState;

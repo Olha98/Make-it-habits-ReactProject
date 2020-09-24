@@ -110,7 +110,7 @@ class CardForm extends Component {
     const { isLoading, error } = this.props;
 
     return (
-      <section className={styles.modalCardForm}>
+      <section className={styles.modalForm}>
         <header
           className={styles.sectionHeader}
           style={{ marginBottom: `${error || message ? '20px' : '40px'}` }}

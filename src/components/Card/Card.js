@@ -4,6 +4,7 @@ import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
 import CardList from './CardList';
+import Payment from './Payment';
 import {
   cardsSelectors,
   errorSelector,
@@ -12,7 +13,8 @@ import {
 import style from './Card.module.css';
 
 const Card = ({ cards }) => {
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowModalCard, setIsShowCardForm] = useState(false);
+  const [isShowModalPayment, setIsShowPaymentForm] = useState(false);
   let number, timeExpiration;
   if (cards.length > 0) {
     // cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
@@ -43,17 +45,19 @@ const Card = ({ cards }) => {
       <div className={style.cardsButtons}>
         <button
           className={['btnTransparentWhiteBorder', style.buttonAdd].join(' ')}
-          onClick={() => setIsShowModal(prev => !prev)}
+          onClick={() => setIsShowCardForm(prev => !prev)}
         >
           + Добавить карту
         </button>
         <button
           className={['btnTransparentWhiteBorder', style.buttonPay].join(' ')}
+          onClick={() => setIsShowPaymentForm(prev => !prev)}
         >
           Оплатить
         </button>
       </div>
-      {isShowModal && <CardForm close={setIsShowModal} />}
+      {isShowModalCard && <CardForm close={setIsShowCardForm} />}
+      {isShowModalPayment && <Payment close={setIsShowPaymentForm} />}
       <div className={style.supportContainer}>
         <div className={style.supportPic}>{/* <SupportPic /> */}</div>
         <div className={style.supportInfo}>
