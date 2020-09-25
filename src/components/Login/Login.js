@@ -9,8 +9,8 @@ import { ReactComponent as ClosedEye } from '../../assests/images/profile/closed
 
 class Login extends Component {
   state = {
-    email: 'kostya123@gmail.com',
-    password: 'Qwerty123',
+    email: 'OlhaGrim@gmail.com',
+    password: 'OlhaGrim',
     passwordVisible: false,
   };
 
