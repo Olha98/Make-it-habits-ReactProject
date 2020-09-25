@@ -57,7 +57,6 @@ class PasswordForm extends Component {
                 >
                   {!passwordNew ? <ClosedEye /> : <OpenedEye />}
                 </div>
-
                 <input
                   type={!passwordNew ? typePassword : typeText}
                   name="password"
