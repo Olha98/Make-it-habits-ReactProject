@@ -10,7 +10,6 @@ const Achievements = ({
   smokedCigarettes,
   quizInfoPerDay,
   quizInfoPerTime,
-  isLoading,
 }) => {
   useEffect(() => {
     achievementAction({
