@@ -1,4 +1,7 @@
-const getTypeSubscription = state => state.user.subscription;
-const getCards = state => state.cards;
+import { plans } from '../../components/SubscriptionsPage/Subscriptions/Subscriptions';
 
-export default { getTypeSubscription, getCards };
+const getTypeSubscription = state => state.user.subscription;
+const getPrice = state =>
+  plans.find(plan => plan.type === state.user.subscription).price;
+
+export default { getTypeSubscription, getPrice };

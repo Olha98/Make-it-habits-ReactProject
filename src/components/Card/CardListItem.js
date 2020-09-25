@@ -29,6 +29,7 @@ const CardListItem = props => {
         backgroundColor: `${colors[(id - 2) % 5]}`,
         // zIndex: `-${index * 10}`,
         cursor: 'pointer',
+        // transitionDelay: `${(count - 1 - index) * 50}ms`,
       }}
       onClick={onShuffle}
     >
