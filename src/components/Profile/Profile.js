@@ -34,7 +34,6 @@ class Profile extends Component {
     if (!this.props.email) {
       return null;
     } 
-    console.log('this.props.subscription', this.props.subscription);
     return (
       <>
         <div className={style.wrapperHeader}>
