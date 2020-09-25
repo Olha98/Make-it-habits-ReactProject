@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import style from "./HabitChoice.module.css";
 import CastomHabit from "../CustomHabit/CastomHabit";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
-// import CastomHabitV from "../CustomHabitV/CastomHabitV";
+import style from "./HabitChoice.module.css";
+
 
 function HabitChoice({ close}) {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -11,18 +11,10 @@ function HabitChoice({ close}) {
   const showModal = () => {
     setIsShowModal(true);
   };
-  // const closeModal = () => {
-  //   setIsShowModal(false);
-  // };
 
   const showTemplateModal = () => {
     setTemplateModal(true);
   };
-  // const closeTemplateModal = () => {
-  //   setTemplateModal(false);
-  // };
-
-
 
   return (
     <div className={style.habitChoiceContainer}>

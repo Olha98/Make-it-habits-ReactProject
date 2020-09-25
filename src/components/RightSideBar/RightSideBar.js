@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import style from './RightSideBar.module.css';
+import moment from 'moment';
+import 'moment/locale/ru';
 import Calendar from './Calendar';
 import TimeDoItList from './TimeDoIt';
-import moment from 'moment';
 import CustomScrollbars from '../../assests/scroll/scroll';
+import style from './RightSideBar.module.css';
 
-import 'moment/locale/ru';
 
 class RightSideBar extends Component {
   state = {
@@ -32,7 +32,7 @@ class RightSideBar extends Component {
               <Calendar />
             </div>
             <div className={style.footerRightSideBar}>
-              <CustomScrollbars style={{ width: 360, height: 340, top: 10 }}>
+              <CustomScrollbars style={{ width: 360, height: 370, top: 10 }}>
                 <TimeDoItList />
               </CustomScrollbars>
             </div>

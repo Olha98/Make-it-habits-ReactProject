@@ -27,7 +27,6 @@ class CheckList extends Component {
           {this.props.habits
             ? this.props.habits.map(
                 (habit, index) => (
-                  // habit.efficiency !== 100 && (
                   <CSSTransition
                     key={habit._id}
                     in={this.props.isNew}
@@ -42,7 +41,6 @@ class CheckList extends Component {
                     />
                   </CSSTransition>
                 ),
-                // ),
               )
             : 'No habits added'}
         </TransitionGroup>

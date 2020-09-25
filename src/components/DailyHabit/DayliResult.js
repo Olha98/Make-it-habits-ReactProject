@@ -2,33 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import updateDailyResul from '../../redux/operations/dailyResultOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
-import style from './DailyHabit.module.css';
 import closeBtn from '../../assests/images/closeBlack.png';
 import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
-
-// const cigarettes = [
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-//   null,
-// ];
+import style from './DailyHabit.module.css';
 
 const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const [quantity, setQuantity] = useState(0);
@@ -37,9 +13,7 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const openAlreadyAdded = () => {
     setAlreadyAdded(true);
   };
-  // const closeAlreadyAdded = () => {
-  //   setAlreadyAdded(false);
-  // };
+
   const changeQuantity = e => {
     setQuantity(Number(e.target.value));
   };
@@ -48,14 +22,9 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
     e.preventDefault();
     const date = new Date(startTime);
     const todayDate = Date.now();
-    // const date2 = new Date(todayDate);
     const dateMs = date.getTime();
     const dayPass = Math.floor((todayDate - dateMs) / 86400000);
-    // const dayPassCheck = (todayDate - dateMs) / 86400000;
-    // console.log('dateStarttime :>> ', date);
-    // console.log('timePass :>> ', dayPassCheck);
-    // console.log('today :>> ', date2);
-    // console.log('dayPass', dayPass);
+
     if (!prevData[dayPass]) {
       prevData[dayPass] = quantity;
       updateResult({
@@ -65,10 +34,6 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
       close();
     } else openAlreadyAdded();
 
-    // updateResult({
-    //   startedAt: '2020-09-18T11:06:17.000Z',
-    //   data: cigarettes,
-    // });
   };
 
   return (

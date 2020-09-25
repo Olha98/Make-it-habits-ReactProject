@@ -114,17 +114,11 @@ const initialState = [
 const getAchievements = (state, payload) => {
   let newState = [...state];
 
-  // ================= CIGARETTES =================
-
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
-      .some(
-        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 1,
-        // console.log('payload.quizInfoPerDay', Number(payload.quizInfoPerDay))
-      )
+      .some(cigarette => cigarette <= Number(payload.quizInfoPerDay) - 1)
   ) {
-    // console.log('1 day');
     newState = newState.map(achievement =>
       achievement.name === 'oneCigaretteRefusal'
         ? { ...achievement, status: true }
@@ -135,12 +129,8 @@ const getAchievements = (state, payload) => {
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
-      .some(
-        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 3,
-        // console.log('payload.quizInfoPerDay', Number(payload.quizInfoPerDay))
-      )
+      .some(cigarette => cigarette <= Number(payload.quizInfoPerDay) - 3)
   ) {
-    // console.log('3 day');
     newState = newState.map(achievement =>
       achievement.name === 'threeCigaretteRefusal'
         ? { ...achievement, status: true }
@@ -153,33 +143,19 @@ const getAchievements = (state, payload) => {
       .filter(element => element !== null)
       .some(cigarette => cigarette <= Number(payload.quizInfoPerDay) - 5)
   ) {
-    // console.log('5 day');
     newState = newState.map(achievement =>
       achievement.name === 'fiveCigaretteRefusal'
         ? { ...achievement, status: true }
         : achievement,
     );
   }
-
-  // console.log(payload.smokedCigarettes.data);
-  // console.log(Number(payload.quizInfoPerDay));
-  // console.log(payload);
-
-  // ================= DAYS =================
-
   if (payload.smokedCigarettes.data.some(cigarette => cigarette === 0)) {
-    // console.log('1 day');
     newState = newState.map(achievement =>
       achievement.name === 'oneDayCigaretteRefusal'
         ? { ...achievement, status: true }
         : achievement,
     );
   }
-  // console.log(
-  //   payload.smokedCigarettes.data
-  //     .filter(element => element !== null)
-  //     .filter(element => element === 0),
-  // );
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
@@ -300,17 +276,6 @@ const getAchievements = (state, payload) => {
     );
   }
 
-  // ================= HOURS =================
-
-  // console.log(
-  //   payload.smokedCigarettes.data
-  //     .filter(element => element !== null)
-  //     .reduce((acc, cigarette) => {
-  //       acc += Number(payload.quizInfoPerDay) - cigarette;
-  //       return acc;
-  //     }, 0) *
-  //     (payload.quizInfoPerTime / 60),
-  // );
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
@@ -387,10 +352,8 @@ const achievementsReducer = (
   { type, payload = [] },
 ) => {
   const values = Object.entries(payload);
-  // console.log(values);
   switch (type) {
     case ACHIEVEMENT_SUCCESS:
-      // console.log(payload);
       return getAchievements(state, payload);
     case constants.LOGOUT:
       return initialState;

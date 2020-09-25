@@ -9,9 +9,7 @@ const Congratulations = ({ fromCheckList, habitName, close }) => {
   const showModal = () => {
     setIsShowModal(true);
   };
-  // const closeModal = () => {
-  //   setIsShowModal(false);
-  // };
+
   return (
     <>
       <div id="home" className={style.congratulationWrapper}>

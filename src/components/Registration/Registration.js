@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styles from './Registration.module.css';
 import { connect } from 'react-redux';
+import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabitblack.svg';
 import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
-import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
+import styles from './Registration.module.css';
 
 class Registration extends Component {
   state = {

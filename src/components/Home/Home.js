@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Home.module.css';
 import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabit.svg';
 import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
+import styles from './Home.module.css';
 
 const HomePage = ({ onLogin, onRegistration }) => {
   return (

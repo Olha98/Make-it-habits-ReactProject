@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InputMask from 'react-input-mask';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
 import {
