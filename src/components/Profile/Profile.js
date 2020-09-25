@@ -253,24 +253,24 @@ class Profile extends Component {
                     ' ' +
                     (!subscription && style.subscriptionFree) +
                     ' ' +
-                    (subscription?.typeSubscription === 'Basic' &&
+                    (subscription === 'Basic' &&
                       style.subscriptionBasic) +
                     ' ' +
-                    (subscription?.typeSubscription === 'Noob' &&
+                    (subscription === 'Noob' &&
                       style.subscriptionNoob) +
                     ' ' +
-                    (subscription?.typeSubscription === 'Standart' &&
+                    (subscription === 'Standart' &&
                       style.subscriptionStandart) +
                     ' ' +
-                    (subscription?.typeSubscription === 'Premium' &&
+                    (subscription === 'Premium' &&
                       style.subscriptionPremium) +
                     ' ' +
-                    (subscription?.typeSubscription === 'Ultra' &&
+                    (subscription === 'Ultra' &&
                       style.subscriptionUltra)
                   }
                 >
                   <span className={style.subscriptionName}>
-                    {!subscription ? 'Free' : subscription.typeSubscription}
+                    {!subscription ? 'Free' : subscription}
                   </span>
                 </div>
                 <button

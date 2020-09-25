@@ -10,9 +10,10 @@ import {
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
+import { cardsOperations } from '../../redux/operations';
 import style from './Card.module.css';
 
-const Card = ({ cards }) => {
+const Card = ({ cards, removeCard }) => {
   const [isShowModalCard, setIsShowCardForm] = useState(false);
   const [isShowModalPayment, setIsShowPaymentForm] = useState(false);
   let number, timeExpiration;
@@ -24,6 +25,9 @@ const Card = ({ cards }) => {
     // month = timeExpiration.getMonth();
     // year = timeExpiration.getFullYear();
   }
+  const onRemove = () => {
+    removeCard(cards[0].id);
+  };
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
@@ -36,7 +40,11 @@ const Card = ({ cards }) => {
           <p className={style.cardExpireDate}>
             Истекает {cards.length ? `${timeExpiration}` : ''}
           </p>
-          <button className={style.cardDeleteButton}>
+          <button
+            className={style.cardDeleteButton}
+            type="button"
+            onClick={onRemove}
+          >
             <Trash className={style.trashIcon} />
           </button>
         </div>
@@ -80,4 +88,8 @@ const mapStateToProps = state => ({
   error: errorSelector.getError(state),
 });
 
-export default connect(mapStateToProps)(Card);
+const mapDispatchToProps = dispatch => ({
+  removeCard: id => dispatch(cardsOperations.removeCard(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

@@ -43,7 +43,7 @@
   line-height: 21px;
   margin-bottom: 20px;
   width: 270px;
-  /* margin-left: 65px; */
+
   color: #4f4f4f;
   align-self: center;
 }
@@ -51,13 +51,6 @@
   margin-bottom: 20px;
 }
 /* ======================== */
-.containerTwo {
-  text-align: center;
-  position: relative;
-  width: 300px;
-  margin: 0 auto;
-  cursor: pointer;
-}
 
 .leftSideBar_habits__button {
   width: 220px;
@@ -66,7 +59,7 @@
   line-height: 40px;
   text-decoration: none;
   background: #43d190;
-  /* background: linear-gradient(45deg, #25e1b2, #40e495, #30dd8a, #156e43); */
+
   border-radius: 5px;
   color: white;
   border: none;
@@ -80,7 +73,7 @@
     #2bb673
   );
   box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
-  /* background-position: 100% 0; */
+
   transition: all 0.4s ease-in-out;
 }
 

@@ -29,8 +29,7 @@ class ModalInterview extends Component {
   };
 
   componentWillUnmount() {
-    console.log(this.props.handleClose);
-    this.props.handleClose();
+    this.props.error && this.props.handleClose();
   }
 
   render() {

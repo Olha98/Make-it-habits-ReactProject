@@ -42,6 +42,20 @@ const removeCardError = error => ({
   payload: error,
 });
 
+const liftUpCardRequest = () => ({
+  type: cardsConstants.LIFT_CARD_REQUEST,
+});
+
+const liftUpCardSuccess = id => ({
+  type: cardsConstants.LIFT_CARD_SUCCESS,
+  payload: id,
+});
+
+const liftUpCardError = error => ({
+  type: cardsConstants.LIFT_CARD_ERROR,
+  payload: error,
+});
+
 const addPaymentRequest = () => ({
   type: cardsConstants.ADD_PAYMENT_REQUEST,
 });
@@ -66,6 +80,9 @@ export default {
   removeCardRequest,
   removeCardSuccess,
   removeCardError,
+  liftUpCardRequest,
+  liftUpCardSuccess,
+  liftUpCardError,
   addPaymentRequest,
   addPaymentSuccess,
   addPaymentError,
