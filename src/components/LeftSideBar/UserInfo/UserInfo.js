@@ -33,7 +33,7 @@ class UserInfo extends Component {
             {name ? (
               <p
                 className={
-                  name.length + surname.length >= 23
+                  name.length + surname.length >= 21
                     ? style.leftSideBar_userInfo__name_small_text
                     : style.leftSideBar_userInfo__name
                 }

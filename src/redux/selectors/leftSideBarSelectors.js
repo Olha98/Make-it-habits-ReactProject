@@ -19,7 +19,11 @@ const getCurrentAmountOfCigarettes = state => {
   return cig[cig.length - 1];
   //console.log('cig', cig[cig.length - 1]);
 };
+const allCigarettes = state => {
+  const cig = state.cigarettes.data.filter(el => el !== null);
 
+  return cig;
+};
 const getTimeForOneCigarette = state => state.quizInfo.cigarettePerTime;
 
 // ===============habits========
@@ -32,8 +36,6 @@ const getHabitById = (state, habitId) => {
 };
 
 const allNotifications = createSelector([listOfHabitsCurrent], habits => {
-  // console.log('habits', habits);
-
   return (
     habits &&
     habits.filter(habit => {
@@ -46,23 +48,10 @@ const allNotifications = createSelector([listOfHabitsCurrent], habits => {
       return '';
     })
   );
-  // return (
-  //   habits &&
-  //   habits.filter(({ data, name, }) => {
-  //     const isAllTrue = data.every(bool => bool);
-
-  //     if (isAllTrue) {
-  //       console.log('data', data);
-  //       return {
-  //         [name]: data,
-  //       };
-  //     }
-  //     return '';
-  //   })
-  // );
 });
 // ===============habits=========
 export default {
+  allCigarettes,
   allNotifications,
   getConstAmountOfCigarettesPerDay,
   getCigarettePackPrice,

@@ -114,13 +114,10 @@ const initialState = [
 const getAchievements = (state, payload) => {
   let newState = [...state];
 
-
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
-      .some(
-        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 1,
-      )
+      .some(cigarette => cigarette <= Number(payload.quizInfoPerDay) - 1)
   ) {
     newState = newState.map(achievement =>
       achievement.name === 'oneCigaretteRefusal'
@@ -132,9 +129,7 @@ const getAchievements = (state, payload) => {
   if (
     payload.smokedCigarettes.data
       .filter(element => element !== null)
-      .some(
-        cigarette => cigarette <= Number(payload.quizInfoPerDay) - 3,
-      )
+      .some(cigarette => cigarette <= Number(payload.quizInfoPerDay) - 3)
   ) {
     newState = newState.map(achievement =>
       achievement.name === 'threeCigaretteRefusal'
