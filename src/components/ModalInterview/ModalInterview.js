@@ -128,7 +128,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
-  handleClose: () => dispatch(errorActions.hideError),
+  handleClose: () => dispatch(errorActions.hideError()),
 });
 
 export default connect(

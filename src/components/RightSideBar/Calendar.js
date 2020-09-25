@@ -9,7 +9,7 @@ registerLocale('ru', ru);
 
 const birthdayStyle = `
   .react-datepicker__month-container {
-	font-family: "Rubik";
+	 font-family: "Rubik";
 	 display: flex;
 	 flex-direction: column;
 	 width: 374px;
@@ -20,7 +20,7 @@ const birthdayStyle = `
   }
 
   .react-datepicker__navigation--previous{
-    margin-top: 20px;
+   margin-top: 20px;
   }
 
   .react-datepicker__current-month {
@@ -32,8 +32,7 @@ const birthdayStyle = `
     margin-left: 120px;
     color: #ffff;
     border-radius: 5px;
-    width: 120px;
-    
+    width: 120px;   
   }
 
 
@@ -67,7 +66,6 @@ const birthdayStyle = `
   height: 30px;
   margin-top: 18px;
   margin-bottom: 25px;
-
   }
 
 
@@ -87,17 +85,15 @@ const birthdayStyle = `
   }
 
   .react-datepicker{
-    
-    border-radius: 0px;
-    border: 0px; 
-  
+  border-radius: 0px;
+  border: 0px; 
   }
 
   .react-datepicker__day--selected:hover{
 	background: #43D190;
 	border-radius: 5px;
 	border: 1px solid #43D190;
-    color: white;
+  color: white;
   }
 
   .react-datepicker__day--selected:default{
@@ -131,7 +127,6 @@ const birthdayStyle = `
 	text-transform: uppercase;
   border-top: 1px solid #D5E1DC;
   border-bottom: 1px solid #D5E1DC;
-	
   }
 
   .react-datepicker__day-name{
@@ -146,14 +141,11 @@ const birthdayStyle = `
 	line-height: 17px;
 	align-items: center;
   justify-content: space-between;
-
   }
 
   .react-datepicker__navigation--next{
     margin-top: 20px;
   }
-
- 
 
   .react-datepicker__navigation--next::after{
    contant:"";
@@ -163,9 +155,6 @@ const birthdayStyle = `
    height: 30px;
   color: red;
   }
-
-
-
   `;
 
 const Calendar = () => {
