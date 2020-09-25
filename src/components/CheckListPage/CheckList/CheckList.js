@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { spinnerSelector } from '../../../redux/selectors';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styles from './CheckListTransition.module.css';
+import { spinnerSelector } from '../../../redux/selectors';
 import Spinner from '../../Spinner/Spinner';
 import style from './CheckList.module.css';
 import CheckListItem from './CheckListItem/CheckListItem';
