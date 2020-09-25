@@ -1,7 +1,6 @@
 const getUserData = '@getUserdata/GET';
 
 export const actionsGetUserData = userData => {
-  // console.log(userData, 'userDatauserDatauserDatauserDatauserData');
 
   return {
     type: getUserData,
@@ -11,14 +10,6 @@ export const actionsGetUserData = userData => {
 
 const initialState = {
   user: null,
-  // {
-  //   quizInfo: {
-  //     cigarettePerDay: 0,
-  //     cigarettePerTime: 0,
-  //     cigarettePackPrice: 0,
-  //   },
-  // habits: [],
-  //},
   habits: null,
 };
 

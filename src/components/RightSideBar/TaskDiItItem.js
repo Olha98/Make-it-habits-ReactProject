@@ -1,10 +1,10 @@
 import moment from 'moment';
+import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import imgBak from '../../assests/images/calendar/trash2.png';
-import style from './TimeDoItItem.module.css';
 import { ReactComponent as ButtonOk } from '../../assests/images/CheckListPage/button_ok.svg';
 import removeHabitOperation from '../../redux/operations/castomHabitOperation';
-import { connect } from 'react-redux';
+import imgBak from '../../assests/images/calendar/trash2.png';
+import style from './TimeDoItItem.module.css';
 moment.locale('ru');
 
 const TaskDiItItem = ({ currentHabit, removeHabit }) => {

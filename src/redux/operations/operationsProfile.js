@@ -2,13 +2,9 @@ import axios from 'axios';
 import actionsProfile from '../actions/actionsProfile';
 import actionsUser from '../actions/actionsProfile';
 import actionsLoader from '../actions/spinnerActions';
-// import { token } from './authOperation';
 import { getUserData } from '../actions/userActions';
 
 const addDataUserOperation = user => async dispatch => {
-  // const tokenNow = getState().auth.access_token;
-  // token.set(tokenNow);
-  // console.log('11111 user', user);
 
   dispatch(actionsLoader.loaderOn());
   try {

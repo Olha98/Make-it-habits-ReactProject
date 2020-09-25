@@ -4,12 +4,6 @@ import castomHabitConstans from '../constants/castomHabitConstans';
 
 const initialState = {
   allHabits: [],
-  // allHabitsDates: [
-  //   // (habit: {
-  //   //   id: '',
-  //   //   dates: [],
-  //   // }),
-  // ],
   currentHabits: [],
   doneHabits: [],
 };

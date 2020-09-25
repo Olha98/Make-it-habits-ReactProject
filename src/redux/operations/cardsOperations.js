@@ -26,7 +26,6 @@ const removeCard = id => async (dispatch, getState) => {
   dispatch(spinnerActions.loaderOn());
   dispatch(cardsActions.removeCardRequest());
   try {
-    // await axios.delete(`/users/cards/${id}`);
     dispatch(cardsActions.removeCardSuccess(id));
   } catch (error) {
     dispatch(cardsActions.removeCardError(error));
@@ -42,7 +41,6 @@ const addPayment = payment => (dispatch, getState) => {
   dispatch(spinnerActions.loaderOn());
   dispatch(cardsActions.addPaymentRequest());
   try {
-    // await axios.post('/users/addPayment', payment);
     dispatch(cardsActions.addPaymentSuccess(payment));
   } catch (error) {
     dispatch(cardsActions.addPaymentError(error));
