@@ -47,11 +47,15 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
   const submitQuantity = e => {
     e.preventDefault();
     const date = new Date(startTime);
-    // const date = new Date(startTime);
     const todayDate = Date.now();
+    // const date2 = new Date(todayDate);
     const dateMs = date.getTime();
-    const dayPass = Math.round((todayDate - dateMs) / 86400000);
-    console.log('prevData', dayPass);
+    const dayPass = Math.floor((todayDate - dateMs) / 86400000);
+    // const dayPassCheck = (todayDate - dateMs) / 86400000;
+    // console.log('dateStarttime :>> ', date);
+    // console.log('timePass :>> ', dayPassCheck);
+    // console.log('today :>> ', date2);
+    // console.log('dayPass', dayPass);
     if (!prevData[dayPass]) {
       prevData[dayPass] = quantity;
       updateResult({

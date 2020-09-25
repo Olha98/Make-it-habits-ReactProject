@@ -382,7 +382,12 @@ const getAchievements = (state, payload) => {
   return newState;
 };
 
-const achievementsReducer = (state = [...initialState], { type, payload }) => {
+const achievementsReducer = (
+  state = [...initialState],
+  { type, payload = [] },
+) => {
+  const values = Object.entries(payload);
+  console.log(values);
   switch (type) {
     case ACHIEVEMENT_SUCCESS:
       // console.log(payload);
