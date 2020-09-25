@@ -6,8 +6,13 @@ import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 
 const Congratulations = ({ fromCheckList, habitName, close }) => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowModalEmpty, setIsShowModalEmpty] = useState(false);
+
   const showModal = () => {
     setIsShowModal(true);
+  };
+  const showModalEmpty = () => {
+    setIsShowModalEmpty(true);
   };
 
   return (
@@ -33,7 +38,7 @@ const Congratulations = ({ fromCheckList, habitName, close }) => {
             Повторить
           </button>
           <button
-            onClick={() => showModal()}
+            onClick={() => showModalEmpty()}
             className={style.buttonTransparent}
           >
             Добавить новую привычку
@@ -48,6 +53,7 @@ const Congratulations = ({ fromCheckList, habitName, close }) => {
           close={close}
         />
       )}
+      {isShowModalEmpty && <CastomHabit close={close} />}
     </>
   );
 };
