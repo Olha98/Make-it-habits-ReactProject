@@ -17,12 +17,8 @@ const Card = ({ cards }) => {
   const [isShowModalPayment, setIsShowPaymentForm] = useState(false);
   let number, timeExpiration;
   if (cards.length > 0) {
-    // cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
     number = cards[0].number;
     timeExpiration = cards[0].timeExpiration;
-    // const timeExpiration = new Date(cards[0].timeExpiration);
-    // month = timeExpiration.getMonth();
-    // year = timeExpiration.getFullYear();
   }
   return (
     <>

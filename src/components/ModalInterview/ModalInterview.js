@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
-import Spinner from '../Spinner/Spinner';
 import { quizInfoOperations } from '../../redux/operations';
 import { spinnerSelector, errorSelector } from '../../redux/selectors';
 import { errorActions } from '../../redux/actions';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import Spinner from '../Spinner/Spinner';
 import styles from './ModalInterview.module.css';
 
 class ModalInterview extends Component {
@@ -40,7 +40,6 @@ class ModalInterview extends Component {
       cigarettePackPrice,
     } = this.state;
     const { error, isLoading } = this.props;
-    // console.log(error);
     return (
       <section className={styles.modalInterview}>
         <header

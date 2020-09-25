@@ -1,7 +1,7 @@
 import React from 'react';
 import modalBackDrop from '../../ModalBackDrop/ModalBackDrop';
-import style from './AlreadyAdded.module.css';
 import closeBtn from '../../../assests/images/closeBlack.png';
+import style from './AlreadyAdded.module.css';
 
 const AlreadyAdded = ({ close }) => {
   return (

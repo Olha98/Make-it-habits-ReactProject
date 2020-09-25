@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentHabits } from '../../redux/actions/habitsActions';
-import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import moment from 'moment';
 import useCalendar from './useCalendar';
+import { getCurrentHabits } from '../../redux/actions/habitsActions';
+import DatePicker, { registerLocale } from 'react-datepicker';
 registerLocale('ru', ru);
 
 const birthdayStyle = `

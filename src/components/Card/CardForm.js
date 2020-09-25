@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputMask from 'react-input-mask';
-import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
-import Spinner from '../Spinner/Spinner';
 import { errorSelector, spinnerSelector } from '../../redux/selectors';
 import { cardsOperations } from '../../redux/operations';
+import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import Spinner from '../Spinner/Spinner';
 import styles from './Card.module.css';
 
 class CardForm extends Component {

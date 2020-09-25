@@ -57,8 +57,6 @@ class CheckListItem extends Component {
     }
   }
 
-  //=========================== Modal ==========================//
-
   openModal = () => {
     this.setState({
       isCustomModal: true,
@@ -89,8 +87,6 @@ class CheckListItem extends Component {
     });
   };
 
-  //=========================== OnClick ==========================//
-
   onStatus = bool => {
     this.setState(prev => ({
       showFullInfo: !prev.showFullInfo,
@@ -111,12 +107,8 @@ class CheckListItem extends Component {
 
     const { arrayDate, day } = this.props.habit;
     const index = getIndex(day, arrayDate);
-
-    // let isFirst = true;
-
     const firstNull = this.state.daysProgress.map((elem, idx) => {
       if (idx === index) {
-        // isFirst = false;
         return bool;
       }
       return elem;
@@ -136,10 +128,7 @@ class CheckListItem extends Component {
       isCurrentDay: this.props.habit.day,
     });
     getCurrentDate() === this.props.habit.day && this.onStatus(true);
-
-    // console.log('object', this.props.habit.efficiency);
     this.props.habit.efficiency === 100 &&
-      // console.log('hellocherpoberi');
       this.openCongratulationModal();
   };
 
@@ -147,8 +136,6 @@ class CheckListItem extends Component {
     this.setState({ isCurrentDay: this.props.habit.day });
     getCurrentDate() === this.props.habit.day && this.onStatus(false);
   };
-
-  //=========================== SetClassName ==========================//
 
   setClassNameSubmit = () => {
     const { day } = this.props.habit;
