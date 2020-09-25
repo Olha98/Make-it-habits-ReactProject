@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import CastomHabit from "../CustomHabit/CastomHabit";
 import modalBackDrop from "../ModalBackDrop/ModalBackDrop";
 import HabitTemplate from "../HabitTemplate/HabitTemplate";
-<<<<<<< HEAD
-=======
 import style from "./HabitChoice.module.css";
 
->>>>>>> ed6c940339db8a55415f73a1ba2ea1dfec8c2c92
 
 function HabitChoice({ close}) {
   const [isShowModal, setIsShowModal] = useState(false);
