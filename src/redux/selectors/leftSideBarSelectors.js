@@ -36,8 +36,6 @@ const getHabitById = (state, habitId) => {
 };
 
 const allNotifications = createSelector([listOfHabitsCurrent], habits => {
-  // console.log('habits', habits);
-
   return (
     habits &&
     habits.filter(habit => {
@@ -50,20 +48,6 @@ const allNotifications = createSelector([listOfHabitsCurrent], habits => {
       return '';
     })
   );
-  // return (
-  //   habits &&
-  //   habits.filter(({ data, name, }) => {
-  //     const isAllTrue = data.every(bool => bool);
-
-  //     if (isAllTrue) {
-  //       console.log('data', data);
-  //       return {
-  //         [name]: data,
-  //       };
-  //     }
-  //     return '';
-  //   })
-  // );
 });
 // ===============habits=========
 export default {

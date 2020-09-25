@@ -15,7 +15,6 @@ class InnerNavigation extends Component {
   };
 
   componentDidMount() {
-    console.log('this.state', this.state);
     const date = new Date();
     const dayToday = date.getDate();
     // if (
@@ -39,7 +38,6 @@ class InnerNavigation extends Component {
   changeNotify = e => {
     const date = new Date();
     const dayToday = date.getDate();
-    console.log('dayToday', dayToday);
 
     if (e.target.dataset.set === 'notify') {
       this.setState({
@@ -48,7 +46,6 @@ class InnerNavigation extends Component {
         today: dayToday,
       });
       localStorage.setItem('date', dayToday);
-      console.log('dayToday', dayToday);
     }
   };
   componentWillUnmount() {
