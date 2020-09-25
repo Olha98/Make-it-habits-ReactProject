@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import style from './Achievements.module.css';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
@@ -11,8 +11,25 @@ import { connect } from 'react-redux';
 //       achievement.name === 'oneDayCigaretteRefusal' && achievement.status,
 //   );
 // };
-const Achievements = ({ achievements }) => {
-  // achievementStatus({ smokedCigarettes, quizInfoPerDay, quizInfoPerTime });
+
+const Achievements = ({
+  achievements,
+  achievementAction,
+  smokedCigarettes,
+  quizInfoPerDay,
+  quizInfoPerTime,
+}) => {
+  // console.log(achievements);
+
+  // console.log('ghi', smokedCigarettes, quizInfoPerDay, quizInfoPerTime);
+
+  useEffect(() => {
+    achievementAction({
+      smokedCigarettes,
+      quizInfoPerDay,
+      quizInfoPerTime,
+    });
+  }, []);
 
   return (
     <>
@@ -39,17 +56,18 @@ const Achievements = ({ achievements }) => {
 };
 
 const mapStateToProps = state => {
+  // console.log(state);
   return {
     achievements: state.achievement,
-    // smokedCigarettes: state.cigarettes.data,
-    // quizInfoPerDay: state.quizInfo.cigarettePerDay,
-    // quizInfoPerTime: state.quizInfo.cigarettePerTime,
+    smokedCigarettes: state.cigarettes,
+    quizInfoPerDay: state.quizInfo.cigarettePerDay,
+    quizInfoPerTime: state.quizInfo.cigarettePerTime,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    achievementStatus: data => dispatch(achievementAction(data)),
+    achievementAction: data => dispatch(achievementAction(data)),
   };
 };
 

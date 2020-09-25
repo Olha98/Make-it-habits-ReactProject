@@ -3,54 +3,61 @@ import { connect } from 'react-redux';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 import { ReactComponent as TelegramIcon } from '../../assests/images/Card/telegram.svg';
 import CardForm from './CardForm';
+import CardList from './CardList';
+import Payment from './Payment';
 import {
   cardsSelectors,
   errorSelector,
   spinnerSelector,
 } from '../../redux/selectors';
-
 import style from './Card.module.css';
 
 const Card = ({ cards }) => {
-  const [isShowModal, setIsShowModal] = useState(false);
-  // let number, month, year;
-  if (!cards.length) {
-    cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
+  const [isShowModalCard, setIsShowCardForm] = useState(false);
+  const [isShowModalPayment, setIsShowPaymentForm] = useState(false);
+  let number, timeExpiration;
+  if (cards.length > 0) {
+    // cards.push({ number: 'xxxx xxxx xxxx xxxx', timeExpiration: '' });
+    number = cards[0].number;
+    timeExpiration = cards[0].timeExpiration;
+    // const timeExpiration = new Date(cards[0].timeExpiration);
+    // month = timeExpiration.getMonth();
+    // year = timeExpiration.getFullYear();
   }
-  const { number, timeExpiration } = cards[0];
-  // number = cards[0].number;
-  // const timeExpiration = new Date(cards[0].timeExpiration);
-  // month = timeExpiration.getMonth();
-  // year = timeExpiration.getFullYear();
-
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
-      <div className={style.card}>
-        <p className={style.cardName}>Моя карта</p>
-        <p className={style.cardNumber}>{number}</p>
-        <p className={style.cardExpireDate}>
-          Истекает {timeExpiration}
-          {/* Истекает {cards.length ? `${month} / ${year}` : ''} */}
-        </p>
-        <button className={style.cardDeleteButton}>
-          <Trash className={style.trashIcon} />
-        </button>
+      <div className={style.cards}>
+        <div className={style.cardFirst}>
+          <p className={style.cardName}>Моя карта</p>
+          <p className={style.cardNumber}>
+            {cards.length ? `${number}` : 'xxxx xxxx xxxx xxxx'}
+          </p>
+          <p className={style.cardExpireDate}>
+            Истекает {cards.length ? `${timeExpiration}` : ''}
+          </p>
+          <button className={style.cardDeleteButton}>
+            <Trash className={style.trashIcon} />
+          </button>
+        </div>
+        {cards.length > 1 && <CardList />}
       </div>
       <div className={style.cardsButtons}>
         <button
           className={['btnTransparentWhiteBorder', style.buttonAdd].join(' ')}
-          onClick={() => setIsShowModal(prev => !prev)}
+          onClick={() => setIsShowCardForm(prev => !prev)}
         >
           + Добавить карту
         </button>
         <button
           className={['btnTransparentWhiteBorder', style.buttonPay].join(' ')}
+          onClick={() => setIsShowPaymentForm(prev => !prev)}
         >
           Оплатить
         </button>
       </div>
-      {isShowModal && <CardForm close={setIsShowModal} />}
+      {isShowModalCard && <CardForm close={setIsShowCardForm} />}
+      {isShowModalPayment && <Payment close={setIsShowPaymentForm} />}
       <div className={style.supportContainer}>
         <div className={style.supportPic}>{/* <SupportPic /> */}</div>
         <div className={style.supportInfo}>

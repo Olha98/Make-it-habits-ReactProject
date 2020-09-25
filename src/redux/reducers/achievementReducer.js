@@ -1,5 +1,5 @@
-import { array } from 'yup';
 import ACHIEVEMENT_SUCCESS from '../constants/achievementConstans';
+import constants from '../constants/authConstans';
 
 const initialState = [
   {
@@ -382,12 +382,18 @@ const getAchievements = (state, payload) => {
   return newState;
 };
 
-const achievementsReducer = (state = [...initialState], { type, payload }) => {
+const achievementsReducer = (
+  state = [...initialState],
+  { type, payload = [] },
+) => {
+  const values = Object.entries(payload);
+  // console.log(values);
   switch (type) {
     case ACHIEVEMENT_SUCCESS:
       // console.log(payload);
-
       return getAchievements(state, payload);
+    case constants.LOGOUT:
+      return initialState;
 
     default:
       return state;

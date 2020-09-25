@@ -135,7 +135,7 @@ class PasswordForm extends Component {
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
-              <span className={style.errorMessage}>СОХРАНЕНО!</span>
+              {/* <span className={style.errorMessage}>СОХРАНЕНО!</span> */}
             </Form>
           )}
         </Formik>

@@ -2,10 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import CardListItem from './CardListItem';
+import { cardsSelectors } from '../../redux/selectors';
+import styles from './Card.module.css';
+import fadeStyles from './fade.module.css';
 
 const CardList = ({ items }) => {
+  const countItems = items.length;
+  const timeout = 250 + 50 * (countItems - 1);
   return (
-    <TransitionGroup component="ul">
+    <TransitionGroup component="ul" className={styles.listCards}>
       {items.map((item, index) => (
         <CSSTransition key={item.id} timeout={timeout} classNames={fadeStyles}>
           <CardListItem id={item.id} index={index} />
@@ -16,7 +21,7 @@ const CardList = ({ items }) => {
 };
 
 const mapStateToProps = state => ({
-  items: contactsSelectors.getFilteredContacts(state),
+  items: cardsSelectors.getCards(state).slice(1),
 });
 
 export default connect(mapStateToProps)(CardList);
