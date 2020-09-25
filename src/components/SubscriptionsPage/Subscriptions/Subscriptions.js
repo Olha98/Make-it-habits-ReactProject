@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Card from '../../Card/Card';
 import ChoiceType from './ChoiceType';
 import { errorActions } from '../../../redux/actions';
-import { errorSelector } from '../../../redux/selectors';
+import { cardsSelectors, errorSelector } from '../../../redux/selectors';
 import style from './Subscriptions.module.css';
+
+export const plans = [
+  { type: 'Free', price: 0 },
+  { type: 'Noob', price: 4.99 },
+  { type: 'Basic', price: 4.8 },
+  { type: 'Standart', price: 14.2 },
+  { type: 'Premium', price: 27.84 },
+  { type: 'Ultra', price: 53.89 },
+];
 
 function Subscriptions(props) {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
+  const [isCanceled, setIsCanceled] = useState(false);
+
+  useEffect(() => {
+    props.payments.length !== 0 && !isCanceled && setIsPaid(true);
+    isCanceled && setIsPaid(false);
+  }, [props.payments, isCanceled]);
+
   const dispatch = useDispatch();
   const close = () => {
     setIsShowModal(prev => !prev);
@@ -76,12 +93,21 @@ function Subscriptions(props) {
             </p>
           </li>
         </ul>
-        <button
-          className="btnTransparentWhiteBorder"
-          onClick={() => setIsShowModal(prev => !prev)}
-        >
-          Изменить подписку
-        </button>
+        {!isPaid ? (
+          <button
+            className="btnTransparentWhiteBorder"
+            onClick={() => setIsShowModal(prev => !prev)}
+          >
+            Изменить подписку
+          </button>
+        ) : (
+          <button
+            className={style.button}
+            onClick={() => setIsCanceled(prev => !prev)}
+          >
+            Отменить подписку
+          </button>
+        )}
         {isShowModal && <ChoiceType close={close} />}
       </section>
       <section className={style.subscriptionsSectionCards}>
@@ -92,6 +118,7 @@ function Subscriptions(props) {
 }
 
 const mapStateToProps = state => ({
+  payments: cardsSelectors.getPayments(state),
   error: errorSelector.getError(state),
 });
 

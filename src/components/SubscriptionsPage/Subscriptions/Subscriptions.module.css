@@ -161,3 +161,25 @@
   background-color: #cbf6e3;
   color: #ffffff;
 }
+
+.button {
+  width: 220px;
+  height: 44px;
+  display: block;
+  background: main_green;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 250ms linear;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: main_green;
+  border: 2px solid main_green;
+  background: transparent;
+  outline: 0;
+}
