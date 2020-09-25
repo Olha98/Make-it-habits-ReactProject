@@ -10,11 +10,12 @@ import funcMessage from './utils/funcMessage';
 import PasswordForm from './PasswordForm';
 import { avatars } from '../Avatar/dataAvatar';
 import Card from '../Card/Card';
+import { spinnerSelector } from '../../redux/selectors';
+import Spinner from '../Spinner/Spinner';
 import operationsProfile from '../../redux/operations/operationsProfile';
 import ModalInterview from '../ModalInterview/ModalInterview.js';
 import CustomScrollbars from '../../assests/scroll/scroll';
 import style from './Profile.module.css';
-
 
 class Profile extends Component {
   state = {
@@ -33,13 +34,13 @@ class Profile extends Component {
     const { subscription } = this.props;
     if (!this.props.email) {
       return null;
-    } 
-    console.log('this.props.subscription', this.props.subscription);
+    }
     return (
       <>
         <div className={style.wrapperHeader}>
           <h2 className={style.title}>Личный кабинет</h2>
         </div>
+        {this.props.isLoading && <Spinner />}
         <CustomScrollbars
           style={{ height: `calc( 100vh - 110px)` }}
           className={style.checkListPageScrollWrapper}
@@ -179,7 +180,7 @@ class Profile extends Component {
                             (values.email.length !== 0 &&
                               touched.email &&
                               errors.email &&
-                              style.inputInvalid) 
+                              style.inputInvalid)
                           }
                         />
                         {(
@@ -235,20 +236,16 @@ class Profile extends Component {
                     ' ' +
                     (!subscription && style.subscriptionFree) +
                     ' ' +
-                    (subscription === 'Basic' &&
-                      style.subscriptionBasic) +
+                    (subscription === 'Basic' && style.subscriptionBasic) +
                     ' ' +
-                    (subscription === 'Noob' &&
-                      style.subscriptionNoob) +
+                    (subscription === 'Noob' && style.subscriptionNoob) +
                     ' ' +
                     (subscription === 'Standart' &&
                       style.subscriptionStandart) +
                     ' ' +
-                    (subscription === 'Premium' &&
-                      style.subscriptionPremium) +
+                    (subscription === 'Premium' && style.subscriptionPremium) +
                     ' ' +
-                    (subscription === 'Ultra' &&
-                      style.subscriptionUltra)
+                    (subscription === 'Ultra' && style.subscriptionUltra)
                   }
                 >
                   <span className={style.subscriptionName}>
@@ -290,6 +287,7 @@ const mapStateToProps = state => {
     subscription: state.user.subscription,
 
     isModalInterview: state.quizInfo.smokeYears,
+    isLoading: spinnerSelector.isLoading(state),
   };
 };
 const mapDispatchToProps = {

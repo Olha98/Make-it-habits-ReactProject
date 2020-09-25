@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { spinnerSelector } from '../../../redux/selectors';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styles from './CheckListTransition.module.css';
-
 import Spinner from '../../Spinner/Spinner';
 import style from './CheckList.module.css';
 import CheckListItem from './CheckListItem/CheckListItem';
@@ -25,23 +24,17 @@ class CheckList extends Component {
         {this.props.isLoading && <Spinner />}
         <TransitionGroup className={style.checkListWrapper}>
           {this.props.habits
-            ? this.props.habits.map(
-                (habit, index) => (
-                  <CSSTransition
-                    key={habit._id}
-                    in={this.props.isNew}
-                    timeout={250}
-                    classNames={styles}
-                    unmountOnExit
-                  >
-                    <CheckListItem
-                      key={habit._id}
-                      habit={habit}
-                      index={index}
-                    />
-                  </CSSTransition>
-                ),
-              )
+            ? this.props.habits.map((habit, index) => (
+                <CSSTransition
+                  key={habit._id}
+                  in={this.props.isNew}
+                  timeout={250}
+                  classNames={styles}
+                  unmountOnExit
+                >
+                  <CheckListItem key={habit._id} habit={habit} index={index} />
+                </CSSTransition>
+              ))
             : 'No habits added'}
         </TransitionGroup>
       </div>
