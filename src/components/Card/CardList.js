@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import CardListItem from './CardListItem';
 import { cardsSelectors } from '../../redux/selectors';
+import CardListItem from './CardListItem';
 import styles from './Card.module.css';
 import fadeStyles from './fade.module.css';
 

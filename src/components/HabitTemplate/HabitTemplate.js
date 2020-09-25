@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import style from './HabitTemplate.module.css';
 import CustomScrollbars from '../../assests/scroll/scroll';
-// import Modal from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import HabitChoice from '../HabitChoice/HabitChoice';
@@ -30,10 +29,6 @@ const HabitTemplate = ({ close }) => {
     setIsShowHabitChoice(true);
   };
 
-  // const closeHabitChoice = () => {
-  //   setIsShowHabitChoice(false);
-  // };
-
   const [habit, setHabit] = useState('');
   const changeCurrentHabit = habit => {
     setHabit(habit);
@@ -45,9 +40,7 @@ const HabitTemplate = ({ close }) => {
   const showModal = () => {
     setIsShowCustomModal(true);
   };
-  // const closeModal = () => {
-  //   setIsShowCustomModal(false);
-  // };
+
   return (
     <>
       <div className={style.habbitTemplateWrapper}>

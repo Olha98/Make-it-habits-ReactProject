@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import style from './ModalBackDrop.module.css';
 import { CSSTransition } from 'react-transition-group';
 import modalTransition from './modalTransition.module.css';
+import style from './ModalBackDrop.module.css';
 
 const modalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends Component {
@@ -22,7 +22,6 @@ const modalBackDrop = WrappedComponent => {
     }
 
     closeModal = () => {
-      // await this.setState({ isOpen: false });
       this.props.close();
     };
 
