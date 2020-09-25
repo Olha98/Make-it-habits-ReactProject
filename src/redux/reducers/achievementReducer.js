@@ -387,7 +387,7 @@ const achievementsReducer = (
   { type, payload = [] },
 ) => {
   const values = Object.entries(payload);
-  console.log(values);
+  // console.log(values);
   switch (type) {
     case ACHIEVEMENT_SUCCESS:
       // console.log(payload);
