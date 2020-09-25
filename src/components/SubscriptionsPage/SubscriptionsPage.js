@@ -1,7 +1,7 @@
 import React from "react";
-import style from "./SubscriptionsPage.module.css";
 import SubscriptionsHeader from "./SubscriptionsHeader/SubscriptionsHeader";
 import Subscriptions from "./Subscriptions/Subscriptions";
+import style from "./SubscriptionsPage.module.css";
 
 function SubscriptionsPage() {
   return (

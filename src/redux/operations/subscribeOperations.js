@@ -21,9 +21,7 @@ const changeType = request => async (dispatch, getState) => {
     dispatch(subscrActions.changeTypeSuccess(request));
   } catch (error) {
     dispatch(subscrActions.changeTypeError(error));
-    // console.dir(error);
     data = error.response;
-    // throw error;
   } finally {
     dispatch(spinnerActions.loaderOff());
   }

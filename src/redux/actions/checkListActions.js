@@ -32,30 +32,6 @@ const addHabitStatusError = error => ({
   payload: error
 });
 
-// const removeCustomHabit = habitId => {
-//   return {
-//     type: checkListConstants.REMOVE_CUSTOM_HABIT,
-//     payload: habitId
-//   }
-// }
-
-// const patchHabitStatus = habit => {
-//   return {
-//     type: checkListConstants.PATCH_CUSTOM_HABIT,
-//     payload: {
-//       ...habit
-//     }
-//   };
-// };
-
-// const addCustomHabit = habit => {
-//     return {
-//       type: customHabitConstans.ADD_CUSTOM_HABIT,
-//       payload: {
-//         ...habit,
-//     }
-//   }
-// }
 
 export default {
   getHabitsRequest,

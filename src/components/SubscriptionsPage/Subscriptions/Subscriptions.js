@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Card from '../../Card/Card';
 import ChoiceType from './ChoiceType';
-// import { ReactComponent as SupportPic } from "../../../assests/images/Subscriptions/support-pic.svg";
 import { errorActions } from '../../../redux/actions';
 import { cardsSelectors, errorSelector } from '../../../redux/selectors';
 import style from './Subscriptions.module.css';

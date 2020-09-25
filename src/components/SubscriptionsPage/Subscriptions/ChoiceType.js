@@ -8,23 +8,16 @@ import {
   subscrSelectors,
 } from '../../../redux/selectors';
 import { subscrOperations } from '../../../redux/operations';
-// import { errorActions } from '../../../redux/actions';
 import style from './Subscriptions.module.css';
 
 const types = ['Noob', 'Basic', 'Standart', 'Premium', 'Ultra'];
 
 const ChoiceType = props => {
   const { changeType, isLoading, error } = props;
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   return () => dispatch(errorActions.hideError());
-  //   };
-  // }, []);
-
   const onSelectType = async e => {
     const request = { plan: e.target.dataset.type };
     const response = await changeType(request);
-    // console.log('response', response);
+
     if (response.status >= 400) {
       return;
     }
@@ -61,10 +54,6 @@ const mapStateToProps = state => ({
   isLoading: spinnerSelector.isLoading(state),
   error: errorSelector.getError(state),
 });
-
-// const mapDispatchToProps = {
-//   changeType: subscrOperations.changeType,
-// };
 
 const mapDispatchToProps = dispatch => ({
   changeType: type => dispatch(subscrOperations.changeType(type)),

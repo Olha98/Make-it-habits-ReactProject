@@ -28,10 +28,7 @@ const userReducer = (state = { ...initialState }, action) => {
       } = action.payload;
       let cards = [];
       if (!action.payload.cards) {
-        const cardsTemp = action.payload.payments; // временно перепутаны поля на бэкенде
-        // поле платежей на бэкенде ещё не добавлено
-        // const payments = action.payload.cards;
-
+        const cardsTemp = action.payload.payments;
         for (let i = 0; i < cardsTemp.length; i += 1) {
           const id = i + 1;
           const ordinalNumber = id;
@@ -49,7 +46,6 @@ const userReducer = (state = { ...initialState }, action) => {
         avatar,
         phone,
         cards,
-        // payments,
         subscription,
       };
 
