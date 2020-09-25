@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
 import achievementAction from '../../redux/actions/achievementAction';
-import Spinner from '../Spinner/Spinner';
-import { spinnerSelector } from '../../redux/selectors';
 import style from './Achievements.module.css';
 
 const Achievements = ({
@@ -12,7 +10,6 @@ const Achievements = ({
   smokedCigarettes,
   quizInfoPerDay,
   quizInfoPerTime,
-  isLoading,
 }) => {
   useEffect(() => {
     achievementAction({
@@ -25,7 +22,6 @@ const Achievements = ({
   return (
     <>
       <AchievementsHeader />
-      {isLoading && <Spinner />}
       <div className={style.achievementsContainer}>
         <ul className={style.achievementsPageList}>
           {achievements.map(achievement => (
@@ -52,7 +48,6 @@ const mapStateToProps = state => {
     smokedCigarettes: state.cigarettes,
     quizInfoPerDay: state.quizInfo.cigarettePerDay,
     quizInfoPerTime: state.quizInfo.cigarettePerTime,
-    isLoading: spinnerSelector.isLoading(state),
   };
 };
 
