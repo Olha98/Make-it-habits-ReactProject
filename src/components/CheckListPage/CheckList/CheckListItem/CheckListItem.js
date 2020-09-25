@@ -42,6 +42,9 @@ class CheckListItem extends Component {
       main_yellow,
       main_blue,
       green_1,
+      '#9ACD32',
+      '#FFFF00',
+      '#FF8C00',
     ],
   };
 
@@ -128,8 +131,7 @@ class CheckListItem extends Component {
       isCurrentDay: this.props.habit.day,
     });
     getCurrentDate() === this.props.habit.day && this.onStatus(true);
-    this.props.habit.efficiency === 100 &&
-      this.openCongratulationModal();
+    this.props.habit.efficiency === 100 && this.openCongratulationModal();
   };
 
   handleDelete = () => {
