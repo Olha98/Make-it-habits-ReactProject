@@ -59,11 +59,6 @@ progress {
   height: 6px;
 }
 
-/* progress[value] {
-  background-color: #f6f6f6;
-  border-radius: 3px;
-} */
-
 progress[value]::-webkit-progress-bar {
   background-color: #f6f6f6;
   border-radius: 3px;
