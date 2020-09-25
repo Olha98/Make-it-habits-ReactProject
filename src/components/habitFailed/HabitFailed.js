@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import style from './HabitFailed.module.css';
 import failedPhoto from '../../assests/images/habitFailed/failed3.jpg';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import CastomHabit from '../CustomHabit/CastomHabit';
+import style from './HabitFailed.module.css';
 
 const HabitFailed = ({ close, habitName, fromCheckList }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const showModal = () => {
     setIsShowModal(true);
   };
-
-  // const closeModal = () => {
-  //   setIsShowModal(false);
-  // };
 
   return (
     <div id="home" className={style.congratulationWrapper}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import InputMask from 'react-input-mask';
 import { Formik, Form } from 'formik';
 import { validationSchema } from './utils/validationSchema';
@@ -11,10 +12,9 @@ import { avatars } from '../Avatar/dataAvatar';
 import Card from '../Card/Card';
 import operationsProfile from '../../redux/operations/operationsProfile';
 import ModalInterview from '../ModalInterview/ModalInterview.js';
-import style from './Profile.module.css';
-import { compose } from 'redux';
 import CustomScrollbars from '../../assests/scroll/scroll';
-// import { subscrSelectors } from '../../redux/selectors';
+import style from './Profile.module.css';
+
 
 class Profile extends Component {
   state = {
@@ -28,27 +28,12 @@ class Profile extends Component {
     }));
   };
 
-  // handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   this.setState({ [name]: value });
-  // };
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  // const { name, value } = e.target;
-  // this.setState({ [name]: value });
-  // const { firstName, lastName, phone, email, avatar } = this.state;
-
-  // this.props.addDataUserOperation({ ...this.state });
-  //   console.log("this.props", this.props);
-  //   console.log("this.state", this.state);
-  // };
   render() {
     const { changePassword } = this.state;
     const { subscription } = this.props;
     if (!this.props.email) {
       return null;
-    } //!костыль для formik, чтобы стейт рендерился сразу при переходе на страницу, а не при перезагрузке
+    } 
     console.log('this.props.subscription', this.props.subscription);
     return (
       <>
@@ -111,7 +96,6 @@ class Profile extends Component {
                               touched.firstName &&
                               errors.firstName &&
                               style.inputInvalid)
-                            // : style.inputValid
                           }
                         />
                         {(
@@ -137,7 +121,6 @@ class Profile extends Component {
                               touched.lastName &&
                               errors.lastName &&
                               style.inputInvalid)
-                            // : style.inputValid
                           }
                         />
                         {(
@@ -196,8 +179,7 @@ class Profile extends Component {
                             (values.email.length !== 0 &&
                               touched.email &&
                               errors.email &&
-                              style.inputInvalid)
-                            // : style.inputValid
+                              style.inputInvalid) 
                           }
                         />
                         {(
@@ -290,11 +272,9 @@ class Profile extends Component {
             )}
             <Card />
           </div>
-          {/* ------------------------------ */}
           {this.props.isModalInterview === 0 && (
             <ModalInterview close={() => null} />
           )}
-          {/* ------------------------------ */}
         </CustomScrollbars>
       </>
     );
@@ -314,7 +294,6 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = {
   addDataUserOperation: operationsProfile.addDataUserOperation,
-  // typeSubscr: subscrSelectors.getTypeSubscription,
 };
 
 export default compose(

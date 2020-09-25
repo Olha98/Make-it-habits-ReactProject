@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react';
-
-import style from './Achievements.module.css';
+import { connect } from 'react-redux';
 import AchievementsHeader from './AchievementsHeader/AchievementsHeader';
 import achievementAction from '../../redux/actions/achievementAction';
-import { connect } from 'react-redux';
-
-// const getActiveClass = achievements => {
-//   return achievements.some(
-//     achievement =>
-//       achievement.name === 'oneDayCigaretteRefusal' && achievement.status,
-//   );
-// };
+import style from './Achievements.module.css';
 
 const Achievements = ({
   achievements,
@@ -19,9 +11,6 @@ const Achievements = ({
   quizInfoPerDay,
   quizInfoPerTime,
 }) => {
-  // console.log(achievements);
-
-  // console.log('ghi', smokedCigarettes, quizInfoPerDay, quizInfoPerTime);
 
   useEffect(() => {
     achievementAction({
@@ -45,7 +34,6 @@ const Achievements = ({
                   : style.achievementsPageItem
               }
             >
-              {/* {console.log(achievement.status)} */}
               <p className={style.achievementsPageText}>{achievement.text}</p>
             </li>
           ))}
@@ -56,7 +44,6 @@ const Achievements = ({
 };
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
     achievements: state.achievement,
     smokedCigarettes: state.cigarettes,

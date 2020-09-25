@@ -7,8 +7,13 @@ import userSelectors from '../../../redux/selectors/leftSideBarSelectors';
 
 class Economizing extends Component {
   render() {
+    let hours;
     const { money, time } = this.props;
-    let hours = Math.floor(time / 60);
+    // let hours = Math.floor(time / 60);
+
+    time < 0
+      ? (hours = Math.round(time / 60))
+      : (hours = Math.floor(time / 60));
     let minutes = time - hours * 60;
 
     return (
@@ -83,9 +88,20 @@ const mapStateToProps = state => {
       (cigarettesPerDay - currentAmountOfCigarettes) * timeForOneCigarette;
   }
 
+  const arrayOfCig = userSelectors.allCigarettes(state);
+
+  let result = arrayOfCig.reduce(function (sum, elem) {
+    const need = sum + (cigarettesPerDay - elem);
+
+    return need;
+  }, 0);
+  const savedTotalTime = result * timeForOneCigarette;
+
+  const savedMoneyTotal = result * priceForOneCigarettes;
+
   return {
-    money: savedMoney.toFixed(2),
-    time: savedTime,
+    money: savedMoneyTotal.toFixed(2),
+    time: savedTotalTime,
   };
 };
 export default connect(mapStateToProps)(Economizing);

@@ -1,7 +1,7 @@
 import React from "react";
-import style from "./Notification.module.css";
 import NotificationHeader from "../Notification/NotificationHeader/NotificationHeader";
 import NotificationList from "../Notification/NotificationList/NotificationList";
+import style from "./Notification.module.css";
 
 const Notification = () => {
   return (

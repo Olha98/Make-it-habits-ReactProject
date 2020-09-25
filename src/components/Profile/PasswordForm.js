@@ -23,19 +23,6 @@ class PasswordForm extends Component {
     changePassword: this.props.changePassword,
   };
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   this.props.postPasswordOperation({
-  //     password: this.state.password,
-  //     confirmPassword: this.state.confirmPassword,
-  //   });
-  // };
-
-  // handleChange = e => {
-  //   const { name, value } = e.target;
-  //   this.setState({ [name]: value });
-  // };
-
   onEyeIconOldPassword = name => {
     this.setState({ [name]: !this.state[name] });
   };
@@ -85,7 +72,6 @@ class PasswordForm extends Component {
                       touched.password &&
                       errors.password &&
                       style.inputInvalid)
-                    // : style.inputValid
                   }
                 />
                 {(
@@ -117,7 +103,6 @@ class PasswordForm extends Component {
                       touched.confirmPassword &&
                       errors.confirmPassword &&
                       style.inputInvalid)
-                    // : style.inputValid
                   }
                 />
                 {(
@@ -135,7 +120,6 @@ class PasswordForm extends Component {
               <button type="submit" className={style.btnSaveChange}>
                 Сохранить пароль
               </button>
-              {/* <span className={style.errorMessage}>СОХРАНЕНО!</span> */}
             </Form>
           )}
         </Formik>
