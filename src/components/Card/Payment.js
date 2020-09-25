@@ -6,6 +6,7 @@ import {
   cardsSelectors,
   errorSelector,
   spinnerSelector,
+  subscrSelectors,
 } from '../../redux/selectors';
 import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
@@ -13,7 +14,7 @@ import styles from './Card.module.css';
 class Payment extends Component {
   state = {
     card: 'default',
-    amount: 0,
+    amount: this.props.price,
   };
 
   handleChange = e => {
@@ -32,7 +33,8 @@ class Payment extends Component {
 
   render() {
     const { amount } = this.state;
-    const { cards, error, isLoading } = this.props;
+    const { cards, error, isLoading, plan, price } = this.props;
+
     return (
       <section className={styles.modalForm}>
         <header
@@ -65,6 +67,20 @@ class Payment extends Component {
               ))}
             </select>
           </label>
+          {plan !== 'Free' && (
+            <>
+              <p>&nbsp;</p>
+              <div>
+                Стоимость выбраного Вами плана подписки
+                составляет:&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style={{ color: 'green', fontSize: '22px' }}>
+                  $&nbsp;{price}
+                </span>
+              </div>
+              <p>&nbsp;</p>
+              <p>&nbsp;</p>
+            </>
+          )}
           <label className={styles.label}>
             Введите сумму платежа:
             <input
@@ -93,6 +109,8 @@ const mapStateToProps = state => ({
   isLoading: spinnerSelector.isLoading(state),
   error: errorSelector.getError(state),
   cards: cardsSelectors.getCards(state),
+  plan: subscrSelectors.getTypeSubscription(state),
+  price: subscrSelectors.getPrice(state),
 });
 
 const mapDispatchToProps = {
