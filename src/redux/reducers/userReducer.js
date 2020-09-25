@@ -29,9 +29,10 @@ const userReducer = (state = { ...initialState }, action) => {
       let cards = [];
       if (!action.payload.cards) {
         const cardsTemp = action.payload.payments;
-        for (let i = 0; i < cardsTemp.length; i += 1) {
+        const startCount = cardsTemp.length;
+        for (let i = 0; i < startCount; i += 1) {
           const id = i + 1;
-          const ordinalNumber = id;
+          const ordinalNumber = startCount - i;
           cards.push({ ...cardsTemp[i], id, ordinalNumber });
         }
       } else {
@@ -51,8 +52,8 @@ const userReducer = (state = { ...initialState }, action) => {
 
     case cardsConstants.ADD_CARD_SUCCESS:
       const countCards = state.cards.length;
-      const newId = state.cards[countCards - 1] + 1;
-      const newOrderN = countCards;
+      const newId = state.cards[countCards - 1].id + 1;
+      const newOrderN = countCards + 1;
       const cardsPlus = [
         ...state.cards,
         { ...action.payload, id: newId, ordinalNumber: newOrderN },

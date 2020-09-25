@@ -13,6 +13,15 @@ import {
 import { cardsOperations } from '../../redux/operations';
 import style from './Card.module.css';
 
+const colors = [
+  '#655de6',
+  '#b469fa',
+  '#F8C102',
+  '#43D190',
+  '#FE6083',
+  '#795548',
+];
+
 const Card = ({ cards, removeCard }) => {
   const [isShowModalCard, setIsShowCardForm] = useState(false);
   const [isShowModalPayment, setIsShowPaymentForm] = useState(false);
@@ -24,12 +33,20 @@ const Card = ({ cards, removeCard }) => {
   const onRemove = () => {
     removeCard(cards[0].id);
   };
+
   return (
     <>
       <p className={style.sectionTitle}>Мои карты</p>
       <div className={style.cards}>
-        <div className={style.cardFirst}>
-          <p className={style.cardName}>Моя карта</p>
+        <div
+          className={style.cardFirst}
+          style={{
+            backgroundColor: `${
+              cards.length ? colors[(cards[0].id - 1) % 6] : '#655de6'
+            }`,
+          }}
+        >
+          <p className={style.cardName}>Main card</p>
           <p className={style.cardNumber}>
             {cards.length ? `${number}` : 'xxxx xxxx xxxx xxxx'}
           </p>

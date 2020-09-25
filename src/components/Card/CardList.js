@@ -8,12 +8,12 @@ import fadeStyles from './fade.module.css';
 
 const CardList = ({ items }) => {
   const countItems = items.length;
-  const timeout = 250 + 50 * (countItems - 1);
+  // const timeout = 250 + 50 * (countItems - 1);
   items.sort((a, b) => (a.ordinalNumber > b.ordinalNumber ? 1 : -1));
   return (
     <TransitionGroup component="ul" className={styles.listCards}>
       {items.map((item, index) => (
-        <CSSTransition key={item.id} timeout={timeout} classNames={fadeStyles}>
+        <CSSTransition key={item.id} timeout={250} classNames={fadeStyles}>
           <CardListItem id={item.id} index={index} count={countItems} />
         </CSSTransition>
       ))}
