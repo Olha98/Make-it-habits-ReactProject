@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { spinnerSelector } from '../../redux/selectors';
 import operationsProfile from '../../redux/operations/operationsProfile';
 import { avatars } from './dataAvatar';
-import Spinner from '../Spinner/Spinner';
-import style from './Avatar.module.css';
 import CustomScrollbars from '../../assests/scroll/scroll';
+import style from './Avatar.module.css';
 
 class Avatar extends Component {
   changeAvatar = id => {
@@ -20,7 +18,6 @@ class Avatar extends Component {
           <div className={style.wrapperHeader}>
             <h2 className={style.title}>Выбрать другой аватар</h2>
           </div>
-          {this.props.isLoading && <Spinner />}
           <CustomScrollbars
             style={{ height: `calc( 100vh - 110px)` }}
             className={style.checkListPageScrollWrapper}
@@ -57,7 +54,6 @@ class Avatar extends Component {
 const mapStateToProps = state => {
   return {
     avatar: state.user.avatar,
-    isLoading: spinnerSelector.isLoading(state),
   };
 };
 
