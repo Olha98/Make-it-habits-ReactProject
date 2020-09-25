@@ -38,7 +38,6 @@ const patchHabitOperation = habit => (dispatch, getState) => {
   axios
     .patch('habits', habit)
     .then(res => {
-      console.log('res', res);
       dispatch(customHabitActions.patchHabitStatus(res.data.updatedHabit));
     })
     .catch(error => console.log('ERROR'))
