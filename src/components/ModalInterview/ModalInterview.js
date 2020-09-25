@@ -29,7 +29,8 @@ class ModalInterview extends Component {
   };
 
   componentWillUnmount() {
-    this.props.error && this.props.handleClose();
+    console.log(this.props.handleClose);
+    this.props.handleClose();
   }
 
   render() {
@@ -129,7 +130,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAddInfo: info => dispatch(quizInfoOperations.addInfo(info)),
-  handleClose: () => dispatch(errorActions.hideError),
+  handleClose: () => dispatch(errorActions.hideError()),
 });
 
 export default connect(

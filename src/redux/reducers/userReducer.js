@@ -11,7 +11,7 @@ const initialState = {
   phone: '',
   cards: [],
   payments: [],
-  subscription: '',
+  subscription: 'Free',
 };
 
 const userReducer = (state = { ...initialState }, action) => {

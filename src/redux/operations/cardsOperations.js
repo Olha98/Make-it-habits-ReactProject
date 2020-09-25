@@ -40,7 +40,7 @@ const addPayment = payment => (dispatch, getState) => {
   token.set(tokenNow);
 
   dispatch(spinnerActions.loaderOn());
-  dispatch(cardsActions.addPaymentRequest);
+  dispatch(cardsActions.addPaymentRequest());
   try {
     // await axios.post('/users/addPayment', payment);
     dispatch(cardsActions.addPaymentSuccess(payment));
