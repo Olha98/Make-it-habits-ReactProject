@@ -105,7 +105,7 @@
   width: 350px;
   height: 120px;
   background: #fff;
-  background: linear-gradient(top, #fff 100%);
+  /* background: linear-gradient(to top, #fff, #e5e5e5); */
   border-radius: 100px;
   position: absolute;
   margin: 120px auto 20px;

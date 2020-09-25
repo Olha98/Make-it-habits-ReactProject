@@ -11,7 +11,7 @@ const initialState = {
   phone: '',
   cards: [],
   payments: [],
-  subscription: '',
+  subscription: 'Free',
 };
 
 const userReducer = (state = { ...initialState }, action) => {
@@ -34,7 +34,8 @@ const userReducer = (state = { ...initialState }, action) => {
 
         for (let i = 0; i < cardsTemp.length; i += 1) {
           const id = i + 1;
-          cards.push({ ...cardsTemp[i], id });
+          const ordinalNumber = id;
+          cards.push({ ...cardsTemp[i], id, ordinalNumber });
         }
       } else {
         cards = [...action.payload.cards];
@@ -55,11 +56,28 @@ const userReducer = (state = { ...initialState }, action) => {
     case cardsConstants.ADD_CARD_SUCCESS:
       const countCards = state.cards.length;
       const newId = state.cards[countCards - 1] + 1;
-      const cardsPlus = [...state.cards, { ...action.payload, id: newId }];
+      const newOrderN = countCards;
+      const cardsPlus = [
+        ...state.cards,
+        { ...action.payload, id: newId, ordinalNumber: newOrderN },
+      ];
       return { ...state, cards: cardsPlus };
     case cardsConstants.REMOVE_CARD_SUCCESS:
       const newCards = state.cards.filter(item => item.id !== action.payload);
       return { ...state, cards: newCards };
+    case cardsConstants.LIFT_CARD_SUCCESS:
+      const length = state.cards.length;
+      let newNum = length - 1;
+      const shuffledCards = state.cards.map(item => {
+        if (item.id === action.payload) {
+          item.ordinalNumber = length;
+        } else {
+          item.ordinalNumber = newNum;
+          newNum -= 1;
+        }
+        return item;
+      });
+      return { ...state, cards: shuffledCards };
     case cardsConstants.ADD_PAYMENT_SUCCESS:
       const newPayments = [...state.payments, action.payload];
       return { ...state, payments: newPayments };

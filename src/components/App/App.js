@@ -14,7 +14,6 @@ import '../../css/vars.module.css';
 import '../../index.module.css';
 
 const App = ({ getGlobalState, token }) => {
-  
   useEffect(() => {
     getGlobalState();
   }, [token, getGlobalState]);
