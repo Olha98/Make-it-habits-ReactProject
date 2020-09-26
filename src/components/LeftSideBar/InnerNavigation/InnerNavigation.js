@@ -6,7 +6,7 @@ import { ReactComponent as Calendar } from '../../../assests/images/LeftSideBar/
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import leftSideBarSelectors from '../../../redux/selectors/leftSideBarSelectors';
-
+import notifyActions from '../../../redux/actions/notifyActions';
 class InnerNavigation extends Component {
   state = {
     isShowNotify: true,
@@ -15,6 +15,7 @@ class InnerNavigation extends Component {
   };
 
   componentDidMount() {
+    this.props.addDoneAllHabits(this.props.navNot);
     const date = new Date();
     const dayToday = date.getDate();
     // if (
@@ -124,8 +125,12 @@ const mapStateToProps = state => {
 
   return {
     number: navNot && navNot.length,
+    navNot,
   };
 };
+const mapDispatchToProps = dispatch => ({
+  addDoneAllHabits: array => dispatch(notifyActions.addDoneHabits(array)),
+});
 
-export default connect(mapStateToProps)(InnerNavigation);
+export default connect(mapStateToProps, mapDispatchToProps)(InnerNavigation);
 //

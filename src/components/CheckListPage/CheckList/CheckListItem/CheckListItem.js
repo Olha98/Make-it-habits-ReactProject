@@ -3,7 +3,9 @@ import style from './CheckListItem.module.css';
 import CastomHabit from '../../../CustomHabit/CastomHabit';
 import addHabitStatus from '../../../../redux/operations/chekListOperation';
 import HabitFailed from '../../../habitFailed/HabitFailed';
-
+//======
+import notifyActions from '../../../../redux/actions/notifyActions';
+//=======
 import { ReactComponent as ButtonOk } from '../../../../assests/images/CheckListPage/button_ok.svg';
 import { ReactComponent as ButtonDelete } from '../../../../assests/images/CheckListPage/button_delete.svg';
 import { ReactComponent as ButtonEdit } from '../../../../assests/images/CheckListPage/button_edit.svg';
@@ -131,7 +133,11 @@ class CheckListItem extends Component {
       isCurrentDay: this.props.habit.day,
     });
     getCurrentDate() === this.props.habit.day && this.onStatus(true);
-    this.props.habit.efficiency === 100 && this.openCongratulationModal();
+    this.props.habit.efficiency === 100 &&
+      this.openCongratulationModal() &&
+      this.props.addDoneAllHabits(this.props.habit);
+
+    //=====================
   };
 
   handleDelete = () => {
@@ -288,6 +294,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addStatus: updateInfo => dispatch(addHabitStatus(updateInfo)),
+    addDoneAllHabits: habit => dispatch(notifyActions.addDoneHabits(habit)),
   };
 };
 
