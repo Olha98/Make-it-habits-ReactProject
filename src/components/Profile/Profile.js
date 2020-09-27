@@ -10,8 +10,6 @@ import funcMessage from './utils/funcMessage';
 import PasswordForm from './PasswordForm';
 import { avatars } from '../Avatar/dataAvatar';
 import Card from '../Card/Card';
-import { spinnerSelector } from '../../redux/selectors';
-import Spinner from '../Spinner/Spinner';
 import operationsProfile from '../../redux/operations/operationsProfile';
 import ModalInterview from '../ModalInterview/ModalInterview.js';
 import CustomScrollbars from '../../assests/scroll/scroll';
@@ -40,7 +38,6 @@ class Profile extends Component {
         <div className={style.wrapperHeader}>
           <h2 className={style.title}>Личный кабинет</h2>
         </div>
-        {this.props.isLoading && <Spinner />}
         <CustomScrollbars
           style={{ height: `calc( 100vh - 110px)` }}
           className={style.checkListPageScrollWrapper}
@@ -287,7 +284,6 @@ const mapStateToProps = state => {
     subscription: state.user.subscription,
 
     isModalInterview: state.quizInfo.smokeYears,
-    isLoading: spinnerSelector.isLoading(state),
   };
 };
 const mapDispatchToProps = {

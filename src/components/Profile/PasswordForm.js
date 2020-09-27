@@ -59,6 +59,7 @@ class PasswordForm extends Component {
                 </div>
                 <input
                   type={!passwordNew ? typePassword : typeText}
+                  autoComplete="off"
                   name="password"
                   id="password"
                   value={values.password}
@@ -90,6 +91,7 @@ class PasswordForm extends Component {
                 </div>
                 <input
                   type={!passwordNewRepeat ? typePassword : typeText}
+                  autoComplete="off"
                   name="confirmPassword"
                   value={values.confirmPassword}
                   id="confirmPassword"
