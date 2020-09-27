@@ -1,37 +1,36 @@
-import checkListConstants from "../constants/checkListConstants";
+import checkListConstants from '../constants/checkListConstants';
+
 const getHabitsRequest = () => ({
-  type: checkListConstants.GET_HABITS_REQUEST
+  type: checkListConstants.GET_HABITS_REQUEST,
 });
 
 const getHabitsSuccess = habits => ({
   type: checkListConstants.GET_HABITS_SUCCESS,
-  payload: habits
+  payload: habits,
 });
 
 const getHabitsError = error => ({
   type: checkListConstants.GET_HABITS_ERROR,
-  payload: error
+  payload: error,
 });
 
-const addHabitStatusRequest = _id => ({
+const addHabitStatusRequest = () => ({
   type: checkListConstants.ADD_HABIT_STATUS_REQUEST,
-  payload: _id
 });
 
 const addHabitStatusSuccess = habit => {
   return {
     type: checkListConstants.ADD_HABIT_STATUS_SUCCESS,
     payload: {
-      ...habit
-    }
+      ...habit,
+    },
   };
 };
 
 const addHabitStatusError = error => ({
   type: checkListConstants.ADD_HABIT_STATUS_ERROR,
-  payload: error
+  payload: error,
 });
-
 
 export default {
   getHabitsRequest,

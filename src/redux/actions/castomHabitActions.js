@@ -1,18 +1,50 @@
 import customHabitConstans from '../constants/castomHabitConstans';
 
+const removeCustomHabitRequest = () => {
+  return {
+    type: customHabitConstans.REMOVE_CUSTOM_HABIT_REQUEST,
+  };
+};
+
 const removeCustomHabit = habitId => {
   return {
     type: customHabitConstans.REMOVE_CUSTOM_HABIT,
-    payload: habitId
-  }
-}
+    payload: habitId,
+  };
+};
+
+const removeCustomHabitError = error => {
+  return {
+    type: customHabitConstans.REMOVE_CUSTOM_HABIT_ERROR,
+    payload: error,
+  };
+};
+
+const patchHabitRequest = () => {
+  return {
+    type: customHabitConstans.PATCH_CUSTOM_HABIT_REQUEST,
+  };
+};
 
 const patchHabitStatus = habit => {
   return {
     type: customHabitConstans.PATCH_CUSTOM_HABIT,
     payload: {
-      ...habit
-    }
+      ...habit,
+    },
+  };
+};
+
+const patchHabitError = error => {
+  return {
+    type: customHabitConstans.PATCH_CUSTOM_HABIT_ERROR,
+    payload: error,
+  };
+};
+
+const addCustomHabitRequest = () => {
+  return {
+    type: customHabitConstans.ADD_CUSTOM_HABIT_REQUEST,
   };
 };
 
@@ -21,15 +53,25 @@ const addCustomHabit = habit => {
     type: customHabitConstans.ADD_CUSTOM_HABIT,
     payload: {
       ...habit,
-    }
-  }
-}
+    },
+  };
+};
 
+const addCustomHabitError = error => {
+  return {
+    type: customHabitConstans.ADD_CUSTOM_HABIT,
+    payload: error,
+  };
+};
 
-
-
-  export default {
-    addCustomHabit,
-    removeCustomHabit,
-    patchHabitStatus
-  }
+export default {
+  addCustomHabitRequest,
+  addCustomHabit,
+  addCustomHabitError,
+  removeCustomHabitRequest,
+  removeCustomHabit,
+  removeCustomHabitError,
+  patchHabitRequest,
+  patchHabitStatus,
+  patchHabitError,
+};

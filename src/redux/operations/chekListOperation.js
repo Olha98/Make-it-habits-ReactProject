@@ -4,8 +4,8 @@ import { getHabits } from '../actions/habitsActions';
 import actionsLoader from '../actions/spinnerActions';
 
 const addHabitStatus = updateInfo => dispatch => {
-  dispatch(checkListActions.addHabitStatusRequest());
   dispatch(actionsLoader.loaderOn());
+  dispatch(checkListActions.addHabitStatusRequest());
   axios
     .patch('/habits', updateInfo)
     .then(res => {
@@ -13,7 +13,7 @@ const addHabitStatus = updateInfo => dispatch => {
         .get('/habits')
         .then(res => dispatch(getHabits([...res.data.habits])));
     })
-    .catch(error => console.log(error))
+    .catch(error => dispatch(checkListActions.addHabitStatusError(error)))
     .finally(dispatch(actionsLoader.loaderOff()));
 };
 
