@@ -70,11 +70,3 @@
   color: #ffffff;
   outline: 0;
 }
-
-/* ! Сообщение об ошибке*/
-
-:global(.error) {
-  color: red;
-  font-weight: 500;
-  font-size: 18px;
-}

@@ -10,6 +10,7 @@ import {
 } from '../../redux/selectors';
 import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
 
 class Payment extends Component {
   state = {
@@ -22,12 +23,17 @@ class Payment extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+    console.log('this.props.error', this.props.error);
     const paidAt = Date.now();
     const amount = Number(this.state.amount);
     const payment = { paidAt, amount };
-    this.props.onAddPayment(payment);
+    await this.props.onAddPayment(payment);
+    if (this.props.error) {
+      console.log('this.props.error', this.props.error);
+      return;
+    }
     this.props.close();
   };
 
@@ -42,9 +48,7 @@ class Payment extends Component {
           style={{ marginBottom: `${error ? '20px' : '40px'}` }}
         >
           <h2 className={styles.title}>Введите данные для оплаты подписки:</h2>
-          {error && (
-            <h3 className="error">Извините, произошла ошибка: {error} </h3>
-          )}
+          {error && <ErrorNotification />}
         </header>
         {isLoading && <Spinner />}
 

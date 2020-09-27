@@ -18,7 +18,7 @@ const loginRequest = () => ({
   type: constants.LOGIN_REQUEST,
 });
 
-const loginSuccess = (credential) => {
+const loginSuccess = credential => {
   return {
     type: constants.LOGIN_SUCCESS,
     payload: credential,
@@ -36,9 +36,7 @@ const logOutError = error => ({
 
 const logout = () => ({
   type: constants.LOGOUT,
-})
-
-
+});
 
 export default {
   registrationRequest,

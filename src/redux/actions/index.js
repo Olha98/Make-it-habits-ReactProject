@@ -1,4 +1,9 @@
 export { default as authActions } from './authAction';
+export { default as profileActions } from './actionsProfile';
+export { default as customHabitsActions } from './castomHabitActions';
+export { default as checkListActions } from './checkListActions';
+export { default as dailyResultActions } from './dailyResultAction';
+export { default as stateActions } from './stateActions';
 export { default as leftSideBarActions } from './leftSideBarActions';
 export { default as quizInfoActions } from './quizInfoActions';
 export { default as subscrActions } from './subscribeActions';

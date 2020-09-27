@@ -1,0 +1,14 @@
+.note {
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.noteText {
+  color: green;
+}
+
+.noteError {
+  color: red;
+}

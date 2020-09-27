@@ -24,8 +24,11 @@ const userReducer = (state = { ...initialState }, action) => {
         registerData,
         avatar,
         phone,
-        subscription,
       } = action.payload;
+      let { subscription } = action.payload;
+      if (!subscription) {
+        subscription = 'Free';
+      }
       let cards = [];
       if (!action.payload.cards) {
         const cardsTemp = action.payload.payments;
