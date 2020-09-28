@@ -10,45 +10,57 @@ import notifyActions from '../../../redux/actions/notifyActions';
 class InnerNavigation extends Component {
   state = {
     isShowNotify: true,
-    number: this.props.number,
+    number: this.props.allHabitsDone.length,
     today: 0,
   };
 
   componentDidMount() {
-    this.props.addDoneAllHabits(this.props.navNot);
-    const date = new Date();
-    const dayToday = date.getDate();
-    // if (
-    localStorage.getItem('date') &&
-      dayToday !== localStorage.getItem('date') &&
-      // ) {
-      this.setState({
-        isShowNotify: true,
-        number: this.props.number,
-        today: 0,
-      });
-    // } else {
-    //   this.setState({
-    //     isShowNotify: false,
-    //     number: 0,
-    //     today: dayToday,
-    //   });
-    // }
+    this.props.addDoneAllHabits(this.props.allHabitsDone);
     window.addEventListener('click', this.changeNotify);
   }
-  changeNotify = e => {
+  componentDidUpdate(prevProps) {
     const date = new Date();
     const dayToday = date.getDate();
-
-    if (e.target.dataset.set === 'notify') {
+    if (prevProps.allHabitsDone !== this.props.allHabitsDone) {
+      this.props.addDoneAllHabits(this.props.allHabitsDone);
+      this.setState({
+        isShowNotify: true,
+        number: this.props.allHabitsDone.length,
+        today: 0,
+      });
+    }
+    if (
+      prevProps.allHabitsDone === this.props.allHabitsDone &&
+      localStorage.getItem('date') &&
+      dayToday === localStorage.getItem('date') &&
+      localStorage.getItem('doneHabits') &&
+      localStorage.getItem('doneHabits') === 0
+    ) {
       this.setState({
         isShowNotify: false,
         number: 0,
         today: dayToday,
       });
+    }
+  }
+  // }
+  // }
+  changeNotify = e => {
+    const date = new Date();
+    const dayToday = date.getDate();
+
+    if (e.target.dataset.set === 'notify') {
+      this.props.clearDoneHabitList();
+      this.setState({
+        isShowNotify: false,
+        number: 0,
+        // today: dayToday,
+      });
       localStorage.setItem('date', dayToday);
+      localStorage.setItem('doneHabits', 0);
     }
   };
+
   componentWillUnmount() {
     window.removeEventListener('click', this.changeNotify);
   }
@@ -103,13 +115,13 @@ class InnerNavigation extends Component {
                   <Bell data-set="notify" />
                 </div>
               </NavLink>
-              {this.state.isShowNotify && this.props.number > 0 && (
+              {this.state.number > 0 && (
                 <div
                   className={
                     style.leftSideBar_innerNavigation__list_item_link_notify
                   }
                 >
-                  <span>{this.props.number}</span>
+                  <span>{this.state.number}</span>
                 </div>
               )}
             </li>
@@ -121,15 +133,17 @@ class InnerNavigation extends Component {
 }
 
 const mapStateToProps = state => {
-  const navNot = leftSideBarSelectors.allNotifications(state);
+  const allHabitsDone = leftSideBarSelectors.allNotifications(state);
 
   return {
-    number: navNot && navNot.length,
-    navNot,
+    // number: allHabitsDone && allHabitsDone.length,
+    number: allHabitsDone.length,
+    allHabitsDone,
   };
 };
 const mapDispatchToProps = dispatch => ({
   addDoneAllHabits: array => dispatch(notifyActions.addDoneHabits(array)),
+  clearDoneHabitList: () => dispatch(notifyActions.clearDoneHabits()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InnerNavigation);

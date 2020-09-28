@@ -26,12 +26,11 @@ const getHabitById = (state, habitId) => {
   const habits = listOfHabits(state);
   return habits.find(habit => habit._id === habitId);
 };
-
+const getDoneHabits = state => state.habits.doneHabits;
 const allNotifications = createSelector([listOfHabitsCurrent], habits => {
   return (
     habits &&
     habits.filter(habit => {
-
       if (habit.efficiency === 100) {
         return [...habit.name];
       }
@@ -41,6 +40,7 @@ const allNotifications = createSelector([listOfHabitsCurrent], habits => {
 });
 
 export default {
+  getDoneHabits,
   allCigarettes,
   allNotifications,
   getConstAmountOfCigarettesPerDay,

@@ -9,7 +9,8 @@ const clearDoneHabits = () => ({
   type: notifyConstants.NOTIFY_CLEAR,
 });
 
-const addOnerHabit = doneHabit => ({
+const addOneHabit = doneHabit => ({
+  //   return console.log('doneHabit', doneHabit);
   type: notifyConstants.NOTIFY_ONE_HABIT,
   payload: doneHabit,
 });
@@ -17,5 +18,5 @@ const addOnerHabit = doneHabit => ({
 export default {
   addDoneHabits,
   clearDoneHabits,
-  addOnerHabit,
+  addOneHabit,
 };
