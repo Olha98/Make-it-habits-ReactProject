@@ -3,6 +3,9 @@ import styles from './Login.module.css';
 import { connect } from 'react-redux';
 import { ReactComponent as Logo } from '../../assests/images/Home/logo/MakeitHabitblack.svg';
 import { ReactComponent as Svg } from '../../assests/images/Home/logo/Subtract.svg';
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
+import Spinner from '../Spinner/Spinner';
+import { errorSelector, spinnerSelector } from '../../redux/selectors';
 import authOperation from '../../redux/operations/authOperation';
 import { ReactComponent as OpenedEye } from '../../assests/images/profile/openedEye.svg';
 import { ReactComponent as ClosedEye } from '../../assests/images/profile/closedEye.svg';
@@ -36,8 +39,7 @@ class Login extends Component {
 
   render() {
     const { email, password, passwordVisible } = this.state;
-    const { btnClose } = this.props;
-
+    const { btnClose, isLoading, error } = this.props;
     return (
       <div className={styles.Login}>
         <div className={styles.HomeLogo}>
@@ -52,6 +54,8 @@ class Login extends Component {
         <p className={styles.LoginTxt}>
           Введите свои данные, чтобы продолжить использовать наше приложение
         </p>
+        {isLoading && <Spinner />}
+        {error && <ErrorNotification />}
         <form onSubmit={this.hendleSubmit} className={styles.LoginForm}>
           <div className={styles.LoginInputForm}>
             <p className={styles.LoginInputTxt}>E-mail</p>
@@ -102,8 +106,14 @@ class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoading: spinnerSelector.isLoading(state),
+  error: errorSelector.getError(state),
+});
+
 const mapDispachToProps = {
   onLogin: authOperation.userLogin,
 };
 
-export default connect(null, mapDispachToProps)(Login);
+export default connect(mapStateToProps, mapDispachToProps)(Login);
