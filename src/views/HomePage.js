@@ -5,6 +5,7 @@ import Regictration from '../components/Registration/Registration';
 import { CSSTransition } from 'react-transition-group';
 import transitionHome from './transitionHome.module.css';
 import transitionLogin from './transitionLogin.module.css';
+
 class HomePage extends Component {
   state = {
     openLogin: false,
