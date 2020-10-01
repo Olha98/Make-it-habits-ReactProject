@@ -50,7 +50,7 @@
 }
 
 .footerRightSideBar {
-  height: 420px;
+  min-height: 420px;
   background-color: #fff;
   border-bottom: 1px solid #d5e1dc;
   border-radius: 0px;
