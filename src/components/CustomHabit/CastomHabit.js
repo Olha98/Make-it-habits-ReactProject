@@ -46,12 +46,12 @@ class CastomHabit extends Component {
     } else if (e.target.dataset.delete) {
       this.props.requestRemoveCastomHabit(this.props.habit._id);
       this.props.closeModal();
-    } else if (e.target.dataset.save && name, date, time, iteration) {
+    } else if ((e.target.dataset.save && name, date, time, iteration)) {
       this.props.requestAddCustomHabit({ name, planningTime, iteration });
       this.props.closeModal();
-    } else if (e.target.dataset.save && !name, !date, !time, !iteration) {
-      this.setState({ isSubmit: true })
-    } 
+    } else if ((e.target.dataset.save && !name, !date, !time, !iteration)) {
+      this.setState({ isSubmit: true });
+    }
   };
 
   handleChenge = e => {
@@ -160,13 +160,13 @@ class CastomHabit extends Component {
             </label>
           </div>
           {this.props.fromCheckList && (
-            <div className={style.btnWrapper}>              
+            <div className={style.btnWrapper}>
               <button
                 onClick={this.onClickSubmit}
                 data-delete="delete"
                 className={style.castomHabitDelete}
               >
-                <Trash className={style.imgTrashCan}/>
+                <Trash className={style.imgTrashCan} />
                 удалить привычку
               </button>
             </div>
