@@ -20,6 +20,9 @@ import { connect } from 'react-redux';
 import Congratulations from '../../../Congratulations/Congratulations';
 import { getCurrentDate, getColor, getIndex } from './CheckListFunctions';
 
+// * Импорт селетора с ошибкой для пропов
+import { errorSelector } from '../../../../redux/selectors';
+
 class CheckListItem extends Component {
   state = {
     showFullInfo: false,
@@ -90,11 +93,28 @@ class CheckListItem extends Component {
     });
   };
 
-  onStatus = bool => {
+  onStatus = async bool => {
+    this.setState({ habitId: this.props.habit._id });
+
+    const { arrayDate, day } = this.props.habit;
+    const index = getIndex(day, arrayDate);
+    const firstNull = this.state.daysProgress.map((elem, idx) => {
+      if (idx === index) {
+        return bool;
+      }
+      return elem;
+    });
+
+    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
+    await this.props.addStatus(updateInfo);
+
+    // * выходим из обработчика сабмита в случае ошибки
+    if (this.props.error) {
+      return;
+    }
+
     this.setState(prev => ({
       showFullInfo: !prev.showFullInfo,
-      habitId: this.props.habit._id,
-      habitChecked: true,
     }));
 
     if (bool) {
@@ -108,35 +128,30 @@ class CheckListItem extends Component {
       });
     }
 
-    const { arrayDate, day } = this.props.habit;
-    const index = getIndex(day, arrayDate);
-    const firstNull = this.state.daysProgress.map((elem, idx) => {
-      if (idx === index) {
-        return bool;
-      }
-      return elem;
-    });
-
     this.setState({
+      habitChecked: true,
       daysDone: firstNull.filter(elem => elem === true).length,
       daysPassed: firstNull.filter(elem => elem === false).length,
     });
-
-    const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
-    this.props.addStatus(updateInfo);
   };
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     this.setState({
       isCurrentDay: this.props.habit.day,
     });
-    getCurrentDate() === this.props.habit.day && this.onStatus(true);
+    getCurrentDate() === this.props.habit.day && (await this.onStatus(true));
+
+    // * выходим из обработчика сабмита в случае ошибки
+    if (this.props.error) {
+      return;
+    }
+
     this.props.habit.efficiency === 100 && this.openCongratulationModal();
   };
 
-  handleDelete = () => {
+  handleDelete = async () => {
     this.setState({ isCurrentDay: this.props.habit.day });
-    getCurrentDate() === this.props.habit.day && this.onStatus(false);
+    getCurrentDate() === this.props.habit.day && (await this.onStatus(false));
   };
 
   setClassNameSubmit = () => {
@@ -282,6 +297,8 @@ class CheckListItem extends Component {
 const mapStateToProps = state => {
   return {
     currentHabits: state.habits.currentHabits,
+    // * добавляем проп с ошибкой
+    error: errorSelector.getError(state),
   };
 };
 
