@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import style from './CastomHabit.module.css';
 import { connect } from 'react-redux';
 import castomHabitActions from '../../redux/actions/castomHabitActions';
 import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
-
-// * Импорт компонентов с сообщением об ошибке и спинером + селеторы для пропов
 import ErrorNotification from '../ErrorNotification/ErrorNotification';
 import Spinner from '../Spinner/Spinner';
 import { errorSelector, spinnerSelector } from '../../redux/selectors';
+import style from './CastomHabit.module.css';
 
 class CastomHabit extends Component {
   state = {
@@ -35,7 +33,6 @@ class CastomHabit extends Component {
     }
   }
 
-  // * без async/await успевала отработать ф-ция закрытия модалки
   onClickSubmit = async e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
@@ -46,32 +43,23 @@ class CastomHabit extends Component {
     }
     if (e.target.dataset.save && this.props.fromCheckList) {
       await this.props.requestPatchCustomHabit({ name, id });
-
-      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
       if (this.props.error) {
         return;
       }
-
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
       await this.props.requestRemoveCastomHabit(this.props.habit._id);
-
-      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
       if (this.props.error) {
         return;
       }
-
       this.props.closeModal();
     } else if ((e.target.dataset.save && name, date, time, iteration)) {
       await this.props.requestAddCustomHabit({ name, planningTime, iteration });
-
-      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
       if (this.props.error) {
         return;
       }
-
       this.props.closeModal();
     } else if ((e.target.dataset.save && !name, !date, !time, !iteration)) {
       this.setState({ isSubmit: true });
@@ -115,13 +103,8 @@ class CastomHabit extends Component {
         <p className={style.castomHabitText}>
           так Вам будет удобнее достичь своей цели
         </p>
-
-        {/* 
-        // * Здесь добавляем спинер и сообщение об ошибке 
-        */}
         {isLoading && <Spinner />}
         {error && <ErrorNotification />}
-
         <form onSubmit={this.handleSubmit} className={style.castomHabitForm}>
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
@@ -227,7 +210,6 @@ class CastomHabit extends Component {
   }
 }
 
-// * добавляем пропы с ошибкой и спинером
 const mapStateToProps = state => ({
   isLoading: spinnerSelector.isLoading(state),
   error: errorSelector.getError(state),

@@ -19,8 +19,6 @@ import {
 import { connect } from 'react-redux';
 import Congratulations from '../../../Congratulations/Congratulations';
 import { getCurrentDate, getColor, getIndex } from './CheckListFunctions';
-
-// * Импорт селетора с ошибкой для пропов
 import { errorSelector } from '../../../../redux/selectors';
 
 class CheckListItem extends Component {
@@ -108,7 +106,6 @@ class CheckListItem extends Component {
     const updateInfo = { id: this.props.habit._id, data: [...firstNull] };
     await this.props.addStatus(updateInfo);
 
-    // * выходим из обработчика сабмита в случае ошибки
     if (this.props.error) {
       return;
     }
@@ -141,7 +138,6 @@ class CheckListItem extends Component {
     });
     getCurrentDate() === this.props.habit.day && (await this.onStatus(true));
 
-    // * выходим из обработчика сабмита в случае ошибки
     if (this.props.error) {
       return;
     }
@@ -297,7 +293,6 @@ class CheckListItem extends Component {
 const mapStateToProps = state => {
   return {
     currentHabits: state.habits.currentHabits,
-    // * добавляем проп с ошибкой
     error: errorSelector.getError(state),
   };
 };

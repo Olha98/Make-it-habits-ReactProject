@@ -21,7 +21,6 @@ export const getGlobalState = () => (dispatch, getState) => {
   axios
     .get('https://make-it-habit-api.herokuapp.com/habits')
     .then(res => {
-      // console.log('cards', cards);
       if (cards.length === 0) {
         dispatch(getUserData({ ...res.data.user }));
       } else {
