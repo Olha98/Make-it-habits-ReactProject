@@ -2,11 +2,11 @@ import axios from 'axios';
 import actionsLoader from '../actions/spinnerActions';
 import customHabitActions from '../actions/castomHabitActions';
 
-const addHabitOperation = habit => async (dispatch, getState) => {
+const addHabitOperation = habit => async dispatch => {
   dispatch(actionsLoader.loaderOn());
   dispatch(customHabitActions.addCustomHabitRequest());
   try {
-    const { res } = await axios.post('habits', habit);
+    const res = await axios.post('habits', habit);
     dispatch(customHabitActions.addCustomHabit({ ...res.data }));
   } catch (error) {
     dispatch(customHabitActions.addCustomHabitError(error));
@@ -15,7 +15,7 @@ const addHabitOperation = habit => async (dispatch, getState) => {
   }
 };
 
-const removeHabitOperation = habitId => async (dispatch, getState) => {
+const removeHabitOperation = habitId => async dispatch => {
   dispatch(actionsLoader.loaderOn());
   dispatch(customHabitActions.removeCustomHabitRequest());
   try {
@@ -28,11 +28,11 @@ const removeHabitOperation = habitId => async (dispatch, getState) => {
   }
 };
 
-const patchHabitOperation = habit => async (dispatch, getState) => {
+const patchHabitOperation = habit => async dispatch => {
   dispatch(actionsLoader.loaderOn());
   dispatch(customHabitActions.patchHabitRequest());
   try {
-    const { res } = axios.patch('habits', habit);
+    const res = await axios.patch('habits', habit);
     dispatch(customHabitActions.patchHabitStatus(res.data.updatedHabit));
   } catch (error) {
     dispatch(customHabitActions.patchHabitError(error));

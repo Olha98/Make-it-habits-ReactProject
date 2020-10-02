@@ -1,14 +1,13 @@
 import axios from 'axios';
 import checkListActions from '../actions/checkListActions';
-import { getHabits } from '../actions/habitsActions';
 import actionsLoader from '../actions/spinnerActions';
 
 const addHabitStatus = updateInfo => async dispatch => {
   dispatch(actionsLoader.loaderOn());
   dispatch(checkListActions.addHabitStatusRequest());
   try {
-    const { res } = await axios.patch('/habits', updateInfo);
-    dispatch(getHabits([...res.data.habits]));
+    await axios.patch('/habits', updateInfo);
+    dispatch(checkListActions.addHabitStatusSuccess(updateInfo));
   } catch (error) {
     dispatch(checkListActions.addHabitStatusError(error));
   } finally {

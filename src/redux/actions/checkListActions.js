@@ -21,9 +21,7 @@ const addHabitStatusRequest = () => ({
 const addHabitStatusSuccess = habit => {
   return {
     type: checkListConstants.ADD_HABIT_STATUS_SUCCESS,
-    payload: {
-      ...habit,
-    },
+    payload: habit,
   };
 };
 

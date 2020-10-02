@@ -6,6 +6,11 @@ import castomHabitOperation from '../../redux/operations/castomHabitOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import { ReactComponent as Trash } from '../../assests/images/Card/trash.svg';
 
+// * Импорт компонентов с сообщением об ошибке и спинером + селеторы для пропов
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
+import Spinner from '../Spinner/Spinner';
+import { errorSelector, spinnerSelector } from '../../redux/selectors';
+
 class CastomHabit extends Component {
   state = {
     name: '',
@@ -30,7 +35,8 @@ class CastomHabit extends Component {
     }
   }
 
-  onClickSubmit = e => {
+  // * без async/await успевала отработать ф-ция закрытия модалки
+  onClickSubmit = async e => {
     e.preventDefault();
     const { name, date, time, iteration } = this.state;
     const planningTime = `${date}:${time}`;
@@ -39,19 +45,37 @@ class CastomHabit extends Component {
       id = this.props.habit._id;
     }
     if (e.target.dataset.save && this.props.fromCheckList) {
-      this.props.requestPatchCustomHabit({ name, id });
+      await this.props.requestPatchCustomHabit({ name, id });
+
+      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
+      if (this.props.error) {
+        return;
+      }
+
       this.props.closeModal();
     } else if (e.target.dataset.cancel) {
       this.props.closeModal();
     } else if (e.target.dataset.delete) {
-      this.props.requestRemoveCastomHabit(this.props.habit._id);
+      await this.props.requestRemoveCastomHabit(this.props.habit._id);
+
+      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
+      if (this.props.error) {
+        return;
+      }
+
       this.props.closeModal();
-    } else if (e.target.dataset.save && name, date, time, iteration) {
-      this.props.requestAddCustomHabit({ name, planningTime, iteration });
+    } else if ((e.target.dataset.save && name, date, time, iteration)) {
+      await this.props.requestAddCustomHabit({ name, planningTime, iteration });
+
+      // * выходим из обработчика сабмита без закрытия модалки в случае ошибки
+      if (this.props.error) {
+        return;
+      }
+
       this.props.closeModal();
-    } else if (e.target.dataset.save && !name, !date, !time, !iteration) {
-      this.setState({ isSubmit: true })
-    } 
+    } else if ((e.target.dataset.save && !name, !date, !time, !iteration)) {
+      this.setState({ isSubmit: true });
+    }
   };
 
   handleChenge = e => {
@@ -83,6 +107,7 @@ class CastomHabit extends Component {
     const yearToday = dateToday.getFullYear();
 
     const planningDateToday = `${yearToday}-${monthToday}-${dayToday}`;
+    const { isLoading, error } = this.props;
 
     return (
       <div className={style.castomHabitContainer}>
@@ -90,6 +115,13 @@ class CastomHabit extends Component {
         <p className={style.castomHabitText}>
           так Вам будет удобнее достичь своей цели
         </p>
+
+        {/* 
+        // * Здесь добавляем спинер и сообщение об ошибке 
+        */}
+        {isLoading && <Spinner />}
+        {error && <ErrorNotification />}
+
         <form onSubmit={this.handleSubmit} className={style.castomHabitForm}>
           <div className={style.castomHabitLableWrapper}>
             <label className={style.castomHabitLabel}>
@@ -160,13 +192,13 @@ class CastomHabit extends Component {
             </label>
           </div>
           {this.props.fromCheckList && (
-            <div className={style.btnWrapper}>              
+            <div className={style.btnWrapper}>
               <button
                 onClick={this.onClickSubmit}
                 data-delete="delete"
                 className={style.castomHabitDelete}
               >
-                <Trash className={style.imgTrashCan}/>
+                <Trash className={style.imgTrashCan} />
                 удалить привычку
               </button>
             </div>
@@ -195,8 +227,14 @@ class CastomHabit extends Component {
   }
 }
 
+// * добавляем пропы с ошибкой и спинером
+const mapStateToProps = state => ({
+  isLoading: spinnerSelector.isLoading(state),
+  error: errorSelector.getError(state),
+});
+
 export default modalBackDrop(
-  connect(null, {
+  connect(mapStateToProps, {
     onAddCustomHabit: castomHabitActions.addCustomHabit,
     removeCastomHabit: castomHabitActions.removeCustomHabit,
     requestAddCustomHabit: castomHabitOperation.addHabitOperation,

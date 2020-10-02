@@ -51,15 +51,13 @@ const addCustomHabitRequest = () => {
 const addCustomHabit = habit => {
   return {
     type: customHabitConstans.ADD_CUSTOM_HABIT,
-    payload: {
-      ...habit,
-    },
+    payload: habit,
   };
 };
 
 const addCustomHabitError = error => {
   return {
-    type: customHabitConstans.ADD_CUSTOM_HABIT,
+    type: customHabitConstans.ADD_CUSTOM_HABIT_ERROR,
     payload: error,
   };
 };
