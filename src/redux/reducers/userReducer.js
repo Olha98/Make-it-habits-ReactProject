@@ -55,7 +55,7 @@ const userReducer = (state = { ...initialState }, action) => {
 
     case cardsConstants.ADD_CARD_SUCCESS:
       const countCards = state.cards.length;
-      const newId = state.cards[countCards - 1].id + 1;
+      const newId = countCards ? state.cards[countCards - 1].id + 1 : 1;
       const newOrderN = countCards + 1;
       const cardsPlus = [
         ...state.cards,

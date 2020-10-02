@@ -9,39 +9,20 @@ import {
   spinnerSelector,
   subscrSelectors,
 } from '../../redux/selectors';
-import { errorActions } from '../../redux/actions';
 import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
-
-const delay = ms =>
-  new Promise(resolve =>
-    setTimeout(() => {
-      resolve('');
-      console.log('delay');
-    }, ms),
-  );
 
 const Payment = props => {
   const { cards, error, isLoading, plan, price } = props;
   const [amount, setAnmount] = useState(price);
   const [card, setCard] = useState('default');
-  // const [isError, setIsErr] = useState(false);
-  const isError = useRef(true);
-  const dispatch = useDispatch();
+  const isError = useRef(false);
 
   useEffect(() => {
-    console.log('error', error);
-    // error && setIsErr(true);
     if (error) {
-      console.log('error in useEffect', error);
-      isError.current = false;
+      // console.log('error in useEffect', error);
+      isError.current = true;
     }
-    // return () => {
-    //   if (error) {
-    //     dispatch(errorActions.hideError());
-    //     console.log('error', error);
-    //   }
-    // };
   }, [error]);
 
   const changeAmount = e => {
@@ -59,15 +40,11 @@ const Payment = props => {
     const inputAmount = Number(amount);
     const payment = { paidAt, amount: inputAmount };
     await props.onAddPayment(payment);
-    if (!isError.current) {
-      // response.status >= 400
-      console.log('error', error);
+    if (isError.current) {
       return;
     }
     props.close();
   };
-
-  console.log('Does it render?');
 
   return (
     <section className={styles.modalForm}>

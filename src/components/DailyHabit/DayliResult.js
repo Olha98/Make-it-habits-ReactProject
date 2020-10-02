@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import updateDailyResul from '../../redux/operations/dailyResultOperation';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import closeBtn from '../../assests/images/closeBlack.png';
 import AlreadyAdded from './AlreadyAdded/AlreadyAdded';
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
+import Spinner from '../Spinner/Spinner';
+import { errorSelector, spinnerSelector } from '../../redux/selectors';
 import style from './DailyHabit.module.css';
 
-const DailyResult = ({ close, updateResult, prevData, startTime }) => {
+const DailyResult = ({
+  close,
+  updateResult,
+  prevData,
+  startTime,
+  error,
+  isLoading,
+}) => {
   const [quantity, setQuantity] = useState(0);
   const [isAlreadyAdded, setAlreadyAdded] = useState(false);
+  const isError = useRef(false);
+  useEffect(() => {
+    if (error) {
+      isError.current = true;
+    }
+  }, [error]);
 
   const openAlreadyAdded = () => {
     setAlreadyAdded(true);
@@ -18,7 +34,7 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
     setQuantity(Number(e.target.value));
   };
 
-  const submitQuantity = e => {
+  const submitQuantity = async e => {
     e.preventDefault();
     const date = new Date(startTime);
     const todayDate = Date.now();
@@ -27,13 +43,17 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
 
     if (!prevData[dayPass]) {
       prevData[dayPass] = quantity;
-      updateResult({
+      await updateResult({
         startedAt: startTime,
         data: prevData,
       });
+
+      if (isError.current) {
+        return;
+      }
+
       close();
     } else openAlreadyAdded();
-
   };
 
   return (
@@ -46,6 +66,8 @@ const DailyResult = ({ close, updateResult, prevData, startTime }) => {
         <p className={style.dailyHabitDescription}>
           Давайте вместе постараемся свести это число к нулю.
         </p>
+        {isLoading && <Spinner />}
+        {error && <ErrorNotification />}
       </div>
       <form onSubmit={e => submitQuantity(e)}>
         <div className={style.dailyHabitInputWrapper}>
@@ -82,6 +104,8 @@ const mapStateToProps = state => {
   return {
     prevData: state.cigarettes.data,
     startTime: state.cigarettes.startedAt,
+    isLoading: spinnerSelector.isLoading(state),
+    error: errorSelector.getError(state),
   };
 };
 

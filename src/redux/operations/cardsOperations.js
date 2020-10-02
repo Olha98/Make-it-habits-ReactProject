@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { cardsActions, spinnerActions } from '../actions';
-import { authSelector } from '../selectors';
-import { token } from './authOperation';
 
-const addCard = card => async (dispatch, getState) => {
-  const tokenNow = authSelector.isAuthenticated(getState());
-  token.set(tokenNow);
-
+const addCard = card => async dispatch => {
   dispatch(spinnerActions.loaderOn());
   dispatch(cardsActions.addCardRequest());
   try {
@@ -19,14 +14,10 @@ const addCard = card => async (dispatch, getState) => {
   }
 };
 
-const removeCard = id => async (dispatch, getState) => {
-  const tokenNow = authSelector.isAuthenticated(getState());
-  token.set(tokenNow);
-
+const removeCard = id => async dispatch => {
   dispatch(spinnerActions.loaderOn());
   dispatch(cardsActions.removeCardRequest());
   try {
-    // await axios.delete(`/cards/${id}`);
     dispatch(cardsActions.removeCardSuccess(id));
   } catch (error) {
     dispatch(cardsActions.removeCardError(error));
@@ -35,14 +26,10 @@ const removeCard = id => async (dispatch, getState) => {
   }
 };
 
-const addPayment = payment => async (dispatch, getState) => {
-  const tokenNow = authSelector.isAuthenticated(getState());
-  token.set(tokenNow);
-
+const addPayment = payment => async dispatch => {
   dispatch(spinnerActions.loaderOn());
   dispatch(cardsActions.addPaymentRequest());
   try {
-    // await axios.patch('/users', payment);
     dispatch(cardsActions.addPaymentSuccess(payment));
   } catch (error) {
     dispatch(cardsActions.addPaymentError(error));

@@ -30,6 +30,7 @@ const CardListItem = props => {
         // zIndex: `-${index * 10}`,
         cursor: 'pointer',
         // transitionDelay: `${(count - 1 - index) * 50}ms`,
+        overflow: 'hidden',
       }}
       onClick={onShuffle}
     >
