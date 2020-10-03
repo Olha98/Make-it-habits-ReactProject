@@ -31,7 +31,7 @@ class Payment extends Component {
     const payment = { paidAt, amount };
     await this.props.onAddPayment(payment);
     if (this.props.error) {
-      console.log('this.props.error', this.props.error);
+      // console.log('this.props.error', this.props.error);
       return;
     }
     this.props.close();

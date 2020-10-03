@@ -10,9 +10,12 @@ import funcMessage from './utils/funcMessage';
 import PasswordForm from './PasswordForm';
 import { avatars } from '../Avatar/dataAvatar';
 import Card from '../Card/Card';
-import operationsProfile from '../../redux/operations/operationsProfile';
 import ModalInterview from '../ModalInterview/ModalInterview.js';
 import CustomScrollbars from '../../assests/scroll/scroll';
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
+import Spinner from '../Spinner/Spinner';
+import { errorSelector, spinnerSelector } from '../../redux/selectors';
+import operationsProfile from '../../redux/operations/operationsProfile';
 import style from './Profile.module.css';
 
 class Profile extends Component {
@@ -29,7 +32,7 @@ class Profile extends Component {
 
   render() {
     const { changePassword } = this.state;
-    const { subscription } = this.props;
+    const { subscription, isLoading, error } = this.props;
     if (!this.props.email) {
       return null;
     }
@@ -55,7 +58,7 @@ class Profile extends Component {
                     email: this.props.email,
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={values => {
+                  onSubmit={async values => {
                     const numb = values.phone
                       .split('')
                       .filter(symb => symb !== ' ');
@@ -63,7 +66,7 @@ class Profile extends Component {
                     const number = numb
                       .splice(numb[0] === '+' && numb[1] === '3' && 2)
                       .join('');
-                    this.props.addDataUserOperation({
+                    await this.props.addDataUserOperation({
                       ...values,
                       phone:
                         number[0] === 8 &&
@@ -73,11 +76,16 @@ class Profile extends Component {
                           ? number.slice(2)
                           : number,
                     });
+                    if (this.props.error) {
+                      return;
+                    }
                     this.props.history.push('/checklist');
                   }}
                 >
                   {({ values, errors, touched, handleChange, handleBlur }) => (
                     <Form className={style.form}>
+                      {isLoading && <Spinner />}
+                      {error && <ErrorNotification />}
                       <label className={style.label}>
                         <span className={style.titleInput}>Имя*</span>
                         <input
@@ -274,6 +282,7 @@ class Profile extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     firstName: state.user.firstName,
@@ -282,8 +291,9 @@ const mapStateToProps = state => {
     email: state.user.email,
     avatar: state.user.avatar,
     subscription: state.user.subscription,
-
     isModalInterview: state.quizInfo.smokeYears,
+    isLoading: spinnerSelector.isLoading(state),
+    error: errorSelector.getError(state),
   };
 };
 const mapDispatchToProps = {

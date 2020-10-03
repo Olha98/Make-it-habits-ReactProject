@@ -2,23 +2,18 @@ import axios from 'axios';
 import { getCigarettes } from '../actions/cigarettesActions';
 import dailyResultAction from '../actions/dailyResultAction';
 import { spinnerActions } from '../actions';
-import { token } from './authOperation';
 
-const updateDailyResul = update => (dispatch, getState) => {
-  const tokenNow = getState().auth.access_token;
-  token.set(tokenNow);
+const updateDailyResul = update => async dispatch => {
   dispatch(spinnerActions.loaderOn());
   dispatch(dailyResultAction.updateCiggaretsRequest());
-
-  axios
-    .post('/users/updateCigarettes', update)
-    .then(res => {
-      dispatch(getCigarettes({ ...res.data }));
-    })
-    .catch(err => {
-      dispatch(dailyResultAction.updateCiggaretsError(err));
-    })
-    .finally(() => dispatch(spinnerActions.loaderOff()));
+  try {
+    const res = await axios.post('/users/updateCigarettes', update);
+    dispatch(getCigarettes({ ...res.data }));
+  } catch (error) {
+    dispatch(dailyResultAction.updateCiggaretsError(error));
+  } finally {
+    dispatch(spinnerActions.loaderOff());
+  }
 };
 
 export default updateDailyResul;

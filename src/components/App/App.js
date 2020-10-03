@@ -9,7 +9,7 @@ import NotFound from '../../views/NotFound';
 import routes from '../../routes';
 import LeftSideBar from '../LeftSideBar/LeftSideBar';
 import RightSideBar from '../RightSideBar/RightSideBar';
-import style from '../CustomRoutes/PrivateRoute.module.css';
+import style from './App.module.css';
 import '../../css/vars.module.css';
 import '../../index.module.css';
 

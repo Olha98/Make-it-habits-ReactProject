@@ -21,7 +21,7 @@ export const getGlobalState = () => (dispatch, getState) => {
   axios
     .get('https://make-it-habit-api.herokuapp.com/habits')
     .then(res => {
-      // console.log('res habits', res)
+      // console.log('cards', cards);
       if (cards.length === 0) {
         dispatch(getUserData({ ...res.data.user }));
       } else {
@@ -38,7 +38,9 @@ export const getGlobalState = () => (dispatch, getState) => {
         }),
       );
     })
-    .catch(error => actionsState.getAllStateError(error))
+    .catch(error => {
+      dispatch(actionsState.getAllStateError(error));
+    })
     .finally(() => {
       dispatch(spinnerActions.loaderOff());
     });

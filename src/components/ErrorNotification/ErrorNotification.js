@@ -8,7 +8,7 @@ const ErrorNotification = ({ error }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     return () => dispatch(errorActions.hideError());
-  }, []);
+  }, [dispatch]);
   let message = '';
   if (error?.data === 'Password is not equal') {
     message = 'Неверный пароль';

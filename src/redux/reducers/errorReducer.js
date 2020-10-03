@@ -1,4 +1,8 @@
-import * as stateConstants from '../constants/stateConstants';
+// import * as stateConstants from '../constants/stateConstants';
+import {
+  GET_STATE_REQUEST,
+  GET_STATE_ERROR,
+} from '../constants/stateConstants';
 import {
   authConstants,
   profileConstants,
@@ -33,7 +37,7 @@ const error = (state = null, action) => {
     case subscrConstants.CHANGE_TYPE_ERROR:
     case cardsConstants.ADD_CARD_ERROR:
     case cardsConstants.ADD_PAYMENT_ERROR:
-    case stateConstants.GET_STATE_ERROR:
+    case GET_STATE_ERROR:
       const response = action.payload.response
         ? {
             data: action.payload.response.data,
@@ -60,7 +64,7 @@ const error = (state = null, action) => {
     case subscrConstants.CHANGE_TYPE_REQUEST:
     case cardsConstants.ADD_CARD_REQUEST:
     case cardsConstants.ADD_PAYMENT_REQUEST:
-    case stateConstants.GET_STATE_REQUEST:
+    case GET_STATE_REQUEST:
       return null;
 
     default:

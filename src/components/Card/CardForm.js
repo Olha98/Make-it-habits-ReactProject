@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputMask from 'react-input-mask';
-import { errorSelector, spinnerSelector } from '../../redux/selectors';
-import { cardsOperations } from '../../redux/operations';
 import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
 import Spinner from '../Spinner/Spinner';
+import ErrorNotification from '../ErrorNotification/ErrorNotification';
+import { errorSelector, spinnerSelector } from '../../redux/selectors';
+import { cardsOperations } from '../../redux/operations';
 import styles from './Card.module.css';
 
 class CardForm extends Component {
@@ -116,9 +117,7 @@ class CardForm extends Component {
           style={{ marginBottom: `${error || message ? '20px' : '40px'}` }}
         >
           <h2 className={styles.title}>Введите данные по платежной карте:</h2>
-          {error && (
-            <h3 className="error">Извините, произошла ошибка: {error} </h3>
-          )}
+          {error && <ErrorNotification message={message} />}
           {message && <h3 className="error">{message} </h3>}
         </header>
         {isLoading && <Spinner />}
