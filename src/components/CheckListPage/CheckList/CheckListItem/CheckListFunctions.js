@@ -1,8 +1,10 @@
 export const getCurrentDate = () => {
   const date = new Date();
+  const currentDay =
+    date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   const currentMonth =
     date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-  return `${date.getDate()}.${currentMonth}.${date.getFullYear()}`;
+  return `${currentDay}.${currentMonth}.${date.getFullYear()}`;
 };
 
 export const getColor = (color, index) => {
