@@ -92,8 +92,6 @@ class CheckListItem extends Component {
   };
 
   onStatus = async bool => {
-    this.setState({ habitId: this.props.habit._id });
-
     const { arrayDate, day } = this.props.habit;
     const index = getIndex(day, arrayDate);
     const firstNull = this.state.daysProgress.map((elem, idx) => {
@@ -126,6 +124,7 @@ class CheckListItem extends Component {
     }
 
     this.setState({
+      habitId: this.props.habit._id,
       habitChecked: true,
       daysDone: firstNull.filter(elem => elem === true).length,
       daysPassed: firstNull.filter(elem => elem === false).length,

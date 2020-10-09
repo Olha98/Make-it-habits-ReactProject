@@ -27,7 +27,11 @@ function CheckListHeader({ error }) {
         </button>
         {isShowModal && <DailyResult close={closeModal} />}
       </div>
-      <div className={style.note}>{error && <ErrorNotification />}</div>
+      {error && (
+        <div className={style.note}>
+          <ErrorNotification />
+        </div>
+      )}
     </>
   );
 }
