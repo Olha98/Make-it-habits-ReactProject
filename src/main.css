@@ -32,7 +32,7 @@ img {
 .visually-hidden:not(:focus):not(:active),
 input[type='“checkbox”'].visually-hidden,
 input[type='“radio”'].visually-hidden {
-  position: absolute;
+  position: ;
   width: 1px;
   height: 1px;
   margin: -1px;

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { quizInfoOperations } from '../../redux/operations';
 import { spinnerSelector, errorSelector } from '../../redux/selectors';
 import { errorActions } from '../../redux/actions';
-import modalBackDrop from '../ModalBackDrop/ModalBackDrop';
+import BackDrop from '../BackDrop/BackDrop';
 import Spinner from '../Spinner/Spinner';
-import styles from './ModalInterview.module.css';
+import styles from './Interview.module.css';
 
-class ModalInterview extends Component {
+class Interview extends Component {
   state = {
     smokeYears: 0,
     cigarettePerDay: 0,
@@ -20,7 +20,7 @@ class ModalInterview extends Component {
     if (this.props.error) {
       return;
     }
-    this.props.closeModal();
+    this.props.close();
   };
 
   handleChange = e => {
@@ -41,7 +41,7 @@ class ModalInterview extends Component {
     } = this.state;
     const { error, isLoading } = this.props;
     return (
-      <section className={styles.modalInterview}>
+      <section className={styles.Interview}>
         <header
           className={styles.sectionHeader}
           style={{ marginBottom: `${error ? '20px' : '40px'}` }}
@@ -134,4 +134,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(modalBackDrop(ModalInterview));
+)(BackDrop(Interview));
